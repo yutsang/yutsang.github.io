@@ -33,7 +33,7 @@ La Salle College
 
 ## Work Experience
 
-### Dept of Microbiology, *Research Assistant* **not updated**
+***Dept of Microbiology, Research Assistant*** **not updated**
 **HKU, Faculty of Clinical Medicine**
 *May 2024 - Present*
 
@@ -41,7 +41,7 @@ La Salle College
 - Collaborated with cross-functional teams to deliver high-quality software.
 - Implemented automated testing using **Jest** and **Enzyme**.
 
-### Risk Assurance, *Associate*
+***Risk Assurance, Associate***
 **PwC**
 *Sep 2023 - Feb 2024*
 
@@ -50,14 +50,14 @@ La Salle College
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-### Assurance, *Audit Junior*
+***Assurance, Audit Junior***
 **ESO Partners CPA Limited**
 *Jun 2022 - Jun 2023*
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
 - Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
 
-### Treasury and Markets, *Digital & Data Placement Intern*
+***Treasury and Markets, Digital & Data Placement Intern***
 **DBS Bank**
 *Feb 2022 - Jun 2022*
 
@@ -69,11 +69,11 @@ La Salle College
 ---
 
 ## Projects and Awards  
-### LF Logistics,
+**LF Logistics**
 *Fleet Estimated Time of Arrival Prediction (Leading)*  
-### HKLA,
+**HKLA**
 *2022 Hong Kong Logistics Case Contest – 2nd Runner-Up & Best Cost Effective Solution*
-### CILTHK,
+**CILTHK**
 *Student Day 2021 Case Competition – 1st Runner-Up*
 
 ---
