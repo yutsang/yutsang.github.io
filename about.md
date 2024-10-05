@@ -35,7 +35,7 @@ La Salle College
 
 **HKU, Faculty of Clinical Medicine**
 *May 2024 - Present*  
-***Dept of Microbiology, Research Assistant*** **(not updated)**  
+***Dept of Microbiology, Research Assistant*** **(not updated)** <span style="float: right;">June 2019 - Present</span>
 
 - Developed and maintained web applications using **React** and **Node.js**.
 - Collaborated with cross-functional teams to deliver high-quality software.
