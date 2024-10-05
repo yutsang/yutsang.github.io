@@ -10,7 +10,7 @@ description: "Personal Website"
 ## Optional configs:
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://github.com/yutsang/yutsang.github.io/raw/main/images/avater.jpeg
+#avatar: https://github.com/yutsang/yutsang.github.io/raw/main/images/avater.jpeg
 # favicon(64px × 64px)
 favicon: https://github.com/yutsang/yutsang.github.io/raw/main/images/favicon.ico
 
