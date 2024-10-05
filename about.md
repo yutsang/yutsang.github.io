@@ -30,32 +30,31 @@ La Salle College
 
 ## Work Experience
 
-**HKU, Faculty of Clinical Medicine** <span style="float: right;">*May 2024 - Present*</span>  
-***Dept of Microbiology, Research Assistant*** **(not updated)** 
+**HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Present*</span>  
+***Research Assistant*** **(not updated)** 
 
-- Developed and maintained web applications using **React** and **Node.js**.
-- Collaborated with cross-functional teams to deliver high-quality software.
-- Implemented automated testing using **Jest** and **Enzyme**.
+- Conducted research on antibiotic resistance, focusing on `large language model (LLM)` training and data analysis
+- Developed and implemented machine learning models to analyze data sets related to **antibiotic resistance (AMR)** patterns
  
-**PwC** <span style="float: right;">*Sep 2023 - Feb 2024*</span>  
-***Risk Assurance, Associate*** 
+**PwC, Risk Assurance** <span style="float: right;">*Sep 2023 - Feb 2024*</span>  
+***Associate*** 
 
-- Conducted IT General Controls testing and Internal Audits, and recommended practical improvements
+- Conducted `IT General Controls` testing and `Internal Audits`, and recommended practical improvements
 - Operated in a client-facing capacity to understand process flows and identified key issues
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-**ESO Partners CPA Limited** <span style="float: right;">*Jun 2022 - Jun 2023*</span>  
-***Assurance, Audit Junior***  
+**ESO Partners CPA Limited, Assurance** <span style="float: right;">*Jun 2022 - Jun 2023*</span>  
+***Audit Junior***  
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
-- Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
+- Conducted KYC/AML checks for customers, and regular on-going sanction check by `Excel VBA`
 
-**DBS Bank** <span style="float: right;">*Feb 2022 - Jun 2022*</span>  
-***Treasury and Markets, Digital & Data Placement Intern***  
+**DBS Bank, Treasury and Markets** <span style="float: right;">*Feb 2022 - Jun 2022*</span>  
+***Digital & Data Placement Intern***  
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
-- Automated data collection flow and published to Tableau dashboards for Treasury and Markets Sales
+- Automated data collection flow and published to `Tableau` dashboards for Treasury and Markets Sales
 - Conducted financial spreading and analysis and maintained timely update database of deal lists
 - Initiated analysis on customers’ money flow to discover more currency mismatch opportunities
 
