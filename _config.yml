@@ -22,7 +22,7 @@ navigation:
   - name: Home
     url: /
   - name: About Me
-    url: /about-me
+    url: /about
   - name: Blogs
     url: /archive
   - name: Tags
