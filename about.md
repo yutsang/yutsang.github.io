@@ -33,33 +33,33 @@ La Salle College
 
 ## Work Experience
 
-**Dept of Microbiology,** ***Research Assistant*** **not updated**  
-***HKU, Faculty of Clinical Medicine***
-*May 2024 - Present*
+**HKU, Faculty of Clinical Medicine**
+*May 2024 - Present*  
+***Dept of Microbiology, Research Assistant*** **(not updated)**  
 
 - Developed and maintained web applications using **React** and **Node.js**.
 - Collaborated with cross-functional teams to deliver high-quality software.
 - Implemented automated testing using **Jest** and **Enzyme**.
-
-**Risk Assurance,** ***Associate***  
-***PwC***
-*Sep 2023 - Feb 2024*
+ 
+**PwC**
+*Sep 2023 - Feb 2024*  
+***Risk Assurance, Associate*** 
 
 - Conducted IT General Controls testing and Internal Audits, and recommended practical improvements
 - Operated in a client-facing capacity to understand process flows and identified key issues
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-**Assurance,** ***Audit Junior***  
-***ESO Partners CPA Limited***
-*Jun 2022 - Jun 2023*
+**ESO Partners CPA Limited**
+*Jun 2022 - Jun 2023*  
+***Assurance, Audit Junior***  
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
 - Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
 
-**Treasury and Markets,** ***Digital & Data Placement Intern***  
-***DBS Bank***
-*Feb 2022 - Jun 2022*
+**DBS Bank**
+*Feb 2022 - Jun 2022*  
+***Treasury and Markets, Digital & Data Placement Intern***  
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
 - Automated data collection flow and published to Tableau dashboards for Treasury and Markets Sales
