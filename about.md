@@ -48,7 +48,7 @@ La Salle College
 ***Audit Junior***  
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
-- Conducted KYC/AML checks for customers, and regular on-going sanction check by `Excel VBA`
+- Conducted **KYC/AML** checks for customers, and regular on-going sanction check by `Excel VBA`
 
 **DBS Bank, Treasury and Markets** <span style="float: right;">*Feb 2022 - Jun 2022*</span>  
 ***Digital & Data Placement Intern***  
