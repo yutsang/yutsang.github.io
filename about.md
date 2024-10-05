@@ -6,7 +6,7 @@ permalink: /about/
 
 ## TSANG Yu, Dylan  
 Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)  
-**Certs:** `CISA`, `CISS`
+**Certs:** `CISA`, `CISM`
 
 ---
 
