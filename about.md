@@ -17,13 +17,11 @@ Experienced Python developer with a strong focus on data analysis and automation
 
 ## Education
 
-**MSc, Enterprise Engineering Management**  
+**MSc, Enterprise Engineering Management**  <span style="float: right;">*Graduated: Jan, 2025 (Expected)*</span>
 HKUST, Hong Kong University of Science and Technology  
-*Graduated: Jan, 2025 (Expected)*
 
-**BEng, Industrial Engineering and Engineering Management (Logistics Area)**  
-HKUST, Hong Kong University of Science and Technology  
-*Graduated: Jun, 2023*
+**BEng, Industrial Engineering and Engineering Management (Logistics Area)** <span style="float: right;">*Graduated: Jun, 2023*</span>
+HKUST, Hong Kong University of Science and Technology 
 
 **Hong Kong Diploma of Secondary Education**  
 La Salle College
