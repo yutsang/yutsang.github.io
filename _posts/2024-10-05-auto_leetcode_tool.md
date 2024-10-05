@@ -53,3 +53,31 @@ I'm excited to share a new tool I've developed called **`autoleetcode`**. This P
     python autoleetcode.py
     ```
 
+5. View Your Progress
+
+After running the script, you can easily view your progress through the generated Markdown file, `README.md`. This file summarizes all your LeetCode submissions and provides a clear overview of your coding journey.
+
+### Example Output
+
+The generated Markdown file will include a table like this:
+
+| Question # | Finished Date | Title | Submission | Difficulty |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | 2024-10-01 | [Two Sum](https://leetcode.com/problems/two-sum/description/) | [Python](https://github.com/yutsang/leetcode/blob/main/submissions/1_two_sum.py) | Easy |
+| 2 | 2024-10-02 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) | [Python](https://github.com/yutsang/leetcode/blob/main/submissions/2_add_two_numbers.py) | Medium |
+
+This table will dynamically update each time you run the script, providing you with a comprehensive log of your submissions, including:
+
+- **Question #:** The number assigned to the question.
+- **Finished Date:** The date when you completed the submission.
+- **Title:** The title of the question with a direct link to its description on LeetCode.
+- **Submission:** A link to your solution code stored in your GitHub repository.
+- **Difficulty:** The difficulty level of the question (Easy, Medium, Hard).
+
+## Conclusion
+
+With `autoleetcode`, you can streamline your LeetCode submission tracking process and focus more on solving problems rather than managing logs. For any bugs or feature requests, feel free to open an issue on [GitHub](https://github.com/yutsang/leetcode/issues).
+
+For more details and usage instructions, please refer to the [Usage Guide](https://github.com/yutsang/leetcode/blob/main/autoleetcode.md).
+
+Happy coding!
