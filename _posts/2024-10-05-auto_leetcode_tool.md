@@ -57,7 +57,7 @@ I'm excited to share a new tool I've developed called **`autoleetcode`**. This P
 
     After running the script, you can easily view your progress through the generated Markdown file, `README.md`. This file summarizes all your LeetCode submissions and provides a clear overview of your coding journey.
 
-    ### Example Output
+    **Example Output**
 
     The generated Markdown file will include a table like this:
 
