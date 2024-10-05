@@ -17,10 +17,10 @@ Experienced Python developer with a strong focus on data analysis and automation
 
 ## Education
 
-**MSc, Enterprise Engineering Management**  <span style="float: right;">*Graduated: Jan, 2025 (Expected)*</span>
+**MSc, Enterprise Engineering Management**  <span style="float: right;">*Graduated: Jan, 2025 (Expected)*</span>  
 HKUST, Hong Kong University of Science and Technology  
 
-**BEng, Industrial Engineering and Engineering Management (Logistics Area)** <span style="float: right;">*Graduated: Jun, 2023*</span>
+**BEng, Industrial Engineering and Engineering Management (Logistics Area)** <span style="float: right;">*Graduated: Jun, 2023*</span>  
 HKUST, Hong Kong University of Science and Technology 
 
 **Hong Kong Diploma of Secondary Education**  
@@ -30,14 +30,14 @@ La Salle College
 
 ## Work Experience
 
-**HKU, Faculty of Clinical Medicine** <span style="float: right;">*May 2024 - Present*</span>
+**HKU, Faculty of Clinical Medicine** <span style="float: right;">*May 2024 - Present*</span>  
 ***Dept of Microbiology, Research Assistant*** **(not updated)** 
 
 - Developed and maintained web applications using **React** and **Node.js**.
 - Collaborated with cross-functional teams to deliver high-quality software.
 - Implemented automated testing using **Jest** and **Enzyme**.
  
-**PwC** <span style="float: right;">*Sep 2023 - Feb 2024*</span>
+**PwC** <span style="float: right;">*Sep 2023 - Feb 2024*</span>  
 ***Risk Assurance, Associate*** 
 
 - Conducted IT General Controls testing and Internal Audits, and recommended practical improvements
@@ -45,13 +45,13 @@ La Salle College
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-**ESO Partners CPA Limited** <span style="float: right;">*Jun 2022 - Jun 2023*</span>
+**ESO Partners CPA Limited** <span style="float: right;">*Jun 2022 - Jun 2023*</span>  
 ***Assurance, Audit Junior***  
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
 - Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
 
-**DBS Bank** <span style="float: right;">*Feb 2022 - Jun 2022*</span> 
+**DBS Bank** <span style="float: right;">*Feb 2022 - Jun 2022*</span>  
 ***Treasury and Markets, Digital & Data Placement Intern***  
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
