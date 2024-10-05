@@ -21,9 +21,9 @@ favicon: https://github.com/yutsang/yutsang.github.io/raw/main/images/favicon.ic
 navigation:
   - name: Home
     url: /
-  - name: About
-    url: /about
-  - name: Archive
+  - name: About Me
+    url: /about-me
+  - name: Blogs
     url: /archive
   - name: Tags
     url: /tags
