@@ -1,10 +1,9 @@
 ---
 layout: page
-title: About Me
+title: TSANG Yu, Dylan  
 permalink: /about/
 ---
 
-## TSANG Yu, Dylan  
 Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)  
 **Certs:** `CISA`, `CISM`
 
@@ -33,16 +32,14 @@ La Salle College
 
 ## Work Experience
 
-**HKU, Faculty of Clinical Medicine**
-*May 2024 - Present*  
-***Dept of Microbiology, Research Assistant*** **(not updated)** <span style="float: right;">June 2019 - Present</span>
+**HKU, Faculty of Clinical Medicine** <span style="float: right;">*May 2024 - Present*</span>
+***Dept of Microbiology, Research Assistant*** **(not updated)** 
 
 - Developed and maintained web applications using **React** and **Node.js**.
 - Collaborated with cross-functional teams to deliver high-quality software.
 - Implemented automated testing using **Jest** and **Enzyme**.
  
-**PwC**
-*Sep 2023 - Feb 2024*  
+**PwC** <span style="float: right;">*Sep 2023 - Feb 2024*</span>
 ***Risk Assurance, Associate*** 
 
 - Conducted IT General Controls testing and Internal Audits, and recommended practical improvements
@@ -50,15 +47,13 @@ La Salle College
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-**ESO Partners CPA Limited**
-*Jun 2022 - Jun 2023*  
+**ESO Partners CPA Limited** <span style="float: right;">*Jun 2022 - Jun 2023*</span>
 ***Assurance, Audit Junior***  
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
 - Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
 
-**DBS Bank**
-*Feb 2022 - Jun 2022*  
+**DBS Bank** <span style="float: right;">*Feb 2022 - Jun 2022*</span> 
 ***Treasury and Markets, Digital & Data Placement Intern***  
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
