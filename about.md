@@ -33,16 +33,16 @@ La Salle College
 
 ## Work Experience
 
-***Dept of Microbiology, Research Assistant*** **not updated**  
-**HKU, Faculty of Clinical Medicine**
+**Dept of Microbiology,** ***Research Assistant*** **not updated**  
+***HKU, Faculty of Clinical Medicine***
 *May 2024 - Present*
 
 - Developed and maintained web applications using **React** and **Node.js**.
 - Collaborated with cross-functional teams to deliver high-quality software.
 - Implemented automated testing using **Jest** and **Enzyme**.
 
-***Risk Assurance, Associate***  
-**PwC**
+**Risk Assurance,** ***Associate***  
+***PwC***
 *Sep 2023 - Feb 2024*
 
 - Conducted IT General Controls testing and Internal Audits, and recommended practical improvements
@@ -50,15 +50,15 @@ La Salle College
 - Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
-***Assurance, Audit Junior***  
-**ESO Partners CPA Limited**
+**Assurance,** ***Audit Junior***  
+***ESO Partners CPA Limited***
 *Jun 2022 - Jun 2023*
 
 - Prepared financial statements, bank consolidation, land search, and statutory audit assignments
 - Conducted KYC/AML checks for customers, and regular on-going sanction check by Excel VBA
 
-***Treasury and Markets, Digital & Data Placement Intern***  
-**DBS Bank**
+**Treasury and Markets,** ***Digital & Data Placement Intern***  
+***DBS Bank***
 *Feb 2022 - Jun 2022*
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
@@ -88,6 +88,5 @@ La Salle College
 
 ## Skills
 
-- **Programming:** `Python`(`PySpark`,`Kedro`), Database(`SQL`, `MySQL`, `MongoDB`), Visualization(`Tableau`,` Power Bi`)
-- **Web Technologies:** `HTML`, `CSS`, `PHP`
+- **Programming:** `Python`(`PySpark`,`Kedro`), Database(`SQL`, `MySQL`, `MongoDB`), Visualization(`Tableau`,` Power Bi`), Website(`HTML`, `CSS`, `PHP`)
 - **Qualifications:** **Google**(`Advanced Data Analytics`), **IBM**(`AI Engineering`, `Data Engineering`), **Microsoft**(`Azure Data Scientist Associate`), **ISC2**(`Systems Security Certified Practitioner`)
