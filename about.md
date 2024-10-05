@@ -12,7 +12,7 @@ Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https
 
 ## Summary
 
-Placeholder
+Experienced Python developer with a strong focus on data analysis and automation. Skilled in leveraging tools like PySpark, Selenium, and Kedro to create efficient solutions and streamline workflows. Adept at solving complex problems and delivering high-quality results in dynamic environments. This concise summary highlights the individual's key skills and expertise in Python and data-related tasks.
 
 ---
 
