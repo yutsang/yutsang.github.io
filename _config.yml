@@ -39,7 +39,7 @@ footer-links:
   dribbble:
   zhihu: 
   email: ytsang@pydot.com
-  facebook: tsangyu
+  facebook: #tsangyu
   flickr:
   github: yutsang 
   googleplus: # anything in your profile username that comes after plus.google.com/
@@ -62,7 +62,7 @@ disqus: # fromendworld
 # Gitalk
 gitalk:
   clientID: Ov23lim6CUdpCFx7OoR0
-  clientSecret: 757a93fd249c2defa9c26420c2e1947ebd7222c7
+  clientSecret: 82e451bdda887e68698481d52aa3bd3c04b4e9c9
   repo: yutsang.github.io
   owner: yutsang
 
