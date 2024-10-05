@@ -5,8 +5,9 @@ permalink: /about/
 ---
 
 ## TSANG Yu, Dylan  
-Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)
+Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)  
 **Certs:** `CISA`, `CISS`
+
 ---
 
 ## Summary
@@ -25,14 +26,14 @@ HKUST, Hong Kong University of Science and Technology
 HKUST, Hong Kong University of Science and Technology  
 *Graduated: Jun, 2023*
 
-**Hong Kong Diploma of Secondary Education**
+**Hong Kong Diploma of Secondary Education**  
 La Salle College
 
 ---
 
 ## Work Experience
 
-### Dept of Microbiology, *Research Assistant* **not updated**
+# Dept of Microbiology, *Research Assistant* **not updated**
 **HKU, Faculty of Clinical Medicine**
 *May 2024 - Present*
 
