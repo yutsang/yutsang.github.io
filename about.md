@@ -31,7 +31,7 @@ La Salle College
 ## Work Experience
 
 **HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Present*</span>  
-***Research Assistant*** **(not updated)** 
+***Research Assistant***
 
 - Conducted research on antibiotic resistance, focusing on `large language model (LLM)` training and data analysis
 - Developed and implemented machine learning models to analyze data sets related to **antibiotic resistance (AMR)** patterns
