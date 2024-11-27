@@ -33,7 +33,7 @@ La Salle College
 **HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Present*</span>  
 ***Research Assistant***
 
-- Conducted research on antimicrobial resistance, focusing on `Bidirectional Encoder Representations from Transformers (BERT)` model training and data analysis
+- Conducted research on antimicrobial resistance, focusing on `BERT` model training and data analysis
 - Developed and implemented machine learning models to analyze data sets related to **antibiotic resistance (AMR)** patterns
  
 **PwC, Risk Assurance** <span style="float: right;">*Sep 2023 - Feb 2024*</span>  
@@ -70,8 +70,8 @@ La Salle College
 
 ## Certifications
 
-- **Certified Information Systems Auditor**, Issued by ISACA (Information Systems Audit and Control Association) (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
-- **Certified Information Security Manager**, Issued by ISACA (Information Systems Audit and Control Association) (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
+- **Certified Information Systems Auditor (CISA)** (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
+- **Certified Information Security Manager (CISM)** (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
 - **HKICPA QP Examination** (*in progress*)
 
 ---
