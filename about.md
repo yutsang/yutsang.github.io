@@ -11,7 +11,7 @@ Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https
 
 ## Summary
 
-Experienced Python developer with a strong focus on data analysis and automation. Skilled in leveraging tools like PySpark, Selenium, and Kedro to create efficient solutions and streamline workflows. Adept at solving complex problems and delivering high-quality results in dynamic environments. This concise summary highlights the individual's key skills and expertise in Python and data-related tasks.
+Python developer with a robust focus on data analysis and automation. Proficient in utilizing tools such as PySpark, Selenium, and Kedro to develop efficient solutions and optimize workflows. Skilled at tackling complex challenges and delivering high-quality results in dynamic environments.
 
 ---
 
@@ -33,7 +33,7 @@ La Salle College
 **HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Present*</span>  
 ***Research Assistant***
 
-- Conducted research on antibiotic resistance, focusing on `large language model (LLM)` training and data analysis
+- Conducted research on antimicrobial resistance, focusing on `Bidirectional Encoder Representations from Transformers (BERT)` model training and data analysis
 - Developed and implemented machine learning models to analyze data sets related to **antibiotic resistance (AMR)** patterns
  
 **PwC, Risk Assurance** <span style="float: right;">*Sep 2023 - Feb 2024*</span>  
@@ -41,7 +41,6 @@ La Salle College
 
 - Conducted `IT General Controls` testing and `Internal Audits`, and recommended practical improvements
 - Operated in a client-facing capacity to understand process flows and identified key issues
-- Collaborated with teams to ensure timely and budget-compliant delivery of risk assurance projects
 - Prepared written reports, highlighting detailed testing procedures, results, and rationale
 
 **ESO Partners CPA Limited, Assurance** <span style="float: right;">*Jun 2022 - Jun 2023*</span>  
@@ -54,9 +53,8 @@ La Salle College
 ***Digital & Data Placement Intern***  
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
-- Automated data collection flow and published to `Tableau` dashboards for Treasury and Markets Sales
-- Conducted financial spreading and analysis and maintained timely update database of deal lists
-- Initiated analysis on customers’ money flow to discover more currency mismatch opportunities
+- Automated data collection flow and published to `Tableau` dashboards for financial spreading and analysis
+- Initiated analysis on customers’ money flow to discover more currency mismatch opportunities by Power Bi `Force-directed Graph`
 
 ---
 
