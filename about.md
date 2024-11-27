@@ -54,29 +54,29 @@ La Salle College
 
 - Partnered with DBS(Singapore) to design price optimization system for institutional customers
 - Automated data collection flow and published to `Tableau` dashboards for financial spreading and analysis
-- Initiated analysis on customers’ money flow to discover more currency mismatch opportunities by Power Bi `Force-directed Graph`
+- Initiated analysis on customers’ money flow to discover more currency mismatch opportunities by Power BI `Force-directed Graph`
 
 ---
 
 ## Projects and Awards  
 **LF Logistics**
-*Fleet Estimated Time of Arrival Prediction (Leading)*  
+*Fleet Estimated Time of Arrival Prediction (Leading)*<span style="float: right;">*Jun, 2023*</span>    
 **HKLA**
-*2022 Hong Kong Logistics Case Contest – 2nd Runner-Up & Best Cost Effective Solution*  
+*2022 Hong Kong Logistics Case Contest – 2nd Runner-Up & Best Cost Effective Solution*<span style="float: right;">*Jun, 2022*</span>  
 **CILTHK**
-*Student Day 2021 Case Competition – 1st Runner-Up*
+*Student Day 2021 Case Competition – 1st Runner-Up*<span style="float: right;">*Apr, 2021*</span>
 
 ---
 
 ## Certifications
 
-- **Certified Information Systems Auditor**, Issued by ISACA (Information Systems Audit and Control Association) (2024)
-- **Certified Information Security Manager**, Issued by ISACA (Information Systems Audit and Control Association) (2024)
+- **Certified Information Systems Auditor**, Issued by ISACA (Information Systems Audit and Control Association) (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
+- **Certified Information Security Manager**, Issued by ISACA (Information Systems Audit and Control Association) (Exam Passed) <span style="float: right;">*Jul, 2024*</span>  
 - **HKICPA QP Examination** (*in progress*)
 
 ---
 
 ## Skills
 
-- **Programming:** `Python`(`PySpark`,`Kedro`), Database(`SQL`, `MySQL`, `MongoDB`), Visualization(`Tableau`,` Power Bi`), Website(`HTML`, `CSS`, `PHP`)
+- **Programming:** `Python`(`PySpark`,`Kedro`,`PyTorch`), Database(`SQL`, `MySQL`, `MongoDB`), Visualization(`Tableau`,` Power BI`, ` Alteryx`), Website(`HTML`, `CSS`, `PHP`)
 - **Qualifications:** **Google**(`Advanced Data Analytics`), **IBM**(`AI Engineering`, `Data Engineering`), **Microsoft**(`Azure Data Scientist Associate`), **ISC2**(`Systems Security Certified Practitioner`)
