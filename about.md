@@ -4,7 +4,7 @@ title: TSANG Yu, Dylan
 permalink: /about/
 ---
 
-Phone: (852) 9238 1314 | [Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)  
+[Email](mailto:tsangyu110@gmail.com) | [LinkedIn](https://www.linkedin.com/in/tsangyu) | [GitHub](https://github.com/yutsang) | [Leetcode](https://leetcode.com/u/yutsang/)  
 **Certs:** `CISA`, `CISM`
 
 ---
@@ -17,7 +17,7 @@ Python developer with a robust focus on data analysis and automation. Proficient
 
 ## Education
 
-**MSc, Enterprise Engineering Management**  <span style="float: right;">*Graduated: Jan, 2025 (Expected)*</span>  
+**MSc, Enterprise Engineering Management**  <span style="float: right;">*Graduated: Jan, 2025*</span>  
 HKUST, Hong Kong University of Science and Technology  
 
 **BEng, Industrial Engineering and Engineering Management (Logistics Area)** <span style="float: right;">*Graduated: Jun, 2023*</span>  
@@ -30,7 +30,13 @@ La Salle College
 
 ## Work Experience
 
-**HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Present*</span>  
+**Pending, Pending for Disclosure** <span style="float: right;">*Jan 2025 - Present*</span>  
+***Data Scientist***
+- Delivered high-quality data analytics services for M&A projects, utilizing tools such as `Tableau`, `Power BI`, and `Alteryx` to extract insights and support decision-making for clients across various industries.  
+- Collaborated with Deals teams to develop innovative solutions and compelling propositions, leveraging strong analytical skills to analyze complex data and address client-specific challenges.  
+- Provided training on the latest data analytics tools and methodologies to enhance the capabilities of Deals professionals, fostering a culture of continuous learning and improvement within the team.  
+
+**HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Jan 2025*</span>  
 ***Research Assistant***
 
 - Conducted research on antimicrobial resistance, focusing on `BERT` model training and data analysis
