@@ -30,11 +30,13 @@ La Salle College
 
 ## Work Experience
 
+<!--
 **Pending, Pending for Disclosure** <span style="float: right;">*Jan 2025 - Present*</span>  
 ***Data Scientist***
 - Delivered high-quality data analytics services for M&A projects, utilizing tools such as `Tableau`, `Power BI`, and `Alteryx` to extract insights and support decision-making for clients across various industries.  
 - Collaborated with Deals teams to develop innovative solutions and compelling propositions, leveraging strong analytical skills to analyze complex data and address client-specific challenges.  
 - Provided training on the latest data analytics tools and methodologies to enhance the capabilities of Deals professionals, fostering a culture of continuous learning and improvement within the team.  
+-->
 
 **HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Jan 2025*</span>  
 ***Research Assistant***
