@@ -30,13 +30,13 @@ La Salle College
 
 ## Work Experience
 
-<!--
-**Pending, Pending for Disclosure** <span style="float: right;">*Jan 2025 - Present*</span>  
+<!-- Placeholder -->
+**KPMG, Transactions, Data Analytics** <span style="float: right;">*Jan 2025 - Present*</span>  
 ***Data Scientist***
-- Delivered high-quality data analytics services for M&A projects, utilizing tools such as `Tableau`, `Power BI`, and `Alteryx` to extract insights and support decision-making for clients across various industries.  
-- Collaborated with Deals teams to develop innovative solutions and compelling propositions, leveraging strong analytical skills to analyze complex data and address client-specific challenges.  
-- Provided training on the latest data analytics tools and methodologies to enhance the capabilities of Deals professionals, fostering a culture of continuous learning and improvement within the team.  
--->
+- Automated business processes using AI APIs, delivering streamlined report generation via a user-friendly `Streamlit UI`.
+- Built and maintained end-to-end data pipelines with `Kedro`, integrating `Streamlit UI` for real-time data visualization and interactive analytics.
+- Established CI`/CD` by connecting Kedro projects with GitLab, utilizing Streamlit dashboards for continuous monitoring and providing timely project updates to clients.
+
 
 **HKU, Dept of Microbiolog** <span style="float: right;">*May 2024 - Jan 2025*</span>  
 ***Research Assistant***
@@ -67,6 +67,8 @@ La Salle College
 ---
 
 ## Projects and Awards  
+**International Association of Business Management Simulation**
+*HK MBS Digital Economy Business Simulation Competition 2025 – 1st Runner-Up*<span style="float: right;">*May, 2025*</span> 
 **LF Logistics**
 *Fleet Estimated Time of Arrival Prediction (Leading)*<span style="float: right;">*Jun, 2023*</span>    
 **HKLA**
