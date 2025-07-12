@@ -67,13 +67,13 @@ La Salle College
 ---
 
 ## Projects and Awards  
-**International Association of Business Management Simulation**  
+**International Association of Business Management Simulation (INTABMS)**  
 *HK MBS Digital Economy Business Simulation Competition 2025 – 1st Runner-Up*<span style="float: right;">*May, 2025*</span>  
-**LF Logistics**  
+**Li & Fung Logistics**  
 *UG Final Year Prject: Fleet Estimated Time of Arrival Prediction (Leading) [[Github](https://github.com/yutsang/university-projects/tree/main/ETA-Prediction)]*<span style="float: right;">*Jun, 2023*</span>    
-**HKLA**  
+**Hong Kong Logistics Association (HKLA)**  
 *2022 Hong Kong Logistics Case Contest – 2nd Runner-Up & Best Cost Effective Solution*<span style="float: right;">*Jun, 2022*</span>    
-**CILTHK**  
+**The Chartered Institute of Logistics & Transport in Hong Kong (CILTHK)**  
 *Student Day 2021 Case Competition – 1st Runner-Up*<span style="float: right;">*Apr, 2021*</span>  
 
 ---
