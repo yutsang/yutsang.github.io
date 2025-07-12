@@ -70,7 +70,7 @@ La Salle College
 **International Association of Business Management Simulation**  
 *HK MBS Digital Economy Business Simulation Competition 2025 – 1st Runner-Up*<span style="float: right;">*May, 2025*</span>  
 **LF Logistics**  
-*UG Final Year Prject: Fleet Estimated Time of Arrival Prediction (Leading) [`Github(https://github.com/yutsang/university-projects/tree/main/ETA-Prediction)`]*<span style="float: right;">*Jun, 2023*</span>    
+*UG Final Year Prject: Fleet Estimated Time of Arrival Prediction (Leading) [[Github](https://github.com/yutsang/university-projects/tree/main/ETA-Prediction)]*<span style="float: right;">*Jun, 2023*</span>    
 **HKLA**  
 *2022 Hong Kong Logistics Case Contest – 2nd Runner-Up & Best Cost Effective Solution*<span style="float: right;">*Jun, 2022*</span>    
 **CILTHK**  
