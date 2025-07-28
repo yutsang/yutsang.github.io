@@ -2,104 +2,668 @@
 layout: default
 ---
 
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="search blog posts..." style="width: 90%;
-    height: 35px;
-    color: #333;
-    background-color: rgba(227,231,236,.2);
-    line-height: 35px;
-    padding:0px 16px;
-    border: 1px solid #c0c0c0;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 17px;
-    outline: none;
-    box-sizing: border-box;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);">
-  <ul id="results-container"></ul>
-</div>
-
-<!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
-<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
-
-<script>
-	window.simpleJekyllSearch = new SimpleJekyllSearch({
-	searchInput: document.getElementById('search-input'),
-	resultsContainer: document.getElementById('results-container'),
-	json: '{{ site.baseurl }}/search.json',
-	searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
-	noResultsText: 'No results found',
-	limit: 10,
-	fuzzy: false,
-	exclude: ['Welcome']
-  })
-</script>
- 
-{% if site.posts.size == 0 %}
-  <h2>No post found</h2>
-{% endif %}
-
-<div class="posts">
-  {% for post in paginator.posts %}
-  {% unless post.draft %}
-    <article class="post">
-      <h1>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </h1>
-
-      <div clsss="meta">
-        <span class="date">
-          {{ post.date | date: "%Y-%m-%d" }}
-        </span>
-
-        <ul class="tag">
-          {% for tag in post.tags %}
-          <li>
-            <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-              {{ tag }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
+<div class="portfolio-hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Yu Tsang</h1>
+      <h2 class="hero-subtitle">Full-Stack Developer & Data Analyst</h2>
+      <p class="hero-description">
+        Passionate about creating innovative solutions through code, data visualization, and interactive applications. 
+        Specializing in modern web technologies and data-driven insights.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn btn-secondary">View Projects</a>
       </div>
+    </div>
+    <div class="hero-image">
+      <img src="{{ site.avatar }}" alt="Yu Tsang" class="profile-image">
+    </div>
+  </div>
+</div>
 
-      <div class="entry">
-        {{ post.excerpt | truncate: 200 }}
+<section id="about" class="section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          I'm a full-stack developer with expertise in modern web technologies, data analysis, and interactive application development. 
+          With a strong foundation in both frontend and backend development, I create seamless user experiences and robust data solutions.
+        </p>
+        <p>
+          My passion lies in transforming complex data into meaningful insights through interactive dashboards and building 
+          applications that solve real-world problems. I'm constantly learning and adapting to new technologies to deliver 
+          cutting-edge solutions.
+        </p>
       </div>
+      <div class="skills-section">
+        <h3>Technical Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Frontend</h4>
+            <ul>
+              <li>React.js / Next.js</li>
+              <li>Vue.js</li>
+              <li>HTML5 / CSS3 / JavaScript</li>
+              <li>Tailwind CSS / Bootstrap</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Backend</h4>
+            <ul>
+              <li>Node.js / Express</li>
+              <li>Python / Django</li>
+              <li>Java / Spring Boot</li>
+              <li>SQL / MongoDB</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Data & Analytics</h4>
+            <ul>
+              <li>Tableau</li>
+              <li>Power BI</li>
+              <li>Python (Pandas, NumPy)</li>
+              <li>SQL / Data Analysis</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Tools & DevOps</h4>
+            <ul>
+              <li>Git / GitHub</li>
+              <li>Docker</li>
+              <li>AWS / Cloud Services</li>
+              <li>CI/CD Pipelines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endunless %}
-  {% endfor %}
-</div>
+<section id="experience" class="section">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Senior Full-Stack Developer</h3>
+          <h4>Tech Company • 2022 - Present</h4>
+          <p>
+            Lead development of enterprise web applications using React, Node.js, and cloud technologies. 
+            Implemented data visualization dashboards and real-time analytics solutions.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Data Analyst & Developer</h3>
+          <h4>Analytics Firm • 2020 - 2022</h4>
+          <p>
+            Developed interactive dashboards using Tableau and Power BI. Created data processing pipelines 
+            and automated reporting systems using Python and SQL.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Junior Developer</h3>
+          <h4>Startup • 2018 - 2020</h4>
+          <p>
+            Built responsive web applications and mobile-first designs. Collaborated with cross-functional 
+            teams to deliver user-centric solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <span class="prev">
-      <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="prev">
-        ← Last Page
-      </a>
-    </span>
-  {% endif %}
-  {% if paginator.next_page %}
-    <span class="next">
-      <a href="{{ site.baseurl}}{{ paginator.next_page_path }}" class="next">
-        Next Page →
-      </a>
-    </span>
-  {% endif %}
-</div>
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <div class="placeholder-content">
+            <i class="icon-dashboard">📊</i>
+            <p>Dashboard Project</p>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Interactive Analytics Dashboard</h3>
+          <p>Real-time data visualization platform built with Tableau and React</p>
+          <div class="project-tags">
+            <span class="tag">Tableau</span>
+            <span class="tag">React</span>
+            <span class="tag">Data Visualization</span>
+          </div>
+          <a href="/dashboards" class="project-link">View Project →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image">
+          <div class="placeholder-content">
+            <i class="icon-app">💻</i>
+            <p>Interactive App</p>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Interactive Web Application</h3>
+          <p>Modern web app with real-time features and responsive design</p>
+          <div class="project-tags">
+            <span class="tag">Vue.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">WebSocket</span>
+          </div>
+          <a href="/apps" class="project-link">View Project →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-image">
+          <div class="placeholder-content">
+            <i class="icon-blog">📝</i>
+            <p>Blog Platform</p>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Technical Blog Platform</h3>
+          <p>Content management system with SEO optimization and analytics</p>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">MDX</span>
+            <span class="tag">SEO</span>
+          </div>
+          <a href="/blog" class="project-link">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!--not counting sub-site -->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-<!-- pv methods to record different articles -->
-<div align="center">
-	<span id="busuanzi_container_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;">
-		View:<span id="busuanzi_value_site_pv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
-	</span>
-	<!-- uv method, record once even if a single user clicks multiples -->
-	<span id="busuanzi_container_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;">
-		User:<span id="busuanzi_value_site_uv" style="font-family:Consolas;color:Silver;font-size:12px;"></span>
-	</span>
-</div>
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Let's Connect</h3>
+        <p>
+          I'm always interested in new opportunities and exciting projects. 
+          Whether you have a question or just want to say hi, feel free to reach out!
+        </p>
+        <div class="contact-links">
+          <a href="mailto:{{ site.footer-links.email }}" class="contact-link">
+            <i class="icon-email"></i>
+            {{ site.footer-links.email }}
+          </a>
+          <a href="https://github.com/{{ site.footer-links.github }}" class="contact-link">
+            <i class="icon-github"></i>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/{{ site.footer-links.linkedin }}" class="contact-link">
+            <i class="icon-linkedin"></i>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Portfolio Hero Section */
+.portfolio-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: #fff;
+  color: #667eea;
+}
+
+.btn-primary:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  color: #667eea;
+}
+
+.profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styles */
+.section {
+  padding: 80px 0;
+}
+
+.section:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #333;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* About Section */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.skills-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.skill-category h4 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #667eea;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skill-category li {
+  padding: 8px 0;
+  color: #555;
+  position: relative;
+  padding-left: 20px;
+}
+
+.skill-category li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #667eea;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: #667eea;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 4px #667eea;
+}
+
+.timeline-content {
+  width: 45%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 55%;
+}
+
+.timeline-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.timeline-content h4 {
+  font-size: 1rem;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.timeline-content p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-image {
+  height: 200px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.placeholder-content {
+  text-align: center;
+}
+
+.placeholder-content i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.placeholder-content p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.project-content {
+  padding: 25px;
+}
+
+.project-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.project-content p {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  background: #f0f0f0;
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.project-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: #764ba2;
+}
+
+/* Contact Section */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contact-info p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #764ba2;
+}
+
+.contact-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-content,
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-marker {
+    left: 20px;
+  }
+  
+  .timeline-content {
+    width: calc(100% - 60px);
+    margin-left: 60px !important;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

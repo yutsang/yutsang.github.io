@@ -1,0 +1,1108 @@
+---
+layout: default
+title: Interactive Apps
+---
+
+<div class="apps-hero">
+  <div class="container">
+    <h1 class="apps-title">Interactive Applications</h1>
+    <p class="apps-subtitle">
+      Live demos and interactive projects showcasing modern web development skills
+    </p>
+  </div>
+</div>
+
+<section class="apps-section">
+  <div class="container">
+    <div class="apps-grid">
+      <!-- Interactive App 1 -->
+      <div class="app-card">
+        <div class="app-header">
+          <h3>Real-time Chat Application</h3>
+          <p>Modern chat app with WebSocket integration and real-time messaging</p>
+        </div>
+        <div class="app-demo">
+          <div class="demo-container">
+            <div class="chat-interface">
+              <div class="chat-header">
+                <h4>Live Chat Demo</h4>
+                <span class="status online">● Online</span>
+              </div>
+              <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                  <span class="message-text">Welcome to the chat! Try sending a message below.</span>
+                  <span class="message-time">Just now</span>
+                </div>
+              </div>
+              <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-details">
+          <div class="app-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">Real-time</span>
+          </div>
+          <div class="app-description">
+            <h4>Features:</h4>
+            <ul>
+              <li>Real-time messaging with WebSocket</li>
+              <li>User authentication and profiles</li>
+              <li>Message history and persistence</li>
+              <li>Responsive design for all devices</li>
+            </ul>
+          </div>
+          <div class="app-links">
+            <a href="#" class="app-link">Live Demo</a>
+            <a href="#" class="app-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive App 2 -->
+      <div class="app-card">
+        <div class="app-header">
+          <h3>Data Visualization Dashboard</h3>
+          <p>Interactive charts and graphs with dynamic data filtering</p>
+        </div>
+        <div class="app-demo">
+          <div class="demo-container">
+            <div class="chart-controls">
+              <select id="chartType">
+                <option value="line">Line Chart</option>
+                <option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>
+              </select>
+              <button id="updateData">Update Data</button>
+            </div>
+            <div class="chart-container">
+              <canvas id="interactiveChart" width="500" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="app-details">
+          <div class="app-tags">
+            <span class="tag">D3.js</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Data Viz</span>
+            <span class="tag">Interactive</span>
+          </div>
+          <div class="app-description">
+            <h4>Features:</h4>
+            <ul>
+              <li>Multiple chart types (line, bar, pie)</li>
+              <li>Dynamic data updates</li>
+              <li>Interactive tooltips and legends</li>
+              <li>Responsive chart sizing</li>
+            </ul>
+          </div>
+          <div class="app-links">
+            <a href="#" class="app-link">Live Demo</a>
+            <a href="#" class="app-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive App 3 -->
+      <div class="app-card">
+        <div class="app-header">
+          <h3>Task Management App</h3>
+          <p>Full-featured task manager with drag-and-drop functionality</p>
+        </div>
+        <div class="app-demo">
+          <div class="demo-container">
+            <div class="task-manager">
+              <div class="task-header">
+                <h4>My Tasks</h4>
+                <button id="addTask">+ Add Task</button>
+              </div>
+              <div class="task-columns">
+                <div class="task-column" data-status="todo">
+                  <h5>To Do</h5>
+                  <div class="task-list" id="todoList">
+                    <div class="task-item" draggable="true">
+                      <span class="task-text">Complete portfolio website</span>
+                      <span class="task-priority high">High</span>
+                    </div>
+                    <div class="task-item" draggable="true">
+                      <span class="task-text">Review code changes</span>
+                      <span class="task-priority medium">Medium</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="task-column" data-status="in-progress">
+                  <h5>In Progress</h5>
+                  <div class="task-list" id="inProgressList">
+                    <div class="task-item" draggable="true">
+                      <span class="task-text">Design system updates</span>
+                      <span class="task-priority low">Low</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="task-column" data-status="done">
+                  <h5>Done</h5>
+                  <div class="task-list" id="doneList">
+                    <div class="task-item" draggable="true">
+                      <span class="task-text">Setup development environment</span>
+                      <span class="task-priority medium">Medium</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-details">
+          <div class="app-tags">
+            <span class="tag">Vue.js</span>
+            <span class="tag">Drag & Drop</span>
+            <span class="tag">Local Storage</span>
+            <span class="tag">CRUD</span>
+          </div>
+          <div class="app-description">
+            <h4>Features:</h4>
+            <ul>
+              <li>Drag-and-drop task management</li>
+              <li>Priority levels and due dates</li>
+              <li>Local storage persistence</li>
+              <li>Responsive kanban board</li>
+            </ul>
+          </div>
+          <div class="app-links">
+            <a href="#" class="app-link">Live Demo</a>
+            <a href="#" class="app-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive App 4 -->
+      <div class="app-card">
+        <div class="app-header">
+          <h3>Weather Dashboard</h3>
+          <p>Real-time weather information with location-based forecasts</p>
+        </div>
+        <div class="app-demo">
+          <div class="demo-container">
+            <div class="weather-app">
+              <div class="weather-header">
+                <input type="text" id="locationInput" placeholder="Enter city name...">
+                <button id="searchWeather">Search</button>
+              </div>
+              <div class="weather-display">
+                <div class="current-weather">
+                  <h4>San Francisco, CA</h4>
+                  <div class="weather-main">
+                    <span class="temperature">72°F</span>
+                    <span class="weather-desc">Partly Cloudy</span>
+                  </div>
+                  <div class="weather-details">
+                    <div class="detail">
+                      <span class="label">Humidity:</span>
+                      <span class="value">65%</span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Wind:</span>
+                      <span class="value">12 mph</span>
+                    </div>
+                    <div class="detail">
+                      <span class="label">Pressure:</span>
+                      <span class="value">1013 hPa</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-details">
+          <div class="app-tags">
+            <span class="tag">API Integration</span>
+            <span class="tag">Geolocation</span>
+            <span class="tag">Responsive</span>
+            <span class="tag">Real-time</span>
+          </div>
+          <div class="app-description">
+            <h4>Features:</h4>
+            <ul>
+              <li>Real-time weather data</li>
+              <li>Location-based forecasts</li>
+              <li>5-day weather outlook</li>
+              <li>Geolocation support</li>
+            </ul>
+          </div>
+          <div class="app-links">
+            <a href="#" class="app-link">Live Demo</a>
+            <a href="#" class="app-link">Source Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="apps-info">
+  <div class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Technologies Used</h3>
+        <div class="tech-stack">
+          <div class="tech-category">
+            <h4>Frontend</h4>
+            <ul>
+              <li>React.js / Vue.js</li>
+              <li>HTML5 / CSS3 / JavaScript</li>
+              <li>D3.js for visualizations</li>
+              <li>Responsive design</li>
+            </ul>
+          </div>
+          <div class="tech-category">
+            <h4>Backend</h4>
+            <ul>
+              <li>Node.js / Express</li>
+              <li>WebSocket for real-time</li>
+              <li>RESTful APIs</li>
+              <li>Database integration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Development Process</h3>
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div class="step-content">
+              <h4>Planning & Design</h4>
+              <p>User research, wireframing, and UI/UX design</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div class="step-content">
+              <h4>Development</h4>
+              <p>Agile development with regular iterations</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div class="step-content">
+              <h4>Testing & Deployment</h4>
+              <p>Comprehensive testing and CI/CD deployment</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Apps Hero */
+.apps-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.apps-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.apps-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Apps Section */
+.apps-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+}
+
+.app-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-5px);
+}
+
+.app-header {
+  padding: 25px 25px 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.app-header h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.app-header p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.app-demo {
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 300px;
+}
+
+.demo-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%;
+}
+
+/* Chat Interface */
+.chat-interface {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.chat-header {
+  background: #667eea;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.chat-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.status.online {
+  color: #4ade80;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f8f9fa;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.message.received {
+  background: white;
+  margin-right: auto;
+}
+
+.message.sent {
+  background: #667eea;
+  color: white;
+  margin-left: auto;
+}
+
+.message-text {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 8px 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Chart Controls */
+.chart-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.chart-controls select,
+.chart-controls button {
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+}
+
+.chart-controls button {
+  background: #667eea;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.chart-container {
+  text-align: center;
+}
+
+#interactiveChart {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+}
+
+/* Task Manager */
+.task-manager {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.task-header h4 {
+  margin: 0;
+}
+
+.task-header button {
+  padding: 6px 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.task-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  flex: 1;
+}
+
+.task-column {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.task-column h5 {
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #333;
+}
+
+.task-list {
+  min-height: 150px;
+}
+
+.task-item {
+  background: white;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-item:active {
+  cursor: grabbing;
+}
+
+.task-priority {
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.task-priority.high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.task-priority.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.task-priority.low {
+  background: #d1fae5;
+  color: #059669;
+}
+
+/* Weather App */
+.weather-app {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.weather-header input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.weather-header button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.weather-display {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-weather {
+  text-align: center;
+}
+
+.current-weather h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.weather-main {
+  margin-bottom: 20px;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+}
+
+.weather-desc {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.detail {
+  text-align: center;
+}
+
+.detail .label {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+.detail .value {
+  font-weight: 600;
+}
+
+/* App Details */
+.app-details {
+  padding: 25px;
+}
+
+.app-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  background: #f0f0f0;
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.app-description h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.app-description ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.app-description li {
+  padding: 5px 0;
+  color: #555;
+  position: relative;
+  padding-left: 20px;
+}
+
+.app-description li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+}
+
+.app-links {
+  display: flex;
+  gap: 15px;
+}
+
+.app-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.app-link:hover {
+  background: #667eea;
+  color: white;
+}
+
+/* Apps Info Section */
+.apps-info {
+  padding: 80px 0;
+  background: white;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+}
+
+.info-card {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.info-card h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.tech-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.tech-category h4 {
+  font-size: 1.1rem;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.tech-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tech-category li {
+  padding: 8px 0;
+  color: #555;
+  position: relative;
+  padding-left: 20px;
+}
+
+.tech-category li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.step-number {
+  background: #667eea;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.step-content p {
+  color: #555;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .apps-title {
+    font-size: 2rem;
+  }
+  
+  .apps-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tech-stack {
+    grid-template-columns: 1fr;
+  }
+  
+  .task-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .weather-details {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+// Chat functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const messageInput = document.getElementById('messageInput');
+  const sendButton = document.getElementById('sendMessage');
+  const chatMessages = document.getElementById('chatMessages');
+  
+  function addMessage(text, isSent = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
+    
+    const messageText = document.createElement('span');
+    messageText.className = 'message-text';
+    messageText.textContent = text;
+    
+    const messageTime = document.createElement('span');
+    messageTime.className = 'message-time';
+    messageTime.textContent = 'Just now';
+    
+    messageDiv.appendChild(messageText);
+    messageDiv.appendChild(messageTime);
+    chatMessages.appendChild(messageDiv);
+    
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  function sendMessage() {
+    const text = messageInput.value.trim();
+    if (text) {
+      addMessage(text, true);
+      messageInput.value = '';
+      
+      // Simulate response
+      setTimeout(() => {
+        addMessage('Thanks for your message! This is a demo chat interface.');
+      }, 1000);
+    }
+  }
+  
+  sendButton.addEventListener('click', sendMessage);
+  messageInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  });
+  
+  // Chart functionality
+  const chartType = document.getElementById('chartType');
+  const updateButton = document.getElementById('updateData');
+  const chartCanvas = document.getElementById('interactiveChart');
+  const ctx = chartCanvas.getContext('2d');
+  
+  let chartData = [
+    { label: 'Jan', value: 65 },
+    { label: 'Feb', value: 78 },
+    { label: 'Mar', value: 90 },
+    { label: 'Apr', value: 85 },
+    { label: 'May', value: 95 }
+  ];
+  
+  function drawChart() {
+    const width = chartCanvas.width;
+    const height = chartCanvas.height;
+    const padding = 40;
+    
+    ctx.clearRect(0, 0, width, height);
+    
+    const maxValue = Math.max(...chartData.map(d => d.value));
+    const type = chartType.value;
+    
+    if (type === 'line') {
+      drawLineChart(width, height, padding, maxValue);
+    } else if (type === 'bar') {
+      drawBarChart(width, height, padding, maxValue);
+    } else if (type === 'pie') {
+      drawPieChart(width, height);
+    }
+  }
+  
+  function drawLineChart(width, height, padding, maxValue) {
+    ctx.strokeStyle = '#667eea';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    
+    chartData.forEach((point, index) => {
+      const x = padding + (index * (width - 2 * padding) / (chartData.length - 1));
+      const y = height - padding - (point.value / maxValue) * (height - 2 * padding);
+      
+      if (index === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+      
+      ctx.fillStyle = '#667eea';
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, 2 * Math.PI);
+      ctx.fill();
+      
+      ctx.fillStyle = '#333';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(point.label, x, height - 10);
+      ctx.fillText(point.value, x, y - 15);
+    });
+    
+    ctx.stroke();
+  }
+  
+  function drawBarChart(width, height, padding, maxValue) {
+    const barWidth = (width - 2 * padding) / chartData.length - 10;
+    
+    chartData.forEach((point, index) => {
+      const x = padding + index * ((width - 2 * padding) / chartData.length);
+      const barHeight = (point.value / maxValue) * (height - 2 * padding);
+      const y = height - padding - barHeight;
+      
+      ctx.fillStyle = '#667eea';
+      ctx.fillRect(x, y, barWidth, barHeight);
+      
+      ctx.fillStyle = '#333';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(point.label, x + barWidth/2, height - 10);
+      ctx.fillText(point.value, x + barWidth/2, y - 10);
+    });
+  }
+  
+  function drawPieChart(width, height) {
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) / 3;
+    
+    const total = chartData.reduce((sum, d) => sum + d.value, 0);
+    let currentAngle = 0;
+    
+    chartData.forEach((point, index) => {
+      const sliceAngle = (point.value / total) * 2 * Math.PI;
+      
+      ctx.fillStyle = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe'][index % 5];
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+      ctx.closePath();
+      ctx.fill();
+      
+      currentAngle += sliceAngle;
+    });
+  }
+  
+  updateButton.addEventListener('click', function() {
+    // Generate new random data
+    chartData = chartData.map(d => ({
+      ...d,
+      value: Math.floor(Math.random() * 100) + 20
+    }));
+    drawChart();
+  });
+  
+  chartType.addEventListener('change', drawChart);
+  
+  // Initial chart
+  drawChart();
+  
+  // Task manager drag and drop
+  const taskLists = document.querySelectorAll('.task-list');
+  const taskItems = document.querySelectorAll('.task-item');
+  
+  taskItems.forEach(item => {
+    item.addEventListener('dragstart', function(e) {
+      e.dataTransfer.setData('text/plain', this.textContent);
+      this.style.opacity = '0.5';
+    });
+    
+    item.addEventListener('dragend', function() {
+      this.style.opacity = '1';
+    });
+  });
+  
+  taskLists.forEach(list => {
+    list.addEventListener('dragover', function(e) {
+      e.preventDefault();
+    });
+    
+    list.addEventListener('drop', function(e) {
+      e.preventDefault();
+      const draggedText = e.dataTransfer.getData('text/plain');
+      
+      // Find the dragged item and move it
+      const draggedItem = document.querySelector('.task-item[style*="opacity: 0.5"]');
+      if (draggedItem) {
+        this.appendChild(draggedItem);
+      }
+    });
+  });
+  
+  // Add task functionality
+  document.getElementById('addTask').addEventListener('click', function() {
+    const newTask = document.createElement('div');
+    newTask.className = 'task-item';
+    newTask.draggable = true;
+    newTask.innerHTML = `
+      <span class="task-text">New Task</span>
+      <span class="task-priority medium">Medium</span>
+    `;
+    
+    document.getElementById('todoList').appendChild(newTask);
+    
+    // Add drag event listeners to new task
+    newTask.addEventListener('dragstart', function(e) {
+      e.dataTransfer.setData('text/plain', this.textContent);
+      this.style.opacity = '0.5';
+    });
+    
+    newTask.addEventListener('dragend', function() {
+      this.style.opacity = '1';
+    });
+  });
+  
+  // Weather app functionality
+  document.getElementById('searchWeather').addEventListener('click', function() {
+    const location = document.getElementById('locationInput').value;
+    if (location) {
+      // Simulate weather data update
+      const weatherDisplay = document.querySelector('.current-weather h4');
+      weatherDisplay.textContent = location;
+      
+      // Update weather details with random values
+      const temperature = Math.floor(Math.random() * 30) + 50;
+      document.querySelector('.temperature').textContent = `${temperature}°F`;
+      
+      const humidity = Math.floor(Math.random() * 40) + 40;
+      document.querySelector('.detail:nth-child(1) .value').textContent = `${humidity}%`;
+      
+      const wind = Math.floor(Math.random() * 20) + 5;
+      document.querySelector('.detail:nth-child(2) .value').textContent = `${wind} mph`;
+      
+      const pressure = Math.floor(Math.random() * 50) + 1000;
+      document.querySelector('.detail:nth-child(3) .value').textContent = `${pressure} hPa`;
+    }
+  });
+});
+</script> 
