@@ -1,0 +1,402 @@
+//
+// Minimal layout for Jekyll pages (sidebar + main). Portfolio HTML uses css/site.css separately.
+//
+
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: $background-color;
+  color: $text-color;
+  font-family: $base-font;
+  font-size: $base-font-size;
+  line-height: 1.6;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.wrapper-sidebar {
+  flex: 0 0 260px;
+  padding: 1.5rem 1.25rem;
+  border-right: 1px solid $divider-color;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-info .site-avatar img {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+}
+
+.site-name {
+  font-size: 1.35rem;
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 600;
+}
+.site-name a {
+  color: $text-color;
+}
+.site-description {
+  margin: 0;
+  font-size: $small-font-size;
+  color: $base-lighten-color;
+}
+
+.navlist nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+}
+.navlist nav a {
+  padding: 0.35rem 0;
+  font-weight: 500;
+}
+
+.wrapper-footer-desktop {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: $small-font-size;
+}
+
+.wrapper-content {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem 2.5rem;
+}
+
+.wrapper-content .container {
+  max-width: 44rem;
+}
+
+article.page h1 {
+  margin-top: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid $divider-color;
+  padding-bottom: 0.75rem;
+}
+
+article.posts h1 {
+  margin-top: 0;
+  font-size: 1.75rem;
+}
+
+.entry {
+  margin-top: 1rem;
+}
+
+.meta {
+  margin: 0.5rem 0 1rem;
+  font-size: $small-font-size;
+  color: $base-lighten-color;
+}
+.meta .tag {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.meta .tag li {
+  display: inline;
+}
+
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: $small-font-size;
+}
+
+ul.archive {
+  list-style: none;
+  padding: 0;
+}
+ul.archive li {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+ul.archive time {
+  color: $base-lighten-color;
+  font-size: $small-font-size;
+}
+
+.tags .label {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tags .label a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  background: $tag-index-label-background-color;
+  border-radius: 4px;
+  font-size: $small-font-size;
+}
+.tags .count {
+  opacity: 0.75;
+}
+
+.wrapper-footer-mobile {
+  display: none;
+}
+
+@include mobile {
+  body {
+    flex-direction: column;
+  }
+  .wrapper-sidebar {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid $divider-color;
+  }
+  .wrapper-footer-desktop {
+    display: none;
+  }
+  .wrapper-footer-mobile {
+    display: block;
+    padding: 1.5rem;
+    border-top: 1px solid $divider-color;
+    background: $footer-background-color;
+  }
+  .wrapper-content {
+    padding: 1.25rem;
+  }
+}
+
+#main.withtoc {
+  margin-right: 0;
+}
+
+aside.toc {
+  @include mobile {
+    display: none;
+  }
+}
+
+/* Insights tab (Jekyll) */
+article.page {
+  padding-bottom: 2rem;
+}
+
+.insights-shell {
+  max-width: 100%;
+}
+
+.insights-shell > .insights-intro {
+  margin-bottom: 1.75rem;
+}
+
+.insights-intro {
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.35rem;
+  background: $table-background-color;
+  border: 1px solid $divider-color;
+  border-radius: 10px;
+  border-left: 4px solid $link-color;
+}
+
+.insights-lead {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: $base-lighten-color;
+  margin: 0;
+}
+
+.insights-lead code {
+  font-family: $code-font;
+  font-size: 0.9em;
+  background: $tag-index-label-background-color;
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+}
+
+.insights-empty {
+  text-align: center;
+  padding: 2.75rem 1.35rem;
+  border: 1px dashed $divider-color;
+  border-radius: 12px;
+  background: $table-background-color;
+  max-width: 40rem;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.insights-empty-icon {
+  margin: 0 auto 1rem;
+  width: 3rem;
+  height: 3rem;
+  color: $base-lightener-color;
+}
+
+.insights-empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.insights-empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: $text-color;
+}
+
+.insights-empty-text,
+.insights-empty-hint {
+  font-size: $small-font-size;
+  line-height: 1.65;
+  color: $base-lighten-color;
+  margin: 0 0 0.75rem;
+}
+
+.insights-code {
+  font-family: $code-font;
+  font-size: 0.9em;
+  background: $tag-index-label-background-color;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* Insights list: do not use class "archive" here — generic ul.archive rules would compete */
+article.page .entry ul.insights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+article.page .entry ul.insights-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem 1.25rem;
+  align-items: baseline;
+  padding: 1rem 1.1rem;
+  margin: 0;
+  border: 1px solid $divider-color;
+  border-radius: 10px;
+  background: $white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+article.page .entry ul.insights-list li + li {
+  margin-top: 0.5rem;
+}
+
+article.page .entry ul.insights-list li:hover {
+  border-color: mix($link-color, $white, 35%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+article.page .entry ul.insights-list li a {
+  font-weight: 600;
+  color: $text-color;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+article.page .entry ul.insights-list li a:hover {
+  color: $link-color;
+}
+
+article.page .entry ul.insights-list time {
+  color: $base-lighten-color;
+  font-size: $small-font-size;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.insights-footer-links {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid $divider-color;
+  font-size: $small-font-size;
+  color: $base-lighten-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.65rem;
+  text-align: center;
+}
+
+.insights-footer-links a {
+  font-weight: 600;
+  color: $link-color;
+}
+
+@include mobile {
+  article.page .entry ul.insights-list li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  article.page .entry ul.insights-list time {
+    justify-self: start;
+  }
+}
+
+/* Tableau post embed (responsive; replaces fixed 1400×927 object) */
+.tableau-embed-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid $divider-color;
+  background: $table-background-color;
+  min-height: min(45dvh, 380px);
+  height: min(88dvh, 1000px);
+  max-height: calc(100svh - 5rem);
+}
+
+.tableau-embed-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  min-height: min(45dvh, 360px);
+}
+
+article.posts .comments {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $divider-color;
+  clear: both;
+}

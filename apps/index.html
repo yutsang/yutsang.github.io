@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Apps - Yuu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Apps Hero */
+        .apps-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .apps-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .apps-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Apps Section */
+        .apps-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .app-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-header {
+            padding: 25px 25px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .app-header h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .app-header p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .app-demo {
+            padding: 20px;
+            background: #f8f9fa;
+            min-height: 300px;
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        /* Streamlit App Preview */
+        .streamlit-preview {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .app-preview-header {
+            background: #ff4b4b;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .app-preview-header h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .status.online {
+            color: #4ade80;
+        }
+
+        .app-preview-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-screenshot {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .screenshot-placeholder {
+            text-align: center;
+        }
+
+        .screenshot-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .screenshot-placeholder p {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .screenshot-placeholder small {
+            opacity: 0.8;
+        }
+
+        .app-features {
+            background: #f8f9fa;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+
+        /* App Details */
+        .app-details {
+            padding: 25px;
+        }
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .app-description h4 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .app-description ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .app-description li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .app-description li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .app-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .app-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .app-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Back to Home */
+        .back-home {
+            text-align: center;
+            padding: 40px 0;
+            background: white;
+        }
+
+        .back-home a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 30px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .apps-title {
+                font-size: 2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Yuu</div>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/insights/">Insights</a>
+                <a href="/data-viz/">Data Viz</a>
+                <a href="/projects/">Projects</a>
+                <a href="/contact/">Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Apps Hero -->
+    <section class="apps-hero">
+        <div class="container">
+            <h1 class="apps-title">Interactive Applications</h1>
+            <p class="apps-subtitle">
+                Live demos and interactive projects showcasing modern web development skills
+            </p>
+        </div>
+    </section>
+
+    <!-- Apps Section -->
+    <section class="apps-section">
+        <div class="container">
+            <div class="apps-grid">
+                <!-- Your Streamlit App -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <h3>Government Data Analytics App</h3>
+                        <p>Streamlit application with government data API integration and interactive analytics</p>
+                    </div>
+                    <div class="app-demo">
+                        <div class="demo-container">
+                            <div class="streamlit-preview">
+                                <div class="app-preview-header">
+                                    <h4>Streamlit Web Application</h4>
+                                    <span class="status online">● Live Demo</span>
+                                </div>
+                                <div class="app-preview-content">
+                                    <div class="preview-screenshot">
+                                        <div class="screenshot-placeholder">
+                                            <i>📊</i>
+                                            <p>Government Data Analytics</p>
+                                            <small>Interactive Dashboard with API Integration</small>
+                                        </div>
+                                    </div>
+                                    <div class="app-features">
+                                        <div class="feature-item">
+                                            <span class="feature-icon">🔗</span>
+                                            <span class="feature-text">Government API Integration</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature-icon">📈</span>
+                                            <span class="feature-text">Interactive Data Visualization</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature-icon">🔍</span>
+                                            <span class="feature-text">Real-time Data Analysis</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature-icon">📱</span>
+                                            <span class="feature-text">Responsive Design</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <div class="app-tags">
+                            <span class="tag">Streamlit</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">API Integration</span>
+                            <span class="tag">Data Analytics</span>
+                        </div>
+                        <div class="app-description">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Government data API integration</li>
+                                <li>Interactive data visualization with Plotly</li>
+                                <li>Real-time data fetching and processing</li>
+                                <li>User-friendly interface with filters</li>
+                            </ul>
+                        </div>
+                        <div class="app-links">
+                            <a href="YOUR_STREAMLIT_APP_URL" class="app-link" target="_blank">Live Demo</a>
+                            <a href="YOUR_GITHUB_REPO_URL" class="app-link" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive App 2 -->
+                <div class="app-card">
+                    <div class="app-header">
+                        <h3>Real-time Chat Application</h3>
+                        <p>Modern chat app with WebSocket integration and real-time messaging</p>
+                    </div>
+                    <div class="app-demo">
+                        <div class="demo-container">
+                            <div class="chat-interface">
+                                <div class="chat-header">
+                                    <h4>Live Chat Demo</h4>
+                                    <span class="status online">● Online</span>
+                                </div>
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="message received">
+                                        <span class="message-text">Welcome to the chat! Try sending a message below.</span>
+                                        <span class="message-time">Just now</span>
+                                    </div>
+                                </div>
+                                <div class="chat-input">
+                                    <input type="text" id="messageInput" placeholder="Type your message...">
+                                    <button id="sendMessage">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-details">
+                        <div class="app-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">WebSocket</span>
+                            <span class="tag">Real-time</span>
+                        </div>
+                        <div class="app-description">
+                            <h4>Features:</h4>
+                            <ul>
+                                <li>Real-time messaging with WebSocket</li>
+                                <li>User authentication and profiles</li>
+                                <li>Message history and persistence</li>
+                                <li>Responsive design for all devices</li>
+                            </ul>
+                        </div>
+                        <div class="app-links">
+                            <a href="#" class="app-link">Live Demo</a>
+                            <a href="#" class="app-link">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Home -->
+    <section class="back-home">
+        <div class="container">
+            <a href="/index.html">← Back to Portfolio</a>
+        </div>
+    </section>
+
+    <script>
+        // Chat functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            function addMessage(text, isSent = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
+                
+                const messageText = document.createElement('span');
+                messageText.className = 'message-text';
+                messageText.textContent = text;
+                
+                const messageTime = document.createElement('span');
+                messageTime.className = 'message-time';
+                messageTime.textContent = 'Just now';
+                
+                messageDiv.appendChild(messageText);
+                messageDiv.appendChild(messageTime);
+                chatMessages.appendChild(messageDiv);
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function sendMessage() {
+                const text = messageInput.value.trim();
+                if (text) {
+                    addMessage(text, true);
+                    messageInput.value = '';
+                    
+                    // Simulate response
+                    setTimeout(() => {
+                        addMessage('Thanks for your message! This is a demo chat interface.');
+                    }, 1000);
+                }
+            }
+            
+            if (sendButton) {
+                sendButton.addEventListener('click', sendMessage);
+            }
+            if (messageInput) {
+                messageInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* Chat Interface Styles */
+        .chat-interface {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .chat-header {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .chat-header h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .message.received {
+            background: white;
+            margin-right: auto;
+        }
+
+        .message.sent {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message-text {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</body>
+</html> 

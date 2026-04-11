@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboards - Yuu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Dashboard Hero */
+        .dashboard-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .dashboard-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-header {
+            padding: 25px 25px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .dashboard-header h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .dashboard-embed {
+            position: relative;
+            min-height: 400px;
+            background: #f8f9fa;
+        }
+
+        .tableau-placeholder {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .placeholder-content {
+            text-align: center;
+        }
+
+        .placeholder-content i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .placeholder-content p {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .placeholder-content small {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .dashboard-actions {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .dashboard-details {
+            padding: 25px;
+        }
+
+        .dashboard-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .dashboard-description h4 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dashboard-description li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .dashboard-description li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* Back to Home */
+        .back-home {
+            text-align: center;
+            padding: 40px 0;
+            background: white;
+        }
+
+        .back-home a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 30px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-home a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-title {
+                font-size: 2rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Yuu</div>
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+                <a href="/insights/">Insights</a>
+                <a href="/data-viz/">Data Viz</a>
+                <a href="/projects/">Projects</a>
+                <a href="/contact/">Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Hero -->
+    <section class="dashboard-hero">
+        <div class="container">
+            <h1 class="dashboard-title">Data Analytics & Visualizations</h1>
+            <p class="dashboard-subtitle">
+                Interactive dashboards and data visualizations showcasing insights from complex datasets
+            </p>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Your Actual Tableau Dashboard -->
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <h3>Electric Fence Analysis Dashboard</h3>
+                        <p>Interactive data visualization analyzing electric fence data and performance metrics</p>
+                    </div>
+                    <div class="dashboard-embed">
+                        <div class="tableau-embed">
+                            <div class='tableauPlaceholder' id='viz1733156483204' style='position: relative; height: 500px;'>
+                                <noscript><a href='https://public.tableau.com/views/Electricfence/Dashboard'><img alt='Electric Fence Analysis Dashboard' src='https://public.tableau.com/static/images/El/Electricfence/Dashboard/1_rss.png' style='border: none'></a></noscript>
+                                <object class='tableauViz' style='display:none;'>
+                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                                    <param name='embed_code_version' value='3'/>
+                                    <param name='site_root' value=''/>
+                                    <param name='name' value='Electricfence/Dashboard'/>
+                                    <param name='tabs' value='no'/>
+                                    <param name='toolbar' value='yes'/>
+                                    <param name='static_image' value='https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png'/>
+                                    <param name='animate_transition' value='yes'/>
+                                    <param name='display_static_image' value='yes'/>
+                                    <param name='display_spinner' value='yes'/>
+                                    <param name='display_overlay' value='yes'/>
+                                    <param name='display_count' value='yes'/>
+                                    <param name='language' value='en-GB'/>
+                                </object>
+                            </div>
+                            <script type="text/javascript">
+                                var divElement = document.getElementById('viz1733156483204');
+                                var vizElement = divElement.getElementsByTagName('object')[0];
+                                vizElement.style.width = '100%';
+                                vizElement.style.height = '500px';
+                                var scriptElement = document.createElement('script');
+                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            </script>
+                        </div>
+                    </div>
+                    <div class="dashboard-details">
+                        <div class="dashboard-tags">
+                            <span class="tag">Tableau</span>
+                            <span class="tag">Data Analytics</span>
+                            <span class="tag">Electric Fence</span>
+                            <span class="tag">Performance Analysis</span>
+                        </div>
+                        <div class="dashboard-description">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Electric fence performance metrics</li>
+                                <li>Interactive data exploration</li>
+                                <li>Custom filters and parameters</li>
+                                <li>Real-time data visualization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Power BI Dashboard -->
+                <div class="dashboard-card">
+                    <div class="dashboard-header">
+                        <h3>Power BI Dashboard</h3>
+                        <p>Operational metrics and KPI tracking with advanced analytics</p>
+                    </div>
+                    <div class="dashboard-embed">
+                        <div class="tableau-placeholder">
+                            <div class="placeholder-content">
+                                <i>📈</i>
+                                <p>Power BI Dashboard</p>
+                                <small>Operational Analytics</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-details">
+                        <div class="dashboard-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Operations</span>
+                            <span class="tag">KPI Tracking</span>
+                        </div>
+                        <div class="dashboard-description">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Real-time KPI monitoring</li>
+                                <li>Process efficiency metrics</li>
+                                <li>Resource utilization tracking</li>
+                                <li>Performance benchmarking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Home -->
+    <section class="back-home">
+        <div class="container">
+            <a href="/index.html">← Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+</html> 

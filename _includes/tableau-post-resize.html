@@ -1,0 +1,20 @@
+<script>
+(function () {
+  function fitTableauEmbed() {
+    var box = document.querySelector(".tableau-embed-wrap");
+    if (!box) return;
+    var vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    var h = Math.min(Math.max(Math.round(vh * 0.86), 320), 1100);
+    box.style.height = h + "px";
+  }
+  fitTableauEmbed();
+  var t;
+  window.addEventListener("resize", function () {
+    clearTimeout(t);
+    t = setTimeout(fitTableauEmbed, 120);
+  });
+  window.addEventListener("orientationchange", function () {
+    setTimeout(fitTableauEmbed, 250);
+  });
+})();
+</script>
