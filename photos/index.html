@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="Photos - Yuu" data-title-zh="相片 - Yuu">Photos - Yuu</title>
+    <meta name="description" content="A personal photo collection — daily life, travel, and moments captured along the way.">
+    <link rel="stylesheet" href="/css/site.css?v=9">
+    <script src="/js/i18n.js?v=2"></script>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/" class="active"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Daily life, travels, and moments worth keeping</span>
+            <span data-lang="zh">日常生活、旅途風景，以及值得留下的瞬間</span>
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Filter Buttons -->
+        <div class="project-categories" id="photo-filters">
+            <button class="category-btn active" data-filter="all"><span data-lang="en">All</span><span data-lang="zh">全部</span></button>
+            <button class="category-btn" data-filter="travel"><span data-lang="en">Travel</span><span data-lang="zh">旅遊</span></button>
+            <button class="category-btn" data-filter="city"><span data-lang="en">City</span><span data-lang="zh">城市</span></button>
+            <button class="category-btn" data-filter="nature"><span data-lang="en">Nature</span><span data-lang="zh">自然</span></button>
+            <button class="category-btn" data-filter="daily"><span data-lang="en">Daily</span><span data-lang="zh">日常</span></button>
+        </div>
+
+        <!-- Photo Grid -->
+        <!-- To add a photo: copy a .photo-card block below, set the src on the <img>,
+             fill in data-filter (travel/city/nature/daily), and update the caption text. -->
+        <div class="photo-grid" id="photo-grid">
+
+            <!-- Example card — replace src with your image URL or local path e.g. /photos/img/filename.jpg -->
+            <div class="photo-card" data-filter="city" onclick="openLightbox(this)">
+                <div class="photo-card-image">
+                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
+                    </div>
+                </div>
+                <div class="photo-card-meta">
+                    <div class="photo-card-location"><span data-lang="en">Hong Kong</span><span data-lang="zh">香港</span></div>
+                    <div class="photo-card-date">2026</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-filter="travel" onclick="openLightbox(this)">
+                <div class="photo-card-image">
+                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
+                    </div>
+                </div>
+                <div class="photo-card-meta">
+                    <div class="photo-card-location"><span data-lang="en">Somewhere</span><span data-lang="zh">某處</span></div>
+                    <div class="photo-card-date">2026</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-filter="nature" onclick="openLightbox(this)">
+                <div class="photo-card-image">
+                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
+                    </div>
+                </div>
+                <div class="photo-card-meta">
+                    <div class="photo-card-location"><span data-lang="en">Outdoors</span><span data-lang="zh">戶外</span></div>
+                    <div class="photo-card-date">2026</div>
+                </div>
+            </div>
+
+            <div class="photo-card" data-filter="daily" onclick="openLightbox(this)">
+                <div class="photo-card-image">
+                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
+                    </div>
+                </div>
+                <div class="photo-card-meta">
+                    <div class="photo-card-location"><span data-lang="en">Daily life</span><span data-lang="zh">日常</span></div>
+                    <div class="photo-card-date">2026</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <button class="photo-lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與資料科學，並對作業研究有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Connect</span><span data-lang="zh">聯絡</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email</span><span data-lang="zh">電郵</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span data-lang="en">&copy; 2026 Yuu. All rights reserved.</span>
+            <span data-lang="zh">&copy; 2026 Yuu · 版權所有</span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script>
+        // Filter buttons
+        document.querySelectorAll("#photo-filters .category-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                document.querySelectorAll("#photo-filters .category-btn").forEach(function (b) {
+                    b.classList.remove("active");
+                });
+                this.classList.add("active");
+                var filter = this.getAttribute("data-filter");
+                document.querySelectorAll(".photo-card").forEach(function (card) {
+                    if (filter === "all" || card.getAttribute("data-filter") === filter) {
+                        card.style.display = "";
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+            });
+        });
+
+        // Lightbox — only opens if the card has a real <img> (not a placeholder)
+        function openLightbox(card) {
+            var img = card.querySelector(".photo-card-image img");
+            if (!img) return;
+            document.getElementById("lightbox-img").src = img.src;
+            document.getElementById("lightbox-img").alt = img.alt;
+            var lb = document.getElementById("photo-lightbox");
+            lb.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            document.getElementById("photo-lightbox").classList.remove("is-open");
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("photo-lightbox").addEventListener("click", function (e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeLightbox();
+        });
+    </script>
+</body>
+</html>
