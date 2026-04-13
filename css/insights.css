@@ -522,3 +522,52 @@
     font-size: 0.875rem;
   }
 }
+
+/* —— Photo post overrides —— */
+
+/* Taller hero ratio for photos */
+.photo-hero {
+  aspect-ratio: 3 / 2;
+}
+
+/* Multi-photo grid inside a photo post body */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.photo-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* Photos index: 3 columns on wide screens */
+.photos-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .photos-grid {
+    grid-template-columns: 1fr;
+  }
+}

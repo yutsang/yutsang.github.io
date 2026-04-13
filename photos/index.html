@@ -1,11 +1,15 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-title-en="Photos - Yuu" data-title-zh="相片 - Yuu">Photos - Yuu</title>
-    <meta name="description" content="A personal photo collection — daily life, travel, and moments captured along the way.">
+    <meta name="description" content="Daily life, travels, and moments worth keeping.">
     <link rel="stylesheet" href="/css/site.css?v=9">
+    <link rel="stylesheet" href="/css/insights.css?v=5">
     <script src="/js/i18n.js?v=2"></script>
 </head>
 <body>
@@ -26,7 +30,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-title"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></div>
         <p class="hero-subtitle">
@@ -35,84 +39,77 @@
         </p>
     </section>
 
-    <!-- Main Content -->
-    <div class="main-content">
-
-        <!-- Filter Buttons -->
-        <div class="project-categories" id="photo-filters">
-            <button class="category-btn active" data-filter="all"><span data-lang="en">All</span><span data-lang="zh">全部</span></button>
-            <button class="category-btn" data-filter="travel"><span data-lang="en">Travel</span><span data-lang="zh">旅遊</span></button>
-            <button class="category-btn" data-filter="city"><span data-lang="en">City</span><span data-lang="zh">城市</span></button>
-            <button class="category-btn" data-filter="nature"><span data-lang="en">Nature</span><span data-lang="zh">自然</span></button>
-            <button class="category-btn" data-filter="daily"><span data-lang="en">Daily</span><span data-lang="zh">日常</span></button>
-        </div>
-
-        <!-- Photo Grid -->
-        <!-- To add a photo: copy a .photo-card block below, set the src on the <img>,
-             fill in data-filter (travel/city/nature/daily), and update the caption text. -->
-        <div class="photo-grid" id="photo-grid">
-
-            <!-- Example card — replace src with your image URL or local path e.g. /photos/img/filename.jpg -->
-            <div class="photo-card" data-filter="city" onclick="openLightbox(this)">
-                <div class="photo-card-image">
-                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
-                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
-                    </div>
-                </div>
-                <div class="photo-card-meta">
-                    <div class="photo-card-location"><span data-lang="en">Hong Kong</span><span data-lang="zh">香港</span></div>
-                    <div class="photo-card-date">2026</div>
-                </div>
+    <!-- Filter / search bar -->
+    <div class="insights-toolbar">
+        <div class="insights-toolbar-inner">
+            <label class="insights-search">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/></svg>
+                <input id="photos-search-input" type="search" autocomplete="off"
+                    data-placeholder-en="Search by title, location, or tag…"
+                    data-placeholder-zh="以標題、地點或標籤搜尋…"
+                    placeholder="Search by title, location, or tag…">
+            </label>
+            <div class="insights-filter-tags" id="photos-filter-tags">
+                <button type="button" class="insights-chip is-active" data-tag="all"><span data-lang="en">All</span><span data-lang="zh">全部</span></button>
+                {% assign all_photo_tags = site.posts | where: "layout", "photo" | map: "tags" | join: "," | split: "," | uniq | sort %}
+                {% for tag in all_photo_tags %}
+                {% assign trimmed = tag | strip %}
+                {% if trimmed != "" %}
+                <button type="button" class="insights-chip" data-tag="{{ trimmed | downcase }}">{{ trimmed }}</button>
+                {% endif %}
+                {% endfor %}
             </div>
-
-            <div class="photo-card" data-filter="travel" onclick="openLightbox(this)">
-                <div class="photo-card-image">
-                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
-                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
-                    </div>
-                </div>
-                <div class="photo-card-meta">
-                    <div class="photo-card-location"><span data-lang="en">Somewhere</span><span data-lang="zh">某處</span></div>
-                    <div class="photo-card-date">2026</div>
-                </div>
-            </div>
-
-            <div class="photo-card" data-filter="nature" onclick="openLightbox(this)">
-                <div class="photo-card-image">
-                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
-                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
-                    </div>
-                </div>
-                <div class="photo-card-meta">
-                    <div class="photo-card-location"><span data-lang="en">Outdoors</span><span data-lang="zh">戶外</span></div>
-                    <div class="photo-card-date">2026</div>
-                </div>
-            </div>
-
-            <div class="photo-card" data-filter="daily" onclick="openLightbox(this)">
-                <div class="photo-card-image">
-                    <div class="media-placeholder" aria-hidden="true" style="height:100%;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
-                        <span><span data-lang="en">Add photo</span><span data-lang="zh">新增相片</span></span>
-                    </div>
-                </div>
-                <div class="photo-card-meta">
-                    <div class="photo-card-location"><span data-lang="en">Daily life</span><span data-lang="zh">日常</span></div>
-                    <div class="photo-card-date">2026</div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <!-- Lightbox -->
-    <div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-        <button class="photo-lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
-        <img id="lightbox-img" src="" alt="">
+    <!-- Photos grid (auto-generated from _posts with layout: photo) -->
+    <div class="insights-grid photos-grid" id="photos-grid">
+        {% assign photo_posts = site.posts | where: "layout", "photo" | sort: "date" | reverse %}
+        {% for post in photo_posts %}
+        <a href="{{ post.url }}" class="insight-card"
+            data-title-en="{{ post.title | escape }}"
+            data-title-zh="{{ post.title_zh | default: post.title | escape }}"
+            data-excerpt-en="{{ post.excerpt | strip_html | escape }}"
+            data-excerpt-zh="{{ post.excerpt_zh | default: post.excerpt | strip_html | escape }}"
+            data-tags="{% for t in post.tags %}{{ t | downcase }} {% endfor %}{% if post.location %}{{ post.location | downcase }} {% endif %}">
+            <div class="insight-thumb">
+                {% if post.thumbnail contains "/" %}
+                <img src="{{ post.thumbnail }}" alt="{{ post.title }}" loading="lazy">
+                {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+                {% endif %}
+            </div>
+            <div class="insight-body">
+                <div class="essay-meta">
+                    <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+                    {% if post.location %}
+                    <span class="essay-tag">
+                        <span data-lang="en">{{ post.location }}</span>
+                        <span data-lang="zh">{{ post.location_zh | default: post.location }}</span>
+                    </span>
+                    {% else %}
+                    {% for tag in post.tags limit:1 %}
+                    <span class="essay-tag">{{ tag }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <h2 class="insight-title">
+                    <span data-lang="en">{{ post.title }}</span>
+                    <span data-lang="zh">{{ post.title_zh | default: post.title }}</span>
+                </h2>
+                <p class="insight-excerpt">
+                    <span data-lang="en">{{ post.excerpt | strip_html | truncate: 140 }}</span>
+                    <span data-lang="zh">{{ post.excerpt_zh | default: post.excerpt | strip_html | truncate: 140 }}</span>
+                </p>
+                <span class="insight-read-more"><span data-lang="en">View photos →</span><span data-lang="zh">查看相片 →</span></span>
+            </div>
+        </a>
+        {% endfor %}
     </div>
+    <p class="insights-empty" id="photos-empty" hidden>
+        <span data-lang="en">No photos match your search.</span>
+        <span data-lang="zh">沒有符合條件的相片。</span>
+    </p>
 
     <footer class="site-footer">
         <div class="footer-inner">
@@ -147,47 +144,56 @@
     <script src="/js/site-config.js"></script>
     <script src="/js/site-ui.js?v=2"></script>
     <script>
-        // Filter buttons
-        document.querySelectorAll("#photo-filters .category-btn").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                document.querySelectorAll("#photo-filters .category-btn").forEach(function (b) {
-                    b.classList.remove("active");
-                });
-                this.classList.add("active");
-                var filter = this.getAttribute("data-filter");
-                document.querySelectorAll(".photo-card").forEach(function (card) {
-                    if (filter === "all" || card.getAttribute("data-filter") === filter) {
-                        card.style.display = "";
-                    } else {
-                        card.style.display = "none";
-                    }
-                });
+    (function () {
+        var searchInput = document.getElementById("photos-search-input");
+        var grid = document.getElementById("photos-grid");
+        var empty = document.getElementById("photos-empty");
+        var chips = document.querySelectorAll(".insights-chip");
+        if (!searchInput || !grid) return;
+
+        var cards = Array.prototype.slice.call(grid.querySelectorAll(".insight-card"));
+        var activeTag = "all";
+
+        function syncPlaceholder() {
+            var lang = document.documentElement.lang === "zh" ? "zh" : "en";
+            var ph = searchInput.getAttribute("data-placeholder-" + lang);
+            if (ph) searchInput.placeholder = ph;
+        }
+
+        function apply() {
+            var q = searchInput.value.trim().toLowerCase();
+            var visible = 0;
+            cards.forEach(function (card) {
+                var hay = [
+                    card.getAttribute("data-title-en") || "",
+                    card.getAttribute("data-title-zh") || "",
+                    card.getAttribute("data-excerpt-en") || "",
+                    card.getAttribute("data-excerpt-zh") || "",
+                    card.getAttribute("data-tags") || ""
+                ].join(" ").toLowerCase();
+                var tagList = (card.getAttribute("data-tags") || "").split(/\s+/);
+                var matchesTag = activeTag === "all" || tagList.indexOf(activeTag) !== -1;
+                var matchesSearch = !q || hay.indexOf(q) !== -1;
+                var show = matchesTag && matchesSearch;
+                card.style.display = show ? "" : "none";
+                if (show) visible++;
+            });
+            if (empty) empty.hidden = visible !== 0;
+        }
+
+        searchInput.addEventListener("input", apply);
+        chips.forEach(function (chip) {
+            chip.addEventListener("click", function () {
+                chips.forEach(function (c) { c.classList.remove("is-active"); });
+                chip.classList.add("is-active");
+                activeTag = chip.getAttribute("data-tag") || "all";
+                apply();
             });
         });
 
-        // Lightbox — only opens if the card has a real <img> (not a placeholder)
-        function openLightbox(card) {
-            var img = card.querySelector(".photo-card-image img");
-            if (!img) return;
-            document.getElementById("lightbox-img").src = img.src;
-            document.getElementById("lightbox-img").alt = img.alt;
-            var lb = document.getElementById("photo-lightbox");
-            lb.classList.add("is-open");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeLightbox() {
-            document.getElementById("photo-lightbox").classList.remove("is-open");
-            document.body.style.overflow = "";
-        }
-
-        document.getElementById("photo-lightbox").addEventListener("click", function (e) {
-            if (e.target === this) closeLightbox();
-        });
-
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") closeLightbox();
-        });
+        syncPlaceholder();
+        document.addEventListener("langchange", syncPlaceholder);
+    })();
     </script>
 </body>
 </html>

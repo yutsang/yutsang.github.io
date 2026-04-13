@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="{{ page.title }} - Yuu" data-title-zh="{{ page.title_zh | default: page.title }} - Yuu">{{ page.title }} - Yuu</title>
+    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+    <link rel="stylesheet" href="/css/site.css?v=9">
+    <link rel="stylesheet" href="/css/insights.css?v=5">
+    <script src="/js/i18n.js?v=2"></script>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/" class="active"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="post-container">
+        <div class="post-back">
+            <a href="/photos/" class="post-back-link">
+                <span data-lang="en">← Back to photos</span>
+                <span data-lang="zh">← 返回相片列表</span>
+            </a>
+        </div>
+
+        <div class="post-header">
+            <div class="essay-meta">
+                <time>{{ page.date | date: "%Y-%m-%d" }}</time>
+                {% if page.location %}
+                <span class="essay-tag">
+                    <span data-lang="en">{{ page.location }}</span>
+                    <span data-lang="zh">{{ page.location_zh | default: page.location }}</span>
+                </span>
+                {% else %}
+                {% for tag in page.tags limit:1 %}
+                <span class="essay-tag">{{ tag }}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <h1>
+                <span data-lang="en">{{ page.title }}</span>
+                <span data-lang="zh">{{ page.title_zh | default: page.title }}</span>
+            </h1>
+        </div>
+
+        {% if page.hero_image %}
+        <div class="post-hero photo-hero">
+            <img src="{{ page.hero_image }}" alt="{{ page.title }}" loading="eager">
+        </div>
+        {% endif %}
+
+        <div class="post-body">
+            {{ content }}
+        </div>
+
+        <div class="post-nav">
+            {% if page.previous.url and page.previous.layout == "photo" %}
+            <a href="{{ page.previous.url }}"><span data-lang="en">← Previous</span><span data-lang="zh">← 上一組</span></a>
+            {% else %}
+            <span></span>
+            {% endif %}
+            <a href="/photos/"><span data-lang="en">All photos →</span><span data-lang="zh">返回相片列表 →</span></a>
+            {% if page.next.url and page.next.layout == "photo" %}
+            <a href="{{ page.next.url }}"><span data-lang="en">Next →</span><span data-lang="zh">下一組 →</span></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與資料科學，並對作業研究有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Connect</span><span data-lang="zh">聯絡</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email</span><span data-lang="zh">電郵</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span data-lang="en">&copy; 2026 Yuu. All rights reserved.</span>
+            <span data-lang="zh">&copy; 2026 Yuu · 版權所有</span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+</body>
+</html>
