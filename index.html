@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-title-en="Yuu — Finance, data science & operations research" data-title-zh="Yuu — 金融、資料科學與作業研究">Yuu — Finance, data science & operations research</title>
     <meta name="description" content="Finance and data science, with a strong interest in operations research—analytics, modeling, and decision-focused insight.">
-    <link rel="stylesheet" href="css/site.css?v=9">
-    <script src="js/i18n.js?v=2"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=10">
+    <script src="/js/i18n.js?v=2"></script>
 </head>
 <body>
     <nav class="nav" aria-label="Primary">
@@ -29,17 +32,22 @@
     <section id="home" class="hero hero-home">
         <div class="hero-content">
             <div class="hero-text">
-                <h2 class="hero-subtitle hero-subtitle-lead" id="site-hero-role">
-                    <span data-lang="en">Finance &amp; data science · Operations research enthusiast</span>
-                    <span data-lang="zh">金融與資料科學 · 熱愛作業研究</span>
-                </h2>
+                <div class="hero-kicker"><span data-lang="en">Personal site · Est. 2022</span><span data-lang="zh">個人網站 · 2022 創立</span></div>
+                <h1 class="hero-title">
+                    <span data-lang="en">Hi, I'm <em>Yu</em>.</span>
+                    <span data-lang="zh">你好，我是 <em>Yu</em>。</span>
+                </h1>
+                <p class="hero-subtitle hero-subtitle-lead" id="site-hero-role">
+                    <span data-lang="en">Finance &amp; data science · Operations research enthusiast.</span>
+                    <span data-lang="zh">金融與資料科學 · 熱愛作業研究。</span>
+                </p>
                 <p class="hero-description" id="site-hero-bio">
-                    <span data-lang="en">I focus on rigorous analytics in finance and data science—from modeling and experimentation to clear, decision-ready insight. I'm especially enthusiastic about operations research: optimization, systems thinking, and turning messy problems into structured, measurable solutions.</span>
+                    <span data-lang="en">I focus on rigorous analytics in finance and data science — from modeling and experimentation to clear, decision-ready insight. I'm especially enthusiastic about operations research: optimization, systems thinking, and turning messy problems into structured, measurable solutions.</span>
                     <span data-lang="zh">我的工作集中在金融與資料科學的嚴謹分析——從建模、實驗到清晰、可直接用於決策的洞察。我特別熱愛作業研究：最佳化、系統思維，以及把混亂的問題轉化為結構化、可衡量的解決方案。</span>
                 </p>
                 <div class="hero-buttons">
                     <a href="/contact/" class="btn btn-primary"><span data-lang="en">Get in touch</span><span data-lang="zh">聯絡我</span></a>
-                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">AI Insights</span><span data-lang="zh">AI 觀察</span></a>
+                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">Read insights</span><span data-lang="zh">閱讀觀察</span></a>
                     <a href="#projects" class="btn btn-secondary"><span data-lang="en">View projects</span><span data-lang="zh">瀏覽專案</span></a>
                 </div>
             </div>
@@ -54,7 +62,13 @@
     <!-- Latest Insights Section -->
     <section id="insights" class="section">
         <div class="container">
-            <h2 class="section-title"><span data-lang="en">Latest Insights</span><span data-lang="zh">最新觀察</span></h2>
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">Writing</span><span data-lang="zh">寫作</span></div>
+                    <h2 class="section-title"><span data-lang="en">Recent insights.</span><span data-lang="zh">近期觀察。</span></h2>
+                </div>
+                <a href="/insights/" class="section-head__action"><span data-lang="en">All insights →</span><span data-lang="zh">所有觀察 →</span></a>
+            </header>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
@@ -127,16 +141,27 @@
                     </div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem;">
-                <a class="btn btn-primary" href="/insights/"><span data-lang="en">View all insights</span><span data-lang="zh">瀏覽所有觀察</span></a>
-            </p>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!--
+        ──────────────────────────────────────────────────────────────────────
+        PINNED PROJECTS — these 3 cards are what shows up on the homepage.
+        To swap which projects are pinned: copy the markup of one
+        <div class="project-card">…</div> block from /projects/index.html
+        and replace one of the three cards below. The home shows exactly
+        what's in this block — no data file, no Liquid loop, just HTML.
+        ──────────────────────────────────────────────────────────────────────
+    -->
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title"><span data-lang="en">Featured Projects</span><span data-lang="zh">精選專案</span></h2>
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Work</span><span data-lang="zh">作品</span></div>
+                    <h2 class="section-title"><span data-lang="en">Featured projects.</span><span data-lang="zh">精選專案。</span></h2>
+                </div>
+                <a href="/projects/" class="section-head__action"><span data-lang="en">All projects →</span><span data-lang="zh">所有專案 →</span></a>
+            </header>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
@@ -207,13 +232,16 @@
 
     <section id="data-viz" class="section">
         <div class="container">
-            <h2 class="section-title"><span data-lang="en">Data visualization</span><span data-lang="zh">資料視覺化</span></h2>
-            <p class="section-subtitle">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 03 / <span data-lang="en">Visualization</span><span data-lang="zh">視覺化</span></div>
+                    <h2 class="section-title"><span data-lang="en">Data visualization.</span><span data-lang="zh">資料視覺化。</span></h2>
+                </div>
+                <a href="/projects/" class="section-head__action"><span data-lang="en">View dashboards →</span><span data-lang="zh">查看儀表板 →</span></a>
+            </header>
+            <p class="section-subtitle" style="text-align: left; margin: 0; max-width: 48rem;">
                 <span data-lang="en">Tableau, Power BI, and custom analytics work — dashboards and visual stories in the Projects gallery under the Data Viz filter.</span>
                 <span data-lang="zh">Tableau、Power BI 與客製化分析作品——在專案頁面選擇「資料視覺化」篩選器即可瀏覽。</span>
-            </p>
-            <p style="text-align: center; margin-top: 0.5rem;">
-                <a class="btn btn-primary" href="/projects/"><span data-lang="en">View data visualization projects</span><span data-lang="zh">瀏覽資料視覺化專案</span></a>
             </p>
         </div>
     </section>
@@ -238,15 +266,22 @@
                 <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
             </div>
             <div class="footer-col">
-                <h4><span data-lang="en">Connect</span><span data-lang="zh">聯絡</span></h4>
-                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email</span><span data-lang="zh">電郵</span></a>
-                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub</a>
-                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn</a>
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
             </div>
         </div>
         <div class="footer-bottom">
-            <span data-lang="en">&copy; 2026 Yuu. All rights reserved.</span>
-            <span data-lang="zh">&copy; 2026 Yuu · 版權所有</span>
+            <span>© 2026 Yuu</span>
+            <span>v2026.04 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
         </div>
     </footer>
 
