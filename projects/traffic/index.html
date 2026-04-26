@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#00338d">
+    <title data-title-en="Traffic — Yuu" data-title-zh="交通 — Yuu">Traffic — Yuu</title>
+    <meta name="description" content="Hong Kong public transport explorer with live ETA from KMB, Citybus, GMB, and MTR Bus open data.">
+
+    <!-- Site fonts + base styles. Must come BEFORE the widget's stylesheet so
+         the widget's CSS-var fall-through picks up the site's --color-* tokens. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=10">
+    <script src="/js/i18n.js?v=2"></script>
+
+    <!-- Widget assets are served from the standalone YuuTraffic gh-pages
+         deployment at /yuutraffic/ (same domain, no CORS). We do NOT mirror
+         them locally because the geometry/* tree alone is ~90 MB and would
+         bloat this repo's history. ETags handle revalidation; deploys of
+         the widget take effect within Pages' 4-hour cache window. -->
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin>
+    <link rel="preconnect" href="https://data.etabus.gov.hk" crossorigin>
+    <link rel="preconnect" href="https://rt.data.gov.hk" crossorigin>
+    <link rel="preconnect" href="https://data.etagmb.gov.hk" crossorigin>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin>
+    <link rel="stylesheet" href="/yuutraffic/style.css">
+
+    <!-- Tell the widget where to fetch its data bundles from. -->
+    <script>window.YUU_DATA_BASE = "/yuutraffic/data";</script>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">Traffic</span><span data-lang="zh">交通</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Hong Kong public transport — live ETA, route maps, and nearest-stop search</span>
+            <span data-lang="zh">香港公共交通 — 即時到站、路線地圖、就近站點搜尋</span>
+        </p>
+    </section>
+
+    <div class="main-content">
+        <p style="margin-bottom:16px">
+            <a href="/projects/">← <span data-lang="en">Back to projects</span><span data-lang="zh">返回專案</span></a>
+        </p>
+
+        <!-- ===== YuuTraffic widget ===== -->
+        <div id="yuu" class="yuu-widget">
+            <header class="yuu-header">
+                <h1 class="yuu-title" hidden>Traffic</h1>
+                <div class="yuu-mode-tabs" role="tablist">
+                    <button type="button" class="yuu-tab active" data-mode="explore" role="tab" aria-selected="true">Explore</button>
+                    <button type="button" class="yuu-tab" data-mode="plan" role="tab" aria-selected="false">Plan trip</button>
+                </div>
+                <div class="yuu-search" id="yuu-explore-controls">
+                    <input type="search"
+                           id="yuu-search-input"
+                           placeholder="Search route, or leave empty for nearby"
+                           autocomplete="off"
+                           spellcheck="false"
+                           aria-label="Search route">
+                    <select id="yuu-mode-select" class="yuu-mode-select" aria-label="Filter by mode">
+                        <option value="">All</option>
+                        <option value="bus">Bus</option>
+                        <option value="minibus">Minibus</option>
+                        <option value="mtrb">MTR Bus</option>
+                        <option value="mtr">MTR Rail</option>
+                    </select>
+                    <div id="yuu-search-results" class="yuu-search-results" hidden></div>
+                </div>
+            </header>
+
+            <div id="yuu-map" class="yuu-map" aria-label="Route map"></div>
+
+            <main class="yuu-main">
+                <section id="yuu-welcome" class="yuu-welcome">
+                    <p class="yuu-welcome-lead">Search a route number or destination. Focus the search box empty to see routes passing within 300 m of your current location.</p>
+                    <p class="yuu-hint">Static data refreshes weekly · Live ETA fetched directly from HK government open data</p>
+                    <p class="yuu-legend">
+                        <span class="yuu-eta-time yuu-live">⚡ Live ETA</span>
+                        <span class="yuu-eta-time yuu-scheduled">⏱ Scheduled</span>
+                        <span class="yuu-eta-time yuu-arriving">Arriving</span>
+                    </p>
+                </section>
+
+                <section id="yuu-plan" class="yuu-plan" hidden>
+                    <div class="yuu-plan-form">
+                        <label class="yuu-plan-field">
+                            <span class="yuu-plan-label">From</span>
+                            <div class="yuu-plan-input-wrap">
+                                <input type="search" id="yuu-plan-from" autocomplete="off" spellcheck="false"
+                                       placeholder="Stop name or 中文名">
+                                <div class="yuu-plan-suggest" id="yuu-plan-from-suggest" hidden></div>
+                            </div>
+                        </label>
+                        <label class="yuu-plan-field">
+                            <span class="yuu-plan-label">To</span>
+                            <div class="yuu-plan-input-wrap">
+                                <input type="search" id="yuu-plan-to" autocomplete="off" spellcheck="false"
+                                       placeholder="Stop name or 中文名">
+                                <div class="yuu-plan-suggest" id="yuu-plan-to-suggest" hidden></div>
+                            </div>
+                        </label>
+                        <div class="yuu-plan-actions">
+                            <button type="button" id="yuu-plan-swap" class="yuu-plan-swap" title="Swap">⇅</button>
+                            <button type="button" id="yuu-plan-go" class="yuu-plan-go">Plan</button>
+                        </div>
+                    </div>
+                    <div id="yuu-plan-results" class="yuu-plan-results"></div>
+                </section>
+
+                <section id="yuu-route" class="yuu-route" hidden>
+                    <div class="yuu-route-header">
+                        <span id="yuu-route-badge" class="yuu-badge"></span>
+                        <div class="yuu-route-heading">
+                            <div id="yuu-route-title" class="yuu-route-title"></div>
+                            <div id="yuu-route-chips" class="yuu-route-chips" role="toolbar"></div>
+                        </div>
+                    </div>
+
+                    <div class="yuu-stops-pane">
+                        <div id="yuu-stops" class="yuu-stops" aria-label="Stop list"></div>
+                        <div id="yuu-eta" class="yuu-eta" hidden>
+                            <header class="yuu-eta-header">
+                                <strong id="yuu-eta-stop"></strong>
+                                <div class="yuu-eta-controls">
+                                    <span class="yuu-eta-fresh" id="yuu-eta-fresh"></span>
+                                    <button type="button"
+                                            id="yuu-eta-refresh"
+                                            class="yuu-refresh-btn"
+                                            title="Refresh now"
+                                            aria-label="Refresh ETA now">↻</button>
+                                </div>
+                            </header>
+                            <ol id="yuu-eta-list" class="yuu-eta-list"></ol>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="yuu-footer">
+                <span id="yuu-meta">Loading…</span>
+            </footer>
+        </div>
+        <!-- ===== /widget ===== -->
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與資料科學,並對作業研究有濃厚興趣——分析、建模,以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.04 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin defer></script>
+    <script src="/yuutraffic/app.js" defer></script>
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+</body>
+</html>
