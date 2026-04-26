@@ -7,27 +7,32 @@
     <title data-title-en="YuuTraffic — Yuu" data-title-zh="YuuTraffic — Yuu">YuuTraffic — Yuu</title>
     <meta name="description" content="Hong Kong public transport explorer with live ETA from KMB, Citybus, GMB, and MTR Bus open data.">
 
-    <!-- Site fonts + base styles (must come BEFORE the widget's stylesheet so
-         the widget's CSS-var fall-through picks up the site's --color-* tokens) -->
+    <!-- Site fonts + base styles. Must come BEFORE the widget's stylesheet so
+         the widget's CSS-var fall-through picks up the site's --color-* tokens. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/site.css?v=10">
     <script src="/js/i18n.js?v=2"></script>
 
-    <!-- YuuTraffic widget assets (mirrored into this folder by yuutraffic's
-         scripts/publish.sh; __ASSET_VER__ is rewritten on every mirror run) -->
+    <!-- Widget assets are served from the standalone YuuTraffic gh-pages
+         deployment at /yuutraffic/ (same domain, no CORS). We do NOT mirror
+         them locally because the geometry/* tree alone is ~90 MB and would
+         bloat this repo's history. ETags handle revalidation; deploys of
+         the widget take effect within Pages' 4-hour cache window. -->
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin>
     <link rel="preconnect" href="https://data.etabus.gov.hk" crossorigin>
     <link rel="preconnect" href="https://rt.data.gov.hk" crossorigin>
     <link rel="preconnect" href="https://data.etagmb.gov.hk" crossorigin>
-    <link rel="preload" href="./data/routes.json" as="fetch" crossorigin>
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin>
-    <link rel="stylesheet" href="./style.css?v=__ASSET_VER__">
+    <link rel="stylesheet" href="/yuutraffic/style.css">
+
+    <!-- Tell the widget where to fetch its data bundles from. -->
+    <script>window.YUU_DATA_BASE = "/yuutraffic/data";</script>
 </head>
 <body>
     <nav class="nav" aria-label="Primary">
@@ -163,7 +168,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin defer></script>
-    <script src="./app.js?v=__ASSET_VER__" defer></script>
+    <script src="/yuutraffic/app.js" defer></script>
     <script src="/js/site-config.js"></script>
     <script src="/js/site-ui.js?v=2"></script>
 </body>
