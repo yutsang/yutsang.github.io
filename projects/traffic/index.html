@@ -61,19 +61,19 @@
     </section>
 
     <div class="main-content">
-        <p style="margin-bottom:16px">
-            <a href="/projects/">← <span data-lang="en">Back to projects</span><span data-lang="zh">返回專案</span></a>
-        </p>
+        <div class="yuu-back-row">
+            <a href="/projects/" class="yuu-back-link">← <span data-lang="en">Back to projects</span><span data-lang="zh">返回專案</span></a>
+            <div class="yuu-mode-tabs" role="tablist">
+                <button type="button" class="yuu-tab active" data-tab="bus"  role="tab" aria-selected="true">Bus</button>
+                <button type="button" class="yuu-tab"        data-tab="mtr"  role="tab" aria-selected="false">MTR</button>
+                <button type="button" class="yuu-tab"        data-tab="plan" role="tab" aria-selected="false">Plan trip</button>
+            </div>
+        </div>
 
         <!-- ===== YuuTraffic widget ===== -->
         <div id="yuu" class="yuu-widget">
             <header class="yuu-header">
                 <h1 class="yuu-title" hidden>Traffic</h1>
-                <div class="yuu-mode-tabs" role="tablist">
-                    <button type="button" class="yuu-tab active" data-tab="bus"  role="tab" aria-selected="true">Bus</button>
-                    <button type="button" class="yuu-tab"        data-tab="mtr"  role="tab" aria-selected="false">MTR</button>
-                    <button type="button" class="yuu-tab"        data-tab="plan" role="tab" aria-selected="false">Plan trip</button>
-                </div>
                 <div class="yuu-search" id="yuu-explore-controls">
                     <input type="search"
                            id="yuu-search-input"
