@@ -30,7 +30,7 @@
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossorigin>
     <!-- Cache-bust: rewritten by yuutraffic's publish.sh on every deploy. -->
-    <link rel="stylesheet" href="/yuutraffic/style.css?v=20260427001307-877e9e6e">
+    <link rel="stylesheet" href="/yuutraffic/style.css?v=20260503025816-a27cffb5">
 
     <!-- Tell the widget where to fetch its data bundles from. -->
     <script>window.YUU_DATA_BASE = "/yuutraffic/data";</script>
@@ -65,9 +65,12 @@
         <div class="yuu-back-row">
             <a href="/projects/" class="yuu-back-link">← <span data-lang="en">Back to projects</span><span data-lang="zh">返回專案</span></a>
             <div class="yuu-mode-tabs" role="tablist">
-                <button type="button" class="yuu-tab active" data-tab="bus"  role="tab" aria-selected="true">Bus</button>
-                <button type="button" class="yuu-tab"        data-tab="mtr"  role="tab" aria-selected="false">MTR</button>
-                <button type="button" class="yuu-tab"        data-tab="plan" role="tab" aria-selected="false">Plan trip</button>
+                <button type="button" class="yuu-tab active" data-tab="bus"     role="tab" aria-selected="true">Bus</button>
+                <button type="button" class="yuu-tab"        data-tab="mtr"     role="tab" aria-selected="false">MTR</button>
+                <button type="button" class="yuu-tab"        data-tab="mobus"   role="tab" aria-selected="false">MOBus</button>
+                <button type="button" class="yuu-tab"        data-tab="lrt"     role="tab" aria-selected="false">輕軌</button>
+                <button type="button" class="yuu-tab"        data-tab="shuttle" role="tab" aria-selected="false">財車</button>
+                <button type="button" class="yuu-tab"        data-tab="plan"    role="tab" aria-selected="false">Plan trip</button>
             </div>
         </div>
 
@@ -229,7 +232,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin defer></script>
-    <script src="/yuutraffic/app.js?v=20260427001307-877e9e6e" defer></script>
+    <script src="/yuutraffic/app.js?v=20260503025816-a27cffb5" defer></script>
     <script src="/js/site-config.js"></script>
     <script src="/js/site-ui.js?v=2"></script>
 </body>
