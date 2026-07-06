@@ -7,9 +7,9 @@ window.SITE_CONFIG = {
   initials: "YT",
   titleSuffix: "Yuu",
   home: {
-    role: "Finance & data science · Operations research enthusiast",
+    role: "Data scientist at KPMG · Operations research & finance",
     bio:
-      "I focus on rigorous analytics in finance and data science—from modeling and experimentation to clear, decision-ready insight. I'm especially enthusiastic about operations research: optimization, systems thinking, and turning messy problems into structured, measurable solutions.",
+      "I build statistical models, machine-learning systems, and analytics pipelines that turn messy data into decision-ready insight. Trained in industrial engineering at HKUST, I'm happiest applying operations research — optimization, simulation, systems thinking — to real resource-allocation problems.",
   },
   contact: {
     email: "contact@ytsang.com",

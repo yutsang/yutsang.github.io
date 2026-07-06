@@ -1374,3 +1374,127 @@ html[lang="zh"] body {
   }
 }
 
+/* —— CV & credentials (About page) —— */
+
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.cv-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1.75rem;
+}
+
+.cv-item--study {
+  border-left-color: var(--color-study);
+}
+
+.cv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.5rem;
+}
+
+.cv-head h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.cv-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.cv-org {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent-bright);
+  margin-top: 0.25rem;
+}
+
+.cv-item--study .cv-org {
+  color: var(--color-study);
+}
+
+.cv-item p {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.cred-col {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1.75rem;
+}
+
+.cred-col h3 {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+}
+
+.cred-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.625rem;
+}
+
+.cred-col li {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.cred-col li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  line-height: 1.9;
+}
+
+.cred-col li strong {
+  color: var(--color-text);
+}
+
+@media (max-width: 900px) {
+  .cred-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
