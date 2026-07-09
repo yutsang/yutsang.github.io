@@ -65,6 +65,15 @@ Body paragraph.
 3. Every user-facing string wrapped in paired `data-lang` elements (nav links, headings, paragraphs, buttons, footer, etc.).
 4. Load `css/site.css` (which now contains the bilingual visibility rules).
 
+### Chinese copy style (廣東話式書面語)
+
+All `data-lang="zh"` copy follows Hong Kong written Chinese, not Taiwan-style Mandarin:
+
+- **Terminology:** 數據 (not 資料), 優化 (not 最佳化), 運籌學 (not 作業研究).
+- **Keep technical terms in English** when that's what HK readers actually say: dashboard, RAG, pipeline, workflow, agent, open data, delay ratio, sentiment analysis, etc. Don't force-translate them (儀表板 → dashboard). Put a space between CJK and Latin/digits: 「附 Streamlit 分析 dashboard」.
+- **No spoken-form Cantonese characters** (唔, 嘅, 咗, 啲, 喺, 咁…) — the tone is Cantonese-leaning but the register stays written.
+- Older Markdown posts may still use TW terms; migrate them opportunistically when editing, don't mass-rewrite.
+
 ### What NOT to do
 
 - Do not introduce `/en/` or `/zh/` URL prefixes. The whole point is URL-free switching.

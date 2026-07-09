@@ -46,7 +46,7 @@
         <div class="hero-title"><span data-lang="en">Projects</span><span data-lang="zh">專案作品集</span></div>
         <p class="hero-subtitle">
             <span data-lang="en">Applied data science, optimization, and engineering — built on real data, for real decisions</span>
-            <span data-lang="zh">應用資料科學、最佳化與工程實作——以真實資料解決真實問題</span>
+            <span data-lang="zh">應用數據科學、優化與工程實作——以真實數據解決真實問題</span>
         </p>
     </section>
 
@@ -62,8 +62,8 @@
         <!-- Project Categories -->
         <div class="project-categories">
             <button class="category-btn active" data-category="all"><span data-lang="en">All Projects</span><span data-lang="zh">全部專案</span></button>
-            <button class="category-btn" data-category="data"><span data-lang="en">Data Science</span><span data-lang="zh">資料科學</span></button>
-            <button class="category-btn" data-category="dataviz"><span data-lang="en">Data Viz</span><span data-lang="zh">資料視覺化</span></button>
+            <button class="category-btn" data-category="data"><span data-lang="en">Data Science</span><span data-lang="zh">數據科學</span></button>
+            <button class="category-btn" data-category="dataviz"><span data-lang="en">Data Viz</span><span data-lang="zh">數據視覺化</span></button>
             <button class="category-btn" data-category="web"><span data-lang="en">Web Development</span><span data-lang="zh">網頁開發</span></button>
             <button class="category-btn" data-category="research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></button>
             <button class="category-btn" data-category="competition"><span data-lang="en">Competitions</span><span data-lang="zh">比賽</span></button>
@@ -85,7 +85,7 @@
                     <h3><span data-lang="en">HK Transport Explorer</span><span data-lang="zh">香港交通探索</span></h3>
                     <p>
                         <span data-lang="en">Live arrival times, route maps, nearest-stop search, and a Dijkstra-based trip planner across KMB, Citybus, GMB, MTR Bus, and the MTR rail network. A pure-static site calling HK government open-data APIs directly from the browser — no backend.</span>
-                        <span data-lang="zh">即時到站時間、路線地圖、就近站點搜尋，以及以 Dijkstra 演算法規劃的行程功能，涵蓋九巴、城巴、專線小巴、港鐵巴士及港鐵。完全靜態網站，由瀏覽器直接呼叫政府開放資料 API，無需後端。</span>
+                        <span data-lang="zh">即時到站時間、路線地圖、就近站點搜尋，以及以 Dijkstra 演算法規劃的行程功能，涵蓋九巴、城巴、專線小巴、港鐵巴士及港鐵。完全靜態網站，由瀏覽器直接呼叫政府開放數據 API，無需後端。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">Vanilla JS</span>
@@ -101,51 +101,78 @@
             </a>
 
             <!-- LF Logistics Project -->
-            <div class="project-card" data-category="data">
+            <a class="project-card" data-category="data" href="https://github.com/yutsang/ETA-Prediction" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
                 <div class="project-image">
                     <div class="media-placeholder" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.107-9.516l-.83-1.123m-3.75 11.763h6m-9-3h3.375a1.125 1.125 0 001.125-1.125v-1.5c0-1.036-.84-1.875-1.875-1.875H9.75v-1.5a3 3 0 013-3h3.75a3 3 0 013 3v4.5m-9-6h3.75a1.5 1.5 0 011.5 1.5v1.5" /></svg>
                         <span>Logistics</span>
                     </div>
                     <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">View Project</span><span data-lang="zh">查看專案</span></span>
+                        <span class="view-project"><span data-lang="en">View on GitHub</span><span data-lang="zh">GitHub 查看</span></span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">Fleet ETA Prediction System</span><span data-lang="zh">車隊到達時間預測系統</span></h3>
+                    <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
                     <p>
-                        <span data-lang="en">Final-year project with LF Logistics: machine-learning models that predict delivery arrival times for fleet operations, built in Python and PyTorch on real operational data with real-time data processing.</span>
-                        <span data-lang="zh">與 LF Logistics 合作的畢業專題：以 Python 與 PyTorch 建立機器學習模型，基於真實營運資料與即時資料處理，預測車隊配送到達時間。</span>
+                        <span data-lang="en">Final-year project with LF Logistics: an XGBoost model that predicts delivery <em>delay ratio</em> (actual vs planned time) instead of raw duration, trained on 65,330 real HK delivery segments. Key finding: vehicle type and origin depot beat distance as predictors. Ships with a Streamlit analytics dashboard.</span>
+                        <span data-lang="zh">與 LF Logistics 合作的畢業專題：以 XGBoost 預測配送的 <em>delay ratio</em>（實際 vs 計劃時間）而非原始時長，用 65,330 條真實香港配送紀錄訓練。核心發現：車型與出發倉庫比距離更有預測力。附 Streamlit 分析 dashboard。</span>
                     </p>
                     <div class="project-tags">
-                        <span class="tag">Machine Learning</span>
+                        <span class="tag">XGBoost</span>
                         <span class="tag">Python</span>
-                        <span class="tag">PyTorch</span>
+                        <span class="tag">Streamlit</span>
                         <span class="tag">Logistics</span>
                     </div>
                     <div class="project-meta">
                         <span class="project-date"><span data-lang="en">Jun 2023</span><span data-lang="zh">2023 年 6 月</span></span>
-                        <span class="project-type"><span data-lang="en">Final Year Project</span><span data-lang="zh">畢業專題</span></span>
+                        <span class="project-type"><span data-lang="en">Final Year Project · Open source</span><span data-lang="zh">畢業專題 · 開源</span></span>
                     </div>
                 </div>
-            </div>
+            </a>
+
+            <!-- rrag — LLM-maintained knowledge wiki -->
+            <a class="project-card" data-category="data" href="https://github.com/yutsang/rrag" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://opengraph.githubassets.com/1/yutsang/rrag" alt="rrag — GitHub repository card" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">View on GitHub</span><span data-lang="zh">GitHub 查看</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">rrag — LLM-Maintained Knowledge Wiki</span><span data-lang="zh">rrag——LLM 自主維護的知識 Wiki</span></h3>
+                    <p>
+                        <span data-lang="en">An Obsidian vault run by a Claude agent, implementing Karpathy's LLM Wiki pattern: raw sources go in, a structured, cross-referenced wiki comes out — 17 agent workflows, slash commands, confidence ratings, and bilingual summaries on every page.</span>
+                        <span data-lang="zh">由 Claude agent 營運的 Obsidian vault，實作 Karpathy 的 LLM Wiki pattern：raw sources 放入，輸出結構化、互相連結的 wiki——17 個 agent workflows、slash commands、每頁附 confidence 評級與繁中概述。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Claude Code</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Obsidian</span>
+                        <span class="tag">Knowledge Base</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">2026 · active</span><span data-lang="zh">2026 · 持續更新</span></span>
+                        <span class="project-type"><span data-lang="en">Open source</span><span data-lang="zh">開源</span></span>
+                    </div>
+                </div>
+            </a>
 
             <!-- Antimicrobial Resistance Research -->
-            <div class="project-card" data-category="research">
+            <a class="project-card" data-category="research" href="https://github.com/yutsang/amr-genome" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
                 <div class="project-image">
                     <div class="media-placeholder" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393a9.065 9.065 0 01-1.982.004l-1.395-.348m0 0L9.75 20.25m4.125-4.125l1.395-.348a9.065 9.065 0 001.982-.004l1.57-.393" /></svg>
                         <span>Research</span>
                     </div>
                     <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">View Research</span><span data-lang="zh">查看研究</span></span>
+                        <span class="view-project"><span data-lang="en">View on GitHub</span><span data-lang="zh">GitHub 查看</span></span>
                     </div>
                 </div>
                 <div class="project-content">
                     <h3><span data-lang="en">Antimicrobial Resistance Analysis</span><span data-lang="zh">抗生素抗藥性分析</span></h3>
                     <p>
                         <span data-lang="en">Research applying BERT-family language models to bacterial genomic data to predict antibiotic resistance — model design, training, and evaluation in PyTorch.</span>
-                        <span data-lang="zh">以 BERT 系列語言模型分析細菌基因體資料、預測抗生素抗藥性的研究——涵蓋模型設計、訓練與評估，以 PyTorch 實作。</span>
+                        <span data-lang="zh">以 BERT 系列語言模型分析細菌基因體數據、預測抗生素抗藥性的研究——涵蓋模型設計、訓練與評估，以 PyTorch 實作。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">BERT</span>
@@ -155,10 +182,10 @@
                     </div>
                     <div class="project-meta">
                         <span class="project-date"><span data-lang="en">May 2024 - Present</span><span data-lang="zh">2024 年 5 月至今</span></span>
-                        <span class="project-type"><span data-lang="en">Research Project</span><span data-lang="zh">研究專案</span></span>
+                        <span class="project-type"><span data-lang="en">Research Project · Open source</span><span data-lang="zh">研究專案 · 開源</span></span>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Case Competition -->
             <div class="project-card" data-category="competition">
@@ -198,14 +225,14 @@
                         <span>Analytics</span>
                     </div>
                     <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟儀表板</span></span>
+                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">Financial Data Analytics Dashboard</span><span data-lang="zh">金融資料分析儀表板</span></h3>
+                    <h3><span data-lang="en">Financial Data Analytics Dashboard</span><span data-lang="zh">金融數據分析 dashboard</span></h3>
                     <p>
                         <span data-lang="en">Interactive Tableau dashboards for financial spreading and credit analysis, built during a Treasury &amp; Markets internship at DBS Bank — with automated data collection and a Power BI customer money-flow analysis that surfaced currency-mismatch opportunities.</span>
-                        <span data-lang="zh">於 DBS 銀行 Treasury &amp; Markets 實習期間開發的互動式 Tableau 儀表板，支援財務分析與信用分析——並自動化資料收集流程，以 Power BI 建立客戶資金流分析，發掘貨幣錯配機會。</span>
+                        <span data-lang="zh">於 DBS 銀行 Treasury &amp; Markets 實習期間開發的互動式 Tableau dashboard，支援財務分析與信用分析——並自動化數據收集流程，以 Power BI 建立客戶資金流分析，發掘貨幣錯配機會。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">Tableau</span>
@@ -255,14 +282,14 @@
                 <div class="project-image">
                     <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="Electric Fence Dashboard" loading="lazy">
                     <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟儀表板</span></span>
+                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析儀表板</span></h3>
+                    <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
                     <p>
                         <span data-lang="en">Comprehensive analysis of electric fence performance metrics, including efficiency rates, maintenance schedules, and operational insights — embedded live from Tableau Public.</span>
-                        <span data-lang="zh">針對電子圍欄績效指標的完整分析，涵蓋效率、維護排程與營運洞察——直接嵌入 Tableau Public 即時儀表板。</span>
+                        <span data-lang="zh">針對電子圍欄績效指標的完整分析，涵蓋效率、維護排程與營運洞察——直接嵌入 Tableau Public 即時 dashboard。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">Tableau</span>
@@ -271,7 +298,7 @@
                     </div>
                     <div class="project-meta">
                         <span class="project-date"><span data-lang="en">Sep 2023</span><span data-lang="zh">2023 年 9 月</span></span>
-                        <span class="project-type"><span data-lang="en">Interactive Dashboard</span><span data-lang="zh">互動式儀表板</span></span>
+                        <span class="project-type"><span data-lang="en">Interactive Dashboard</span><span data-lang="zh">互動式 dashboard</span></span>
                     </div>
                 </div>
             </div>
@@ -280,7 +307,7 @@
         <!-- Embedded Tableau Dashboard -->
         <div id="electric-fence-dashboard" class="embedded-dashboard" style="display: none;">
             <div class="dashboard-header">
-                <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析儀表板</span></h3>
+                <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
                 <button class="close-dashboard" onclick="toggleDashboard('electric-fence')">×</button>
             </div>
             <div class="dashboard-embed">
@@ -303,7 +330,7 @@
                 <div class="footer-brand">Yuu</div>
                 <p class="footer-tagline">
                     <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
-                    <span data-lang="zh">金融與資料科學，並對作業研究有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
                 </p>
             </div>
             <div class="footer-col">

@@ -3,6 +3,7 @@ layout: insight
 title: "Marketing with AI Agents: The Claude Way vs the Hermes Way"
 title_zh: "用 AI Agent 做行銷：Claude 路線 vs Hermes 路線"
 date: 2026-07-20
+published: false   # HOLD — flip to true (and refresh the date) when Worange × 橙 results are in
 tags: [AI, Agents, Marketing]
 permalink: /insights/ai-agent-marketing/
 thumbnail: https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=90&auto=format&fit=crop
