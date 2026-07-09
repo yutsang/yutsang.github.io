@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="rrag — LLM-Maintained Knowledge Wiki - Yuu" data-title-zh="rrag——LLM 自主維護的知識 Wiki - Yuu">rrag — LLM-Maintained Knowledge Wiki - Yuu</title>
+    <meta name="description" content="A live graph of rrag — an Obsidian knowledge wiki compiled and maintained by a Claude agent. 150+ cross-referenced pages on optimization, finance, and machine learning.">
+    <link rel="canonical" href="https://ytsang.com/projects/rrag/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/rrag/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="rrag — LLM-Maintained Knowledge Wiki">
+    <meta property="og:description" content="A live graph of an Obsidian wiki compiled and maintained by a Claude agent — 150+ cross-referenced pages.">
+    <meta property="og:image" content="https://ytsang.com/images/avater.jpeg">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .graph-wrap {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .graph-panel {
+            position: relative;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .graph-panel canvas {
+            display: block;
+            width: 100%;
+            touch-action: none;
+            cursor: grab;
+        }
+        .graph-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem 1.25rem;
+            padding: 0.875rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .graph-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.1rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        .graph-legend span::before {
+            content: "";
+            display: inline-block;
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            margin-right: 0.4rem;
+            background: var(--dot);
+        }
+        .graph-reset {
+            margin-left: auto;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-accent-bright);
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+        }
+        .graph-reset:hover { border-color: var(--color-accent); }
+        .graph-tooltip {
+            position: absolute;
+            pointer-events: none;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0.75rem;
+            max-width: 16rem;
+            z-index: 2;
+        }
+        .graph-tooltip__title {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            color: var(--color-text);
+        }
+        .graph-tooltip__meta {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.15rem;
+        }
+        .graph-hint {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .graph-failed::after {
+            content: "Graph data unavailable — view the wiki on GitHub instead.";
+            display: block;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+        .graph-failed canvas, .graph-failed .graph-hint { display: none; }
+        .graph-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin: 1.5rem 0 0;
+        }
+        .graph-stat {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.4rem;
+        }
+        .graph-stat b {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        .graph-stat span {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        @media (max-width: 640px) {
+            .graph-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title">rrag</div>
+        <p class="hero-subtitle">
+            <span data-lang="en">A knowledge wiki compiled and maintained by an LLM agent — mapped live below</span>
+            <span data-lang="zh">由 LLM agent 編纂及維護的知識 wiki——下方即時呈現整個網絡</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="graph-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">The idea</span><span data-lang="zh">概念</span></div>
+                    <h2 class="section-title"><span data-lang="en">An LLM as librarian.</span><span data-lang="zh">讓 LLM 做圖書管理員。</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">rrag implements Karpathy's <em>LLM Wiki</em> pattern: raw sources — course notes, papers, articles — go into an Obsidian vault, and a Claude agent compiles them into a structured, cross-referenced wiki. The agent summarizes, links related pages with <code>[[wikilinks]]</code>, rates its own confidence per page, and keeps the index healthy through <code>/ingest</code>, <code>/query</code>, and <code>/lint</code> workflows.</span>
+                    <span data-lang="zh">rrag 實作 Karpathy 的 <em>LLM Wiki</em> pattern：raw sources——課堂筆記、論文、文章——放入 Obsidian vault，由 Claude agent 編纂成結構化、互相引用的 wiki。Agent 負責摘要、以 <code>[[wikilinks]]</code> 連結相關頁面、為每頁標注 confidence 評級，並透過 <code>/ingest</code>、<code>/query</code>、<code>/lint</code> 等 workflows 維持索引健康。</span>
+                </p>
+                <p>
+                    <span data-lang="en">The graph below is the wiki's actual link structure, rebuilt weekly by a GitHub Action that parses every page. Hubs like <em>optimization</em>, <em>linear-programming</em>, and <em>financial-ratios</em> emerge on their own — nobody planned the taxonomy; it grew out of what got ingested.</span>
+                    <span data-lang="zh">下方的 graph 是 wiki 真實的連結結構，由 GitHub Action 每週解析所有頁面自動重建。<em>optimization</em>、<em>linear-programming</em>、<em>financial-ratios</em> 這些 hub 是自然浮現的——沒有人預先設計分類，它由被 ingest 的內容自己長出來。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section">
+        <div class="graph-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Live map</span><span data-lang="zh">即時地圖</span></div>
+                    <h2 class="section-title"><span data-lang="en">The graph.</span><span data-lang="zh">知識網絡。</span></h2>
+                </div>
+                <a href="https://github.com/yutsang/rrag" class="section-head__action" rel="noopener noreferrer"><span data-lang="en">Wiki on GitHub →</span><span data-lang="zh">GitHub 上的 wiki →</span></a>
+            </header>
+
+            <div class="graph-panel" id="rrag-graph">
+                <div class="graph-toolbar">
+                    <div class="graph-legend" aria-hidden="false">
+                        <span style="--dot:#c14a2b"><span data-lang="en">Sources</span><span data-lang="zh">Sources 來源</span></span>
+                        <span style="--dot:#2e7d51"><span data-lang="en">Concepts</span><span data-lang="zh">Concepts 概念</span></span>
+                        <span style="--dot:#8f6a12">MOCs</span>
+                        <span style="--dot:#5158b8"><span data-lang="en">Index &amp; meta</span><span data-lang="zh">索引與 meta</span></span>
+                    </div>
+                    <button type="button" class="graph-reset" id="rrag-reset"><span data-lang="en">Reset view</span><span data-lang="zh">重設視圖</span></button>
+                </div>
+                <canvas aria-label="Force-directed graph of wiki pages and their links"></canvas>
+                <div class="graph-tooltip" hidden>
+                    <div class="graph-tooltip__title"></div>
+                    <div class="graph-tooltip__meta"></div>
+                </div>
+                <div class="graph-hint">
+                    <span data-lang="en">Drag nodes · scroll to zoom · click a node to open the page on GitHub</span>
+                    <span data-lang="zh">拖動節點 · 滾輪縮放 · 點擊節點在 GitHub 開啟該頁</span>
+                </div>
+            </div>
+
+            <noscript>
+                <p style="font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-muted); margin-top: 1rem;">
+                    The interactive graph needs JavaScript — browse the wiki directly on
+                    <a href="https://github.com/yutsang/rrag" rel="noopener noreferrer">GitHub</a>.
+                </p>
+            </noscript>
+
+            <div class="graph-stats" id="rrag-stats">
+                <div class="graph-stat"><b data-stat="pages">—</b><span data-lang="en">wiki pages</span><span data-lang="zh">wiki 頁面</span></div>
+                <div class="graph-stat"><b data-stat="links">—</b><span data-lang="en">cross-references</span><span data-lang="zh">互相引用</span></div>
+                <div class="graph-stat"><b data-stat="updated">—</b><span data-lang="en">graph last rebuilt</span><span data-lang="zh">graph 最後重建</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script src="/js/rrag-graph.js?v=1"></script>
+</body>
+</html>

@@ -1,14 +1,14 @@
 ---
 layout: insight
 title: "MarkItDown, MinerU, or PaddleOCR? Choosing a Document-Parsing Stack in 2026"
-title_zh: "MarkItDown、MinerU 還是 PaddleOCR？2026 年文件解析工具怎麼選"
+title_zh: "MarkItDown、MinerU 還是 PaddleOCR？2026 年文件解析工具如何選"
 date: 2026-07-06
 tags: [AI, Tutorial, Engineering]
 permalink: /insights/ocr-tools-comparison/
 thumbnail: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=90&auto=format&fit=crop
 hero_image: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=2000&q=90&auto=format&fit=crop
 excerpt: "Three popular open-source tools all promise to turn documents into clean Markdown — but they are three different species. A practical comparison of Microsoft's MarkItDown, OpenDataLab's MinerU, and Baidu's PaddleOCR: what each actually does, where each breaks, and how to pick."
-excerpt_zh: "三個熱門開源工具都聲稱能把文件變成乾淨的 Markdown——但它們其實是三種完全不同的物種。實測比較微軟 MarkItDown、OpenDataLab MinerU 與百度 PaddleOCR：各自真正做什麼、在哪裡出問題、該怎麼選。"
+excerpt_zh: "三個熱門開源工具都聲稱能把文件變成乾淨的 Markdown——但它們其實是三種完全不同的物種。實測比較微軟 MarkItDown、OpenDataLab MinerU 與百度 PaddleOCR：各自真正做什麼、在哪裡出問題、該如何選。"
 ---
 
 <div data-lang="en" markdown="1">
@@ -256,7 +256,7 @@ mineru -p paper.pdf -o out/
 | 授權 | MIT | Apache-2.0 | **AGPL-3.0** |
 | 用起來像 | 一個小工具 | 一個工具箱 | 一個產品 |
 
-## 我實際上會怎麼選
+## 我實際上會如何選
 
 誠實的答案是：這三個工具是互補多於競爭。
 

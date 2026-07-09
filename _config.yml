@@ -120,4 +120,5 @@ exclude:
   - EXPERIENCE.md
   - TIMELINE_UPDATE_GUIDE.md
   - TAB_LAYOUT.md
+  - scripts
 
