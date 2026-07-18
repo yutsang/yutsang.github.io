@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="HKEX Market Data Dashboards - Yuu" data-title-zh="港交所市場數據 Dashboard - Yuu">HKEX Market Data Dashboards - Yuu</title>
+    <meta name="description" content="Three daily HK market dashboards from HKEX public data: CBBC street distribution, Stock Connect (北水) flow, and short-selling ratio — one page, one update, three views.">
+    <link rel="canonical" href="https://ytsang.com/projects/hkex-data/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/hkex-data/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="HKEX Market Data — CBBC, Stock Connect, Short-Selling">
+    <meta property="og:description" content="CBBC street distribution, Stock Connect 北水 flow, and short-selling ratio — three daily dashboards from HKEX public data.">
+    <meta property="og:image" content="https://ytsang.com/images/avater.jpeg">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .graph-wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+        .graph-panel {
+            position: relative;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .graph-panel canvas { display: block; width: 100%; }
+        .cbbc-toolbar {
+            display: flex; flex-direction: column; gap: 0.6rem;
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .cbbc-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+        .cbbc-filter-label {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); margin-right: 0.35rem;
+        }
+        .cbbc-chip {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--color-text-muted); background: none;
+            border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+            padding: 0.28rem 0.75rem; cursor: pointer;
+        }
+        .cbbc-chip:hover { border-color: var(--color-accent); color: var(--color-text); }
+        .cbbc-chip.is-active { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
+        .cbbc-spot-badge {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+            color: var(--color-text); background: var(--color-accent-soft);
+            border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+            padding: 0.28rem 0.75rem;
+        }
+        .cbbc-legend {
+            display: flex; gap: 1.1rem; margin-left: auto;
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted);
+        }
+        .cbbc-legend span::before {
+            content: ""; display: inline-block; width: 9px; height: 9px;
+            border-radius: 2px; margin-right: 0.4rem; background: var(--dot);
+        }
+        .cbbc-legend .is-ghost::before { background: none; border: 1px solid var(--color-text-muted); }
+        .graph-tooltip {
+            position: absolute; pointer-events: none;
+            background: var(--color-bg); border: 1px solid var(--color-border);
+            border-radius: var(--radius); box-shadow: var(--shadow-md);
+            padding: 0.5rem 0.75rem; max-width: 20rem; z-index: 2;
+        }
+        .graph-tooltip__title { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text); }
+        .graph-tooltip__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); margin-top: 0.15rem; }
+        .graph-hint {
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted);
+            padding: 0.75rem 1.25rem; border-top: 1px solid var(--color-border);
+        }
+        .graph-failed::after {
+            content: "Data unavailable — try Refresh, or view the pipeline on GitHub.";
+            display: block; padding: 2.5rem 1.5rem; text-align: center;
+            font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-muted);
+        }
+        .graph-failed canvas, .graph-failed .graph-hint { display: none; }
+        .cbbc-panel-title {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--color-border);
+        }
+        .cbbc-mce-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8125rem; }
+        .cbbc-mce-table th, .cbbc-mce-table td {
+            text-align: left; padding: 0.5rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .cbbc-mce-table th {
+            font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); font-weight: 500;
+        }
+        .mce-side {
+            display: inline-block; min-width: 2.2em; text-align: center;
+            border-radius: 3px; padding: 0 0.3em;
+            color: var(--color-bg); background: var(--c);
+        }
+        .cbbc-disclaimer {
+            margin-top: 1.5rem;
+            background: var(--color-accent-soft);
+            border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);
+            border-radius: var(--radius); padding: 1.1rem 1.4rem;
+            font-size: 0.875rem; line-height: 1.7; color: var(--color-text-muted);
+        }
+        .cbbc-disclaimer strong { color: var(--color-text); }
+        .cbbc-schedule { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .cbbc-schedule th, .cbbc-schedule td {
+            text-align: left; padding: 0.55rem 0.9rem;
+            border-bottom: 1px solid var(--color-border); vertical-align: top;
+        }
+        .cbbc-schedule th {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); font-weight: 500;
+        }
+        .cbbc-schedule td:first-child { white-space: nowrap; font-family: var(--font-mono); font-size: 0.8125rem; }
+
+        .cbbc-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.25rem 0; }
+        #tab-cbbc .cbbc-tiles { grid-template-columns: repeat(5, 1fr); }
+        .cbbc-tile {
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 0.9rem 1.1rem;
+        }
+        .cbbc-tile b { display: block; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; color: var(--color-text); }
+        .cbbc-tile span { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+        .cbbc-tile .gauge {
+            height: 5px; border-radius: 3px; margin-top: 0.5rem;
+            background: linear-gradient(90deg, #2e7d51 var(--pct, 50%), #c14a2b var(--pct, 50%));
+        }
+        .cbbc-tile .gauge-track { height: 5px; border-radius: 3px; margin-top: 0.5rem; background: var(--color-border); overflow: hidden; }
+        .cbbc-tile .gauge-fill { height: 100%; background: var(--color-accent); border-radius: 3px; width: 0; }
+
+        .cbbc-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+
+        /* Shared freshness bar */
+        .hkex-fresh {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 0.9rem 1.25rem; margin-bottom: 1.25rem;
+            font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text-muted);
+        }
+        .hkex-state { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 500; color: var(--color-text); }
+        .hkex-state::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+        .hkex-refresh-btn {
+            margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--color-accent-bright); background: none;
+            border: 1px solid var(--color-border); border-radius: var(--radius);
+            padding: 0.32rem 0.8rem; cursor: pointer;
+        }
+        .hkex-refresh-btn:hover { border-color: var(--color-accent); }
+        .hkex-refresh-btn:disabled { opacity: 0.5; cursor: wait; }
+
+        /* Tab bar */
+        .hkex-tabbar {
+            display: flex; gap: 0.4rem; margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .hkex-tab {
+            font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500;
+            color: var(--color-text-muted); background: none; border: none;
+            padding: 0.7rem 0.25rem; margin-bottom: -1px;
+            border-bottom: 2px solid transparent; cursor: pointer;
+        }
+        .hkex-tab + .hkex-tab { margin-left: 1.25rem; }
+        .hkex-tab:hover { color: var(--color-text); }
+        .hkex-tab.is-active { color: var(--color-text); border-bottom-color: var(--color-accent); }
+        .hkex-panel[hidden] { display: none; }
+
+        @media (max-width: 860px) {
+            .cbbc-tiles, #tab-cbbc .cbbc-tiles { grid-template-columns: repeat(2, 1fr); }
+            .cbbc-grid2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">HKEX Market Data</span><span data-lang="zh">港交所市場數據</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">CBBC street distribution, Stock Connect (北水) flow, and short-selling ratio — one daily pipeline, three views on the same HKEX public data</span>
+            <span data-lang="zh">牛熊證街貨分佈、港股通（北水）資金流、沽空比率——同一條每日 pipeline，三個角度看同一批 HKEX 公開數據</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="graph-wrap">
+
+            <!-- Shared freshness panel (one for all three dashboards) -->
+            <div class="hkex-fresh">
+                <span class="hkex-state" id="hkex-state-live" style="--c:#b8881f" hidden>
+                    <span data-lang="en">Market open — showing the last completed update</span>
+                    <span data-lang="zh">交易進行中——顯示上一次完成的更新</span>
+                </span>
+                <span class="hkex-state" id="hkex-state-fresh" style="--c:#2e7d51" hidden>
+                    <span data-lang="en">Same-day data published</span>
+                    <span data-lang="zh">當日數據已發布</span>
+                </span>
+                <span class="hkex-state" id="hkex-state-stale" style="--c:#c14a2b" hidden>
+                    <span data-lang="en">Data may be stale (holiday or pipeline failure)</span>
+                    <span data-lang="zh">數據可能滯後（假期或 pipeline 失敗）</span>
+                </span>
+                <span>
+                    <span data-lang="en">All three dashboards for <span class="hkex-asof">—</span> · pipeline ran <span class="hkex-generated">—</span></span>
+                    <span data-lang="zh">三個 dashboard 皆為 <span class="hkex-asof">—</span> 數據 · pipeline 執行於 <span class="hkex-generated">—</span></span>
+                </span>
+                <button type="button" class="hkex-refresh-btn" id="hkex-refresh"><span data-lang="en">↻ Refresh all</span><span data-lang="zh">↻ 全部重新載入</span></button>
+            </div>
+
+            <!-- Tab bar -->
+            <div class="hkex-tabbar" role="tablist">
+                <button type="button" class="hkex-tab is-active" data-tab="cbbc" role="tab"><span data-lang="en">CBBC Street Map</span><span data-lang="zh">牛熊證街貨</span></button>
+                <button type="button" class="hkex-tab" data-tab="stock-connect" role="tab"><span data-lang="en">Stock Connect (北水)</span><span data-lang="zh">港股通（北水）</span></button>
+                <button type="button" class="hkex-tab" data-tab="short-selling" role="tab"><span data-lang="en">Short-Selling Ratio</span><span data-lang="zh">沽空比率</span></button>
+            </div>
+
+            <!-- ============================= CBBC TAB ============================= -->
+            <div class="hkex-panel" id="tab-cbbc" data-tab="cbbc">
+                <div class="cbbc-tiles">
+                    <div class="cbbc-tile"><b id="tile-bullpct">—</b><span data-lang="en">bull share of street</span><span data-lang="zh">牛證街貨佔比</span><div class="gauge" id="tile-gauge"></div></div>
+                    <div class="cbbc-tile"><b id="tile-total">—</b><span data-lang="en">total street (units)</span><span data-lang="zh">總街貨（單位）</span></div>
+                    <div class="cbbc-tile"><b id="tile-bullzone">—</b><span data-lang="en">heaviest bull zone</span><span data-lang="zh">牛證最重貨區</span></div>
+                    <div class="cbbc-tile"><b id="tile-bearzone">—</b><span data-lang="en">heaviest bear zone</span><span data-lang="zh">熊證最重貨區</span></div>
+                    <div class="cbbc-tile"><b id="tile-mce">—</b><span data-lang="en">MCEs today (all ULs)</span><span data-lang="zh">今日收回事件（全市場）</span></div>
+                </div>
+
+                <div class="graph-panel" id="cbbc-chart">
+                    <div class="cbbc-toolbar">
+                        <div class="cbbc-filter-row" id="cbbc-ul-filters">
+                            <span class="cbbc-filter-label"><span data-lang="en">Underlying</span><span data-lang="zh">相關資產</span></span>
+                        </div>
+                        <div class="cbbc-filter-row">
+                            <span class="cbbc-filter-label"><span data-lang="en">Zone size</span><span data-lang="zh">區間大小</span></span>
+                            <button type="button" class="cbbc-chip" data-mult="1">×1</button>
+                            <button type="button" class="cbbc-chip is-active" data-mult="2">×2</button>
+                            <button type="button" class="cbbc-chip" data-mult="4">×4</button>
+                            <span class="cbbc-spot-badge" id="cbbc-spot-badge">—</span>
+                            <div class="cbbc-legend">
+                                <span style="--dot:#2e7d51"><span data-lang="en">Bull</span><span data-lang="zh">牛證</span></span>
+                                <span style="--dot:#c14a2b"><span data-lang="en">Bear</span><span data-lang="zh">熊證</span></span>
+                                <span class="is-ghost"><span data-lang="en">Prev day</span><span data-lang="zh">上日</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas aria-label="CBBC outstanding distribution by call level, with prior-day outline"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    <div class="graph-hint">
+                        <span data-lang="en">Hover a zone for street size and day change · hollow outline = previous trading day · dashed vertical lines mark the magnitude scale · spot estimated from the bull/bear call boundary</span>
+                        <span data-lang="zh">移到區間見街貨量與日變動 · 空心框＝上一交易日 · 直向虛線為數量刻度參考 · 現價由牛熊收回價邊界估算</span>
+                    </div>
+                </div>
+
+                <div class="cbbc-grid2" style="margin-top:1.25rem">
+                    <div class="graph-panel" id="cbbc-trend">
+                        <div class="cbbc-panel-title"><span data-lang="en">30-day street trend</span><span data-lang="zh">30 日街貨趨勢</span></div>
+                        <canvas aria-label="30-day bull and bear street trend"></canvas>
+                        <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    </div>
+                    <div class="graph-panel" id="cbbc-newlist">
+                        <div class="cbbc-panel-title"><span data-lang="en">New listings by day (count)</span><span data-lang="zh">每日新上市（隻數）</span></div>
+                        <canvas aria-label="New CBBC listings per day, bull vs bear"></canvas>
+                        <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    </div>
+                </div>
+
+                <div class="graph-panel" id="cbbc-issuers" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">Street by issuer (top 10)</span><span data-lang="zh">發行商街貨分佈（前十）</span></div>
+                    <canvas aria-label="Street outstanding by issuer"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                </div>
+
+                <div class="graph-panel" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title">
+                        <span data-lang="en">Mandatory call events today · list updated <span id="cbbc-mce-asof">—</span></span>
+                        <span data-lang="zh">今日強制收回事件 · 名單更新至 <span id="cbbc-mce-asof2">—</span></span>
+                    </div>
+                    <table class="cbbc-mce-table">
+                        <thead><tr>
+                            <th><span data-lang="en">MCE time</span><span data-lang="zh">收回時間</span></th>
+                            <th><span data-lang="en">Code</span><span data-lang="zh">代號</span></th>
+                            <th><span data-lang="en">Side · underlying</span><span data-lang="zh">方向 · 相關資產</span></th>
+                            <th><span data-lang="en">Issuer</span><span data-lang="zh">發行商</span></th>
+                        </tr></thead>
+                        <tbody id="cbbc-mce-body"></tbody>
+                    </table>
+                    <div class="graph-hint" id="cbbc-mce-more" hidden>
+                        <span data-lang="en">Showing the latest 14 of <b>—</b> events · full list on HKEX</span>
+                        <span data-lang="zh">顯示最新 14 宗，全日共 <b>—</b> 宗 · 完整名單見 HKEX</span>
+                    </div>
+                </div>
+
+                <div class="graph-panel" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">CBBC data timing</span><span data-lang="zh">CBBC 數據時效</span></div>
+                    <table class="cbbc-schedule">
+                        <thead><tr>
+                            <th><span data-lang="en">Dataset</span><span data-lang="zh">數據</span></th>
+                            <th><span data-lang="en">HKEX publishes</span><span data-lang="zh">HKEX 更新</span></th>
+                            <th><span data-lang="en">What that means</span><span data-lang="zh">代表甚麼</span></th>
+                        </tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><span data-lang="en">Outstanding (street)</span><span data-lang="zh">街貨量 O/S</span></td>
+                                <td><span data-lang="en">Once daily, ~06:15 HKT</span><span data-lang="zh">每日一次，約 06:15 HKT</span></td>
+                                <td><span data-lang="en">Always shows the previous close; drifts most near market close.</span><span data-lang="zh">永遠反映上一個收市；臨近收市偏差最大。</span></td>
+                            </tr>
+                            <tr>
+                                <td><span data-lang="en">MCE (call) list</span><span data-lang="zh">收回（MCE）名單</span></td>
+                                <td><span data-lang="en">Intraday; 30–60 min lag</span><span data-lang="zh">盤中持續；延遲 30–60 分鐘</span></td>
+                                <td><span data-lang="en">Official times are the issuer announcements on HKEXnews.</span><span data-lang="zh">官方時間以發行商於 HKEXnews 的公告為準。</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cbbc-disclaimer">
+                    <p>
+                        <span data-lang="en"><strong>Disclaimer.</strong> Personal, educational project. Visualises end-of-day statistics compiled from files published openly by Hong Kong Exchanges and Clearing Limited ("HKEX"); not real-time, may contain errors, provided "as is". Nothing here is investment advice or a solicitation. CBBCs are leveraged structured products that may be called mandatorily and can lose their entire value. Not affiliated with HKEX or any issuer. Seek a licensed financial adviser before any investment decision.</span>
+                        <span data-lang="zh"><strong>免責聲明。</strong>個人教育性質項目，內容整理自香港交易及結算所有限公司（「香港交易所」）公開發布的收市後統計檔案；並非實時數據，可能存在錯誤，按「現況」提供。本頁不構成投資建議或要約。牛熊證屬槓桿結構性產品，可被強制收回，價值可跌至零。與香港交易所或任何發行商概無關聯。作出投資決定前請諮詢持牌財務顧問。</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ======================= STOCK CONNECT TAB ======================== -->
+            <div class="hkex-panel" id="tab-stock-connect" data-tab="stock-connect" hidden>
+                <div class="cbbc-tiles">
+                    <div class="cbbc-tile"><b id="tile-scnet">—</b><span data-lang="en">southbound net (latest day)</span><span data-lang="zh">南向淨流入（最新一日）</span></div>
+                    <div class="cbbc-tile"><b id="tile-scbuy">—</b><span data-lang="en">buy turnover</span><span data-lang="zh">買入成交額</span></div>
+                    <div class="cbbc-tile"><b id="tile-scsell">—</b><span data-lang="en">sell turnover</span><span data-lang="zh">賣出成交額</span></div>
+                    <div class="cbbc-tile"><b id="tile-scdate">—</b><span data-lang="en">latest trading day</span><span data-lang="zh">最新交易日</span></div>
+                </div>
+
+                <div class="graph-panel" id="sc-trend">
+                    <div class="cbbc-panel-title"><span data-lang="en">Southbound (北水) net flow — last 30 trading days</span><span data-lang="zh">南向（北水）淨流入 — 最近 30 個交易日</span></div>
+                    <div class="cbbc-legend">
+                        <span style="--dot:#2e7d51"><span data-lang="en">Net buy</span><span data-lang="zh">淨買入</span></span>
+                        <span style="--dot:#c14a2b"><span data-lang="en">Net sell</span><span data-lang="zh">淨賣出</span></span>
+                    </div>
+                    <canvas aria-label="Southbound daily net buy/sell trend, HKD millions"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    <div class="graph-hint">
+                        <span data-lang="en">Hover a bar for that day's buy/sell split · figures in HKD millions</span>
+                        <span data-lang="zh">移到柱上見當日買賣拆分 · 單位為港元百萬</span>
+                    </div>
+                </div>
+
+                <div class="cbbc-grid2" style="margin-top:1.25rem">
+                    <div class="graph-panel" id="sc-exchange">
+                        <div class="cbbc-panel-title"><span data-lang="en">Latest day — by exchange (SSE vs SZSE)</span><span data-lang="zh">最新一日 — 按交易所（滬 vs 深）</span></div>
+                        <canvas aria-label="Southbound buy/sell by exchange, latest day"></canvas>
+                        <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    </div>
+                    <div class="graph-panel" id="sc-nbtrend">
+                        <div class="cbbc-panel-title"><span data-lang="en">Northbound turnover — for comparison</span><span data-lang="zh">北向成交額 — 作對比</span></div>
+                        <canvas aria-label="Northbound total turnover trend, RMB millions"></canvas>
+                        <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    </div>
+                </div>
+
+                <div class="graph-panel" id="sc-top" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">Top net-buy / net-sell stocks via Southbound (10-day window)</span><span data-lang="zh">南向淨買入／淨賣出前列股份（10 日窗口）</span></div>
+                    <canvas aria-label="Top net buy and net sell stocks via Southbound Stock Connect"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    <div class="graph-hint">
+                        <span data-lang="en">Hover for buy/sell split, days in the top-10, and last price/change · aggregated only from days a stock appeared in HKEX's daily top-10, so names trading steadily just outside it are undercounted</span>
+                        <span data-lang="zh">移到列上見買賣拆分、上榜日數與現價升跌 · 僅按進入 HKEX 每日十大名單的日子累加，長期徘徊十大之外的股份會被低估</span>
+                    </div>
+                </div>
+
+                <div class="graph-panel" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">Stock Connect data timing</span><span data-lang="zh">港股通數據時效</span></div>
+                    <table class="cbbc-schedule">
+                        <thead><tr>
+                            <th><span data-lang="en">Dataset</span><span data-lang="zh">數據</span></th>
+                            <th><span data-lang="en">HKEX publishes</span><span data-lang="zh">HKEX 更新</span></th>
+                            <th><span data-lang="en">What that means</span><span data-lang="zh">代表甚麼</span></th>
+                        </tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><span data-lang="en">Daily turnover file</span><span data-lang="zh">每日成交檔案</span></td>
+                                <td><span data-lang="en">Same trading day, ~17:30 HKT</span><span data-lang="zh">當日，約 17:30 HKT</span></td>
+                                <td><span data-lang="en">Verified from the file's own Last-Modified header — consistently ~17:27–17:30 HKT, shortly after the 16:00 close. Same-day, unlike CBBC's next-morning O/S.</span><span data-lang="zh">由檔案本身的 Last-Modified 標頭驗證——一致約 17:27–17:30 HKT，收市後不久。當日即時，有別於 CBBC 翌晨才有的街貨數據。</span></td>
+                            </tr>
+                            <tr>
+                                <td><span data-lang="en">Top-10 stock lists</span><span data-lang="zh">十大股份名單</span></td>
+                                <td><span data-lang="en">Same file, same schedule</span><span data-lang="zh">同一檔案，同一時間表</span></td>
+                                <td><span data-lang="en">Only the daily top 10 per exchange are published.</span><span data-lang="zh">每個交易所每日僅公佈十大。</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cbbc-disclaimer">
+                    <p>
+                        <span data-lang="en"><strong>Disclaimer.</strong> Personal, educational project. Visualises daily statistics compiled from files published openly by HKEX; may contain errors, provided "as is". Nothing here is investment advice. Past Stock Connect flow is not indicative of future price movements. Not affiliated with HKEX. Seek a licensed financial adviser before any investment decision.</span>
+                        <span data-lang="zh"><strong>免責聲明。</strong>個人教育性質項目，內容整理自香港交易所公開發布的每日統計檔案；可能存在錯誤，按「現況」提供。本頁不構成投資建議。過往港股通資金流並不代表未來價格走勢。與香港交易所概無關聯。作出投資決定前請諮詢持牌財務顧問。</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ======================= SHORT-SELLING TAB ========================= -->
+            <div class="hkex-panel" id="tab-short-selling" data-tab="short-selling" hidden>
+                <div class="cbbc-tiles">
+                    <div class="cbbc-tile">
+                        <b id="tile-ssratio">—</b><span data-lang="en">market short-selling ratio</span><span data-lang="zh">全市場沽空比率</span>
+                        <div class="gauge-track"><div class="gauge-fill" id="tile-ssgauge"></div></div>
+                    </div>
+                    <div class="cbbc-tile"><b id="tile-ssturnover">—</b><span data-lang="en">short-selling turnover (HKD)</span><span data-lang="zh">沽空成交額（港元）</span></div>
+                    <div class="cbbc-tile"><b id="tile-sstotal">—</b><span data-lang="en">total market turnover (HKD)</span><span data-lang="zh">全市場成交額（港元）</span></div>
+                    <div class="cbbc-tile"><b id="tile-ssn">—</b><span data-lang="en">stocks with short-selling</span><span data-lang="zh">錄得沽空的股份數目</span></div>
+                </div>
+
+                <div class="graph-panel" id="ss-trend">
+                    <div class="cbbc-panel-title"><span data-lang="en">Market short-selling ratio — last 30 trading days</span><span data-lang="zh">全市場沽空比率 — 最近 30 個交易日</span></div>
+                    <canvas aria-label="Market-wide short-selling ratio, 30-day trend"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    <div class="graph-hint">
+                        <span data-lang="en">Ratio = short-selling turnover ÷ total market turnover, that day</span>
+                        <span data-lang="zh">比率 = 當日沽空成交額 ÷ 全市場成交額</span>
+                    </div>
+                </div>
+
+                <div class="graph-panel" id="ss-top" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">Highest short-selling ratio (liquidity floor applied)</span><span data-lang="zh">沽空比率最高（已設流動性門檻）</span></div>
+                    <canvas aria-label="Stocks with the highest short-selling ratio today"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                    <div class="graph-hint">
+                        <span data-lang="en">Hover for turnover split and last price/change · excludes stocks under HKD 5M total turnover · many top names are index/leveraged ETFs, where near-100% ratios reflect market-maker hedging, not a bearish signal</span>
+                        <span data-lang="zh">移到列上見成交拆分與現價升跌 · 已剔除當日總成交少於 500 萬港元的股份 · 榜上不少是指數／槓桿 ETF，接近 100% 的比率反映做市商對沖機制，並非睇淡訊號</span>
+                    </div>
+                </div>
+
+                <div class="graph-panel" style="margin-top:1.25rem">
+                    <div class="cbbc-panel-title"><span data-lang="en">Short-selling data timing</span><span data-lang="zh">沽空數據時效</span></div>
+                    <table class="cbbc-schedule">
+                        <thead><tr>
+                            <th><span data-lang="en">Dataset</span><span data-lang="zh">數據</span></th>
+                            <th><span data-lang="en">HKEX publishes</span><span data-lang="zh">HKEX 更新</span></th>
+                            <th><span data-lang="en">What that means</span><span data-lang="zh">代表甚麼</span></th>
+                        </tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><span data-lang="en">Daily Quotation Sheet</span><span data-lang="zh">每日報價表</span></td>
+                                <td><span data-lang="en">Same trading day, evening</span><span data-lang="zh">當日，傍晚</span></td>
+                                <td><span data-lang="en">Compiled after close, published same-day; this dashboard reads its short-selling and quotations sections directly.</span><span data-lang="zh">收市後編製，當日發布；本 dashboard 直接讀取其沽空與報價兩節數據。</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cbbc-disclaimer">
+                    <p>
+                        <span data-lang="en"><strong>Disclaimer.</strong> Personal, educational project. Visualises statistics compiled from files published openly by HKEX; may contain errors, provided "as is". Short-selling turnover is not the same as short interest (open short positions) — it measures same-day sell trades marked "short." Nothing here is investment advice. Not affiliated with HKEX. Seek a licensed financial adviser before any investment decision.</span>
+                        <span data-lang="zh"><strong>免責聲明。</strong>個人教育性質項目，內容整理自香港交易所公開發布的統計檔案；可能存在錯誤，按「現況」提供。沽空成交額並非「沽空持倉」（未平倉淡倉）——量度當日被標記為「沽空」的賣出成交。本頁不構成投資建議。與香港交易所概無關聯。作出投資決定前請諮詢持牌財務顧問。</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script src="/js/cbbc-chart.js?v=3"></script>
+    <script src="/js/stockconnect-chart.js?v=2"></script>
+    <script src="/js/shortselling-chart.js?v=2"></script>
+    <script src="/js/hkex-tabs.js?v=1"></script>
+</body>
+</html>

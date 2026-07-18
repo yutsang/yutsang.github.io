@@ -35,6 +35,14 @@ ROW = re.compile(
 )
 TAG = re.compile(r"</?(font|pre)[^>]*>")
 
+# Quotations section: two lines per stock (PRV.CLO/ASK/HIGH/SHARES then
+# CLOSING/BID/LOW/TURNOVER) -- used only to enrich a handful of hover
+# tooltips for codes already surfaced elsewhere (Stock Connect / short-
+# selling top lists), not stored as a full-market cache.
+QROW1 = re.compile(r"^\s*[%#\*]?\s*(\d+)\s+(.+?)\s+(HKD|USD|CNY|RMB)\s+(.*)$")
+QROW2 = re.compile(r"^\s*([\d,.\-]+)\s+([\d,.\-]+)\s+([\d,.\-]+)\s+([\d,.\-]+)\s*$")
+QSUSPENDED = re.compile(r"TRADING (SUSPENDED|HALTED)")
+
 
 def num(s: str) -> float:
     try:
@@ -75,6 +83,64 @@ def parse_dayquot(raw: str):
     return date_str, rows
 
 
+def norm_code(code: str) -> str:
+    """Strip leading zeros so codes match across sources with different
+    padding conventions (Stock Connect zero-pads to 5 digits; the Daily
+    Quotation Sheet does not)."""
+    try:
+        return str(int(code))
+    except ValueError:
+        return code
+
+
+def parse_quotes(raw: str, wanted: set[str]):
+    """-> {code: [last, chg_pct]} for codes in `wanted`, read from the
+    Daily Quotation Sheet's main QUOTATIONS section (all-market, ~15k
+    rows) -- only entries matching `wanted` are kept."""
+    if not wanted:
+        return {}
+    lines = raw.splitlines()
+    try:
+        start = next(i for i, l in enumerate(lines) if 'name = "quotations"' in l)
+        end = next(i for i, l in enumerate(lines) if 'name = "sales_all"' in l)
+    except StopIteration:
+        return {}
+
+    section = [TAG.sub("", l).rstrip("\n") for l in lines[start:end]]
+    out = {}
+    i = 0
+    while i < len(section):
+        m = QROW1.match(section[i])
+        if not m:
+            i += 1
+            continue
+        code, _name, _cur, rest = m.groups()
+        if QSUSPENDED.search(rest) or norm_code(code) not in wanted:
+            i += 1
+            continue
+        vals = rest.split()
+        if len(vals) != 4:
+            i += 1
+            continue
+        prv_clo = num(vals[0])
+        j = i + 1
+        if j < len(section):
+            m2 = QROW2.match(section[j])
+            if m2:
+                closing = num(m2.group(1))
+                if prv_clo:
+                    out[norm_code(code)] = [closing, round((closing - prv_clo) / prv_clo * 100, 2)]
+                i = j + 1
+                continue
+        i += 1
+    return out
+
+
+def enrich_with_quotes(rows: list, code_idx: int, quotes: dict) -> list:
+    """Append [last, chg_pct] (or [None, None]) to each row by code lookup."""
+    return [r + list(quotes.get(norm_code(r[code_idx]), [None, None])) for r in rows]
+
+
 def http_get(url: str) -> str | None:
     req = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (personal educational project; ytsang.com)",
@@ -103,7 +169,7 @@ def main() -> None:
     history = json.loads(hist_path.read_text()) if hist_path.exists() else []
     by_date = {h["date"]: h for h in history}
 
-    latest_rows, latest_date = [], None
+    latest_rows, latest_date, latest_raw = [], None, None
 
     if a.backfill:
         for p in sorted(Path(a.backfill).glob("*.htm")):
@@ -115,7 +181,7 @@ def main() -> None:
                 continue
             by_date[date_str] = day_summary(rows)
             if latest_date is None or date_str > latest_date:
-                latest_date, latest_rows = date_str, rows
+                latest_date, latest_rows, latest_raw = date_str, rows, raw
     else:
         now = datetime.now(timezone.utc)
         for back in range(4):     # today, then a few days back in case of holiday/late publish
@@ -125,7 +191,7 @@ def main() -> None:
             if raw and len(raw) > 10000:
                 date_str, rows = parse_dayquot(raw)
                 if date_str and rows:
-                    latest_date, latest_rows = date_str, rows
+                    latest_date, latest_rows, latest_raw = date_str, rows, raw
                     by_date[date_str] = day_summary(rows)
                     break
 
@@ -143,6 +209,24 @@ def main() -> None:
     )
     top = [[code, name, round(ssv / tv, 4), round(ssv), round(tv)]
            for code, name, ssv, tv in ranked[:TOP_N]]
+
+    # Enrich this dashboard's own top list, and (if present) patch Stock
+    # Connect's top list with [last, chg_pct] -- both draw from the same
+    # already-fetched Daily Quotation Sheet, so this costs no extra fetch.
+    sc_path = root / "data" / "stockconnect-latest.json"
+    sc_data = json.loads(sc_path.read_text()) if sc_path.exists() else None
+    wanted = {norm_code(row[0]) for row in top}
+    if sc_data:
+        wanted |= {norm_code(row[0]) for row in sc_data.get("southbound", {}).get("top_stocks", [])}
+    quotes = parse_quotes(latest_raw, wanted)
+
+    top = enrich_with_quotes(top, 0, quotes)
+    if sc_data and quotes:
+        sb = sc_data.get("southbound", {})
+        sb["top_stocks"] = enrich_with_quotes(
+            [row[:6] for row in sb.get("top_stocks", [])], 0, quotes)
+        sc_path.write_text(json.dumps(sc_data, ensure_ascii=False, separators=(",", ":")) + "\n",
+                            encoding="utf-8")
 
     trend = [[h["date"][5:], h["ratio"]] for h in history[-TREND_DAYS:]]
 

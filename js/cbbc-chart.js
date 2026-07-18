@@ -50,16 +50,16 @@
     // canvas text follows the language toggle
     new MutationObserver(renderAll).observe(document.documentElement,
       { attributes: true, attributeFilter: ["lang"] });
+    var doRefresh = function () {
+      return load(true).then(function (d2) { DATA = d2; freshness(); renderAll(); });
+    };
     var rb = $("cbbc-refresh");
     if (rb) rb.addEventListener("click", function () {
       rb.disabled = true;
-      load(true).then(function (d2) {
-        DATA = d2;
-        freshness();
-        renderAll();
-        rb.disabled = false;
-      }).catch(function () { rb.disabled = false; });
+      doRefresh().catch(function () {}).then(function () { rb.disabled = false; });
     });
+    // Shared "Refresh all" control on the combined HKEX data page
+    window.addEventListener("hkex:refresh-all", doRefresh);
   }).catch(function () {
     document.querySelectorAll(".graph-panel").forEach(function (p) {
       p.classList.add("graph-failed");
@@ -226,7 +226,7 @@
     var m = mergedBuckets();
     var dim = sizeCanvas(p, 560);
     var ctx = p.ctx;
-    var padL = 76, padR = 64, padT = 18;
+    var padL = 76, padR = 64, padT = 32;
     var plotW = dim.w - padL - padR;
     var rowH = Math.min(24, (dim.h - padT - 10) / Math.max(m.rows.length, 1));
     var barH = Math.max(6, rowH - 4);
@@ -235,9 +235,31 @@
       maxV = Math.max(maxV, r.bull, r.bear, r.pbull, r.pbear);
     });
 
+    // Spot value lives in the toolbar badge (not on-canvas) so it never
+    // collides with the heaviest-bar label drawn at the same right edge.
+    var spotBadge = document.getElementById("cbbc-spot-badge");
+    if (spotBadge) {
+      spotBadge.textContent = (zh() ? "現價估算 " : "Est. spot ") + fmtLevel(m.d.spot, m.step);
+    }
+
     ctx.font = MONO;
     ctx.textBaseline = "middle";
     p.view = [];
+
+    // Vertical scale gridlines (magnitude reference for bar length),
+    // labelled along the top edge of the plot.
+    ctx.textAlign = "center";
+    for (var gv = 0; gv <= 3; gv++) {
+      var gx = padL + (gv / 3) * plotW;
+      if (gv > 0) {
+        ctx.strokeStyle = GRID;
+        ctx.setLineDash([3, 4]);
+        ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, padT + m.rows.length * rowH); ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      ctx.fillStyle = MUTED;
+      ctx.fillText(fmt(maxV * gv / 3), gx, padT - 12);
+    }
 
     var spotY = null;
     for (var k = 0; k < m.rows.length; k++) {
@@ -248,10 +270,6 @@
       ctx.setLineDash([5, 4]);
       ctx.beginPath(); ctx.moveTo(padL - 62, spotY); ctx.lineTo(dim.w - 6, spotY); ctx.stroke();
       ctx.setLineDash([]);
-      ctx.fillStyle = INK;
-      ctx.textAlign = "right";
-      ctx.fillText((zh() ? "現價估算 " : "est. spot ") + fmtLevel(m.d.spot, m.step),
-        dim.w - 8, spotY - 9);
     }
 
     m.rows.forEach(function (r, idx) {

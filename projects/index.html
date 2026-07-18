@@ -253,73 +253,19 @@
                 </div>
             </a>
 
-            <!-- Short-Selling Ratio Dashboard -->
-            <a class="project-card" data-category="dataviz" href="/projects/short-selling/" style="text-decoration:none;color:inherit">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
-                    <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">Open the dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3><span data-lang="en">HK Short-Selling Ratio Dashboard</span><span data-lang="zh">沽空比率 Dashboard</span></h3>
-                    <p>
-                        <span data-lang="en">Market-wide and per-stock short-selling turnover ratio, parsed directly from HKEX's public Daily Quotation Sheet — 30-day trend and top-15 by ratio, refreshed every trading evening.</span>
-                        <span data-lang="zh">全市場及個股沽空成交比率，直接解析自 HKEX 公開每日報價表——30 日趨勢與比率前十五，每個交易日黃昏自動更新。</span>
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">GitHub Actions</span>
-                        <span class="tag">HK Open Data</span>
-                        <span class="tag">Finance</span>
-                    </div>
-                    <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2026 · daily refresh</span><span data-lang="zh">2026 · 每日更新</span></span>
-                        <span class="project-type"><span data-lang="en">Live data</span><span data-lang="zh">即時數據</span></span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Stock Connect Flow Dashboard -->
-            <a class="project-card" data-category="dataviz" href="/projects/stock-connect/" style="text-decoration:none;color:inherit">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
-                    <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">Open the dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3><span data-lang="en">HK Stock Connect Flow Dashboard</span><span data-lang="zh">港股通資金流 Dashboard</span></h3>
-                    <p>
-                        <span data-lang="en">Southbound (北水) net buy/sell trend, exchange split, and top net-buy/net-sell stocks via Stock Connect — same-day data from HKEX's public daily statistics, refreshed every trading evening.</span>
-                        <span data-lang="zh">南向（北水）淨買賣趨勢、交易所拆分，以及港股通淨買入／淨賣出前列股份——來自 HKEX 公開每日統計的當日數據，每個交易日黃昏自動更新。</span>
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">GitHub Actions</span>
-                        <span class="tag">HK Open Data</span>
-                        <span class="tag">Finance</span>
-                    </div>
-                    <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2026 · daily refresh</span><span data-lang="zh">2026 · 每日更新</span></span>
-                        <span class="project-type"><span data-lang="en">Live data</span><span data-lang="zh">即時數據</span></span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- CBBC Street Map -->
-            <a class="project-card" data-category="dataviz" href="/projects/cbbc/" style="text-decoration:none;color:inherit">
+            <!-- HKEX Market Data (combined: CBBC / Stock Connect / Short-Selling) -->
+            <a class="project-card" data-category="dataviz" href="/projects/hkex-data/" style="text-decoration:none;color:inherit">
                 <div class="project-image">
                     <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
                     <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">Open the dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
+                        <span class="view-project"><span data-lang="en">Open the dashboards</span><span data-lang="zh">開啟 dashboard</span></span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">HK CBBC Street Dashboard</span><span data-lang="zh">牛熊證街貨 Dashboard</span></h3>
+                    <h3><span data-lang="en">HKEX Market Data — 3 dashboards</span><span data-lang="zh">港交所市場數據——三合一 Dashboard</span></h3>
                     <p>
-                        <span data-lang="en">Daily bull/bear outstanding distribution for the HSI and major HK stocks, computed independently from HKEX public end-of-day files — call levels, entitlement ratios, and street quantities, rebuilt every trading morning by a scheduled pipeline.</span>
-                        <span data-lang="zh">恒指及主要港股的牛熊證街貨分佈，由 HKEX 公開收市檔案獨立計算——收回價、換股比率與街貨量，每個交易日早上由自動 pipeline 重建。</span>
+                        <span data-lang="en">CBBC street distribution, Stock Connect (北水) net flow, and market-wide short-selling ratio — three tabbed views on one page, all computed independently from HKEX's public files and rebuilt once daily by a scheduled pipeline.</span>
+                        <span data-lang="zh">牛熊證街貨分佈、港股通（北水）淨流入，以及全市場沽空比率——一頁三個分頁，全部由 HKEX 公開檔案獨立計算，每日由自動 pipeline 重建一次。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">Python</span>

@@ -39,12 +39,15 @@
     window.addEventListener("resize", renderAll);
     new MutationObserver(renderAll).observe(document.documentElement,
       { attributes: true, attributeFilter: ["lang"] });
+    var doRefresh = function () {
+      return load(true).then(function (d2) { DATA = d2; freshness(); renderAll(); });
+    };
     var rb = $("sc-refresh");
     if (rb) rb.addEventListener("click", function () {
       rb.disabled = true;
-      load(true).then(function (d2) { DATA = d2; freshness(); renderAll(); rb.disabled = false; })
-        .catch(function () { rb.disabled = false; });
+      doRefresh().catch(function () {}).then(function () { rb.disabled = false; });
     });
+    window.addEventListener("hkex:refresh-all", doRefresh);
   }).catch(function () {
     document.querySelectorAll(".graph-panel").forEach(function (p) { p.classList.add("graph-failed"); });
   });
@@ -265,9 +268,14 @@
       p.view.forEach(function (it) { if (py >= it.y0 && py < it.y1) hit = it; });
       if (!hit) { p.tip.hidden = true; return; }
       var r = hit.r;
-      tipAt(p, ev, r[1] + " (" + r[0] + ")",
-        (zh() ? "買 " : "buy ") + fmt(r[3]) + (zh() ? " · 賣 " : " · sell ") + fmt(r[4]) +
-        (zh() ? " · 上榜 " : " · in top10 on ") + r[5] + (zh() ? " 日" : " days"));
+      var meta = (zh() ? "買 " : "buy ") + fmt(r[3]) + (zh() ? " · 賣 " : " · sell ") + fmt(r[4]) +
+        (zh() ? " · 上榜 " : " · in top10 on ") + r[5] + (zh() ? " 日" : " days");
+      if (r[6] != null) {
+        var chg = r[7], arrow = chg >= 0 ? "▲" : "▼";
+        meta += (zh() ? " · 現價 " : " · last ") + r[6].toFixed(2) +
+          " " + arrow + Math.abs(chg).toFixed(1) + "%";
+      }
+      tipAt(p, ev, r[1] + " (" + r[0] + ")", meta);
     };
   }
 
