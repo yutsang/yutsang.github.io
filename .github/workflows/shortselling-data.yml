@@ -1,0 +1,32 @@
+name: Rebuild short-selling ratio data
+
+on:
+  schedule:
+    # 12:00 UTC Mon-Fri = 20:00 HKT — after HKEX's evening Daily Quotation Sheet
+    - cron: "0 12 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Build short-selling JSON from HKEX Daily Quotation Sheet
+        run: python3 scripts/build_shortselling_data.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet data/shortselling-latest.json data/shortselling-history.json; then
+            echo "No new data (holiday or unchanged) — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/shortselling-latest.json data/shortselling-history.json
+          git commit -m "Refresh short-selling ratio data"
+          git push
