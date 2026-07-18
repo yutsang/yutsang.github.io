@@ -1,0 +1,32 @@
+name: Rebuild Stock Connect flow data
+
+on:
+  schedule:
+    # 11:15 UTC Mon–Fri = 19:15 HKT — after HKEX's ~17:30 HKT same-day publication
+    - cron: "15 11 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Build Stock Connect JSON from HKEX daily statistics
+        run: python3 scripts/build_stockconnect_data.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet data/stockconnect-latest.json; then
+            echo "No new data (holiday or unchanged) — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/stockconnect-latest.json
+          git commit -m "Refresh Stock Connect flow data"
+          git push
