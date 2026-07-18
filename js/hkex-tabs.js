@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var TABS = ["cbbc", "stock-connect", "short-selling"];
+  var TABS = ["cbbc", "stock-connect", "short-selling", "market-pulse"];
 
   function activate(name) {
     if (TABS.indexOf(name) === -1) name = TABS[0];

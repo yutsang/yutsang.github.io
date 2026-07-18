@@ -1,6 +1,6 @@
-name: Rebuild HKEX market data (CBBC, Stock Connect, short-selling)
+name: Rebuild HKEX market data (CBBC, Stock Connect, short-selling, market pulse)
 
-# One shared daily run for all three dashboards on /projects/hkex-data/,
+# One shared daily run for all four dashboards on /projects/hkex-data/,
 # so they always report the same "last updated" time (see hkex-tabs.js).
 # 12:00 UTC Mon-Fri = 20:00 HKT: after CBBC's O/S (~06:15 HKT, already
 # same-day by then), Stock Connect's daily file (~17:30 HKT), and the
@@ -29,6 +29,9 @@ jobs:
       - name: Build CBBC street data
         run: python3 scripts/build_cbbc_data.py
 
+      - name: Build Market Pulse data (breadth, gainers/losers, most active)
+        run: python3 scripts/build_market_pulse_data.py
+
       - name: Commit if changed
         run: |
           if git diff --quiet data/; then
@@ -38,5 +41,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
-          git commit -m "Refresh HKEX market data (CBBC, Stock Connect, short-selling)"
+          git commit -m "Refresh HKEX market data (CBBC, Stock Connect, short-selling, market pulse)"
           git push
