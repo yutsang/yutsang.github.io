@@ -59,8 +59,8 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="/contact/" class="btn btn-primary"><span data-lang="en">Get in touch</span><span data-lang="zh">聯絡我</span></a>
-                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">Read insights</span><span data-lang="zh">閱讀觀察</span></a>
                     <a href="#projects" class="btn btn-secondary"><span data-lang="en">View projects</span><span data-lang="zh">瀏覽專案</span></a>
+                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">Read insights</span><span data-lang="zh">閱讀觀察</span></a>
                 </div>
             </div>
             <div class="hero-image">
@@ -72,17 +72,93 @@
     </section>
 
     <!-- Latest Insights Section -->
+    <!--
+        ──────────────────────────────────────────────────────────────────────
+        PINNED PROJECTS — these 3 cards are what shows up on the homepage.
+        To swap which projects are pinned: copy the markup of one
+        <div class="project-card">…</div> block from /projects/index.html
+        and replace one of the three cards below. The home shows exactly
+        what's in this block — no data file, no Liquid loop, just HTML.
+        ──────────────────────────────────────────────────────────────────────
+    -->
+    <section id="projects" class="section">
+        <div class="container">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">Work</span><span data-lang="zh">作品</span></div>
+                    <h2 class="section-title"><span data-lang="en">Featured projects.</span><span data-lang="zh">精選專案。</span></h2>
+                </div>
+                <a href="/projects/" class="section-head__action"><span data-lang="en">All projects →</span><span data-lang="zh">所有專案 →</span></a>
+            </header>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3><span data-lang="en">HK Transport Explorer</span><span data-lang="zh">香港交通探索</span></h3>
+                        <p>
+                            <span data-lang="en">Live arrivals, route maps, and a trip planner across KMB, Citybus, GMB, and the MTR — a pure-static site calling HK open-data APIs directly from the browser.</span>
+                            <span data-lang="zh">即時到站時間、路線地圖與行程規劃，涵蓋九巴、城巴、專線小巴及港鐵——完全靜態網站，由瀏覽器直接呼叫政府開放數據 API。</span>
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Vanilla JS</span>
+                            <span class="tag">Leaflet</span>
+                            <span class="tag">Open Data</span>
+                        </div>
+                        <a href="/projects/traffic/" class="project-link"><span data-lang="en">Open app →</span><span data-lang="zh">開啟應用 →</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
+                        <p>
+                            <span data-lang="en">Interactive Tableau dashboard analyzing electric fence performance metrics — efficiency, maintenance schedules, and operational insight.</span>
+                            <span data-lang="zh">互動式 Tableau dashboard，分析電子圍欄績效指標——效率、維護排程與營運洞察。</span>
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Tableau</span>
+                            <span class="tag">Data Analytics</span>
+                        </div>
+                        <a href="/projects/#electric-fence" class="project-link"><span data-lang="en">Open dashboard →</span><span data-lang="zh">開啟 dashboard →</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
+                        <p>
+                            <span data-lang="en">An XGBoost model predicting delivery delay ratios for LF Logistics' fleet, trained on 65,330 real HK delivery segments — final-year project with a Streamlit dashboard.</span>
+                            <span data-lang="zh">以 XGBoost 預測 LF Logistics 車隊配送的 delay ratio，用 65,330 條真實香港配送紀錄訓練——畢業專題，附 Streamlit dashboard。</span>
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">Logistics</span>
+                        </div>
+                        <a href="https://github.com/yutsang/ETA-Prediction" class="project-link" rel="noopener noreferrer"><span data-lang="en">View on GitHub →</span><span data-lang="zh">GitHub 查看 →</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="insights" class="section">
         <div class="container">
             <header class="section-head">
                 <div class="section-head__lead">
-                    <div class="section-kicker">§ 01 / <span data-lang="en">Writing</span><span data-lang="zh">寫作</span></div>
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Writing</span><span data-lang="zh">寫作</span></div>
                     <h2 class="section-title"><span data-lang="en">Recent insights.</span><span data-lang="zh">近期觀察。</span></h2>
                 </div>
                 <a href="/insights/" class="section-head__action"><span data-lang="en">All insights →</span><span data-lang="zh">所有觀察 →</span></a>
             </header>
             <!--
-                PINNED INSIGHTS — like the projects below, these cards are manual.
+                PINNED INSIGHTS — like the projects above, these cards are manual.
                 When you publish a new post, copy a card, update the title/excerpt/
                 tags/link, and drop the oldest so the grid stays at 4.
             -->
@@ -155,82 +231,6 @@
                             <span class="tag">Tutorial</span>
                         </div>
                         <a href="/insights/prompt-engineering-guide/" class="project-link"><span data-lang="en">Read more →</span><span data-lang="zh">閱讀全文 →</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--
-        ──────────────────────────────────────────────────────────────────────
-        PINNED PROJECTS — these 3 cards are what shows up on the homepage.
-        To swap which projects are pinned: copy the markup of one
-        <div class="project-card">…</div> block from /projects/index.html
-        and replace one of the three cards below. The home shows exactly
-        what's in this block — no data file, no Liquid loop, just HTML.
-        ──────────────────────────────────────────────────────────────────────
-    -->
-    <section id="projects" class="section">
-        <div class="container">
-            <header class="section-head">
-                <div class="section-head__lead">
-                    <div class="section-kicker">§ 02 / <span data-lang="en">Work</span><span data-lang="zh">作品</span></div>
-                    <h2 class="section-title"><span data-lang="en">Featured projects.</span><span data-lang="zh">精選專案。</span></h2>
-                </div>
-                <a href="/projects/" class="section-head__action"><span data-lang="en">All projects →</span><span data-lang="zh">所有專案 →</span></a>
-            </header>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3><span data-lang="en">HK Transport Explorer</span><span data-lang="zh">香港交通探索</span></h3>
-                        <p>
-                            <span data-lang="en">Live arrivals, route maps, and a trip planner across KMB, Citybus, GMB, and the MTR — a pure-static site calling HK open-data APIs directly from the browser.</span>
-                            <span data-lang="zh">即時到站時間、路線地圖與行程規劃，涵蓋九巴、城巴、專線小巴及港鐵——完全靜態網站，由瀏覽器直接呼叫政府開放數據 API。</span>
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Vanilla JS</span>
-                            <span class="tag">Leaflet</span>
-                            <span class="tag">Open Data</span>
-                        </div>
-                        <a href="/projects/traffic/" class="project-link"><span data-lang="en">Open app →</span><span data-lang="zh">開啟應用 →</span></a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
-                        <p>
-                            <span data-lang="en">Interactive Tableau dashboard analyzing electric fence performance metrics — efficiency, maintenance schedules, and operational insight.</span>
-                            <span data-lang="zh">互動式 Tableau dashboard，分析電子圍欄績效指標——效率、維護排程與營運洞察。</span>
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Tableau</span>
-                            <span class="tag">Data Analytics</span>
-                        </div>
-                        <a href="/projects/#electric-fence" class="project-link"><span data-lang="en">Open dashboard →</span><span data-lang="zh">開啟 dashboard →</span></a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
-                        <p>
-                            <span data-lang="en">An XGBoost model predicting delivery delay ratios for LF Logistics' fleet, trained on 65,330 real HK delivery segments — final-year project with a Streamlit dashboard.</span>
-                            <span data-lang="zh">以 XGBoost 預測 LF Logistics 車隊配送的 delay ratio，用 65,330 條真實香港配送紀錄訓練——畢業專題，附 Streamlit dashboard。</span>
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">XGBoost</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Logistics</span>
-                        </div>
-                        <a href="https://github.com/yutsang/ETA-Prediction" class="project-link" rel="noopener noreferrer"><span data-lang="en">View on GitHub →</span><span data-lang="zh">GitHub 查看 →</span></a>
                     </div>
                 </div>
             </div>
