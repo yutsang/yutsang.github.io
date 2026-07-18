@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-title-en="HK CBBC Street Map - Yuu" data-title-zh="牛熊證街貨地圖 - Yuu">HK CBBC Street Map - Yuu</title>
-    <meta name="description" content="Daily CBBC (callable bull/bear contract) outstanding distribution for HSI and major HK stocks, computed from HKEX's public end-of-day files. Educational project.">
+    <title data-title-en="HK CBBC Street Dashboard - Yuu" data-title-zh="牛熊證街貨 Dashboard - Yuu">HK CBBC Street Dashboard - Yuu</title>
+    <meta name="description" content="Daily CBBC street dashboard for HSI and major HK stocks: outstanding distribution, day-over-day change, 30-day trend, issuer breakdown, new listings and MCE log — from HKEX public data.">
     <link rel="canonical" href="https://ytsang.com/projects/cbbc/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ytsang.com/projects/cbbc/">
     <meta property="og:site_name" content="Yuu">
-    <meta property="og:title" content="HK CBBC Street Map — daily bull/bear outstanding distribution">
-    <meta property="og:description" content="Street outstanding of HK callable bull/bear contracts, mapped by call level from HKEX public data. Refreshed every trading morning.">
+    <meta property="og:title" content="HK CBBC Street Dashboard — distribution, trend, issuers, MCE">
+    <meta property="og:description" content="Street outstanding of HK callable bull/bear contracts across five dimensions, rebuilt twice each trading day from HKEX public files.">
     <meta property="og:image" content="https://ytsang.com/images/avater.jpeg">
     <meta name="twitter:card" content="summary">
     <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
@@ -20,11 +20,7 @@
     <link rel="stylesheet" href="/css/site.css?v=11">
     <script src="/js/i18n.js?v=2"></script>
     <style>
-        .graph-wrap {
-            max-width: 64rem;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        .graph-wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
         .graph-panel {
             position: relative;
             background: var(--color-surface);
@@ -33,105 +29,140 @@
             box-shadow: var(--shadow-sm);
             overflow: hidden;
         }
-        .graph-panel canvas {
-            display: block;
-            width: 100%;
-        }
+        .graph-panel canvas { display: block; width: 100%; }
         .cbbc-toolbar {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
+            display: flex; flex-direction: column; gap: 0.6rem;
             padding: 0.9rem 1.25rem;
             border-bottom: 1px solid var(--color-border);
         }
-        .cbbc-filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.4rem;
-        }
+        .cbbc-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
         .cbbc-filter-label {
-            font-family: var(--font-mono);
-            font-size: 0.6875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-text-muted);
-            margin-right: 0.35rem;
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); margin-right: 0.35rem;
         }
         .cbbc-chip {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--color-text-muted);
-            background: none;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-pill);
-            padding: 0.28rem 0.75rem;
-            cursor: pointer;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--color-text-muted); background: none;
+            border: 1px solid var(--color-border); border-radius: var(--radius-pill);
+            padding: 0.28rem 0.75rem; cursor: pointer;
         }
         .cbbc-chip:hover { border-color: var(--color-accent); color: var(--color-text); }
-        .cbbc-chip.is-active {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-            color: var(--color-bg);
-        }
+        .cbbc-chip.is-active { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
         .cbbc-legend {
-            display: flex;
-            gap: 1.1rem;
-            margin-left: auto;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--color-text-muted);
+            display: flex; gap: 1.1rem; margin-left: auto;
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted);
         }
         .cbbc-legend span::before {
-            content: "";
-            display: inline-block;
-            width: 9px; height: 9px;
-            border-radius: 2px;
-            margin-right: 0.4rem;
-            background: var(--dot);
+            content: ""; display: inline-block; width: 9px; height: 9px;
+            border-radius: 2px; margin-right: 0.4rem; background: var(--dot);
         }
+        .cbbc-legend .is-ghost::before { background: none; border: 1px solid var(--color-text-muted); }
         .graph-tooltip {
-            position: absolute;
-            pointer-events: none;
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            padding: 0.5rem 0.75rem;
-            max-width: 18rem;
-            z-index: 2;
+            position: absolute; pointer-events: none;
+            background: var(--color-bg); border: 1px solid var(--color-border);
+            border-radius: var(--radius); box-shadow: var(--shadow-md);
+            padding: 0.5rem 0.75rem; max-width: 20rem; z-index: 2;
         }
         .graph-tooltip__title { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text); }
         .graph-tooltip__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); margin-top: 0.15rem; }
         .graph-hint {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--color-text-muted);
-            padding: 0.75rem 1.25rem;
-            border-top: 1px solid var(--color-border);
+            font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted);
+            padding: 0.75rem 1.25rem; border-top: 1px solid var(--color-border);
         }
         .graph-failed::after {
-            content: "Data unavailable right now — see the build pipeline on GitHub.";
-            display: block;
-            padding: 3rem 1.5rem;
-            text-align: center;
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
+            content: "Data unavailable — try Refresh, or view the pipeline on GitHub.";
+            display: block; padding: 2.5rem 1.5rem; text-align: center;
+            font-family: var(--font-mono); font-size: 0.875rem; color: var(--color-text-muted);
         }
         .graph-failed canvas, .graph-failed .graph-hint { display: none; }
+
+        /* freshness */
+        .cbbc-fresh {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 0.9rem 1.25rem; margin-bottom: 1.25rem;
+            font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text-muted);
+        }
+        .cbbc-state {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            font-weight: 500; color: var(--color-text);
+        }
+        .cbbc-state::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+        .cbbc-refresh-btn {
+            margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--color-accent-bright); background: none;
+            border: 1px solid var(--color-border); border-radius: var(--radius);
+            padding: 0.32rem 0.8rem; cursor: pointer;
+        }
+        .cbbc-refresh-btn:hover { border-color: var(--color-accent); }
+        .cbbc-refresh-btn:disabled { opacity: 0.5; cursor: wait; }
+        .cbbc-schedule { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .cbbc-schedule th, .cbbc-schedule td {
+            text-align: left; padding: 0.55rem 0.9rem;
+            border-bottom: 1px solid var(--color-border); vertical-align: top;
+        }
+        .cbbc-schedule th {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); font-weight: 500;
+        }
+        .cbbc-schedule td:first-child { white-space: nowrap; font-family: var(--font-mono); font-size: 0.8125rem; }
+
+        /* tiles */
+        .cbbc-tiles {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 1rem; margin: 1.25rem 0;
+        }
+        .cbbc-tile {
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 0.9rem 1.1rem;
+        }
+        .cbbc-tile b {
+            display: block; font-family: var(--font-serif);
+            font-size: 1.5rem; font-weight: 600; color: var(--color-text);
+        }
+        .cbbc-tile span { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+        .cbbc-tile .gauge {
+            height: 5px; border-radius: 3px; margin-top: 0.5rem;
+            background: linear-gradient(90deg, #2e7d51 var(--pct, 50%), #c14a2b var(--pct, 50%));
+        }
+
+        .cbbc-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; }
+        .cbbc-panel-title {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--color-border);
+        }
+
+        /* MCE table */
+        .cbbc-mce-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8125rem; }
+        .cbbc-mce-table th, .cbbc-mce-table td {
+            text-align: left; padding: 0.5rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .cbbc-mce-table th {
+            font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--color-text-muted); font-weight: 500;
+        }
+        .mce-side {
+            display: inline-block; min-width: 2.2em; text-align: center;
+            border-radius: 3px; padding: 0 0.3em;
+            color: var(--color-bg); background: var(--c);
+        }
         .cbbc-disclaimer {
             margin-top: 1.5rem;
             background: var(--color-accent-soft);
-            border: 1px solid var(--color-border);
-            border-left: 3px solid var(--color-accent);
-            border-radius: var(--radius);
-            padding: 1.1rem 1.4rem;
-            font-size: 0.875rem;
-            line-height: 1.7;
-            color: var(--color-text-muted);
+            border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent);
+            border-radius: var(--radius); padding: 1.1rem 1.4rem;
+            font-size: 0.875rem; line-height: 1.7; color: var(--color-text-muted);
         }
         .cbbc-disclaimer strong { color: var(--color-text); }
+        @media (max-width: 860px) {
+            .cbbc-tiles { grid-template-columns: repeat(2, 1fr); }
+            .cbbc-grid2 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -153,44 +184,47 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-title"><span data-lang="en">CBBC Street Map</span><span data-lang="zh">牛熊證街貨地圖</span></div>
+        <div class="hero-title"><span data-lang="en">CBBC Street Dashboard</span><span data-lang="zh">牛熊證街貨 Dashboard</span></div>
         <p class="hero-subtitle">
-            <span data-lang="en">Where the bulls and bears are parked — rebuilt every trading morning from HKEX public data</span>
-            <span data-lang="zh">牛熊街貨聚集何處——每個交易日早上由 HKEX 公開數據自動重建</span>
+            <span data-lang="en">Distribution, change, trend, issuers and call events — rebuilt twice each trading day from HKEX public files</span>
+            <span data-lang="zh">街貨分佈、日變動、趨勢、發行商與收回事件——每個交易日兩次由 HKEX 公開檔案自動重建</span>
         </p>
     </section>
 
     <section class="section about-section">
         <div class="graph-wrap">
-            <header class="section-head">
-                <div class="section-head__lead">
-                    <div class="section-kicker">§ 01 / <span data-lang="en">The idea</span><span data-lang="zh">概念</span></div>
-                    <h2 class="section-title"><span data-lang="en">Reading the street.</span><span data-lang="zh">解讀街貨。</span></h2>
-                </div>
-            </header>
-            <div class="about-prose">
-                <p>
-                    <span data-lang="en">Every callable bull/bear contract (CBBC) has a call level: touch it and the product is called mandatorily. Where outstanding positions cluster — the <em>street</em> — therefore maps where leveraged money is betting, and where a move would trigger cascades of forced calls. Issuer sites show this chart but keep the data; here it's computed independently from <a href="https://www.hkex.com.hk/eng/cbbc/search/listsearch.asp" rel="noopener noreferrer">HKEX's public end-of-day files</a> — call levels, entitlement ratios, and outstanding quantities for every listed CBBC.</span>
-                    <span data-lang="zh">每隻牛熊證都有收回價：一觸及即被強制收回。所以街貨（未平倉街外持貨）喺邊個價位聚集，就標示咗槓桿資金賭緊邊度——亦標示咗指數行到邊度會觸發連環強制收回。發行商網站有呢幅圖但唔開放數據；呢度由 <a href="https://www.hkex.com.hk/eng/cbbc/search/listsearch.asp" rel="noopener noreferrer">HKEX 公開嘅收市後檔案</a>獨立計算——全市場每隻牛熊證嘅收回價、換股比率同街貨量。</span>
-                </p>
-                <p>
-                    <span data-lang="en">A GitHub Action fetches the file each trading morning (outstanding quantities refresh ~06:15 HKT), aggregates street size by call-level zone in index/share-equivalent units, and commits a compact JSON that this page renders. No backend, no API keys — the same self-updating pattern as the <a href="/projects/rrag/">rrag wiki graph</a>.</span>
-                    <span data-lang="zh">GitHub Action 每個交易日早上（街貨數據約 06:15 HKT 更新後）自動抓取檔案，按收回價區間聚合成等價指數／股份單位嘅街貨量，commit 一個精簡 JSON 由本頁渲染。無後端、無 API key——同 <a href="/projects/rrag/">rrag 知識網絡圖</a>一樣嘅自我更新模式。</span>
-                </p>
+
+            <!-- Freshness / trust panel -->
+            <div class="cbbc-fresh">
+                <span class="cbbc-state" id="cbbc-state-live" style="--c:#b8881f" hidden>
+                    <span data-lang="en">Market open — live positions have moved since the data time</span>
+                    <span data-lang="zh">交易進行中——實際街貨已偏離數據時點</span>
+                </span>
+                <span class="cbbc-state" id="cbbc-state-fresh" style="--c:#2e7d51" hidden>
+                    <span data-lang="en">Latest end-of-day data</span>
+                    <span data-lang="zh">最新收市數據</span>
+                </span>
+                <span class="cbbc-state" id="cbbc-state-stale" style="--c:#c14a2b" hidden>
+                    <span data-lang="en">Data may be stale (holiday or fetch failure)</span>
+                    <span data-lang="zh">數據可能滯後（假期或抓取失敗）</span>
+                </span>
+                <span>
+                    <span data-lang="en">O/S as of <span class="cbbc-asof">—</span> · <span id="cbbc-age">—</span>h ago</span>
+                    <span data-lang="zh">街貨截至 <span class="cbbc-asof">—</span> · <span>已過</span> <span id="cbbc-age2">—</span> 小時</span>
+                </span>
+                <button type="button" class="cbbc-refresh-btn" id="cbbc-refresh"><span data-lang="en">↻ Refresh</span><span data-lang="zh">↻ 重新載入</span></button>
             </div>
-        </div>
-    </section>
 
-    <section class="section about-section">
-        <div class="graph-wrap">
-            <header class="section-head">
-                <div class="section-head__lead">
-                    <div class="section-kicker">§ 02 / <span data-lang="en">Live map</span><span data-lang="zh">每日地圖</span></div>
-                    <h2 class="section-title"><span data-lang="en">The distribution.</span><span data-lang="zh">街貨分佈。</span></h2>
-                </div>
-                <a href="https://github.com/yutsang/yutsang.github.io/blob/main/scripts/build_cbbc_data.py" class="section-head__action" rel="noopener noreferrer"><span data-lang="en">Pipeline source →</span><span data-lang="zh">Pipeline 源碼 →</span></a>
-            </header>
+            <!-- Stat tiles -->
+            <div class="cbbc-tiles">
+                <div class="cbbc-tile"><b id="tile-bullpct">—</b><span data-lang="en">bull share of street</span><span data-lang="zh">牛證街貨佔比</span><div class="gauge" id="tile-gauge"></div></div>
+                <div class="cbbc-tile"><b id="tile-total">—</b><span data-lang="en">total street (units)</span><span data-lang="zh">總街貨（單位）</span></div>
+                <div class="cbbc-tile"><b id="tile-bullzone">—</b><span data-lang="en">heaviest bull zone</span><span data-lang="zh">牛證最重貨區</span></div>
+                <div class="cbbc-tile"><b id="tile-bearzone">—</b><span data-lang="en">heaviest bear zone</span><span data-lang="zh">熊證最重貨區</span></div>
+                <div class="cbbc-tile"><b id="tile-mce">—</b><span data-lang="en">MCEs today (all ULs)</span><span data-lang="zh">今日收回事件（全市場）</span></div>
+            </div>
 
+            <!-- Distribution ladder -->
             <div class="graph-panel" id="cbbc-chart">
                 <div class="cbbc-toolbar">
                     <div class="cbbc-filter-row" id="cbbc-ul-filters">
@@ -204,18 +238,92 @@
                         <div class="cbbc-legend">
                             <span style="--dot:#2e7d51"><span data-lang="en">Bull</span><span data-lang="zh">牛證</span></span>
                             <span style="--dot:#c14a2b"><span data-lang="en">Bear</span><span data-lang="zh">熊證</span></span>
+                            <span class="is-ghost"><span data-lang="en">Prev day</span><span data-lang="zh">上日</span></span>
                         </div>
                     </div>
                 </div>
-                <canvas aria-label="CBBC outstanding distribution by call level"></canvas>
-                <div class="graph-tooltip" hidden>
-                    <div class="graph-tooltip__title"></div>
-                    <div class="graph-tooltip__meta"></div>
-                </div>
+                <canvas aria-label="CBBC outstanding distribution by call level, with prior-day outline"></canvas>
+                <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
                 <div class="graph-hint">
-                    <span data-lang="en">Outstanding as of <span class="cbbc-asof">—</span> · hover a zone for exact street size · spot is estimated from the bull/bear call-level boundary</span>
-                    <span data-lang="zh">街貨數據截至 <span class="cbbc-asof">—</span> · 移到區間上可見準確街貨量 · 現價由牛熊收回價邊界估算</span>
+                    <span data-lang="en">Hover a zone for street size and day change · hollow outline = previous trading day · spot estimated from the bull/bear call boundary</span>
+                    <span data-lang="zh">移到區間見街貨量與日變動 · 空心框＝上一交易日 · 現價由牛熊收回價邊界估算</span>
                 </div>
+            </div>
+
+            <!-- Trend + New listings -->
+            <div class="cbbc-grid2" style="margin-top:1.25rem">
+                <div class="graph-panel" id="cbbc-trend">
+                    <div class="cbbc-panel-title"><span data-lang="en">30-day street trend</span><span data-lang="zh">30 日街貨趨勢</span></div>
+                    <canvas aria-label="30-day bull and bear street trend"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                </div>
+                <div class="graph-panel" id="cbbc-newlist">
+                    <div class="cbbc-panel-title"><span data-lang="en">New listings by day (count)</span><span data-lang="zh">每日新上市（隻數）</span></div>
+                    <canvas aria-label="New CBBC listings per day, bull vs bear"></canvas>
+                    <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+                </div>
+            </div>
+
+            <!-- Issuers -->
+            <div class="graph-panel" id="cbbc-issuers" style="margin-top:1.25rem">
+                <div class="cbbc-panel-title"><span data-lang="en">Street by issuer (top 10)</span><span data-lang="zh">發行商街貨分佈（前十）</span></div>
+                <canvas aria-label="Street outstanding by issuer"></canvas>
+                <div class="graph-tooltip" hidden><div class="graph-tooltip__title"></div><div class="graph-tooltip__meta"></div></div>
+            </div>
+
+            <!-- MCE log -->
+            <div class="graph-panel" style="margin-top:1.25rem">
+                <div class="cbbc-panel-title">
+                    <span data-lang="en">Mandatory call events today · list updated <span id="cbbc-mce-asof">—</span></span>
+                    <span data-lang="zh">今日強制收回事件 · 名單更新至 <span id="cbbc-mce-asof2">—</span></span>
+                </div>
+                <table class="cbbc-mce-table">
+                    <thead><tr>
+                        <th><span data-lang="en">MCE time</span><span data-lang="zh">收回時間</span></th>
+                        <th><span data-lang="en">Code</span><span data-lang="zh">代號</span></th>
+                        <th><span data-lang="en">Side · underlying</span><span data-lang="zh">方向 · 相關資產</span></th>
+                        <th><span data-lang="en">Issuer</span><span data-lang="zh">發行商</span></th>
+                    </tr></thead>
+                    <tbody id="cbbc-mce-body"></tbody>
+                </table>
+                <div class="graph-hint" id="cbbc-mce-more" hidden>
+                    <span data-lang="en">Showing the latest 14 of <b>—</b> events · full list on HKEX</span>
+                    <span data-lang="zh">顯示最新 14 宗，全日共 <b>—</b> 宗 · 完整名單見 HKEX</span>
+                </div>
+            </div>
+
+            <!-- Update schedule reference -->
+            <div class="graph-panel" style="margin-top:1.25rem">
+                <div class="cbbc-panel-title"><span data-lang="en">When HKEX updates — how much to trust these numbers right now</span><span data-lang="zh">HKEX 更新時間表——此刻這批數字有多可信</span></div>
+                <table class="cbbc-schedule">
+                    <thead><tr>
+                        <th><span data-lang="en">Dataset</span><span data-lang="zh">數據</span></th>
+                        <th><span data-lang="en">HKEX publishes</span><span data-lang="zh">HKEX 更新</span></th>
+                        <th><span data-lang="en">What that means</span><span data-lang="zh">代表甚麼</span></th>
+                    </tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><span data-lang="en">Outstanding (street)</span><span data-lang="zh">街貨量 O/S</span></td>
+                            <td><span data-lang="en">Once daily, ~06:15 HKT</span><span data-lang="zh">每日一次，約 06:15 HKT</span></td>
+                            <td><span data-lang="en">Always shows the previous close. During trading hours real positions drift away from it — biggest gap near market close.</span><span data-lang="zh">永遠反映上一個收市。交易時段內實際街貨持續偏離——臨近收市偏差最大。</span></td>
+                        </tr>
+                        <tr>
+                            <td><span data-lang="en">MCE (call) list</span><span data-lang="zh">收回（MCE）名單</span></td>
+                            <td><span data-lang="en">Intraday; entries appear 30–60 min after each event</span><span data-lang="zh">盤中持續；事件後 30–60 分鐘上榜</span></td>
+                            <td><span data-lang="en">Near-real-time but delayed by up to an hour; official times are the issuer announcements on HKEXnews.</span><span data-lang="zh">接近實時但最多延遲一小時；官方時間以發行商於 HKEXnews 的公告為準。</span></td>
+                        </tr>
+                        <tr>
+                            <td><span data-lang="en">Daily trade file</span><span data-lang="zh">每日成交檔</span></td>
+                            <td><span data-lang="en">Nightly, after close</span><span data-lang="zh">每晚收市後</span></td>
+                            <td><span data-lang="en">Drives the trend and new-listing charts; complete only for finished trading days.</span><span data-lang="zh">供趨勢與新上市圖使用；只覆蓋已完結的交易日。</span></td>
+                        </tr>
+                        <tr>
+                            <td><span data-lang="en">This dashboard</span><span data-lang="zh">本 dashboard</span></td>
+                            <td><span data-lang="en">07:45 &amp; 18:40 HKT, trading days</span><span data-lang="zh">交易日 07:45 及 18:40 HKT</span></td>
+                            <td><span data-lang="en">Morning run picks up fresh O/S; evening run captures the day's full MCE log. The status chip above tells you which regime you're looking at.</span><span data-lang="zh">早上一轉獲取最新街貨；黃昏一轉補齊全日 MCE 紀錄。頂部狀態燈顯示目前所處的狀態。</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="cbbc-disclaimer">
@@ -267,6 +375,6 @@
 
     <script src="/js/site-config.js"></script>
     <script src="/js/site-ui.js?v=2"></script>
-    <script src="/js/cbbc-chart.js?v=1"></script>
+    <script src="/js/cbbc-chart.js?v=2"></script>
 </body>
 </html>

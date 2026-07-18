@@ -1,7 +1,9 @@
 /**
- * CBBC street-outstanding distribution ladder.
- * Data: /data/cbbc-latest.json, rebuilt each trading morning by
- * .github/workflows/cbbc-data.yml from HKEX's public CBBC full list.
+ * CBBC street dashboard: distribution ladder (with prior-day ghosts),
+ * 30-day bull/bear trend, issuer breakdown, new listings, MCE log,
+ * and a data-freshness panel.
+ * Data: /data/cbbc-latest.json, rebuilt twice each trading day by
+ * .github/workflows/cbbc-data.yml from HKEX public files.
  */
 (function () {
   "use strict";
@@ -11,35 +13,94 @@
   var INK = "#1a1815";
   var MUTED = "#706a5e";
   var GRID = "rgba(26, 24, 21, 0.07)";
+  var GHOST = "rgba(26, 24, 21, 0.35)";
   var SURFACE = "#f5f1e8";
-
-  var container = document.getElementById("cbbc-chart");
-  if (!container) return;
-  var canvas = container.querySelector("canvas");
-  var tooltip = container.querySelector(".graph-tooltip");
-  var ctx = canvas.getContext("2d");
-  var lang = function () { return document.documentElement.lang || "en"; };
+  var MONO = "11px 'IBM Plex Mono', monospace";
 
   var DATA = null;
-  var state = { ul: "HSI", mult: 2 };   // mult × base step
-  var view = [];                         // rendered rows for hit-testing
+  var state = { ul: "HSI", mult: 2 };
+  var panels = {};   // name -> {el, canvas, ctx, tip, view}
 
-  fetch("/data/cbbc-latest.json")
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (d) {
-      DATA = d;
-      buildFilters();
-      document.querySelectorAll(".cbbc-asof").forEach(function (el) {
-        el.textContent = d.os_asof + " HKT";
-      });
-      resize();
-      window.addEventListener("resize", resize);
-      bindHover();
-    })
-    .catch(function () { container.classList.add("graph-failed"); });
+  var zh = function () { return (document.documentElement.lang || "en") === "zh"; };
+  var $ = function (id) { return document.getElementById(id); };
+
+  function fmt(x) {
+    if (x >= 1e6) return (x / 1e6).toFixed(1) + "M";
+    if (x >= 1e3) return (x / 1e3).toFixed(0) + "K";
+    return String(Math.round(x));
+  }
+  function fmtLevel(lv, step) {
+    return step >= 1 ? lv.toLocaleString("en-US") : lv.toFixed(2);
+  }
+
+  /* ---------- boot ---------- */
+
+  function load(bust) {
+    return fetch("/data/cbbc-latest.json" + (bust ? "?t=" + Date.now() : ""))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+
+  load(false).then(function (d) {
+    DATA = d;
+    ["chart", "trend", "issuers", "newlist"].forEach(initPanel);
+    buildFilters();
+    freshness();
+    renderAll();
+    window.addEventListener("resize", renderAll);
+    // canvas text follows the language toggle
+    new MutationObserver(renderAll).observe(document.documentElement,
+      { attributes: true, attributeFilter: ["lang"] });
+    var rb = $("cbbc-refresh");
+    if (rb) rb.addEventListener("click", function () {
+      rb.disabled = true;
+      load(true).then(function (d2) {
+        DATA = d2;
+        freshness();
+        renderAll();
+        rb.disabled = false;
+      }).catch(function () { rb.disabled = false; });
+    });
+  }).catch(function () {
+    document.querySelectorAll(".graph-panel").forEach(function (p) {
+      p.classList.add("graph-failed");
+    });
+  });
+
+  function initPanel(name) {
+    var el = $("cbbc-" + name);
+    if (!el) return;
+    var canvas = el.querySelector("canvas");
+    panels[name] = {
+      el: el, canvas: canvas, ctx: canvas.getContext("2d"),
+      tip: el.querySelector(".graph-tooltip"), view: []
+    };
+    canvas.addEventListener("pointerleave", function () { panels[name].tip.hidden = true; });
+  }
+
+  function sizeCanvas(p, h) {
+    var dpr = window.devicePixelRatio || 1;
+    var w = p.el.clientWidth;
+    p.canvas.style.height = h + "px";
+    p.canvas.width = w * dpr;
+    p.canvas.height = h * dpr;
+    p.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { w: w, h: h };
+  }
+
+  function tipAt(p, ev, title, meta) {
+    var rect = p.canvas.getBoundingClientRect();
+    p.tip.querySelector(".graph-tooltip__title").textContent = title;
+    p.tip.querySelector(".graph-tooltip__meta").textContent = meta;
+    p.tip.hidden = false;
+    var x = ev.clientX - rect.left, y = ev.clientY - rect.top;
+    p.tip.style.left = Math.min(x + 14, p.el.clientWidth - p.tip.offsetWidth - 8) + "px";
+    p.tip.style.top = (y + 14) + "px";
+  }
+
+  /* ---------- filters ---------- */
 
   function buildFilters() {
-    var ulRow = document.getElementById("cbbc-ul-filters");
+    var row = $("cbbc-ul-filters");
     Object.keys(DATA.underlyings).forEach(function (ul) {
       var d = DATA.underlyings[ul];
       var b = document.createElement("button");
@@ -48,189 +109,381 @@
       b.innerHTML = '<span data-lang="en">' + d.en + '</span><span data-lang="zh">' + d.zh + "</span>";
       b.addEventListener("click", function () {
         state.ul = ul;
-        ulRow.querySelectorAll(".cbbc-chip").forEach(function (x) { x.classList.remove("is-active"); });
+        row.querySelectorAll(".cbbc-chip").forEach(function (x) { x.classList.remove("is-active"); });
         b.classList.add("is-active");
-        updateBucketLabels();
-        draw();
+        bucketLabels();
+        renderAll();
       });
-      ulRow.appendChild(b);
+      row.appendChild(b);
     });
-
     document.querySelectorAll("[data-mult]").forEach(function (b) {
       b.addEventListener("click", function () {
         state.mult = parseInt(b.getAttribute("data-mult"), 10);
         document.querySelectorAll("[data-mult]").forEach(function (x) { x.classList.remove("is-active"); });
         b.classList.add("is-active");
-        draw();
+        drawLadder();
       });
     });
-    updateBucketLabels();
+    bucketLabels();
   }
 
-  function updateBucketLabels() {
+  function bucketLabels() {
     var step = DATA.underlyings[state.ul].step;
     document.querySelectorAll("[data-mult]").forEach(function (b) {
-      var m = parseInt(b.getAttribute("data-mult"), 10);
-      var v = step * m;
-      b.textContent = (v >= 1 ? v.toFixed(0) : v.toFixed(2).replace(/0+$/, "").replace(/\.$/, ""));
+      var v = step * parseInt(b.getAttribute("data-mult"), 10);
+      b.textContent = v >= 1 ? String(Math.round(v)) : String(v);
     });
   }
 
-  function merged() {
+  /* ---------- freshness ---------- */
+
+  function hktNow() {
+    var n = new Date();
+    return new Date(n.getTime() + (480 + n.getTimezoneOffset()) * 60000);
+  }
+
+  function freshness() {
+    document.querySelectorAll(".cbbc-asof").forEach(function (el) {
+      el.textContent = DATA.os_asof + " HKT";
+    });
+    ["cbbc-mce-asof", "cbbc-mce-asof2"].forEach(function (id) {
+      var el = $(id);
+      if (el) el.textContent = DATA.mce_asof || "—";
+    });
+
+    var m = /(\d{2})\/(\d{2})\/(\d{4})(?: (\d{2}):(\d{2}))?/.exec(DATA.os_asof || "");
+    var now = hktNow();
+    var ageH = null;
+    if (m) {
+      var asof = new Date(+m[3], +m[2] - 1, +m[1], +(m[4] || 0), +(m[5] || 0));
+      ageH = Math.round((now - asof) / 36e5);
+    }
+    var day = now.getDay(), hm = now.getHours() * 100 + now.getMinutes();
+    var trading = day >= 1 && day <= 5 && hm >= 915 && hm <= 1615;
+    var stateName = trading ? "live" : (ageH !== null && ageH <= 80 ? "fresh" : "stale");
+    ["live", "fresh", "stale"].forEach(function (s) {
+      var el = $("cbbc-state-" + s);
+      if (el) el.hidden = s !== stateName;
+    });
+    ["cbbc-age", "cbbc-age2"].forEach(function (id) {
+      var el = $(id);
+      if (el) el.textContent = ageH === null ? "—" : String(ageH);
+    });
+  }
+
+  /* ---------- render all ---------- */
+
+  function renderAll() {
+    tiles();
+    drawLadder();
+    drawTrend();
+    drawIssuers();
+    drawNewlist();
+    mceTable();
+  }
+
+  function tiles() {
+    var d = DATA.underlyings[state.ul];
+    var total = d.bull + d.bear;
+    var set = function (id, v) { var el = $(id); if (el) el.textContent = v; };
+    set("tile-bullpct", total ? (d.bull / total * 100).toFixed(1) + "%" : "—");
+    set("tile-total", fmt(total));
+    var hb = null, he = null;
+    d.buckets.forEach(function (b) {
+      if (b[0] < d.spot && (!hb || b[1] > hb[1])) hb = [b[0], b[1]];
+      if (b[0] > d.spot && (!he || b[2] > he[1])) he = [b[0], b[2]];
+    });
+    set("tile-bullzone", hb ? fmtLevel(hb[0], d.step) : "—");
+    set("tile-bearzone", he ? fmtLevel(he[0], d.step) : "—");
+    set("tile-mce", String(DATA.mce.count));
+    var g = $("tile-gauge");
+    if (g && total) g.style.setProperty("--pct", (d.bull / total * 100).toFixed(1) + "%");
+  }
+
+  /* ---------- ladder ---------- */
+
+  function mergedBuckets() {
     var d = DATA.underlyings[state.ul];
     var step = d.step * state.mult;
     var map = {};
     d.buckets.forEach(function (b) {
       var lv = Math.floor(b[0] / step + 1e-9) * step;
-      var key = lv.toFixed(4);
-      if (!map[key]) map[key] = { level: lv, bull: 0, bear: 0 };
-      map[key].bull += b[1];
-      map[key].bear += b[2];
+      var k = lv.toFixed(4);
+      if (!map[k]) map[k] = { level: lv, bull: 0, bear: 0, pbull: 0, pbear: 0 };
+      map[k].bull += b[1]; map[k].bear += b[2];
+      map[k].pbull += b[3] || 0; map[k].pbear += b[4] || 0;
     });
     var rows = Object.keys(map).map(function (k) { return map[k]; });
-    rows.sort(function (a, b) { return b.level - a.level; });   // high levels on top
-    // Focus the ladder: keep rows within a window around spot that covers
-    // the bulk of outstanding, but always at least 12 rows each side.
-    var spotIdx = rows.findIndex(function (r) { return r.level <= d.spot; });
-    if (spotIdx < 0) spotIdx = Math.floor(rows.length / 2);
-    var lo = Math.max(0, spotIdx - 16), hi = Math.min(rows.length, spotIdx + 16);
-    return { d: d, step: step, rows: rows.slice(lo, hi) };
+    rows.sort(function (a, b) { return b.level - a.level; });
+    var si = rows.findIndex(function (r) { return r.level <= d.spot; });
+    if (si < 0) si = Math.floor(rows.length / 2);
+    return { d: d, step: step, rows: rows.slice(Math.max(0, si - 16), si + 16) };
   }
 
-  function fmt(x) {
-    if (x >= 1e6) return (x / 1e6).toFixed(1) + "M";
-    if (x >= 1e3) return (x / 1e3).toFixed(0) + "K";
-    return String(Math.round(x));
-  }
-
-  function fmtLevel(lv, step) {
-    return step >= 1 ? lv.toLocaleString("en-US") : lv.toFixed(2);
-  }
-
-  function resize() {
-    if (!DATA) return;
-    var dpr = window.devicePixelRatio || 1;
-    var w = container.clientWidth;
-    var h = 560;
-    canvas.style.height = h + "px";
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    draw();
-  }
-
-  function draw() {
-    var m = merged();
-    var w = container.clientWidth, h = parseFloat(canvas.style.height) || 560;
-    ctx.clearRect(0, 0, w, h);
-
-    var padL = 74, padR = 60, padT = 18, padB = 10;
-    var plotW = w - padL - padR;
-    var rows = m.rows;
-    var rowH = Math.min(24, (h - padT - padB) / Math.max(rows.length, 1));
+  function drawLadder() {
+    var p = panels.chart;
+    if (!p) return;
+    var m = mergedBuckets();
+    var dim = sizeCanvas(p, 560);
+    var ctx = p.ctx;
+    var padL = 76, padR = 64, padT = 18;
+    var plotW = dim.w - padL - padR;
+    var rowH = Math.min(24, (dim.h - padT - 10) / Math.max(m.rows.length, 1));
     var barH = Math.max(6, rowH - 4);
     var maxV = 1;
-    rows.forEach(function (r) { maxV = Math.max(maxV, r.bull, r.bear); });
+    m.rows.forEach(function (r) {
+      maxV = Math.max(maxV, r.bull, r.bear, r.pbull, r.pbear);
+    });
 
-    view = [];
-    ctx.font = "11px 'IBM Plex Mono', monospace";
+    ctx.font = MONO;
     ctx.textBaseline = "middle";
+    p.view = [];
 
-    // spot divider
     var spotY = null;
-    for (var k = 0; k < rows.length; k++) {
-      if (rows[k].level <= m.d.spot) { spotY = padT + k * rowH; break; }
+    for (var k = 0; k < m.rows.length; k++) {
+      if (m.rows[k].level <= m.d.spot) { spotY = padT + k * rowH; break; }
     }
     if (spotY !== null) {
       ctx.strokeStyle = INK;
       ctx.setLineDash([5, 4]);
-      ctx.beginPath();
-      ctx.moveTo(padL - 60, spotY);
-      ctx.lineTo(w - 6, spotY);
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(padL - 62, spotY); ctx.lineTo(dim.w - 6, spotY); ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = INK;
       ctx.textAlign = "right";
-      ctx.fillText((lang() === "zh" ? "現價估算 " : "est. spot ") + fmtLevel(m.d.spot, m.step), w - 8, spotY - 9);
+      ctx.fillText((zh() ? "現價估算 " : "est. spot ") + fmtLevel(m.d.spot, m.step),
+        dim.w - 8, spotY - 9);
     }
 
-    rows.forEach(function (r, idx) {
+    m.rows.forEach(function (r, idx) {
       var y = padT + idx * rowH + (rowH - barH) / 2;
       var isBear = r.level > m.d.spot;
       var v = isBear ? r.bear : r.bull;
-      var len = v / maxV * plotW;
+      var pv = isBear ? r.pbear : r.pbull;
 
       ctx.textAlign = "right";
       ctx.fillStyle = MUTED;
       ctx.fillText(fmtLevel(r.level, m.step), padL - 8, y + barH / 2);
-
       ctx.strokeStyle = GRID;
-      ctx.beginPath();
-      ctx.moveTo(padL, y + barH / 2);
-      ctx.lineTo(padL + plotW, y + barH / 2);
-      ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(padL, y + barH / 2); ctx.lineTo(padL + plotW, y + barH / 2); ctx.stroke();
 
+      if (pv > 0) {                       // prior-day ghost outline
+        ctx.strokeStyle = GHOST;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(padL + 0.5, y + 0.5, Math.max(pv / maxV * plotW, 2), barH - 1);
+      }
       if (v > 0) {
         ctx.fillStyle = isBear ? BEAR : BULL;
-        rounded(padL, y, Math.max(len, 2), barH, 3);
-        ctx.fill();
+        ctx.fillRect(padL, y, Math.max(v / maxV * plotW, 2), barH);
         ctx.lineWidth = 2;
-        ctx.strokeStyle = SURFACE;   // surface gap between adjacent bars
-        rounded(padL, y, Math.max(len, 2), barH, 3);
-        ctx.stroke();
+        ctx.strokeStyle = SURFACE;
+        ctx.strokeRect(padL, y, Math.max(v / maxV * plotW, 2), barH);
       }
-      view.push({ y0: padT + idx * rowH, y1: padT + (idx + 1) * rowH, row: r, isBear: isBear, v: v });
+      p.view.push({ y0: padT + idx * rowH, y1: padT + (idx + 1) * rowH, r: r, isBear: isBear, v: v, pv: pv });
     });
 
-    // direct labels on the heaviest zone of each side only
     ["bull", "bear"].forEach(function (side) {
       var best = null;
-      view.forEach(function (it) {
-        var val = side === "bear" ? (it.isBear ? it.v : 0) : (!it.isBear ? it.v : 0);
+      p.view.forEach(function (it) {
+        var val = (side === "bear") === it.isBear ? it.v : 0;
         if (val > 0 && (!best || val > best.v)) best = { it: it, v: val };
       });
       if (best) {
         ctx.textAlign = "left";
         ctx.fillStyle = INK;
-        ctx.fillText(fmt(best.v), padL + best.v / maxV * plotW + 6,
-          (best.it.y0 + best.it.y1) / 2);
+        ctx.fillText(fmt(best.v), padL + best.v / maxV * plotW + 6, (best.it.y0 + best.it.y1) / 2);
       }
     });
-  }
 
-  function rounded(x, y, w2, h2, r) {
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + w2 - r, y);
-    ctx.arcTo(x + w2, y, x + w2, y + r, r);
-    ctx.lineTo(x + w2, y + h2 - r);
-    ctx.arcTo(x + w2, y + h2, x + w2 - r, y + h2, r);
-    ctx.lineTo(x, y + h2);
-    ctx.closePath();
-  }
-
-  function bindHover() {
-    canvas.addEventListener("pointermove", function (ev) {
-      var rect = canvas.getBoundingClientRect();
+    p.canvas.onpointermove = function (ev) {
+      var rect = p.canvas.getBoundingClientRect();
       var y = ev.clientY - rect.top;
       var hit = null;
-      for (var k = 0; k < view.length; k++) {
-        if (y >= view[k].y0 && y < view[k].y1) { hit = view[k]; break; }
-      }
-      if (!hit || hit.v <= 0) { tooltip.hidden = true; return; }
-      var m = merged();
-      var zh = lang() === "zh";
-      tooltip.querySelector(".graph-tooltip__title").textContent =
-        fmtLevel(hit.row.level, m.step) + " – " + fmtLevel(hit.row.level + m.step, m.step);
-      tooltip.querySelector(".graph-tooltip__meta").textContent =
-        (hit.isBear ? (zh ? "熊證 " : "Bear ") : (zh ? "牛證 " : "Bull ")) +
-        Math.round(hit.v).toLocaleString("en-US") +
-        (zh ? " 單位（等價指數/股份）" : " units (index/share equivalent)");
-      tooltip.hidden = false;
-      var px = ev.clientX - rect.left;
-      tooltip.style.left = Math.min(px + 14, container.clientWidth - tooltip.offsetWidth - 8) + "px";
-      tooltip.style.top = (y + 14) + "px";
+      p.view.forEach(function (it) { if (y >= it.y0 && y < it.y1) hit = it; });
+      if (!hit || hit.v <= 0) { p.tip.hidden = true; return; }
+      var delta = hit.v - hit.pv;
+      var sign = delta >= 0 ? "+" : "−";
+      tipAt(p, ev,
+        fmtLevel(hit.r.level, m.step) + " – " + fmtLevel(hit.r.level + m.step, m.step),
+        (hit.isBear ? (zh() ? "熊證 " : "Bear ") : (zh() ? "牛證 " : "Bull ")) +
+        Math.round(hit.v).toLocaleString() +
+        (zh() ? " 單位 · 較上日 " : " units · vs prev day ") + sign + fmt(Math.abs(delta)));
+    };
+  }
+
+  /* ---------- trend ---------- */
+
+  function drawTrend() {
+    var p = panels.trend;
+    if (!p) return;
+    var t = DATA.underlyings[state.ul].trend || [];
+    var dim = sizeCanvas(p, 260);
+    var ctx = p.ctx;
+    if (t.length < 2) return;
+    var padL = 52, padR = 56, padT = 14, padB = 26;
+    var plotW = dim.w - padL - padR, plotH = dim.h - padT - padB;
+    var maxV = 1;
+    t.forEach(function (r) { maxV = Math.max(maxV, r[1], r[2]); });
+    var x = function (i) { return padL + i / (t.length - 1) * plotW; };
+    var y = function (v) { return padT + (1 - v / maxV) * plotH; };
+
+    ctx.font = MONO;
+    for (var g = 0; g <= 3; g++) {
+      var gv = maxV * g / 3;
+      ctx.strokeStyle = GRID;
+      ctx.beginPath(); ctx.moveTo(padL, y(gv)); ctx.lineTo(padL + plotW, y(gv)); ctx.stroke();
+      ctx.fillStyle = MUTED; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      ctx.fillText(fmt(gv), padL - 6, y(gv));
+    }
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    [0, Math.floor((t.length - 1) / 2), t.length - 1].forEach(function (i) {
+      ctx.fillText(t[i][0], x(i), dim.h - padB + 8);
     });
-    canvas.addEventListener("pointerleave", function () { tooltip.hidden = true; });
+
+    [1, 2].forEach(function (si) {
+      ctx.strokeStyle = si === 1 ? BULL : BEAR;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      t.forEach(function (r, i) { i ? ctx.lineTo(x(i), y(r[si])) : ctx.moveTo(x(i), y(r[si])); });
+      ctx.stroke();
+      ctx.fillStyle = si === 1 ? BULL : BEAR;
+      ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText(si === 1 ? (zh() ? "牛" : "Bull") : (zh() ? "熊" : "Bear"),
+        x(t.length - 1) + 8, y(t[t.length - 1][si]));
+    });
+
+    p.canvas.onpointermove = function (ev) {
+      var rect = p.canvas.getBoundingClientRect();
+      var px = ev.clientX - rect.left;
+      var i = Math.round((px - padL) / plotW * (t.length - 1));
+      if (i < 0 || i >= t.length) { p.tip.hidden = true; return; }
+      drawTrend();                     // clear old crosshair
+      var c = panels.trend.ctx;
+      c.strokeStyle = MUTED;
+      c.setLineDash([3, 3]);
+      c.beginPath(); c.moveTo(x(i), padT); c.lineTo(x(i), padT + plotH); c.stroke();
+      c.setLineDash([]);
+      tipAt(p, ev, t[i][0],
+        (zh() ? "牛 " : "Bull ") + fmt(t[i][1]) + " · " + (zh() ? "熊 " : "Bear ") + fmt(t[i][2]));
+    };
+  }
+
+  /* ---------- issuers ---------- */
+
+  function drawIssuers() {
+    var p = panels.issuers;
+    if (!p) return;
+    var iss = DATA.underlyings[state.ul].issuers || [];
+    var rowH = 30;
+    var dim = sizeCanvas(p, Math.max(120, iss.length * rowH + 30));
+    var ctx = p.ctx;
+    var padL = 128, padR = 60, padT = 12;
+    var plotW = dim.w - padL - padR;
+    var maxV = 1;
+    iss.forEach(function (r) { maxV = Math.max(maxV, r[2] + r[3]); });
+
+    ctx.font = MONO;
+    ctx.textBaseline = "middle";
+    p.view = [];
+    iss.forEach(function (r, idx) {
+      var y = padT + idx * rowH + 5;
+      var barH = rowH - 12;
+      ctx.textAlign = "right";
+      ctx.fillStyle = MUTED;
+      ctx.fillText(r[1], padL - 8, y + barH / 2);
+      var wB = r[2] / maxV * plotW, wR = r[3] / maxV * plotW;
+      ctx.fillStyle = BULL;
+      ctx.fillRect(padL, y, Math.max(wB, r[2] > 0 ? 2 : 0), barH);
+      ctx.fillStyle = BEAR;
+      ctx.fillRect(padL + wB + 2, y, Math.max(wR, r[3] > 0 ? 2 : 0), barH);
+      if (idx < 3) {
+        ctx.textAlign = "left";
+        ctx.fillStyle = INK;
+        ctx.fillText(fmt(r[2] + r[3]), padL + wB + wR + 8, y + barH / 2);
+      }
+      p.view.push({ y0: y - 5, y1: y - 5 + rowH, r: r });
+    });
+
+    p.canvas.onpointermove = function (ev) {
+      var rect = p.canvas.getBoundingClientRect();
+      var y = ev.clientY - rect.top;
+      var hit = null;
+      p.view.forEach(function (it) { if (y >= it.y0 && y < it.y1) hit = it; });
+      if (!hit) { p.tip.hidden = true; return; }
+      tipAt(p, ev, hit.r[1],
+        (zh() ? "牛 " : "Bull ") + fmt(hit.r[2]) + " · " + (zh() ? "熊 " : "Bear ") + fmt(hit.r[3]));
+    };
+  }
+
+  /* ---------- new listings ---------- */
+
+  function drawNewlist() {
+    var p = panels.newlist;
+    if (!p) return;
+    var nl = DATA.underlyings[state.ul].newlist || [];
+    var dim = sizeCanvas(p, 220);
+    var ctx = p.ctx;
+    if (!nl.length) return;
+    var padL = 40, padR = 16, padT = 12, padB = 26;
+    var plotW = dim.w - padL - padR, plotH = dim.h - padT - padB;
+    var maxV = 1;
+    nl.forEach(function (r) { maxV = Math.max(maxV, r[1], r[2]); });
+    var groupW = plotW / nl.length;
+    var barW = Math.min(18, groupW / 2 - 3);
+
+    ctx.font = MONO;
+    for (var g = 0; g <= 2; g++) {
+      var gv = maxV * g / 2;
+      var gy = padT + (1 - g / 2) * plotH;
+      ctx.strokeStyle = GRID;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + plotW, gy); ctx.stroke();
+      ctx.fillStyle = MUTED; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+      ctx.fillText(String(Math.round(gv)), padL - 6, gy);
+    }
+    p.view = [];
+    nl.forEach(function (r, i) {
+      var cx = padL + i * groupW + groupW / 2;
+      var hB = r[1] / maxV * plotH, hR = r[2] / maxV * plotH;
+      ctx.fillStyle = BULL;
+      ctx.fillRect(cx - barW - 1, padT + plotH - hB, barW, hB);
+      ctx.fillStyle = BEAR;
+      ctx.fillRect(cx + 1, padT + plotH - hR, barW, hR);
+      ctx.fillStyle = MUTED; ctx.textAlign = "center"; ctx.textBaseline = "top";
+      ctx.fillText(r[0].slice(3), cx, dim.h - padB + 8);
+      p.view.push({ x0: cx - groupW / 2, x1: cx + groupW / 2, r: r });
+    });
+
+    p.canvas.onpointermove = function (ev) {
+      var rect = p.canvas.getBoundingClientRect();
+      var x = ev.clientX - rect.left;
+      var hit = null;
+      p.view.forEach(function (it) { if (x >= it.x0 && x < it.x1) hit = it; });
+      if (!hit) { p.tip.hidden = true; return; }
+      tipAt(p, ev, hit.r[0],
+        (zh() ? "新牛證 " : "New bulls ") + hit.r[1] + " · " + (zh() ? "新熊證 " : "New bears ") + hit.r[2]);
+    };
+  }
+
+  /* ---------- MCE ---------- */
+
+  function mceTable() {
+    var body = $("cbbc-mce-body");
+    if (!body) return;
+    body.innerHTML = "";
+    DATA.mce.items.slice(0, 14).forEach(function (it) {
+      var tr = document.createElement("tr");
+      var side = it[4] === "Bull";
+      tr.innerHTML =
+        "<td>" + it[3] + "</td>" +
+        "<td>" + it[0] + "</td>" +
+        '<td><span class="mce-side" style="--c:' + (side ? BULL : BEAR) + '">' +
+        (side ? (zh() ? "牛" : "Bull") : (zh() ? "熊" : "Bear")) + "</span> " + it[5] + "</td>" +
+        "<td>" + it[2].replace(/ (Issuance|Asia|Products|B\.V\.|Limited|Corporation|and Shanghai Banking).*/, "") + "</td>";
+      body.appendChild(tr);
+    });
+    var more = $("cbbc-mce-more");
+    if (more) {
+      more.hidden = DATA.mce.count <= 14;
+      more.querySelectorAll("b").forEach(function (b) { b.textContent = String(DATA.mce.count); });
+    }
   }
 })();

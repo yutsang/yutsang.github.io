@@ -4,6 +4,8 @@ on:
   schedule:
     # 23:45 UTC Sun–Thu = 07:45 HKT Mon–Fri, after HKEX refreshes O/S (~06:15 HKT)
     - cron: "45 23 * * 0-4"
+    # 10:40 UTC Mon–Fri = 18:40 HKT — capture the day's full MCE list
+    - cron: "40 10 * * 1-5"
   workflow_dispatch:
 
 permissions:
