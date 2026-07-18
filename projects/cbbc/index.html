@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="HK CBBC Street Map - Yuu" data-title-zh="牛熊證街貨地圖 - Yuu">HK CBBC Street Map - Yuu</title>
+    <meta name="description" content="Daily CBBC (callable bull/bear contract) outstanding distribution for HSI and major HK stocks, computed from HKEX's public end-of-day files. Educational project.">
+    <link rel="canonical" href="https://ytsang.com/projects/cbbc/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/cbbc/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="HK CBBC Street Map — daily bull/bear outstanding distribution">
+    <meta property="og:description" content="Street outstanding of HK callable bull/bear contracts, mapped by call level from HKEX public data. Refreshed every trading morning.">
+    <meta property="og:image" content="https://ytsang.com/images/avater.jpeg">
+    <meta name="twitter:card" content="summary">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .graph-wrap {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .graph-panel {
+            position: relative;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .graph-panel canvas {
+            display: block;
+            width: 100%;
+        }
+        .cbbc-toolbar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            padding: 0.9rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .cbbc-filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .cbbc-filter-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            margin-right: 0.35rem;
+        }
+        .cbbc-chip {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-pill);
+            padding: 0.28rem 0.75rem;
+            cursor: pointer;
+        }
+        .cbbc-chip:hover { border-color: var(--color-accent); color: var(--color-text); }
+        .cbbc-chip.is-active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: var(--color-bg);
+        }
+        .cbbc-legend {
+            display: flex;
+            gap: 1.1rem;
+            margin-left: auto;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+        .cbbc-legend span::before {
+            content: "";
+            display: inline-block;
+            width: 9px; height: 9px;
+            border-radius: 2px;
+            margin-right: 0.4rem;
+            background: var(--dot);
+        }
+        .graph-tooltip {
+            position: absolute;
+            pointer-events: none;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0.75rem;
+            max-width: 18rem;
+            z-index: 2;
+        }
+        .graph-tooltip__title { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text); }
+        .graph-tooltip__meta { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); margin-top: 0.15rem; }
+        .graph-hint {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .graph-failed::after {
+            content: "Data unavailable right now — see the build pipeline on GitHub.";
+            display: block;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+        .graph-failed canvas, .graph-failed .graph-hint { display: none; }
+        .cbbc-disclaimer {
+            margin-top: 1.5rem;
+            background: var(--color-accent-soft);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-accent);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.4rem;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: var(--color-text-muted);
+        }
+        .cbbc-disclaimer strong { color: var(--color-text); }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">CBBC Street Map</span><span data-lang="zh">牛熊證街貨地圖</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Where the bulls and bears are parked — rebuilt every trading morning from HKEX public data</span>
+            <span data-lang="zh">牛熊街貨聚集何處——每個交易日早上由 HKEX 公開數據自動重建</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="graph-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">The idea</span><span data-lang="zh">概念</span></div>
+                    <h2 class="section-title"><span data-lang="en">Reading the street.</span><span data-lang="zh">解讀街貨。</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">Every callable bull/bear contract (CBBC) has a call level: touch it and the product is called mandatorily. Where outstanding positions cluster — the <em>street</em> — therefore maps where leveraged money is betting, and where a move would trigger cascades of forced calls. Issuer sites show this chart but keep the data; here it's computed independently from <a href="https://www.hkex.com.hk/eng/cbbc/search/listsearch.asp" rel="noopener noreferrer">HKEX's public end-of-day files</a> — call levels, entitlement ratios, and outstanding quantities for every listed CBBC.</span>
+                    <span data-lang="zh">每隻牛熊證都有收回價：一觸及即被強制收回。所以街貨（未平倉街外持貨）喺邊個價位聚集，就標示咗槓桿資金賭緊邊度——亦標示咗指數行到邊度會觸發連環強制收回。發行商網站有呢幅圖但唔開放數據；呢度由 <a href="https://www.hkex.com.hk/eng/cbbc/search/listsearch.asp" rel="noopener noreferrer">HKEX 公開嘅收市後檔案</a>獨立計算——全市場每隻牛熊證嘅收回價、換股比率同街貨量。</span>
+                </p>
+                <p>
+                    <span data-lang="en">A GitHub Action fetches the file each trading morning (outstanding quantities refresh ~06:15 HKT), aggregates street size by call-level zone in index/share-equivalent units, and commits a compact JSON that this page renders. No backend, no API keys — the same self-updating pattern as the <a href="/projects/rrag/">rrag wiki graph</a>.</span>
+                    <span data-lang="zh">GitHub Action 每個交易日早上（街貨數據約 06:15 HKT 更新後）自動抓取檔案，按收回價區間聚合成等價指數／股份單位嘅街貨量，commit 一個精簡 JSON 由本頁渲染。無後端、無 API key——同 <a href="/projects/rrag/">rrag 知識網絡圖</a>一樣嘅自我更新模式。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section">
+        <div class="graph-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Live map</span><span data-lang="zh">每日地圖</span></div>
+                    <h2 class="section-title"><span data-lang="en">The distribution.</span><span data-lang="zh">街貨分佈。</span></h2>
+                </div>
+                <a href="https://github.com/yutsang/yutsang.github.io/blob/main/scripts/build_cbbc_data.py" class="section-head__action" rel="noopener noreferrer"><span data-lang="en">Pipeline source →</span><span data-lang="zh">Pipeline 源碼 →</span></a>
+            </header>
+
+            <div class="graph-panel" id="cbbc-chart">
+                <div class="cbbc-toolbar">
+                    <div class="cbbc-filter-row" id="cbbc-ul-filters">
+                        <span class="cbbc-filter-label"><span data-lang="en">Underlying</span><span data-lang="zh">相關資產</span></span>
+                    </div>
+                    <div class="cbbc-filter-row">
+                        <span class="cbbc-filter-label"><span data-lang="en">Zone size</span><span data-lang="zh">區間大小</span></span>
+                        <button type="button" class="cbbc-chip" data-mult="1">×1</button>
+                        <button type="button" class="cbbc-chip is-active" data-mult="2">×2</button>
+                        <button type="button" class="cbbc-chip" data-mult="4">×4</button>
+                        <div class="cbbc-legend">
+                            <span style="--dot:#2e7d51"><span data-lang="en">Bull</span><span data-lang="zh">牛證</span></span>
+                            <span style="--dot:#c14a2b"><span data-lang="en">Bear</span><span data-lang="zh">熊證</span></span>
+                        </div>
+                    </div>
+                </div>
+                <canvas aria-label="CBBC outstanding distribution by call level"></canvas>
+                <div class="graph-tooltip" hidden>
+                    <div class="graph-tooltip__title"></div>
+                    <div class="graph-tooltip__meta"></div>
+                </div>
+                <div class="graph-hint">
+                    <span data-lang="en">Outstanding as of <span class="cbbc-asof">—</span> · hover a zone for exact street size · spot is estimated from the bull/bear call-level boundary</span>
+                    <span data-lang="zh">街貨數據截至 <span class="cbbc-asof">—</span> · 移到區間上可見準確街貨量 · 現價由牛熊收回價邊界估算</span>
+                </div>
+            </div>
+
+            <div class="cbbc-disclaimer">
+                <p>
+                    <span data-lang="en"><strong>Disclaimer.</strong> This page is a personal, educational project. It visualises end-of-day statistics compiled from files published openly by Hong Kong Exchanges and Clearing Limited ("HKEX"); it is not real-time, may contain errors or omissions, and is provided "as is" without warranty of any kind. Nothing on this page constitutes investment advice, a recommendation, or a solicitation to buy or sell any security or product. CBBCs are leveraged structured products that may be called mandatorily before maturity and can lose their entire value. Past distribution of outstanding positions is not indicative of future price movements. This site is not affiliated with, endorsed by, or connected to HKEX or any CBBC issuer; all underlying data remains the property of its respective owners. Seek advice from a licensed financial adviser before making any investment decision.</span>
+                    <span data-lang="zh"><strong>免責聲明。</strong>本頁屬個人教育性質項目，內容整理自香港交易及結算所有限公司（「香港交易所」）公開發布的收市後統計檔案；並非實時數據，可能存在錯誤或遺漏，一切按「現況」提供，不作任何形式的保證。本頁任何內容均不構成投資建議、推薦或任何證券及產品的買賣要約。牛熊證屬槓桿結構性產品，可於到期前被強制收回，價值可以跌至零。過往街貨分佈並不代表未來價格走勢。本網站與香港交易所或任何牛熊證發行商概無關聯，亦未獲其認可；所有原始數據的權利歸其擁有者所有。作出任何投資決定前，請先諮詢持牌財務顧問。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script src="/js/cbbc-chart.js?v=1"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ const timelineData = {
         {
             id: "work-2025-1",
             title: "Data Scientist",
-            company: "KPMG",
+            company: "A Big Four professional services firm",
             duration: "Jan 2025 - Current",
             months: "Ongoing",
             description:
