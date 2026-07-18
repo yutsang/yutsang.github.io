@@ -43,22 +43,15 @@ QSUSPENDED = re.compile(r"TRADING (SUSPENDED|HALTED)")
 # the name, and re.match() only anchors at position 0 -- easy to get
 # silently wrong with a regex here.)
 #
-# Leveraged & Inverse (L&I) Products carry none of that punctuation but
-# are still geared, decay-prone derivatives, not operating-company
-# stock -- HKEX's short names for these prefix the underlying with a
-# 3-character issuer+gearing code. Verified against a full day's ~2,800
-# post-filter names: exactly these four prefixes account for every L&I
-# product (CSOP and a second issuer's leveraged/inverse families), with
-# zero false positives against real names sharing a letter+digit start
-# (e.g. "K2 F&B", a real company, does not match any of them). Extend
-# this set if a new L&I issuer prefix shows up in a future data pull.
-LEVERAGED_INVERSE_PREFIXES = ("XL2", "XI2", "FL2", "FI2")
-
-
+# Leveraged & Inverse (L&I) Products (short names prefixed XL2/XI2/FL2/
+# FI2, e.g. "XL2CSOPHYNIX") are deliberately NOT filtered here, even
+# though they're geared derivatives like CBBCs/warrants: unlike those,
+# they trade under a persistent code investors actually watch, and
+# excluding them hid genuinely high-attention names (e.g. a leveraged
+# SK Hynix tracker riding an AI-chip rally) from "most active" --
+# confirmed with the user this dashboard should surface that, not hide it.
 def is_structured_product(name: str) -> bool:
-    if "@" in name or "#" in name:
-        return True
-    return name.upper().replace(" ", "").startswith(LEVERAGED_INVERSE_PREFIXES)
+    return "@" in name or "#" in name
 
 
 def num(s: str) -> float:
