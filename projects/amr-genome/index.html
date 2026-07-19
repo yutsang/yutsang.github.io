@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="Antimicrobial Resistance Analysis - Yuu" data-title-zh="抗生素抗藥性分析 - Yuu">Antimicrobial Resistance Analysis - Yuu</title>
+    <meta name="description" content="Predicting antimicrobial resistance from bacterial genomes: a k-mer feature pipeline and a genomic BERT sequence classifier, built on public PATRIC genome data.">
+    <link rel="canonical" href="https://ytsang.com/projects/amr-genome/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/amr-genome/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="Antimicrobial Resistance Analysis">
+    <meta property="og:description" content="Predicting antimicrobial resistance from bacterial genomes — k-mer features and a genomic BERT classifier, on public PATRIC data.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=90&auto=format&fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .proj-wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+        .proj-hero-img {
+            width: 100%; max-height: 22rem; object-fit: cover;
+            border-radius: var(--radius); box-shadow: var(--shadow-md);
+            margin-bottom: 0.5rem;
+        }
+        .proj-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; align-items: start; }
+        .proj-approach {
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); box-shadow: var(--shadow-sm);
+            padding: 1.4rem 1.6rem;
+        }
+        .proj-approach h3 {
+            font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--color-accent-bright); margin-bottom: 0.6rem;
+        }
+        .proj-approach p { font-size: 0.9375rem; line-height: 1.65; color: var(--color-text-muted); margin: 0; }
+        .proj-status {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+        .proj-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-achievement); }
+        .proj-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+        @media (max-width: 700px) { .proj-grid2 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">Antimicrobial Resistance Analysis</span><span data-lang="zh">抗生素抗藥性分析</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Two ways to read resistance out of a bacterial genome — a research project in progress</span>
+            <span data-lang="zh">兩種從細菌基因組讀出抗藥性的方法——一個持續進行中的研究專題</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="proj-wrap">
+            <img class="proj-hero-img" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=90&auto=format&fit=crop" alt="">
+
+            <span class="proj-status"><span data-lang="en">Active research · May 2024 – present</span><span data-lang="zh">持續研究中 · 2024 年 5 月至今</span></span>
+
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">The problem</span><span data-lang="zh">問題</span></div>
+                    <h2 class="section-title"><span data-lang="en">Resistance is written in the DNA</span><span data-lang="zh">抗藥性寫在 DNA 之中</span></h2>
+                </div>
+                <a href="https://github.com/yutsang/amr-genome" class="section-head__action" rel="noopener noreferrer"><span data-lang="en">Repo on GitHub →</span><span data-lang="zh">GitHub 源碼 →</span></a>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">Antimicrobial resistance (AMR) is one of the more quietly serious problems in public health: bacteria evolve resistance to the antibiotics meant to kill them, and predicting which strains are resistant to which drugs — fast, and from genomic data alone — matters for both treatment decisions and surveillance. This project explores two different machine-learning approaches to the same underlying question: can a model read resistance directly out of a bacterial genome, using the public <a href="https://www.bv-brc.org/" rel="noopener noreferrer">PATRIC</a> genome database as its data source?</span>
+                    <span data-lang="zh">抗微生物抗藥性（AMR）是公共衛生領域一個看似安靜、實則嚴重的問題：細菌會對本應殺死它們的抗生素演化出抗藥性，而能否快速地、單憑基因組數據就預測哪些菌株對哪些藥物具抗藥性，對治療決策與監測都至關重要。這個專題探索兩種不同的機器學習方法，回答同一個根本問題：模型能否直接從細菌基因組讀出抗藥性，使用公開的 <a href="https://www.bv-brc.org/" rel="noopener noreferrer">PATRIC</a> 基因組資料庫作為數據來源？</span>
+                </p>
+            </div>
+
+            <div class="proj-grid2">
+                <div class="proj-approach">
+                    <h3><span data-lang="en">Approach 1 · k-mer + classical ML</span><span data-lang="zh">方法一 · k-mer 特徵 + 傳統機器學習</span></h3>
+                    <p>
+                        <span data-lang="en">A Kedro-orchestrated PySpark pipeline breaks each genome down into overlapping k-mers (short DNA subsequences, k=11) and counts their frequencies as features — a standard, well-understood way to turn raw sequence into something a classical model can learn from. The pipeline filters by antibiotic class (tetracycline being the first target), using PATRIC's 2021 metadata and a GPT-assisted antibiotic classification scheme to organize labels, then splits data 64/16/20 into train/validation/test.</span>
+                        <span data-lang="zh">以 Kedro 編排的 PySpark 流程，把每個基因組拆解成重疊的 k-mer（短 DNA 子序列，k=11），並統計其出現頻率作為特徵——這是把原始序列轉化成傳統模型可學習輸入的標準做法。流程按抗生素類別篩選（四環素為首個目標），使用 PATRIC 2021 年後設資料，並以 GPT 輔助建立的抗生素分類方案整理標籤，再以 64/16/20 比例切分訓練／驗證／測試集。</span>
+                    </p>
+                </div>
+                <div class="proj-approach">
+                    <h3><span data-lang="en">Approach 2 · genomic BERT classifier</span><span data-lang="zh">方法二 · 基因組 BERT 分類器</span></h3>
+                    <p>
+                        <span data-lang="en">A second component runs a pre-trained BERT-family model directly over raw nucleotide sequences from <code>.fna</code> (FASTA) files — no hand-engineered k-mer counting, just the sequence itself, optionally split by contig. The model classifies each sequence and exposes its hidden-state features per token, which are saved alongside predictions for downstream analysis. This is the more experimental of the two arms: it asks whether a language model's learned representation of DNA already captures what k-mer counting has to be told explicitly.</span>
+                        <span data-lang="zh">第二個部分讓一個預訓練的 BERT 系列模型直接讀取 <code>.fna</code>（FASTA）檔案內的原始核苷酸序列——不經人手設計的 k-mer 計數，只有序列本身，可選擇按 contig 分開處理。模型為每條序列分類，並輸出每個 token 的隱藏狀態特徵，連同預測結果一併保存供後續分析。這是兩條路線中較實驗性的一支：它探問的是，語言模型對 DNA 學到的表示，是否已經隱含了 k-mer 計數需要明確告知模型的資訊。</span>
+                    </p>
+                </div>
+            </div>
+
+            <header class="section-head" style="margin-top:1.5rem">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Status</span><span data-lang="zh">現況</span></div>
+                    <h2 class="section-title"><span data-lang="en">Still open</span><span data-lang="zh">仍在進行</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">This is an active research project, not a finished product — both arms are still being extended, and the two approaches haven't yet been rigorously compared against each other on the same held-out set. That comparison, once it exists, is the natural next thing to add here.</span>
+                    <span data-lang="zh">這是一個持續進行中的研究專題，並非已完成的產品——兩條路線都仍在延伸中，而兩種方法目前尚未在同一個保留測試集上做過嚴謹的正面比較。一旦這個比較完成，將會是本頁自然而然的下一步補充內容。</span>
+                </p>
+            </div>
+            <div class="project-tags">
+                <span class="tag">BERT</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">Kedro</span>
+                <span class="tag">PySpark</span>
+                <span class="tag">Genomics</span>
+            </div>
+            <div class="proj-cta">
+                <a href="https://github.com/yutsang/amr-genome" class="btn btn-primary" rel="noopener noreferrer"><span data-lang="en">View on GitHub →</span><span data-lang="zh">GitHub 查看 →</span></a>
+                <a href="/projects/" class="btn btn-secondary"><span data-lang="en">All projects</span><span data-lang="zh">所有專案</span></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+</body>
+</html>

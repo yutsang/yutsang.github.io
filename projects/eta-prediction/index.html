@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-title-en="HK Last-Mile ETA Prediction - Yuu" data-title-zh="香港最後一里 ETA 預測 - Yuu">HK Last-Mile ETA Prediction - Yuu</title>
+    <meta name="description" content="An XGBoost model predicting delivery delay ratios for a Hong Kong logistics fleet, trained on 65,330 real last-mile delivery segments — final-year project with a Streamlit dashboard.">
+    <link rel="canonical" href="https://ytsang.com/projects/eta-prediction/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/eta-prediction/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="HK Last-Mile ETA Prediction">
+    <meta property="og:description" content="Predicting delivery delay ratios for a HK logistics fleet from 65,330 real last-mile segments — final-year project, XGBoost, Streamlit.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .proj-wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+        .proj-hero-img {
+            width: 100%; max-height: 22rem; object-fit: cover;
+            border-radius: var(--radius); box-shadow: var(--shadow-md);
+            margin-bottom: 0.5rem;
+        }
+        .proj-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1rem; margin: 1.5rem 0;
+        }
+        .proj-stat {
+            background: var(--color-surface); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 1rem 1.2rem;
+        }
+        .proj-stat b { display: block; font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: var(--color-text); }
+        .proj-stat span { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--color-text-muted); }
+        .proj-finding {
+            background: var(--color-accent-soft); border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-accent); border-radius: var(--radius);
+            padding: 1.1rem 1.4rem; margin: 1.5rem 0;
+            font-size: 0.9375rem; line-height: 1.7; color: var(--color-text);
+        }
+        .proj-cta {
+            display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
+        }
+        @media (max-width: 640px) { .proj-stats { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Predicting delivery delay, not delivery duration — final-year project with LF Logistics</span>
+            <span data-lang="zh">預測配送延誤，而非配送時長本身——與 LF Logistics 合作的畢業專題</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="proj-wrap">
+            <img class="proj-hero-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="">
+
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">The problem</span><span data-lang="zh">問題</span></div>
+                    <h2 class="section-title"><span data-lang="en">Traffic data you already have</span><span data-lang="zh">你早已擁有的交通數據</span></h2>
+                </div>
+                <a href="https://github.com/yutsang/ETA-Prediction" class="section-head__action" rel="noopener noreferrer"><span data-lang="en">Repo on GitHub →</span><span data-lang="zh">GitHub 源碼 →</span></a>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">Hong Kong doesn't have a clean, public, city-wide traffic-condition dataset. What it does have — in abundance, inside every logistics operator's systems — is last-mile delivery records: timestamps, routes, vehicle types, planned versus actual arrival. This project treats those commercial records as a proxy for urban traffic: if congestion is real, it should show up as systematic delay in deliveries that have nothing to do with traffic on paper.</span>
+                    <span data-lang="zh">香港沒有一個乾淨、公開、覆蓋全城的交通狀況數據集。但每間物流公司的系統內，都大量存在最後一里配送紀錄：時間戳記、路線、車種、計劃與實際到達時間。這個專題把這些商業紀錄當成城市交通的代理指標——如果塞車是真實存在的，它應該會系統性地反映在配送延誤上，即使紀錄本身從未提及「交通」二字。</span>
+                </p>
+                <p>
+                    <span data-lang="en">The key design choice: predict the <strong>delay ratio</strong> — actual duration divided by planned duration — instead of raw delivery time. Raw duration is dominated by route length, which has nothing to do with congestion. The ratio removes that trivial effect and isolates the part of the signal that's actually about operational and traffic-driven variance.</span>
+                    <span data-lang="zh">關鍵的設計選擇：預測<strong>延誤比率</strong>（實際時長除以計劃時長），而非原始配送時間。原始時長主要由路線長度決定，與塞車與否無關；延誤比率剔除了這個顯而易見的因素，留下真正與營運及交通相關的變異。</span>
+                </p>
+            </div>
+
+            <div class="proj-stats">
+                <div class="proj-stat"><b>65,330</b><span data-lang="en">raw HKG segments</span><span data-lang="zh">香港原始配送段</span></div>
+                <div class="proj-stat"><b>9,950</b><span data-lang="en">usable after cleaning</span><span data-lang="zh">清理後可用</span></div>
+                <div class="proj-stat"><b>85%</b><span data-lang="en">had missing actual times</span><span data-lang="zh">缺失實際完成時間</span></div>
+                <div class="proj-stat"><b>2019–20</b><span data-lang="en">data coverage</span><span data-lang="zh">數據涵蓋期</span></div>
+            </div>
+
+            <header class="section-head" style="margin-top:2rem">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">The data</span><span data-lang="zh">數據</span></div>
+                    <h2 class="section-title"><span data-lang="en">Anonymised, multi-city, mostly Hong Kong</span><span data-lang="zh">匿名化、跨城市、以香港為主</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">The source is anonymised last-mile logistics records from a regional Southeast Asian operator (2019–2020), covering Hong Kong as the primary market alongside China, Singapore, Thailand, Indonesia, Malaysia, the Philippines, and Taiwan. Deliveries ran out of four Hong Kong warehouses (OBW0, TSW0, TSX0, OBWL) using a mix of 9-tonne trucks, vans, and 16-tonne trucks — 9-tonne trucks dominate the fleet.</span>
+                    <span data-lang="zh">數據來源是東南亞區域物流商的匿名化最後一里紀錄（2019–2020），以香港為主要市場，並涵蓋中國、新加坡、泰國、印尼、馬來西亞、菲律賓與台灣。香港的配送由四個倉庫（OBW0、TSW0、TSX0、OBWL）發出，車型包括 9 噸貨車、客貨車與 16 噸貨車——9 噸貨車佔車隊主力。</span>
+                </p>
+                <p>
+                    <span data-lang="en">Because the data was never collected with traffic analysis in mind, cleaning was most of the work — 85% of raw Hong Kong segments were missing an actual completion time, which is itself a finding about how logistics data quality degrades at the edges of a system not designed for downstream analytics. The 9,950 segments that survived cleaning are what the model was trained and evaluated on.</span>
+                    <span data-lang="zh">由於數據原本從未為交通分析而設計，清理本身就是大部分工作量——85% 的香港原始配送段缺失實際完成時間，這本身就是一個發現：說明物流數據品質在一個並非為下游分析而設計的系統邊緣會如何劣化。清理後留下的 9,950 段配送紀錄，就是模型訓練與評估所用的數據。</span>
+                </p>
+            </div>
+
+            <header class="section-head" style="margin-top:2rem">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 03 / <span data-lang="en">What the model found</span><span data-lang="zh">模型的發現</span></div>
+                    <h2 class="section-title"><span data-lang="en">Operations beat geography</span><span data-lang="zh">營運因素勝過地理因素</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">An XGBoost model trained on the delay ratio target found that <strong>vehicle category and origin depot are stronger predictors of delay than distance or time-of-day</strong> — the two variables most people would guess first. That's a genuinely useful, slightly counterintuitive result: it suggests that operational factors (which depot a delivery starts from, what kind of vehicle carries it) dominate over pure road-network traffic effects in this dataset, at least at the level this data can resolve.</span>
+                    <span data-lang="zh">以延誤比率為目標訓練的 XGBoost 模型發現，<strong>車型與出發倉庫比距離或時段更能預測延誤</strong>——後兩者通常是大多數人第一直覺會猜的變數。這是一個真正有用、略為反直覺的結果：它顯示在這個數據集所能解析的層面上，營運因素（配送由哪個倉庫出發、由哪種車輛承運）比純粹的路網交通效應更具主導性。</span>
+                </p>
+            </div>
+            <div class="proj-finding">
+                <span data-lang="en"><strong>Reading this finding correctly:</strong> delivery delay ratios encode time-of-day congestion signals even though the data was never collected as traffic data — but the strongest predictors turned out to be operational, not geographic. That's a claim about this specific fleet and period, not a general statement about Hong Kong traffic; it's exactly the kind of result that's only visible once you stop assuming raw duration is the right target.</span>
+                <span data-lang="zh"><strong>正確理解這個發現：</strong>配送延誤比率確實編碼了時段性擁堵訊號，即使數據從未以交通數據的身分被收集——但最強的預測因子最終是營運性的，而非地理性的。這是針對這支特定車隊與這段時期的觀察，不是對香港交通的普遍論斷；這正是一種只有在放棄「原始時長就是正確目標」這個假設之後，才會浮現的發現。</span>
+            </div>
+
+            <header class="section-head" style="margin-top:2rem">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 04 / <span data-lang="en">Stack &amp; status</span><span data-lang="zh">技術棧與現況</span></div>
+                    <h2 class="section-title"><span data-lang="en">Try it yourself</span><span data-lang="zh">親自試試</span></h2>
+                </div>
+            </header>
+            <div class="about-prose">
+                <p>
+                    <span data-lang="en">Built in Python with XGBoost for modelling and a Streamlit app for exploring predictions interactively. The underlying delivery records are commercial and anonymised, so they aren't published — the repo ships the full pipeline (cleaning, feature engineering, training, evaluation) and the Streamlit dashboard code, so the modelling approach is fully reproducible even without the original data.</span>
+                    <span data-lang="zh">以 Python 搭配 XGBoost 建模，並以 Streamlit 應用互動式探索預測結果。原始配送紀錄屬商業數據且已匿名化，因此不會公開發布——repo 內公開了完整流程（清理、特徵工程、訓練、評估）與 Streamlit dashboard 程式碼，即使沒有原始數據，建模方法本身仍完全可重現。</span>
+                </p>
+            </div>
+            <div class="project-tags">
+                <span class="tag">XGBoost</span>
+                <span class="tag">Python</span>
+                <span class="tag">Streamlit</span>
+                <span class="tag">Feature Engineering</span>
+                <span class="tag">Logistics</span>
+            </div>
+            <div class="proj-cta">
+                <a href="https://github.com/yutsang/ETA-Prediction" class="btn btn-primary" rel="noopener noreferrer"><span data-lang="en">View on GitHub →</span><span data-lang="zh">GitHub 查看 →</span></a>
+                <a href="/projects/" class="btn btn-secondary"><span data-lang="en">All projects</span><span data-lang="zh">所有專案</span></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+</body>
+</html>
