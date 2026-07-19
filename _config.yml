@@ -10,9 +10,9 @@ description: "Finance & data science · Operations research enthusiast"
 ## Optional configs:
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://github.com/yutsang/yutsang.github.io/raw/main/images/avater.jpeg
+avatar: /images/avatar-photo.jpg
 # favicon(64px × 64px)
-favicon: https://github.com/yutsang/yutsang.github.io/raw/main/images/favicon.ico
+favicon: /images/favicon.ico
 
 # Tabs in header. There are 'Blog', 'About', 'Archive', 'Tags'
 # and URL Link(e.g. 'Theme' tab below) tabs. If you don't need one, just delete
