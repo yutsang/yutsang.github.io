@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<title>WOrange 和橙 — Project 2｜直銷4M kg × 品牌IP × 渠道</title>
+<style>
+/* ============================================================
+   WOrange Project 2 Deck — palette per dataviz skill reference
+   Roles used throughout (fixed order, never remapped):
+     --c-base  = slot1 blue   (Base scenario / primary brand-neutral)
+     --c-bull  = slot2 aqua   (Bull scenario / positive-growth)
+     --c-bear  = slot3 yellow (Bear scenario / caution)
+     --c-alt-a = slot5 violet (secondary entity A)
+     --c-crit  = slot6 red    (secondary entity / critical)
+     --c-alt-b = slot7 magenta(secondary entity B)
+     --c-brand = slot8 orange (WOrange identity — thematic + brand)
+   Status (reserved, never reused as series): good/warning/serious/critical
+   ============================================================ */
+:root{
+  --surface-1:      #fffaf6;
+  --page-plane:     #f7f3ee;
+  --text-primary:   #1c1916;
+  --text-secondary: #5a534c;
+  --text-muted:     #8a8178;
+  --grid:           #e8e0d6;
+  --baseline:       #d2c8bb;
+  --border:         rgba(60,40,20,0.10);
+  --card-bg:        rgba(255,252,248,0.92);
+
+  --c-base:  #2a78d6;
+  --c-bull:  #1baf7a;
+  --c-bear:  #eda100;
+  --c-alt-a: #4a3aa7;
+  --c-crit:  #e34948;
+  --c-alt-b: #e87ba4;
+  --c-brand: #eb6834;
+
+  --s-good:     #0ca30c;
+  --s-warning:  #fab219;
+  --s-serious:  #ec835a;
+  --s-critical: #d03b3b;
+
+  --seq-100:#cde2fb; --seq-200:#9ec5f4; --seq-300:#6da7ec; --seq-400:#3987e5; --seq-500:#256abf; --seq-600:#184f95; --seq-700:#0d366b;
+}
+[data-theme="dark"]{
+  --surface-1:      #1a1a19;
+  --page-plane:     #0d0d0d;
+  --text-primary:   #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted:     #898781;
+  --grid:           #2c2c2a;
+  --baseline:       #383835;
+  --border:         rgba(255,255,255,0.10);
+  --card-bg:        #232322;
+
+  --c-base:  #3987e5;
+  --c-bull:  #199e70;
+  --c-bear:  #c98500;
+  --c-alt-a: #9085e9;
+  --c-crit:  #e66767;
+  --c-alt-b: #d55181;
+  --c-brand: #d95926;
+
+  --s-good:     #0ca30c;
+  --s-warning:  #fab219;
+  --s-serious:  #ec835a;
+  --s-critical: #d03b3b;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family: "Noto Sans TC", "PingFang HK", "Hiragino Sans CNS", "Microsoft JhengHei", sans-serif;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(235,104,52,0.10), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(42,120,214,0.06), transparent 50%),
+    var(--page-plane);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,p,ul,ol{margin:0;}
+.tabular{font-variant-numeric: tabular-nums;}
+
+/* ---------- Deck shell ---------- */
+#deck{
+  width:100vw; height:100vh; overflow:hidden; position:relative;
+}
+.slide{
+  display:none;
+  width:100vw; height:100vh;
+  padding: 46px 56px 34px 56px;
+  flex-direction: column;
+  gap: 14px;
+  overflow:hidden;
+}
+.slide.active{display:flex;}
+.slide-kicker{
+  display:flex; align-items:center; gap:10px;
+  font-size:14.5px; font-weight:600; letter-spacing:.02em; text-transform:none;
+  color: var(--text-muted);
+}
+.slide-kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--c-brand);}
+.slide-title{
+  font-family: "Noto Serif TC", "Songti TC", "Source Han Serif TC", serif;
+  font-size: 34px; line-height:1.25; font-weight:700; letter-spacing:-.01em;
+  color: var(--text-primary);
+  max-width: 1320px;
+}
+.slide-title .hi{color:var(--c-brand);}
+.slide-body{
+  flex:1; display:flex; gap:28px; min-height:0;
+}
+.slide-body.col{flex-direction:column;}
+.slide-col{min-width:0; min-height:0; display:flex; flex-direction:column; gap:13px;}
+.col-4{flex:0 0 34%;}
+.col-5{flex:0 0 42%;}
+.col-6{flex:1;}
+.col-7{flex:0 0 58%;}
+.col-8{flex:0 0 66%;}
+
+/* ---------- Bullets ---------- */
+.bullets{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; overflow:auto;}
+.bullets li{
+  position:relative; padding-left:22px; font-size:18px; line-height:1.43; color:var(--text-primary);
+}
+.bullets li::before{
+  content:""; position:absolute; left:0; top:8px; width:7px; height:7px; border-radius:2px; background:var(--c-brand);
+}
+.bullets b{font-weight:700;}
+.bullets.compact{gap:7px;}
+.bullets.compact li{font-size:15.5px; line-height:1.38;}
+.bullets .chip{
+  display:inline-block; font-size:12px; font-weight:700; color:var(--text-secondary);
+  background:var(--grid); border-radius:4px; padding:1px 6px; margin-left:4px; white-space:nowrap;
+}
+.bullets .num{color:var(--c-brand); font-weight:700;}
+
+.note{font-size:14.5px; color:var(--text-muted); line-height:1.47; overflow-wrap:anywhere;}
+.note b{color:var(--text-secondary);}
+
+.quote-banner{
+  border-left:4px solid var(--c-brand); background:var(--card-bg); border:1px solid var(--border); border-left:4px solid var(--c-brand);
+  border-radius:12px; padding:15px 19px; font-size:17.5px; font-weight:650; color:var(--text-primary); line-height:1.45;
+  flex:0 0 auto;
+}
+
+/* ---------- Chart panel / cards ---------- */
+.panel{
+  background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:18px 20px 22px 20px;
+  display:flex; flex-direction:column; gap:8px; min-height:0; overflow:hidden;
+}
+.panel-title{font-size:14.5px; font-weight:750; color:var(--text-secondary); text-transform:uppercase; letter-spacing:.025em;}
+.chart{flex:1; min-height:0; position:relative; overflow:hidden;}
+.chart-visual{width:100%; height:100%; display:flex; flex-direction:column; min-height:0; overflow:hidden;}
+.chart svg{width:100%; height:100%; display:block; overflow:visible; min-height:0;}
+
+.legend{display:flex; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--text-secondary);}
+.legend-item{display:flex; align-items:center; gap:6px;}
+.legend-item .sw{width:10px;height:10px;border-radius:2px; flex:0 0 auto;}
+
+/* ---------- KPI cards ---------- */
+.kpi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:13px;}
+.kpi-card{background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:15px 17px;}
+.kpi-card .lbl{font-size:13.5px; color:var(--text-muted); font-weight:650; text-transform:uppercase; letter-spacing:.025em;}
+.kpi-card .val{font-size:31px; font-weight:800; color:var(--c-brand); margin-top:5px;}
+.kpi-card .sub{font-size:14px; color:var(--text-secondary); margin-top:4px; line-height:1.35;}
+
+/* ---------- Status ---------- */
+.status-row{display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600;}
+.status-dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;}
+.status-good .status-dot{background:var(--s-good);} .status-good{color:var(--s-good);}
+.status-warning .status-dot{background:var(--s-warning);} .status-warning{color:#8a6100;}
+[data-theme="dark"] .status-warning{color:var(--s-warning);}
+.status-serious .status-dot{background:var(--s-serious);} .status-serious{color:#9a4a26;}
+[data-theme="dark"] .status-serious{color:var(--s-serious);}
+.status-critical .status-dot{background:var(--s-critical);} .status-critical{color:var(--s-critical);}
+
+/* ---------- Table-view ---------- */
+.tv-toggle{
+  position:absolute; top:10px; right:10px; font-size:11px; font-weight:700; color:var(--text-secondary);
+  background:var(--surface-1); border:1px solid var(--border); border-radius:5px; padding:3px 8px; cursor:pointer; z-index:5;
+}
+.data-table{width:100%; border-collapse:collapse; font-size:13.5px;}
+.data-table th,.data-table td{text-align:left; padding:6px 8px; border-bottom:1px solid var(--grid);}
+.data-table th{color:var(--text-muted); font-weight:600; font-size:12px; text-transform:uppercase;}
+.data-table td.num{text-align:right; font-variant-numeric:tabular-nums;}
+.hidden{display:none !important;}
+
+/* ---------- Cards / grid layouts ---------- */
+.card-row{display:flex; gap:13px;}
+.card{flex:1; background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:15px 17px; display:flex; flex-direction:column; gap:7px; min-width:0;}
+.card .card-h{font-size:16.5px; font-weight:800; color:var(--text-primary);}
+.card .card-tag{font-size:11.5px; font-weight:700; color:#fff; background:var(--c-brand); border-radius:4px; padding:1px 6px; width:fit-content;}
+.card .card-b{font-size:14.5px; color:var(--text-secondary); line-height:1.44;}
+.card.accent{border-color:var(--c-brand);}
+
+/* tree / flow diagrams */
+.tree{display:flex; flex-direction:column; align-items:center; gap:10px;}
+.tree-node{background:var(--card-bg); border:1.5px solid var(--c-brand); border-radius:8px; padding:10px 16px; font-size:14px; font-weight:700; text-align:center;}
+.tree-node.sub{border-color:var(--c-alt-a); font-weight:600; font-size:13px;}
+.tree-row{display:flex; gap:24px;}
+.tree-line{width:1.5px; height:16px; background:var(--baseline);}
+
+.flow-row{display:flex; align-items:center; gap:8px;}
+.flow-step{flex:1; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:10px 11px; font-size:13px; text-align:center;}
+.flow-arrow{color:var(--text-muted); font-size:16px;}
+
+/* ---------- Management framing ---------- */
+.mgmt-ask{
+  display:flex; gap:10px; align-items:flex-start;
+  background:linear-gradient(90deg, rgba(235,104,52,0.08), rgba(255,252,248,0.4));
+  border:1px solid var(--border); border-radius:10px;
+  padding:10px 14px; font-size:14.5px; line-height:1.45; color:var(--text-primary);
+}
+.mgmt-ask b{color:var(--c-brand); font-weight:750; white-space:nowrap;}
+.src{
+  font-size:11.5px; color:var(--text-muted); line-height:1.4; margin-top:4px;
+}
+.slide-kicker{text-transform:none; letter-spacing:.02em; font-weight:600;}
+.kpi-card .val{letter-spacing:-.02em;}
+.panel{backdrop-filter: blur(4px);}
+.quote-banner{background:rgba(255,252,248,0.95);}
+
+/* ---------- Slide images ---------- */
+.slide-img{
+  width:100%; height:100%; object-fit:cover; border-radius:12px; display:block;
+  border:1px solid var(--border);
+}
+.img-rail{
+  display:grid; gap:10px; min-height:0; flex:1;
+}
+.img-rail.cols-2{grid-template-columns:1fr 1fr;}
+.img-rail.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.img-tile{
+  position:relative; min-height:250px; overflow:hidden; border-radius:12px;
+  background:var(--card-bg);
+}
+.img-tile img{width:100%; height:100%; object-fit:cover; display:block; min-height:250px;}
+.img-rail.cols-2 .img-tile{min-height:270px;}
+.img-rail.cols-3 .img-tile{min-height:260px;}
+.img-cap{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:6px 10px; font-size:11.5px; font-weight:650; color:#fff;
+  background:linear-gradient(transparent, rgba(20,12,8,.72));
+}
+.side-photo{flex:0 0 32%; min-width:0; min-height:0; display:flex; flex-direction:column; gap:10px;}
+.side-photo .img-tile{flex:1;}
+
+
+/* ---------- Nav ---------- */
+#nav{
+  position:fixed; bottom:16px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:center; gap:10px; background:var(--card-bg); border:1px solid var(--border);
+  border-radius:999px; padding:6px 12px; box-shadow:0 8px 28px rgba(60,40,20,.10); z-index:100; backdrop-filter:blur(8px);
+}
+#nav button{
+  border:none; background:transparent; color:var(--text-primary); font-size:14px; cursor:pointer;
+  width:30px;height:30px;border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+#nav button:hover{background:var(--grid);}
+#nav .cnt{font-size:12px; color:var(--text-secondary); min-width:52px; text-align:center; font-variant-numeric:tabular-nums;}
+#nav .sep{width:1px;height:18px;background:var(--border);}
+#themeToggle, #printBtn{font-size:13px;}
+
+/* ---------- Temporary presentation gate ---------- */
+body.locked{overflow:hidden;}
+body.locked #nav,
+body.locked #deck{visibility:hidden;}
+.password-gate{
+  position:fixed; inset:0; z-index:1000;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(700px 400px at 50% 30%, rgba(235,104,52,.14), transparent 60%),
+    var(--page-plane);
+}
+body:not(.locked) .password-gate{display:none;}
+.password-card{
+  width:min(420px, 100%);
+  padding:32px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:var(--card-bg);
+  box-shadow:0 20px 60px rgba(60,40,20,.14);
+  text-align:center;
+}
+.password-card h1{
+  font-family:"Noto Serif TC", "Songti TC", serif;
+  font-size:26px;
+}
+.password-card p{
+  margin-top:9px;
+  color:var(--text-secondary);
+  font-size:15px;
+}
+.password-form{display:flex; gap:9px; margin-top:22px;}
+.password-form input{
+  flex:1; min-width:0;
+  padding:11px 13px;
+  border:1px solid var(--baseline);
+  border-radius:9px;
+  background:var(--surface-1);
+  color:var(--text-primary);
+  font:inherit;
+}
+.password-form button{
+  padding:11px 18px;
+  border:0;
+  border-radius:9px;
+  background:var(--c-brand);
+  color:#fff;
+  font:700 14px/1 "Noto Sans TC", sans-serif;
+  cursor:pointer;
+}
+.password-error{
+  min-height:20px;
+  margin-top:10px;
+  color:var(--s-critical);
+  font-size:13px;
+}
+
+@media print{
+  .password-gate{display:none !important;}
+  #nav{display:none !important;}
+  .tv-toggle{display:none !important;}
+  html, body{
+    width:1920px; height:auto; margin:0; padding:0;
+    background: var(--page-plane);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  #deck{width:1920px; height:auto; overflow:visible;}
+  .slide{
+    display:flex !important;
+    width:1920px !important;
+    height:1080px !important;
+    min-height:1080px !important;
+    max-height:1080px !important;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    padding: 40px 56px 28px 56px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .slide:last-child{page-break-after: auto; break-after: auto;}
+  @page{ size: 1920px 1080px; margin: 0; }
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="password-gate" role="dialog" aria-modal="true" aria-labelledby="password-title">
+  <div class="password-card">
+    <h1 id="password-title">Project 2 Presentation</h1>
+    <p>請輸入密碼以開啟簡報</p>
+    <form class="password-form" id="passwordForm">
+      <input id="passwordInput" type="password" inputmode="numeric" autocomplete="current-password" placeholder="密碼" aria-label="密碼" required autofocus>
+      <button type="submit">開啟</button>
+    </form>
+    <div class="password-error" id="passwordError" role="alert"></div>
+    <noscript><p>此簡報需要啟用 JavaScript。</p></noscript>
+  </div>
+</div>
+
+<script>
+(() => {
+  const accessKey = 'project2-deck-access';
+  const expectedHash = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
+  const form = document.getElementById('passwordForm');
+  const input = document.getElementById('passwordInput');
+  const error = document.getElementById('passwordError');
+
+  if (sessionStorage.getItem(accessKey) === 'granted') {
+    document.body.classList.remove('locked');
+  }
+
+  async function sha256(value) {
+    const bytes = new TextEncoder().encode(value);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (await sha256(input.value) === expectedHash) {
+      sessionStorage.setItem(accessKey, 'granted');
+      document.body.classList.remove('locked');
+      input.value = '';
+      return;
+    }
+    error.textContent = '密碼不正確，請再試一次。';
+    input.select();
+  });
+})();
+</script>
+
+<div id="nav">
+  <button id="prevBtn" title="上一頁 (←)">&#8592;</button>
+  <span class="cnt" id="slideCnt">1 / 17</span>
+  <button id="nextBtn" title="下一頁 (→)">&#8594;</button>
+  <span class="sep"></span>
+  <button id="themeToggle" title="切換淺色/深色">&#9788;</button>
+  <button id="printBtn" title="列印 / 匯出 PDF">&#128438;</button>
+</div>
+
+<main id="deck">
+
+<!-- P1 -->
+<section class="slide active" data-slide="1" id="s1">
+  <div class="slide-kicker"><span class="dot"></span>WOrange 和橙 · Project 2 · HKUST 商學院案例競賽 UST174</div>
+  <div class="slide-body col" style="justify-content:center; align-items:flex-start; gap:22px;">
+    <div class="slide-title" style="font-size:38px; max-width:1040px;">
+      目標很清楚：把直銷做到 <span class="hi">4M kg</span>／年
+    </div>
+    <div style="font-size:17px; color:var(--text-secondary); max-width:940px; line-height:1.6;">
+      現況直銷約 1.2M kg；建議 Marketing 約 HKD40 萬／年；先投流與片質，再用雙 IP 做日常。
+    </div>
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr); max-width:960px;">
+      <div class="kpi-card"><div class="lbl">年產</div><div class="val" style="font-size:26px;">6M kg</div></div>
+      <div class="kpi-card"><div class="lbl">現況直銷</div><div class="val" style="font-size:26px;">1.2M kg</div></div>
+      <div class="kpi-card"><div class="lbl">目標直銷</div><div class="val" style="font-size:26px;">4M kg</div></div>
+      <div class="kpi-card"><div class="lbl">建議年預算</div><div class="val" style="font-size:26px;">40萬</div><div class="sub">HKD／示意</div></div>
+    </div>
+    <div class="img-rail cols-3" style="flex:0 0 290px; width:100%; max-width:1040px;">
+      <div class="img-tile"><img src="fb/WOrange-Farming.png" alt=""><div class="img-cap">莊園種植</div></div>
+      <div class="img-tile"><img src="fb/WOrange-Production.png" alt=""><div class="img-cap">生產／分選</div></div>
+      <div class="img-tile"><img src="fb/WOrange-CNY.png" alt=""><div class="img-cap">送禮場景</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- P2 -->
+<section class="slide" data-slide="2" id="s2">
+  <div class="slide-kicker"><span class="dot"></span>Storyline</div>
+  <div class="slide-title">數字 → 市場 → 內容／預算 → 渠道與包裝</div>
+  <div class="slide-body col" style="justify-content:center; gap:16px;">
+    <div class="flow-row">
+      <div class="flow-step" style="border-top:3px solid var(--c-brand);"><b>I</b><br>4M kg 直銷<br><span style="font-size:11px;color:var(--text-muted)">P3–5</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-top:3px solid var(--c-base);"><b>II</b><br>市場＋認證<br><span style="font-size:11px;color:var(--text-muted)">P6–7</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-top:3px solid var(--c-alt-a);"><b>III</b><br>內容／IP／錢<br><span style="font-size:11px;color:var(--text-muted)">P8–12</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-top:3px solid var(--c-bull);"><b>IV</b><br>渠道＋包裝<br><span style="font-size:11px;color:var(--text-muted)">P13–16</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="border-top:3px solid var(--c-brand);"><b>收束</b><br>P17</div>
+    </div>
+    <div class="img-rail cols-3" style="flex:1; min-height:320px;">
+      <div class="img-tile"><img src="fb/WOrange-Story.png" alt=""><div class="img-cap">品牌故事</div></div>
+      <div class="img-tile"><img src="fb/WOrange-School2.png" alt=""><div class="img-cap">校園／IP</div></div>
+      <div class="img-tile"><img src="fb/WOrange-WINGON.png" alt=""><div class="img-cap">精品渠道</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- P3 -->
+<section class="slide" data-slide="3" id="s3">
+  <div class="slide-kicker"><span class="dot"></span>Executive Summary</div>
+  <div class="slide-title">五件事：直銷 4M kg、40 萬、投流＋片質＋雙 IP、精品試點、和橙／金裝</div>
+  <div class="slide-body col" style="justify-content:center; gap:16px;">
+    <div class="card-row">
+      <div class="card accent"><div class="card-tag">①</div><div class="card-h">直銷 4M kg</div><div class="card-b">工作目標：每年直銷 4M kg（現況約 1.2M kg）。</div></div>
+      <div class="card accent"><div class="card-tag">②</div><div class="card-h">Marketing 建議 40萬</div><div class="card-b">隊伍建議約 HKD400k／年；大半打 IG 投流與拍攝質素。</div></div>
+      <div class="card accent"><div class="card-tag">③</div><div class="card-h">投流 × 片質 × 雙IP</div><div class="card-b">先被看見、拍得好看；呀John＋阿橙日常喜劇承接。</div></div>
+    </div>
+    <div class="card-row">
+      <div class="card accent"><div class="card-tag">④</div><div class="card-h">精品試點</div><div class="card-b">一田／city'super 買「貴得合理」貨架證明；唔亂上惠康散裝。</div></div>
+      <div class="card accent"><div class="card-tag">⑤</div><div class="card-h">和橙／金裝</div><div class="card-b">似 Sony／GM：金裝只 DTC＋精品、唔深折；日常線接自用同可控平台。</div></div>
+    </div>
+    <div class="kpi-grid" style="grid-template-columns:repeat(6,1fr);">
+      <div class="kpi-card"><div class="lbl">目標直銷</div><div class="val" style="font-size:22px;">4M kg</div></div>
+      <div class="kpi-card"><div class="lbl">現況直銷</div><div class="val" style="font-size:22px;">1.2M kg</div></div>
+      <div class="kpi-card"><div class="lbl">直銷價</div><div class="val" style="font-size:22px;">$1.17</div><div class="sub">批發 $0.50</div></div>
+      <div class="kpi-card"><div class="lbl">BSI 碳足跡</div><div class="val" style="font-size:22px;">0.0793</div><div class="sub">kgCO₂e／kg</div></div>
+      <div class="kpi-card"><div class="lbl">投流占比</div><div class="val" style="font-size:22px;">~48%</div><div class="sub">建議預算內</div></div>
+      <div class="kpi-card"><div class="lbl">Logo</div><div class="val" style="font-size:22px;">和／W</div><div class="sub">雙圓章</div></div>
+    </div>
+    <div class="img-rail cols-3" style="flex:0 0 280px;">
+      <div class="img-tile"><img src="fb/WOrange-Certificate.png" alt=""><div class="img-cap">認證</div></div>
+      <div class="img-tile"><img src="fb/WOrange-Exhibition.png" alt=""><div class="img-cap">展覽／曝光</div></div>
+      <div class="img-tile"><img src="fb/WOrange-Bus.png" alt=""><div class="img-cap">巴士 OOH</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- P4 -->
+<section class="slide" data-slide="4" id="s4">
+  <div class="slide-kicker"><span class="dot"></span>第一章 · 目標：直銷 4M kg</div>
+  <div class="slide-title">工作目標就是直銷 4M kg／年——由現況約 1.2M kg 往上推</div>
+  <div class="slide-body col" style="gap:12px;">
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-card"><div class="lbl">現況直銷</div><div class="val">1.2M kg</div><div class="sub">年產 6M kg 之中</div></div>
+      <div class="kpi-card"><div class="lbl">目標直銷</div><div class="val">4M kg</div><div class="sub">本簡報北極星</div></div>
+      <div class="kpi-card"><div class="lbl">還要多賣</div><div class="val">2.8M kg</div><div class="sub">直銷增量</div></div>
+    </div>
+    <div class="slide-body" style="flex:1;min-height:0;">
+      <div class="slide-col col-6">
+        <ul class="bullets">
+          <li>直銷 USD1.17／個，批發 USD0.50——多一公斤直銷，就多一截價差。</li>
+          <li>4M kg 直銷靠：復購、企業／送禮、精品渠道、內容轉換——不是只靠廣告。</li>
+          <li>後面所有建議都對齊這個目標。</li>
+        </ul>
+      </div>
+      <div class="slide-col col-6">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">直銷量（M kg）</div>
+          <div class="chart" id="c_p4" style="flex:0 0 140px;"></div>
+          <div class="img-tile" style="flex:1; min-height:250px;"><img src="fb/WOrange-Farming2.png" alt=""><div class="img-cap">同一批橙——改渠道結構</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P5 -->
+<section class="slide" data-slide="5" id="s5">
+  <div class="slide-kicker"><span class="dot"></span>第一章 · 缺口</div>
+  <div class="slide-title">由 1.2M → 4M kg：還差約 2.8M kg——建議級廣告預算填不滿</div>
+  <div class="slide-body">
+    <div class="slide-col col-6">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">每年直銷量（M kg）</div>
+        <div class="chart" id="c_p5"></div>
+      </div>
+    </div>
+    <div class="slide-col col-6">
+      <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="kpi-card"><div class="lbl">缺口</div><div class="val" style="font-size:26px;">2.8M kg</div><div class="sub">4 − 1.2</div></div>
+        <div class="kpi-card"><div class="lbl">建議預算示意</div><div class="val" style="font-size:26px;">~800單</div><div class="sub">若 CAC≈HKD500</div></div>
+        <div class="kpi-card"><div class="lbl">廣告能填</div><div class="val" style="font-size:26px;">很少</div><div class="sub">相對 2.8M kg</div></div>
+        <div class="kpi-card"><div class="lbl">主要靠</div><div class="val" style="font-size:22px;">結構</div><div class="sub">復購＋渠道</div></div>
+      </div>
+      <div class="quote-banner" style="margin-top:10px;">建議級預算主要買認知與試購；2.8M kg 靠復購、企業、精品渠道與批發客遷移。</div>
+      <div class="img-tile" style="flex:1; min-height:240px; margin-top:8px;"><img src="fb/WOrange-Sales Promotion.png" alt=""><div class="img-cap">推廣要接到可追蹤訂單</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- P6 -->
+<section class="slide" data-slide="6" id="s6">
+  <div class="slide-kicker"><span class="dot"></span>第二章 · 市場</div>
+  <div class="slide-title">新奇士是便利錨（約 HKD6–11）；和橙官網約 9–15——要證明「可查證的貴」</div>
+  <div class="slide-body">
+    <div class="slide-col col-5">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">HKD／個（2026-07）</div>
+        <div class="chart" id="c_p6"></div>
+      </div>
+    </div>
+    <div class="slide-col col-7">
+      <table class="data-table" style="font-size:13.5px;">
+        <thead><tr><th>客路</th><th>錨點</th><th>SKU</th></tr></thead>
+        <tbody>
+          <tr><td>日常自用</td><td>Sunkist≈6.4；Jumbo≈11</td><td>自用箱</td></tr>
+          <tr><td>節慶送禮</td><td>可高於 11</td><td>透明／編號禮盒</td></tr>
+          <tr><td>企業／ESG</td><td>批量＋可交代</td><td>企業果籃＋BSI 碳數字</td></tr>
+        </tbody>
+      </table>
+      <div class="src">案例／市場現實：銷售是主要瓶頸；大眾超市已有強大品牌付費佔位。</div>
+      <div class="img-rail cols-2" style="flex:1; min-height:250px; margin-top:8px;">
+        <div class="img-tile"><img src="fb/WOrange-Price.png" alt=""><div class="img-cap">價格／產品頁</div></div>
+        <div class="img-tile"><img src="fb/WOrange-Organic Plus.png" alt=""><div class="img-cap">有機專門店貨架</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P7 BSI + certs -->
+<section class="slide" data-slide="7" id="s7">
+  <div class="slide-kicker"><span class="dot"></span>第二章 · 認證（含 BSI 碳足跡）</div>
+  <div class="slide-title">和橙有 BSI 碳足跡認證：每公斤僅 0.0793 kgCO₂e——接近公開比較帶的最低端</div>
+  <div class="slide-body col" style="gap:10px;">
+    <div class="mgmt-ask"><b>這一頁回答</b><span>有機之外，還有可講的硬數字：BSI／ISO 14067 碳足跡。</span></div>
+    <div class="slide-body" style="flex:1;min-height:0;">
+      <div class="slide-col col-6">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">BSI 碳足跡（公開來源）</div>
+          <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="kpi-card"><div class="lbl">每 kg 和橙</div><div class="val" style="font-size:28px;">0.0793</div><div class="sub">kgCO₂e（搖籃到大門）</div></div>
+            <div class="kpi-card"><div class="lbl">標準</div><div class="val" style="font-size:22px;">ISO 14067</div><div class="sub">BSI 查證</div></div>
+          </div>
+          <ul class="bullets compact" style="margin-top:10px;">
+            <li>公開稱：中國首個取得 BSI 碳足跡認證的水果品牌之一。</li>
+            <li>對照公開引用：西班牙／巴西／意大利橙種植約 <b>0.08–0.33</b> kgCO₂e／kg——和橙 0.0793 落在低端。</li>
+            <li>企業客／ESG 送禮可直接印這個數字＋證書 QR。</li>
+          </ul>
+          <div class="src">來源：HKFarmerStory／和橙永續頁公開表述。使用前建議核對證書有效期與邊界（cradle-to-gate）。</div>
+          <div class="img-tile" style="flex:1; min-height:240px; margin-top:8px;"><img src="fb/WOrange-Certificate.png" alt=""><div class="img-cap">證書／認證內容</div></div>
+        </div>
+      </div>
+      <div class="slide-col col-6">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">其他證物（並列，不互相取代）</div>
+          <ul class="bullets compact">
+            <li>中國有機產品／Global G.A.P.／綠色食品（公開來源；須核現行證書）</li>
+            <li>不打蠟、五日到家——感官與履約證據</li>
+            <li>有機 alone 不夠：香港有機零售仍有結業與未認證亂象</li>
+          </ul>
+          <div class="quote-banner">對 4M kg 目標：BSI 數字幫企業／送禮轉換；日常自用仍靠新鮮與價格敘事。</div>
+          <div class="img-tile" style="flex:1; min-height:240px; margin-top:8px;"><img src="fb/WOrange-QC.png" alt=""><div class="img-cap">品質／品控現場</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P8 FB examples -->
+<section class="slide" data-slide="8" id="s8">
+  <div class="slide-kicker"><span class="dot"></span>第三章 · FB 內容例子</div>
+  <div class="slide-title">已有會動的帖——問題是多數帖遠低於這幾支的互動</div>
+  <div class="slide-body col" style="gap:10px;">
+    <div class="mgmt-ask"><b>這一頁回答</b><span>用你們 FB 截圖做例子：什麼有效、什麼只是勤奮。</span></div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; flex:0 0 auto;">
+      <div class="panel" style="padding:8px; gap:5px;">
+        <img src="fb/WOrange-TRUE.png" alt="防偽" style="width:100%; height:240px; object-fit:cover; border-radius:8px;">
+        <div style="font-size:13px;font-weight:700;">防偽／踢爆假貨</div>
+        <div class="src">163讚／39留言／27分享——議題型會停下來。</div>
+      </div>
+      <div class="panel" style="padding:8px; gap:5px;">
+        <img src="fb/WOrange-School.png" alt="校園" style="width:100%; height:240px; object-fit:cover; border-radius:8px;">
+        <div style="font-size:13px;font-weight:700;">校園＋呀John</div>
+        <div class="src">蚯蚓 IP；留言可達樣本最高（25則級）。</div>
+      </div>
+      <div class="panel" style="padding:8px; gap:5px;">
+        <img src="fb/WOrange-Bus.png" alt="巴士" style="width:100%; height:240px; object-fit:cover; border-radius:8px;">
+        <div style="font-size:13px;font-weight:700;">巴士 OOH（60架）</div>
+        <div class="src">有曝光，缺訂單歸因——要接 UTM／投流。</div>
+      </div>
+      <div class="panel" style="padding:8px; gap:5px;">
+        <img src="fb/WOrange-Skin.png" alt="刀疤橙" style="width:100%; height:240px; object-fit:cover; border-radius:8px;">
+        <div style="font-size:13px;font-weight:700;">刀疤橙／故事</div>
+        <div class="src">反差敘事有原型；可升級成系列短片。</div>
+      </div>
+    </div>
+    <div class="quote-banner">FB 讚好約 6,751（同級偏高）。下一步不是再多發靜態圖，而是把「會停看」的題材做成片＋投流放大。</div>
+  </div>
+</section>
+
+<!-- P9 simplified -->
+<section class="slide" data-slide="9" id="s9">
+  <div class="slide-kicker"><span class="dot"></span>第三章 · 內容三件事</div>
+  <div class="slide-title">只要記住三樣：投流、拍攝質素、雙 IP</div>
+  <div class="slide-body col" style="justify-content:center; gap:18px;">
+    <div class="card-row">
+      <div class="card accent"><div class="card-tag">① 投流</div><div class="card-h">自然流量不夠</div><div class="card-b">好內容困在粉絲牆。建議預算裡約一半打 IG／Meta 付費，集中推少數片，而不是天天免費發。</div></div>
+      <div class="card accent"><div class="card-tag">② 拍攝質素</div><div class="card-h">先好看，再多發</div><div class="card-b">畫面、光線、構圖、完播感優先。現在勤奮但 like 低，很多是「有出、但停不住眼」。</div></div>
+      <div class="card accent"><div class="card-tag">③ 雙 IP</div><div class="card-h">呀John ＋ 阿橙</div><div class="card-b">夫妻日常喜劇接黏著；產品當和解道具，不是每句硬廣。</div></div>
+    </div>
+    <div class="quote-banner">順序很短：把片拍好 → 用錢推出去 → 用雙 IP 系列讓人留下。</div>
+    <div class="img-rail cols-3" style="flex:0 0 280px;">
+      <div class="img-tile"><img src="fb/WOrange-Production2.png" alt=""><div class="img-cap">片質：真實生產畫面</div></div>
+      <div class="img-tile"><img src="fb/WOrange-Skin.png" alt=""><div class="img-cap">會停看的題材</div></div>
+      <div class="img-tile"><img src="fb/WOrange-School3.png" alt=""><div class="img-cap">IP／校園可系列化</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- P10 Dual IP -->
+<section class="slide" data-slide="10" id="s10">
+  <div class="slide-kicker"><span class="dot"></span>第三章 · 雙 IP</div>
+  <div class="slide-title">呀John（蚯蚓）＋阿橙：日常故事為主，不是農場導賞片</div>
+  <div class="slide-body">
+    <div class="slide-col col-6">
+      <table class="data-table" style="font-size:14px;">
+        <thead><tr><th>角色</th><th>是誰</th></tr></thead>
+        <tbody>
+          <tr><td><b>呀John</b></td><td>既有蚯蚓吉祥物；老實、懂堆肥</td></tr>
+          <tr><td><b>阿橙</b></td><td>新建議橙角色；直率、愛面子</td></tr>
+          <tr><td><b>關係</b></td><td>夫妻／拍檔——嘈交、和好</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-col col-6">
+      <ul class="bullets compact">
+        <li>主線：日常生活喜劇（觀眾先追角色）。</li>
+        <li>和橙出場：解方道具（送一箱和好）。</li>
+        <li>平台：IG Reels 為主。</li>
+      </ul>
+      <div class="img-rail cols-2" style="flex:1; min-height:240px; margin-top:8px;">
+        <div class="img-tile"><img src="fb/WOrange-School.png" alt=""><div class="img-cap">呀John／校園</div></div>
+        <div class="img-tile"><img src="fb/WOrange-Parent-Child Tour.png" alt=""><div class="img-cap">親子場景</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P11 story -->
+<section class="slide" data-slide="11" id="s11">
+  <div class="slide-kicker"><span class="dot"></span>第三章 · 故事樣板</div>
+  <div class="slide-title">嘈交 →「點算？」→ 送和橙 → 和好（15–30 秒）</div>
+  <div class="slide-body col" style="justify-content:center; gap:14px;">
+    <div class="flow-row">
+      <div class="flow-step"><b>1</b><br>嘈交</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>2</b><br>呀John 問點算</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>3</b><br>送箱和橙</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><b>4</b><br>和好如初</div>
+    </div>
+    <div class="card-row">
+      <div class="card"><div class="card-tag">A</div><div class="card-h">和好如初</div><div class="card-b">經典和解。</div></div>
+      <div class="card"><div class="card-tag">B</div><div class="card-h">阿橙吃醋</div><div class="card-b">校園玩太開心。</div></div>
+      <div class="card"><div class="card-tag">C</div><div class="card-h">忘記紀念日</div><div class="card-b">急送禮盒補鑊。</div></div>
+    </div>
+    <div class="note">產品鏡頭放最後幾秒；開頭不要報價。</div>
+    <div class="img-rail cols-3" style="flex:0 0 270px;">
+      <div class="img-tile"><img src="fb/WOrange-CNY2.png" alt=""><div class="img-cap">送禮／和解場景</div></div>
+      <div class="img-tile"><img src="fb/WOrange-CNY3.png" alt=""><div class="img-cap">節日內容</div></div>
+      <div class="img-tile"><img src="fb/WOrange-Story2.png" alt=""><div class="img-cap">故事連載感</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- P12 Marketing -->
+<section class="slide" data-slide="12" id="s12">
+  <div class="slide-kicker"><span class="dot"></span>第三章 · 建議預算＋投流方向</div>
+  <div class="slide-title">建議約 HKD40 萬怎麼拆——重點：長者、認同理念，再加送禮／健康</div>
+  <div class="slide-body col" style="gap:8px;">
+    <div class="slide-body" style="flex:1;min-height:0;">
+      <div class="slide-col col-5">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">建議預算拆分（HKD・示意）</div>
+          <div class="chart" id="c_p12"></div>
+          <table class="data-table" style="font-size:12px;margin-top:6px;">
+            <tbody>
+              <tr><td>IG／Meta 投流</td><td class="num"><b>~190k</b></td></tr>
+              <tr><td>短片／攝影製作</td><td class="num">~90k</td></tr>
+              <tr><td>KOC／試食</td><td class="num">~50k</td></tr>
+              <tr><td>設計／包裝樣／雜項</td><td class="num">~50k</td></tr>
+              <tr><td><b>合計（建議）</b></td><td class="num"><b>~380–400k</b></td></tr>
+            </tbody>
+          </table>
+          <div class="src">以下為隊伍建議比例，非公司已批預算。</div>
+        </div>
+      </div>
+      <div class="slide-col col-7">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">建議投流方向（IG／Meta）</div>
+          <table class="data-table" style="font-size:12.5px;">
+            <thead><tr><th>方向</th><th>對象示意</th><th>素材</th><th>KPI</th></tr></thead>
+            <tbody>
+              <tr><td><b>長者／銀髮</b></td><td>55+；興趣：健康飲食、養生、有機、孫輩</td><td>切開／不打蠟、大字清晰、子女送禮版</td><td>加購、完播、留言查詢</td></tr>
+              <tr><td><b>理念認同</b></td><td>關注有機、低碳、本地／可追溯農業、ESG；互動過環保／農場內容</td><td>BSI 0.0793、莊園故事、創辦理念</td><td>跟頁、加購、分享</td></tr>
+              <tr><td><b>送禮季</b></td><td>25–55；禮品、親子、節日</td><td>開箱／五日到家</td><td>購買</td></tr>
+              <tr><td><b>健康自用</b></td><td>健身／低糖／有機超市興趣</td><td>切開、碳數字卡</td><td>加購</td></tr>
+              <tr><td><b>企業採購</b></td><td>行政／HR／採購</td><td>企業果籃＋證書</td><td>表單／WhatsApp</td></tr>
+              <tr><td><b>排除</b></td><td colspan="3">過寬「全港 18–65」；無 CTA 純曝光；同時測超過 4 支</td></tr>
+            </tbody>
+          </table>
+          <div class="src">預算傾斜：長者＋理念認同合計建議佔投流一半以上；每季主推 2–4 支片。</div>
+          <div class="img-rail cols-2" style="flex:0 0 280px; margin-top:8px;">
+            <div class="img-tile"><img src="fb/WOrange-Health.png" alt=""><div class="img-cap">健康／長者向素材</div></div>
+            <div class="img-tile"><img src="fb/WOrange-Professor.png" alt=""><div class="img-cap">理念／信任背書場景</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P13 Channel expand -->
+<section class="slide" data-slide="13" id="s13">
+  <div class="slide-kicker"><span class="dot"></span>第四章 · 精品渠道試點</div>
+  <div class="slide-title">一田／city'super：買的是「貴得合理」的貨架證明——不是惠康散裝衝量</div>
+  <div class="slide-body col" style="gap:10px;">
+    <div class="mgmt-ask"><b>這一頁回答</b><span>渠道擴張要對齊直銷 4M kg 同溢價；精品試點先，大眾散裝暫緩。</span></div>
+    <div class="slide-body" style="flex:1;min-height:0;">
+      <div class="slide-col col-7">
+        <table class="data-table" style="font-size:13px;">
+          <thead><tr><th>做</th><th>渠道</th><th>上什麼</th><th>目的</th></tr></thead>
+          <tbody>
+            <tr><td><b>主場</b></td><td>DTC（官網＋自取點）</td><td>和橙＋金裝全線</td><td>價格同故事主場；扛直銷公斤數</td></tr>
+            <tr><td><b>Y1 試點</b></td><td>一田／city'super <b>3–8 店</b></td><td><b>金裝／精品禮盒為主</b></td><td>貨架證明「貴得合理」；送禮可見度</td></tr>
+            <tr><td><b>加密</b></td><td>精選有機／精品店</td><td>和橙日常＋小禮盒</td><td>信任橋；可控價</td></tr>
+            <tr><td><b>條件</b></td><td>酒店／企業／航空</td><td>企業裝／金裝</td><td>可作下一階段開拓</td></tr>
+            <tr><td><b>限制</b></td><td>HKTVmall</td><td>和橙小包裝入門</td><td>觸達要、深折唔好傷錨</td></tr>
+            <tr><td><b>暫緩</b></td><td>惠康類大眾散裝橙架</td><td>—</td><td>價格錨＝commodity；亂上會打穿 DTC／金裝</td></tr>
+          </tbody>
+        </table>
+        <div class="quote-banner" style="margin-top:8px;">精品上架＝溢價合法性投資；直銷公斤數仍主要靠 DTC／復購／企業，唔係靠超市堆量。</div>
+      </div>
+      <div class="slide-col col-5">
+        <div class="img-rail" style="flex:1; grid-template-columns:1fr; gap:10px;">
+          <div class="img-tile"><img src="fb/WOrange-WINGON.png" alt=""><div class="img-cap">精品貨架＝證明「貴得合理」</div></div>
+          <div class="img-tile"><img src="fb/WOrange-Organic Plus.png" alt=""><div class="img-cap">有機專門店：日常和橙</div></div>
+          <div class="img-tile"><img src="fb/WOrange-HKTV mall.png" alt=""><div class="img-cap">平台只入門檔、控折</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P14 conflict -->
+<section class="slide" data-slide="14" id="s14">
+  <div class="slide-kicker"><span class="dot"></span>第四章 · 和橙／金裝分級（似 Sony GM）</div>
+  <div class="slide-title">和橙＝日常線；金裝和橙＝旗艦線——一眼分級，共用小 Logo「和／W」</div>
+  <div class="slide-body col" style="gap:8px;">
+    <div class="mgmt-ask"><b>這一頁回答</b><span>點樣用現有「和橙／金裝」護溢價：金裝只走精品＋DTC、唔深折；日常線接自用同可控平台。</span></div>
+    <div class="slide-body" style="flex:1;min-height:0;">
+      <div class="slide-col col-6">
+        <ul class="bullets compact">
+          <li><b>直覺</b>：似 Sony 機身 vs G Master 鏡頭——同一個屋企，旗艦一眼睇得出。</li>
+          <li><b>金裝和橙</b>：送禮／旗艦；透明窗或金色禮盒；<b>只 DTC＋一田／city'super 等精品</b>；原則唔深折、唔上大眾散裝。</li>
+          <li><b>和橙</b>：日常／自用；紙箱；DTC＋精選專門店；平台只放<b>小包裝入門</b>並寫折扣下限。</li>
+          <li><b>Logo</b>：兩線都留細圓章「和」或「W」；金裝加「金裝」字樣即可，唔另開第二牌子。</li>
+        </ul>
+        <div class="quote-banner" style="margin-top:6px;">上一頁精品試點上嘅，應以金裝為主——先證明貴；和橙日常唔好同金裝擠同一促銷堆頭。</div>
+      </div>
+      <div class="slide-col col-6">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">兩線 × 渠道（記住呢張表）</div>
+          <table class="data-table" style="font-size:12.5px;">
+            <thead><tr><th></th><th>和橙</th><th>金裝和橙</th></tr></thead>
+            <tbody>
+              <tr><td>角色</td><td>日常／自用</td><td>旗艦／送禮（GM）</td></tr>
+              <tr><td>DTC</td><td>✓</td><td>✓</td></tr>
+              <tr><td>一田／city'super</td><td>可選日常</td><td><b>主推</b></td></tr>
+              <tr><td>有機專門店</td><td>✓</td><td>小禮盒可</td></tr>
+              <tr><td>HKTVmall 等</td><td>入門小包裝</td><td><b>不上／不深折</b></td></tr>
+              <tr><td>惠康散裝</td><td>暫緩</td><td>不上</td></tr>
+              <tr><td>折扣</td><td>可有下限</td><td>原則不深折</td></tr>
+            </tbody>
+          </table>
+          <div class="img-tile" style="flex:1; min-height:240px; margin-top:8px;"><img src="fb/WOrange-Product Diversity.png" alt=""><div class="img-cap">分級清楚，小 Logo 貫穿</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P15 Logo -->
+<section class="slide" data-slide="15" id="s15">
+  <div class="slide-kicker"><span class="dot"></span>品牌識別 · Logo ＋ Slogan</div>
+  <div class="slide-title">Logo：圓章「和」＋ 圓章「W」——夠簡，港味與英文並行</div>
+  <div class="slide-body">
+    <div class="slide-col col-4" style="align-items:center; justify-content:center; gap:20px;">
+      <div style="display:flex; gap:28px; align-items:center;">
+        <div style="width:120px;height:120px;border-radius:50%;border:4px solid var(--c-brand);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-size:56px;font-weight:700;color:var(--c-brand);background:var(--card-bg);">和</div>
+        <div style="width:120px;height:120px;border-radius:50%;border:4px solid var(--c-brand);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-size:56px;font-weight:700;color:var(--c-brand);background:var(--card-bg);">W</div>
+      </div>
+      <div class="note" style="text-align:center;">可單用或並排；橙章貼紙、盒面、片尾統一。</div>
+      <div class="img-tile" style="width:100%; flex:0 0 270px;"><img src="fb/WOrange-TRUE2.png" alt=""><div class="img-cap">應用在真實帖文／包裝</div></div>
+    </div>
+    <div class="slide-col col-8">
+      <div class="panel-title">Slogan 候選（多留幾句測試）</div>
+      <table class="data-table" style="font-size:14px;">
+        <thead><tr><th>候選</th><th>佔什麼</th></tr></thead>
+        <tbody>
+          <tr><td><b>和橙，摘落嚟五日到你家。</b></td><td><b>主推：新鮮時效（可驗證）</b></td></tr>
+          <tr><td>和橙，山頭種出的安心。</td><td>安心＋可到訪</td></tr>
+          <tr><td>和橙，一箱一個莊園故事。</td><td>單一莊園 vs 混賣</td></tr>
+          <tr><td>和橙，送禮送得到源頭。</td><td>送禮＋溯源</td></tr>
+          <tr><td>和橙，不打蠟的真橙味。</td><td>工藝差異</td></tr>
+          <tr><td>和橙，每公斤 0.0793 的認真。</td><td>BSI 碳數字（企業向）</td></tr>
+          <tr><td>和橙，和好如初的一箱。</td><td>雙 IP／送禮情緒</td></tr>
+          <tr><td>WOrange — five days from the hill.</td><td>英文版</td></tr>
+        </tbody>
+      </table>
+      <div class="quote-banner" style="margin-top:8px;">主句仍推「五日到你家」；其餘按客路 A/B 測。</div>
+    </div>
+  </div>
+</section>
+
+<!-- P16 Packaging -->
+<section class="slide" data-slide="16" id="s16">
+  <div class="slide-kicker"><span class="dot"></span>第四章 · 包裝</div>
+  <div class="slide-title">金裝用透明窗禮盒（學日本見せる）；和橙日常用紙箱——包裝跟產品線走</div>
+  <div class="slide-body">
+    <div class="slide-col col-6">
+      <ul class="bullets">
+        <li>日本夕張蜜瓜、高級草莓／芒果禮盒常用<b>透明蓋或開窗</b>：果形、色澤自己說話。</li>
+        <li><b>金裝和橙</b>：半透明／開窗＋內托；盒面小圓章「和／W」＋「金裝」＋五日 Slogan／BSI 小標。</li>
+        <li><b>和橙日常</b>：紙箱自用；入門小盒上可控平台——同品牌，檔次靠包裝唔靠改名。</li>
+      </ul>
+    </div>
+    <div class="slide-col col-6">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">包裝對齊和橙／金裝 × 渠道</div>
+        <table class="data-table" style="font-size:13px;">
+          <thead><tr><th>線</th><th>形態</th><th>渠道</th></tr></thead>
+          <tbody>
+            <tr><td>金裝</td><td>透明窗／金色禮盒</td><td>DTC＋一田／city'super</td></tr>
+            <tr><td>和橙日常</td><td>紙箱自用</td><td>DTC＋專門店</td></tr>
+            <tr><td>和橙入門</td><td>小盒／少顆</td><td>平台（控折）</td></tr>
+          </tbody>
+        </table>
+        <div class="src">參考類型：日本百貨水果禮盒的「見せる（展示）」邏輯；非指授權聯名。</div>
+        <div class="img-rail cols-2" style="flex:1; min-height:240px; margin-top:8px;">
+          <div class="img-tile"><img src="fb/WOrange-QC2.png" alt=""><div class="img-cap">果實本身是英雄</div></div>
+          <div class="img-tile"><img src="fb/WOrange-Factory Visit.png" alt=""><div class="img-cap">可見／可訪的信任</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P17 close -->
+<section class="slide" data-slide="17" id="s17">
+  <div class="slide-kicker"><span class="dot"></span>One-pager</div>
+  <div class="slide-title">帶走：直銷 4M kg · 建議預算投流＋片質 · 雙IP · 和橙／金裝分級</div>
+  <div class="slide-body col" style="justify-content:center; gap:16px;">
+    <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr);">
+      <div class="kpi-card"><div class="lbl">直銷目標</div><div class="val" style="font-size:26px;">4M kg</div><div class="sub">現況 1.2M kg</div></div>
+      <div class="kpi-card"><div class="lbl">建議預算</div><div class="val" style="font-size:26px;">~40萬</div><div class="sub">投流約一半・示意</div></div>
+      <div class="kpi-card"><div class="lbl">內容</div><div class="val" style="font-size:22px;">投流×片質×IP</div></div>
+      <div class="kpi-card"><div class="lbl">Logo</div><div class="val" style="font-size:22px;">和／W</div><div class="sub">雙圓章</div></div>
+      <div class="kpi-card"><div class="lbl">包裝</div><div class="val" style="font-size:22px;">透明禮盒</div><div class="sub">日式見せる</div></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-step"><b>1</b><br>拍好英雄片</div><div class="flow-arrow">→</div>
+      <div class="flow-step"><b>2</b><br>IG 投流放大</div><div class="flow-arrow">→</div>
+      <div class="flow-step"><b>3</b><br>雙 IP 日常</div><div class="flow-arrow">→</div>
+      <div class="flow-step"><b>4</b><br>金裝×精品試點</div>
+    </div>
+    <div class="img-rail cols-3" style="flex:0 0 280px;">
+      <div class="img-tile"><img src="fb/WOrange-Exhibition2.png" alt=""><div class="img-cap">被看見</div></div>
+      <div class="img-tile"><img src="fb/WOrange-VTC.png" alt=""><div class="img-cap">年輕創作能量</div></div>
+      <div class="img-tile"><img src="fb/WOrange-HKUST.png" alt=""><div class="img-cap">下一程</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ==================================================================
+   Navigation + theme
+   ================================================================== */
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  const cnt = document.getElementById('slideCnt');
+  function show(i){
+    idx = Math.max(0, Math.min(total-1, i));
+    slides.forEach((s,j)=> s.classList.toggle('active', j===idx));
+    cnt.textContent = (idx+1) + ' / ' + total;
+    location.hash = 's' + (idx+1);
+    setTimeout(renderVisible, 0);
+  }
+  document.getElementById('prevBtn').addEventListener('click', ()=>show(idx-1));
+  document.getElementById('nextBtn').addEventListener('click', ()=>show(idx+1));
+  window.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowRight' || e.key===' ') { show(idx+1); e.preventDefault(); }
+    if(e.key==='ArrowLeft') { show(idx-1); e.preventDefault(); }
+  });
+  const hashMatch = location.hash.match(/s(\d+)/);
+  if(hashMatch) idx = parseInt(hashMatch[1],10)-1;
+
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    if(t) document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.removeAttribute('data-theme');
+  }
+  let savedTheme = localStorage.getItem('worange-deck-theme');
+  applyTheme(savedTheme);
+  themeBtn.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : (cur === 'light' ? null : 'dark');
+    applyTheme(next);
+    if(next) localStorage.setItem('worange-deck-theme', next); else localStorage.removeItem('worange-deck-theme');
+    setTimeout(renderVisible, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', ()=>window.print());
+
+  // re-render current slide's charts every time it becomes visible (cheap: small inline SVGs)
+  window.renderVisible = function(){
+    if(window.CHART_REGISTRY && window.CHART_REGISTRY[idx+1]){
+      try{ window.CHART_REGISTRY[idx+1](); }catch(e){ console.error('chart render error slide', idx+1, e); }
+    }
+  };
+  window.addEventListener('load', ()=>{ show(idx); });
+})();
+</script>
+
+<script>
+/* ==================================================================
+   Chart engine — small SVG-generating helpers.
+   Color roles (fixed, never remapped across the deck):
+     base=--c-base(blue,Base) bull=--c-bull(aqua,Bull) bear=--c-bear(yellow,Bear)
+     brand=--c-brand(orange,WOrange) altA=--c-alt-a(violet) crit=--c-crit(red) altB=--c-alt-b(magenta)
+   ================================================================== */
+(function(){
+  const CV = getComputedStyle(document.documentElement);
+  function cvar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  const COL = {
+    get base(){return cvar('--c-base');}, get bull(){return cvar('--c-bull');}, get bear(){return cvar('--c-bear');},
+    get altA(){return cvar('--c-alt-a');}, get crit(){return cvar('--c-crit');}, get altB(){return cvar('--c-alt-b');},
+    get brand(){return cvar('--c-brand');},
+    get good(){return cvar('--s-good');}, get warning(){return cvar('--s-warning');}, get serious(){return cvar('--s-serious');}, get critical(){return cvar('--s-critical');},
+    get grid(){return cvar('--grid');}, get baseline(){return cvar('--baseline');},
+    get txt(){return cvar('--text-primary');}, get txt2(){return cvar('--text-secondary');}, get muted(){return cvar('--text-muted');},
+    get surface(){return cvar('--card-bg');}
+  };
+  window.WCOL = COL;
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function legendHTML(items){
+    return '<div class="legend">' + items.map(it =>
+      `<div class="legend-item"><span class="sw" style="background:${it.color}"></span>${esc(it.label)}</div>`
+    ).join('') + '</div>';
+  }
+  window.legendHTML = legendHTML;
+
+  function svgTag(vbW, vbH, inner){
+    return `<svg viewBox="0 0 ${vbW} ${vbH}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;
+  }
+
+  function tvToggleHTML(id){
+    return `<button class="tv-toggle" onclick="const c=document.getElementById('${id}');c.querySelector('.chart-visual').classList.toggle('hidden');c.querySelector('.chart-table').classList.toggle('hidden');">表格檢視</button>`;
+  }
+  window.tvToggleHTML = tvToggleHTML;
+
+  /* ---------------- Horizontal bar chart ---------------- */
+  // data: [{label, value, display, color}]
+  function hBarChart(el, opts){
+    const {data, xMax, unit='', showTableToggle=false} = opts;
+    const W=640, H=Math.max(220, data.length*46+30);
+    const labelW = 190, chartL = labelW+10, chartR = W-70, plotW = chartR-chartL;
+    const max = xMax || Math.max(...data.map(d=>d.value)) * 1.12;
+    const rowH = (H-20)/data.length;
+    let bars='', grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x = chartL + plotW*t;
+      grid += `<line x1="${x}" y1="6" x2="${x}" y2="${H-14}" stroke="${COL.grid}" stroke-width="1"/>`;
+    });
+    data.forEach((d,i)=>{
+      const y = 10 + i*rowH + rowH*0.5;
+      const bw = Math.max(2, plotW * (d.value/max));
+      const barH = Math.min(22, rowH*0.52);
+      bars += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12.5" fill="${COL.txt}" font-weight="600">${esc(d.label)}</text>`;
+      bars += `<rect x="${chartL}" y="${y-barH/2}" width="${bw}" height="${barH}" rx="4" fill="${d.color||COL.base}"><title>${esc(d.label)}: ${esc(d.display||d.value)}</title></rect>`;
+      bars += `<text x="${chartL+bw+8}" y="${y+4}" font-size="12.5" font-weight="700" fill="${COL.txt}">${esc(d.display!=null?d.display:d.value+unit)}</text>`;
+    });
+    const visual = svgTag(W,H, grid+bars);
+    el.innerHTML = `<div class="chart-visual">${visual}</div>`;
+    if(showTableToggle){
+      el.innerHTML += tableHTML(['項目','數值'], data.map(d=>[d.label, d.display||d.value]));
+    }
+  }
+  window.hBarChart = hBarChart;
+
+  /* ---------------- Horizontal STACKED bar (segments sum to a total, e.g. weighted score) ---------------- */
+  // data:[{label, total, display, segments:[{value,color,name}]}]
+  function hStackedBarChart(el, opts){
+    const {data, xMax, unit=''} = opts;
+    const W=640, H=data.length*42+30;
+    const labelW=150, chartL=labelW+10, chartR=W-60, plotW=chartR-chartL;
+    const max = xMax || Math.max(...data.map(d=>d.total))*1.1;
+    const rowH=(H-16)/data.length;
+    let grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x=chartL+plotW*t;
+      grid += `<line x1="${x}" y1="4" x2="${x}" y2="${H-14}" stroke="${WCOL.grid}" stroke-width="1"/>`;
+    });
+    let out='';
+    data.forEach((d,i)=>{
+      const y=8+i*rowH+rowH*0.5, barH=Math.min(22,rowH*0.55);
+      out += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${WCOL.txt}">${esc(d.label)}</text>`;
+      let cx = chartL;
+      d.segments.forEach(seg=>{
+        const w = plotW*(seg.value/max);
+        out += `<rect x="${cx}" y="${y-barH/2}" width="${Math.max(0,w-1.5)}" height="${barH}" fill="${seg.color}"><title>${esc(d.label)} · ${esc(seg.name)}: ${seg.value.toFixed(2)}</title></rect>`;
+        cx += w;
+      });
+      out += `<text x="${cx+8}" y="${y+4}" font-size="12.5" font-weight="800" fill="${WCOL.txt}">${esc(d.display!=null?d.display:d.total)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H,grid+out)}</div>`;
+  }
+  window.hStackedBarChart = hStackedBarChart;
+
+  /* ---------------- Horizontal diverging bar (supports negative values from a zero baseline) ---------------- */
+  // data:[{label,value,display,color}]  xMin<0<xMax
+  function hDivergingBarChart(el, opts){
+    const {data, xMin, xMax, unit=''} = opts;
+    const W=640, H=data.length*40+30;
+    const labelW=170, chartL=labelW+10, chartR=W-40, plotW=chartR-chartL;
+    function X(v){ return chartL + plotW*((v-xMin)/(xMax-xMin)); }
+    const zeroX = X(0);
+    const rowH=(H-16)/data.length;
+    let grid = `<line x1="${zeroX}" y1="4" x2="${zeroX}" y2="${H-14}" stroke="${WCOL.baseline}" stroke-width="1.5"/>`;
+    let out='';
+    data.forEach((d,i)=>{
+      const y=8+i*rowH+rowH*0.5, barH=Math.min(20,rowH*0.55);
+      out += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${WCOL.txt}">${esc(d.label)}</text>`;
+      const bx = X(Math.min(0,d.value)), bw = Math.abs(X(d.value)-zeroX);
+      out += `<rect x="${bx}" y="${y-barH/2}" width="${Math.max(1,bw)}" height="${barH}" rx="3" fill="${d.color}"><title>${esc(d.label)}: ${esc(d.display)}</title></rect>`;
+      const lx = d.value>=0 ? X(d.value)+6 : X(d.value)-6;
+      out += `<text x="${lx}" y="${y+4}" text-anchor="${d.value>=0?'start':'end'}" font-size="11.5" font-weight="800" fill="${WCOL.txt}">${esc(d.display)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+out)}</div>`;
+  }
+  window.hDivergingBarChart = hDivergingBarChart;
+
+  /* ---------------- Risk heat matrix (5x5 likelihood x impact grid, HTML/CSS) ---------------- */
+  // risks: [{id,label,likelihood(1-5),impact(1-5)}]
+  function riskMatrixGrid(el, opts){
+    const {risks} = opts;
+    function bandColor(v){
+      if(v>=15) return WCOL.critical; if(v>=12) return WCOL.serious; if(v>=9) return WCOL.warning; return WCOL.good;
+    }
+    const cellsByPos = {};
+    risks.forEach(r=>{ const k=r.likelihood+'-'+r.impact; (cellsByPos[k]=cellsByPos[k]||[]).push(r); });
+    let rowsHtml='';
+    for(let impact=5; impact>=1; impact--){
+      let rowCells = `<div style="display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:${WCOL.txt2};width:34px;">影響${impact}</div>`;
+      for(let like=1; like<=5; like++){
+        const v = like*impact;
+        const c = bandColor(v);
+        const items = cellsByPos[like+'-'+impact] || [];
+        rowCells += `<div style="flex:1;aspect-ratio:1.6;background:${c};opacity:${items.length?0.85:0.28};border-radius:5px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;padding:2px;">` +
+          items.map(it=>`<span title="${esc(it.label)} (值${v})" style="background:rgba(255,255,255,.92);color:#111;font-size:10px;font-weight:800;border-radius:3px;padding:0 4px;">${esc(it.id)}</span>`).join('') +
+          `</div>`;
+      }
+      rowsHtml += `<div style="display:flex;gap:3px;margin-bottom:3px;">${rowCells}</div>`;
+    }
+    let xAxis = `<div style="display:flex;gap:3px;margin-left:34px;">` + [1,2,3,4,5].map(l=>`<div style="flex:1;text-align:center;font-size:10.5px;font-weight:700;color:${WCOL.txt2};">可能性${l}</div>`).join('') + `</div>`;
+    el.innerHTML = `<div class="chart-visual">${rowsHtml}${xAxis}</div>`;
+  }
+  window.riskMatrixGrid = riskMatrixGrid;
+
+  /* ---------------- Grouped horizontal/vertical bar (multi-series across categories) ---------------- */
+  // categories:[label,...] series:[{name,color,values:[...],displays:[...]}]
+  function groupedBarChart(el, opts){
+    const {categories, series, yMax, unit=''} = opts;
+    const W=640, H=300;
+    const padL=54, padR=16, padT=14, padB=40;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    const max = yMax || Math.max(...series.flatMap(s=>s.values))*1.15;
+    const groupW = plotW/categories.length;
+    const barGap=3, barW = Math.min(30,(groupW-14)/series.length);
+    let grid='', bars='', axisLabels='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y = padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      const tickValue = max*t;
+      const tickLabel = max < 5 ? tickValue.toFixed(1) : Math.round(tickValue);
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10.5" fill="${COL.muted}">${tickLabel}${unit}</text>`;
+    });
+    grid += `<line x1="${padL}" y1="${padT+plotH}" x2="${W-padR}" y2="${padT+plotH}" stroke="${COL.baseline}" stroke-width="1.5"/>`;
+    categories.forEach((cat,ci)=>{
+      const gx = padL + ci*groupW;
+      const total = series.length*barW + (series.length-1)*barGap;
+      const startX = gx + (groupW-total)/2;
+      series.forEach((s,si)=>{
+        const v = s.values[ci];
+        const bh = plotH * (v/max);
+        const bx = startX + si*(barW+barGap);
+        const by = padT+plotH-bh;
+        bars += `<rect x="${bx}" y="${by}" width="${barW}" height="${Math.max(1,bh)}" rx="3" fill="${s.color}"><title>${esc(s.name)} · ${esc(cat)}: ${esc(s.displays?s.displays[ci]:v)}</title></rect>`;
+        if(s.displays && s.displays[ci]!=null && barW>16){
+          bars += `<text x="${bx+barW/2}" y="${by-4}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${COL.txt2}">${esc(s.displays[ci])}</text>`;
+        }
+      });
+      axisLabels += `<text x="${gx+groupW/2}" y="${padT+plotH+18}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600">${esc(cat)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+bars+axisLabels)}</div>` +
+      legendHTML(series.map(s=>({label:s.name,color:s.color})));
+  }
+  window.groupedBarChart = groupedBarChart;
+
+  /* ---------------- Multi-series line chart ---------------- */
+  // xLabels:[...] series:[{name,color,values:[...], endLabel}]
+  function lineChart(el, opts){
+    const {xLabels, series, yMax, unit='', yMin=0} = opts;
+    const W=640, H=300;
+    const padL=54, padR=90, padT=16, padB=34;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    const max = yMax || Math.max(...series.flatMap(s=>s.values))*1.1;
+    const min = yMin;
+    const xStep = plotW/(xLabels.length-1);
+    function xy(i,v){ return [padL+i*xStep, padT+plotH*(1-(v-min)/(max-min))]; }
+    let grid='', lines='', axisLabels='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y = padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10.5" fill="${COL.muted}">${(min+(max-min)*t).toFixed(0)}${unit}</text>`;
+    });
+    xLabels.forEach((xl,i)=>{
+      axisLabels += `<text x="${xy(i,min)[0]}" y="${padT+plotH+20}" text-anchor="middle" font-size="11" fill="${COL.txt2}" font-weight="600">${esc(xl)}</text>`;
+    });
+    series.forEach(s=>{
+      const pts = s.values.map((v,i)=>xy(i,v));
+      const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      lines += `<path d="${path}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linecap="round"/>`;
+      pts.forEach((p,i)=>{
+        lines += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${COL.surface}" stroke="${s.color}" stroke-width="2.5"><title>${esc(s.name)} · ${esc(xLabels[i])}: ${esc(s.displays?s.displays[i]:s.values[i])}</title></circle>`;
+      });
+      const last = pts[pts.length-1];
+      lines += `<text x="${last[0]+8}" y="${last[1]+4}" font-size="12" font-weight="800" fill="${s.color}">${esc(s.endLabel!=null?s.endLabel:s.name)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+lines+axisLabels)}</div>` +
+      legendHTML(series.map(s=>({label:s.name,color:s.color})));
+  }
+  window.lineChart = lineChart;
+
+  /* ---------------- Funnel chart ---------------- */
+  // stages: [{label, value(0-1 relative width), display, color, sub}]
+  function funnelChart(el, opts){
+    const {stages} = opts;
+    const W=640, H=stages.length*76+10;
+    let out='';
+    stages.forEach((s,i)=>{
+      const y = 8 + i*76;
+      const w = 120 + (W-260) * s.value;
+      const x = (W-w)/2;
+      out += `<rect x="${x}" y="${y}" width="${w}" height="46" rx="6" fill="${s.color}" opacity="${1-i*0.12}"><title>${esc(s.label)}: ${esc(s.display)}</title></rect>`;
+      out += `<text x="${W/2}" y="${y+21}" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">${esc(s.label)}</text>`;
+      out += `<text x="${W/2}" y="${y+38}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" opacity="0.92">${esc(s.display)}</text>`;
+      if(s.sub) out += `<text x="${W/2}" y="${y+58}" text-anchor="middle" font-size="10.5" fill="${COL.muted}">${esc(s.sub)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H,out)}</div>`;
+  }
+  window.funnelChart = funnelChart;
+
+  /* ---------------- Radar chart (single series) ---------------- */
+  // axes:[label,...] values:[0-5,...] max
+  function radarChart(el, opts){
+    const {axes, values, max=5, color} = opts;
+    const c = color || COL.brand;
+    const W=440,H=340, cx=W/2, cy=H/2-6, R=118;
+    const n=axes.length;
+    function pt(i,v){
+      const ang = -Math.PI/2 + i*(2*Math.PI/n);
+      const r = R*(v/max);
+      return [cx+r*Math.cos(ang), cy+r*Math.sin(ang)];
+    }
+    let rings='', spokes='', axisLabels='';
+    [0.25,0.5,0.75,1].forEach(t=>{
+      const p = axes.map((a,i)=>pt(i,max*t));
+      rings += `<polygon points="${p.map(q=>q.join(',')).join(' ')}" fill="none" stroke="${COL.grid}" stroke-width="1"/>`;
+    });
+    axes.forEach((a,i)=>{
+      const p = pt(i,max);
+      spokes += `<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="${COL.grid}" stroke-width="1"/>`;
+      const lp = pt(i,max*1.24);
+      axisLabels += `<text x="${lp[0]}" y="${lp[1]}" text-anchor="middle" font-size="11.5" font-weight="600" fill="${COL.txt2}">${esc(a)}</text>`;
+    });
+    const dataPts = values.map((v,i)=>pt(i,v));
+    const poly = `<polygon points="${dataPts.map(q=>q.join(',')).join(' ')}" fill="${c}" fill-opacity="0.22" stroke="${c}" stroke-width="2.5"/>`;
+    const dots = dataPts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${c}"><title>${esc(axes[i])}: ${values[i]}/${max}</title></circle>`+
+      `<text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${c}">${values[i]}</text>`).join('');
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, rings+spokes+poly+dots+axisLabels)}</div>`;
+  }
+  window.radarChart = radarChart;
+
+  /* ---------------- Bubble / scatter chart ---------------- */
+  // points:[{x,y,r,label,color,sub}] xMax,yMax,xMin,yMin,xLabel,yLabel,quadrant:bool
+  function bubbleChart(el, opts){
+    const {points, xMax, yMax, xMin=0, yMin=0, xLabel='', yLabel='', quadrant=false} = opts;
+    const W=640,H=340;
+    const padL=46,padR=26,padT=16,padB=40;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    function X(v){ return padL + plotW*((v-xMin)/(xMax-xMin)); }
+    function Y(v){ return padT + plotH*(1-(v-yMin)/(yMax-yMin)); }
+    let grid=`<rect x="${padL}" y="${padT}" width="${plotW}" height="${plotH}" fill="none" stroke="${COL.baseline}" stroke-width="1"/>`;
+    if(quadrant){
+      grid += `<line x1="${X((xMax+xMin)/2)}" y1="${padT}" x2="${X((xMax+xMin)/2)}" y2="${padT+plotH}" stroke="${COL.grid}" stroke-dasharray="3,3"/>`;
+      grid += `<line x1="${padL}" y1="${Y((yMax+yMin)/2)}" x2="${padL+plotW}" y2="${Y((yMax+yMin)/2)}" stroke="${COL.grid}" stroke-dasharray="3,3"/>`;
+    }
+    let dots='';
+    points.forEach(p=>{
+      const cx=X(p.x), cy=Y(p.y), r=p.r||9;
+      dots += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${p.color||COL.base}" fill-opacity="0.85" stroke="${COL.surface}" stroke-width="2"><title>${esc(p.label)}${p.sub?(' — '+esc(p.sub)):''}</title></circle>`;
+      const lx = p.labelDx!=null? cx+p.labelDx : cx;
+      const ly = p.labelDy!=null? cy+p.labelDy : cy - r - 7;
+      dots += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="${COL.txt}">${esc(p.label)}</text>`;
+    });
+    const axisLabels = `<text x="${padL+plotW/2}" y="${H-6}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600">${esc(xLabel)}</text>`+
+      `<text x="12" y="${padT+plotH/2}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600" transform="rotate(-90,12,${padT+plotH/2})">${esc(yLabel)}</text>`;
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+dots+axisLabels)}</div>`;
+  }
+  window.bubbleChart = bubbleChart;
+
+  /* ---------------- Waterfall chart ---------------- */
+  // steps:[{label,value,display,type:'total'|'delta',color}]  value can be negative for delta
+  function waterfallChart(el, opts){
+    const {steps, unit=''} = opts;
+    const W=640,H=300;
+    const padL=54,padR=16,padT=16,padB=44;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    let running=0;
+    const bars = steps.map(s=>{
+      let start, end;
+      if(s.type==='total'){ start=0; end=s.value; running=s.value; }
+      else { start=running; end=running+s.value; running=end; }
+      return {...s, start, end};
+    });
+    const maxV = Math.max(...bars.map(b=>Math.max(b.start,b.end)))*1.15;
+    const n = bars.length;
+    const gap=10; const bw=(plotW-gap*(n-1))/n;
+    function Y(v){ return padT+plotH*(1-v/maxV); }
+    let grid='', rects='', connectors='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y=padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10" fill="${COL.muted}">${(maxV*t).toFixed(0)}${unit}</text>`;
+    });
+    bars.forEach((b,i)=>{
+      const x = padL + i*(bw+gap);
+      const y1=Y(Math.max(b.start,b.end)), y2=Y(Math.min(b.start,b.end));
+      const h = Math.max(2,y2-y1);
+      rects += `<rect x="${x}" y="${y1}" width="${bw}" height="${h}" rx="3" fill="${b.color}"><title>${esc(b.label)}: ${esc(b.display)}</title></rect>`;
+      rects += `<text x="${x+bw/2}" y="${y1-6}" text-anchor="middle" font-size="11" font-weight="800" fill="${COL.txt}">${esc(b.display)}</text>`;
+      rects += `<text x="${x+bw/2}" y="${padT+plotH+18}" text-anchor="middle" font-size="10.5" font-weight="600" fill="${COL.txt2}">${esc(b.label)}</text>`;
+      if(i<bars.length-1){
+        const nx = padL+(i+1)*(bw+gap);
+        connectors += `<line x1="${x+bw}" y1="${Y(b.end)}" x2="${nx}" y2="${Y(b.end)}" stroke="${COL.baseline}" stroke-dasharray="2,3"/>`;
+      }
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+connectors+rects)}</div>`;
+  }
+  window.waterfallChart = waterfallChart;
+
+  /* ---------------- Range bar (football field) ---------------- */
+  // rows:[{label,low,mid,high,color,note}] xMax, band:[lo,hi]
+  function rangeBarChart(el, opts){
+    const {rows, xMax, band, bandLabel, unit=''} = opts;
+    const W=640, H=rows.length*52+40;
+    const padL=150, padR=20, padT=10, padB=30;
+    const plotW=W-padL-padR;
+    function X(v){ return padL + plotW*(v/xMax); }
+    let grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x = padL+plotW*t;
+      grid += `<line x1="${x}" y1="4" x2="${x}" y2="${H-padB+4}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${x}" y="${H-padB+18}" text-anchor="middle" font-size="10" fill="${COL.muted}">${Math.round(xMax*t)}${unit}</text>`;
+    });
+    let band_rect='';
+    if(band){
+      band_rect = `<rect x="${X(band[0])}" y="0" width="${X(band[1])-X(band[0])}" height="${H-padB}" fill="${COL.brand}" opacity="0.12"/>`;
+    }
+    let rowsOut='';
+    rows.forEach((r,i)=>{
+      const y = padT + i*52 + 20;
+      rowsOut += `<text x="${padL-12}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${COL.txt}">${esc(r.label)}</text>`;
+      rowsOut += `<line x1="${X(r.low)}" y1="${y}" x2="${X(r.high)}" y2="${y}" stroke="${r.color}" stroke-width="6" stroke-linecap="round"><title>${esc(r.label)}: ${esc(r.note||'')}</title></line>`;
+      if(r.mid!=null) rowsOut += `<circle cx="${X(r.mid)}" cy="${y}" r="5.5" fill="${COL.surface}" stroke="${r.color}" stroke-width="2.5"/>`;
+      rowsOut += `<text x="${X(r.low)}" y="${y-9}" text-anchor="middle" font-size="10" fill="${COL.txt2}">${r.low}</text>`;
+      rowsOut += `<text x="${X(r.high)}" y="${y-9}" text-anchor="middle" font-size="10" fill="${COL.txt2}">${r.high}</text>`;
+    });
+    let bandText='';
+    if(band && bandLabel){
+      bandText = `<text x="${X((band[0]+band[1])/2)}" y="${H-6}" text-anchor="middle" font-size="11" font-weight="800" fill="${COL.brand}">${esc(bandLabel)}</text>`;
+    }
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, band_rect+grid+rowsOut+bandText)}</div>`;
+  }
+  window.rangeBarChart = rangeBarChart;
+
+  /* ---------------- Tornado (diverging sensitivity) chart ---------------- */
+  // rows:[{label, neg, pos, negDisplay, posDisplay}] xMax(abs)
+  function tornadoChart(el, opts){
+    const {rows, xMax} = opts;
+    const W=640, H=rows.length*54+30;
+    const padL=150, padR=20, padT=10, padB=20;
+    const plotW=W-padL-padR; const mid=padL+plotW/2;
+    function X(v){ return mid + (plotW/2)*(v/xMax); }
+    let grid = `<line x1="${mid}" y1="4" x2="${mid}" y2="${H-padB}" stroke="${COL.baseline}" stroke-width="1.5"/>`;
+    let out='';
+    rows.forEach((r,i)=>{
+      const y = padT + i*54 + 20;
+      out += `<text x="${padL-12}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${COL.txt}">${esc(r.label)}</text>`;
+      const x1=X(r.neg), x2=X(r.pos);
+      out += `<rect x="${Math.min(x1,mid)}" y="${y-11}" width="${Math.abs(mid-x1)}" height="22" rx="3" fill="${COL.bear}"><title>${esc(r.negDisplay)}</title></rect>`;
+      out += `<rect x="${mid}" y="${y-11}" width="${Math.abs(x2-mid)}" height="22" rx="3" fill="${COL.bull}"><title>${esc(r.posDisplay)}</title></rect>`;
+      const negInside = x1 < (padL + 58);
+      if(negInside){
+        out += `<text x="${Math.min(x1,mid)+8}" y="${y+4}" text-anchor="start" font-size="10.5" font-weight="700" fill="#ffffff">${esc(r.negDisplay)}</text>`;
+      } else {
+        out += `<text x="${x1-6}" y="${y+4}" text-anchor="end" font-size="10.5" font-weight="700" fill="${COL.txt}">${esc(r.negDisplay)}</text>`;
+      }
+      out += `<text x="${x2+6}" y="${y+4}" text-anchor="start" font-size="10.5" font-weight="700" fill="${COL.txt}">${esc(r.posDisplay)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+out)}</div>` +
+      legendHTML([{label:'下行 (Bear方向)',color:COL.bear},{label:'上行 (Bull方向)',color:COL.bull}]);
+  }
+  window.tornadoChart = tornadoChart;
+
+  function tableHTML(headers, rows){
+    return `<table class="data-table chart-table hidden"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>` +
+      `<tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${i>0?'num':''}">${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+  window.tableHTML = tableHTML;
+
+})();
+</script>
+
+
+
+<script>
+window.CHART_REGISTRY = window.CHART_REGISTRY || {};
+
+CHART_REGISTRY[4] = function(){
+  hBarChart(document.getElementById('c_p4'), {
+    unit:'M kg', xMax:4.5,
+    data:[
+      {label:'現況直銷', value:1.2, display:'1.2', color:WCOL.bear},
+      {label:'目標直銷', value:4.0, display:'4.0', color:WCOL.brand}
+    ]
+  });
+};
+
+CHART_REGISTRY[5] = function(){
+  hBarChart(document.getElementById('c_p5'), {
+    unit:'M kg', xMax:4.5,
+    data:[
+      {label:'現況直銷', value:1.2, display:'1.2', color:WCOL.bear},
+      {label:'目標直銷', value:4.0, display:'4.0', color:WCOL.brand}
+    ]
+  });
+};
+
+CHART_REGISTRY[6] = function(){
+  hBarChart(document.getElementById('c_p6'), {
+    unit:'HKD', xMax:16,
+    data:[
+      {label:'Sunkist 均價', value:6.4, display:'6.4', color:WCOL.base},
+      {label:'Jumbo', value:11.0, display:'11', color:WCOL.altA},
+      {label:'和橙 低', value:9.17, display:'9.2', color:WCOL.brand},
+      {label:'和橙 高', value:15.0, display:'15', color:WCOL.brand}
+    ]
+  });
+};
+
+CHART_REGISTRY[12] = function(){
+  hBarChart(document.getElementById('c_p12'), {
+    unit:'k', xMax:220,
+    data:[
+      {label:'IG／Meta 投流', value:190, display:'190k', color:WCOL.brand},
+      {label:'短片／攝影', value:90, display:'90k', color:WCOL.base},
+      {label:'KOC／試食', value:50, display:'50k', color:WCOL.altA},
+      {label:'設計／雜項', value:50, display:'50k', color:WCOL.bear}
+    ]
+  });
+};
+</script>
+
+</body>
+</html>
