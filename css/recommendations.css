@@ -1,0 +1,192 @@
+/* —— Recommendations page ——
+   Category switching reuses the site's existing .project-categories /
+   .category-btn filter (same pattern as /projects/) — one section visible
+   at a time, toggled by data-category via the inline script in the page.
+   Colors, radii, shadows, and hover all reuse the site's existing tokens
+   and the .insight-card hover convention — nothing here is a new palette. */
+
+.recommendation-tabs-wrap {
+  padding-top: 2rem;
+}
+
+/* —— Section header lede (sits under the shared .section-head) —— */
+.recommendation-lede {
+  max-width: 42rem;
+  margin: -1rem 0 0;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+/* —— Featured pick (one per section, full-width, outsized type) —— */
+.recommendation-feat {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  margin: 1.75rem 0 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.recommendation-feat:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.recommendation-feat__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.6rem;
+}
+
+.recommendation-feat__name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem);
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
+}
+
+.recommendation-feat__desc {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  opacity: 0.85;
+  max-width: 42rem;
+  margin-bottom: 0.9rem;
+}
+
+.recommendation-feat__desc a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.recommendation-feat__meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+/* —— Grid + cards —— */
+.recommendation-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  margin-top: 1.5rem;
+}
+
+.recommendation-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.1rem 1.25rem 1.3rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.recommendation-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.recommendation-card__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.55rem;
+}
+
+.recommendation-card__name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.recommendation-card__desc {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin-bottom: 0.85rem;
+  flex: 1;
+}
+
+.recommendation-card__desc a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Shared external/internal text-link line — no buttons anywhere on this page */
+.recommendation-feat__link a,
+.recommendation-card__link a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.recommendation-feat__link a:hover,
+.recommendation-card__link a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.recommendation-card__link {
+  margin-top: auto;
+}
+
+/* —— Empty state (categories awaiting real picks) —— */
+.recommendation-empty {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 2rem 1.25rem;
+  margin-top: 1.5rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* —— Responsive —— */
+@media (max-width: 640px) {
+  .recommendation-jumpnav__row {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendation-feat {
+    padding: 1.25rem;
+  }
+}

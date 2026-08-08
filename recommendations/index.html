@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <title data-title-en="Recommendations - Yuu" data-title-zh="推薦 - Yuu">Recommendations - Yuu</title>
+    <meta name="description" content="AI tools, skills, books, and gear I actually use — a working list, kept current, not exhaustive.">
+    <link rel="canonical" href="https://ytsang.com/recommendations/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/recommendations/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="Recommendations - Yuu">
+    <meta property="og:description" content="AI tools, skills, books, and gear I actually use — a working list, kept current, not exhaustive.">
+    <meta property="og:image" content="https://ytsang.com/images/avatar-photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recommendations - Yuu">
+    <meta name="twitter:description" content="AI tools, skills, books, and gear I actually use — a working list, kept current, not exhaustive.">
+    <meta name="twitter:image" content="https://ytsang.com/images/avatar-photo.jpg">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <link rel="stylesheet" href="/css/recommendations.css?v=1">
+    <script src="/js/i18n.js?v=2"></script>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/recommendations/" class="active"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">AI tools, skills, books, and gear I actually use — kept current, not exhaustive</span>
+            <span data-lang="zh">我實際在用嘅 AI 工具、skills、書同器材——保持更新，唔求齊全</span>
+        </p>
+    </section>
+
+    <!-- Category tabs — same filter pattern as /projects/ -->
+    <div class="container recommendation-tabs-wrap">
+        <div class="project-categories" id="recommendation-tabs">
+            <button type="button" class="category-btn active" data-category="ai-tools"><span data-lang="en">AI Tools</span><span data-lang="zh">AI 工具</span></button>
+            <button type="button" class="category-btn" data-category="skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></button>
+            <button type="button" class="category-btn" data-category="books"><span data-lang="en">Books</span><span data-lang="zh">書</span></button>
+            <button type="button" class="category-btn" data-category="camera"><span data-lang="en">Camera</span><span data-lang="zh">相機</span></button>
+        </div>
+    </div>
+
+    <!-- AI Tools -->
+    <section id="ai-tools" class="section recommendation-sec" data-category="ai-tools">
+        <div class="container">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">Tools &amp; workflow</span><span data-lang="zh">工具與流程</span></div>
+                    <h2 class="section-title"><span data-lang="en">AI tools.</span><span data-lang="zh">AI 工具</span></h2>
+                </div>
+            </header>
+            <p class="recommendation-lede">
+                <span data-lang="en">What I reach for when building agents, parsing documents, or scraping data — each one backed by a write-up, not just a name-drop.</span>
+                <span data-lang="zh">打造 agent、解析文件、爬取數據時實際會用嘅工具——每項背後都有實測文章，唔係得個名。</span>
+            </p>
+
+            <div class="recommendation-feat">
+                <p class="recommendation-feat__eyebrow"><span data-lang="en">Coding agent</span><span data-lang="zh">編程 Agent</span></p>
+                <h3 class="recommendation-feat__name">Claude Code</h3>
+                <p class="recommendation-feat__desc">
+                    <span data-lang="en">The agent this Recommendations page was built with. What actually makes an agent trustworthy over a long, unattended run has less to do with the model and more to do with the loop around it — see my <a href="/insights/loop-engineering-agent-stack/">Loop Engineering</a> field notes.</span>
+                    <span data-lang="zh">呢個推薦頁本身就係用佢起嘅。長時間 unattended 運行仲信得過，關鍵唔止喺個 model，仲喺圍住佢嗰個 loop——詳見我嘅<a href="/insights/loop-engineering-agent-stack/">Loop Engineering</a>筆記。</span>
+                </p>
+                <p class="recommendation-feat__meta">
+                    <span data-lang="en">Claude Pro / Max subscription, or API pay-as-you-go</span>
+                    <span data-lang="zh">Claude Pro／Max 訂閱，或 API 按量付費</span>
+                </p>
+                <p class="recommendation-feat__link"><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">claude.com/claude-code ↗</a></p>
+            </div>
+
+            <div class="recommendation-grid">
+                <article class="recommendation-card">
+                    <p class="recommendation-card__eyebrow"><span data-lang="en">Browser automation</span><span data-lang="zh">瀏覽器自動化</span></p>
+                    <h3 class="recommendation-card__name">Playwright</h3>
+                    <p class="recommendation-card__desc">
+                        <span data-lang="en">Replaced <code>requests</code> + BeautifulSoup as the default for anything that needs a real browser. Full write-up: <a href="/insights/playwright-scraping/">Web Scraping in 2026</a>.</span>
+                        <span data-lang="zh">取代 <code>requests</code> + BeautifulSoup，成為任何需要真實瀏覽器場景嘅預設選擇。詳見<a href="/insights/playwright-scraping/">《2026 年的網頁爬蟲》</a>。</span>
+                    </p>
+                    <p class="recommendation-card__link"><a href="https://playwright.dev" target="_blank" rel="noopener">playwright.dev ↗</a></p>
+                </article>
+
+                <article class="recommendation-card">
+                    <p class="recommendation-card__eyebrow"><span data-lang="en">Document parsing</span><span data-lang="zh">文件解析</span></p>
+                    <h3 class="recommendation-card__name">MarkItDown · MinerU · PaddleOCR</h3>
+                    <p class="recommendation-card__desc">
+                        <span data-lang="en">Three tools, three different jobs — which one you want depends on whether you need structure, layout fidelity, or raw OCR. Properly compared in my write-up.</span>
+                        <span data-lang="zh">三個工具、三種唔同用途——揀邊個睇你需要結構、版面還原定係純 OCR。實測比較詳見我嗰篇文。</span>
+                    </p>
+                    <p class="recommendation-card__link"><a href="/insights/ocr-tools-comparison/"><span data-lang="en">Read the comparison →</span><span data-lang="zh">閱讀實測比較 →</span></a></p>
+                </article>
+
+                <article class="recommendation-card">
+                    <p class="recommendation-card__eyebrow"><span data-lang="en">Open-weight model</span><span data-lang="zh">開放權重模型</span></p>
+                    <h3 class="recommendation-card__name">Kimi K3</h3>
+                    <p class="recommendation-card__desc">
+                        <span data-lang="en">Where the open-weight frontier actually stands right now, and what it changes for anyone weighing Claude or Codex against something self-hosted. See <a href="/insights/kimi-k3-local-model-ecosystem/">my notes</a>.</span>
+                        <span data-lang="zh">開放權重前沿而家去到邊、對揀 Claude／Codex 定係自行部署有咩實際影響。詳見<a href="/insights/kimi-k3-local-model-ecosystem/">呢篇筆記</a>。</span>
+                    </p>
+                    <p class="recommendation-card__link"><a href="https://www.moonshot.ai" target="_blank" rel="noopener">moonshot.ai ↗</a></p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section recommendation-sec" data-category="skills" style="display:none">
+        <div class="container">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Agent skills</span><span data-lang="zh">Agent Skills</span></div>
+                    <h2 class="section-title"><span data-lang="en">Skills.</span><span data-lang="zh">技能</span></h2>
+                </div>
+            </header>
+            <p class="recommendation-lede">
+                <span data-lang="en">Agent skills worth installing before a session starts — not written by me, just the ones I've actually pointed people to.</span>
+                <span data-lang="zh">開始一個 session 之前值得先裝嘅 agent skills——唔係我寫嘅，只係我實際推薦過嘅。</span>
+            </p>
+
+            <div class="recommendation-feat">
+                <p class="recommendation-feat__eyebrow"><span data-lang="en">Skill collection · 209K★ on GitHub</span><span data-lang="zh">Skill 合集 · GitHub 209K★</span></p>
+                <h3 class="recommendation-feat__name">Skills for Real Engineers — mattpocock/skills</h3>
+                <p class="recommendation-feat__desc">
+                    <span data-lang="en">Matt Pocock's own daily <code>.agents</code> directory, published. Built around three failure modes — misalignment, verbosity, and code that doesn't actually run — each with a skill attached: <code>/grill-me</code> forces the agent to interrogate you before it builds anything; a shared <code>CONTEXT.md</code> closes the jargon gap between you and it. Worth installing from the source rather than copying it here.</span>
+                    <span data-lang="zh">Matt Pocock 將自己每日用緊嘅 <code>.agents</code> 目錄公開。圍繞三個失敗成因——溝通唔啱、太累贅、跑出嚟嘅嘢唔work——每個都對應一個 skill：<code>/grill-me</code> 逼 agent 起手前先問清楚你想點；共用嘅 <code>CONTEXT.md</code> 拉近你同佢之間嘅術語落差。建議直接去源頭裝，唔好用呢度嘅複製版。</span>
+                </p>
+                <p class="recommendation-feat__meta">
+                    <span data-lang="en">Free · MIT license · Claude Code plugin or skills.sh</span>
+                    <span data-lang="zh">免費 · MIT 授權 · Claude Code plugin 或 skills.sh</span>
+                </p>
+                <p class="recommendation-feat__link"><a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">github.com/mattpocock/skills ↗</a></p>
+            </div>
+
+            <div class="recommendation-grid">
+                <article class="recommendation-card">
+                    <p class="recommendation-card__eyebrow"><span data-lang="en">Planning interview</span><span data-lang="zh">規劃訪談</span></p>
+                    <h3 class="recommendation-card__name">grill-me</h3>
+                    <p class="recommendation-card__desc">
+                        <span data-lang="en">Before Claude starts on anything non-code — a plan, a design, a decision — this runs a relentless interview to pressure-test it first. Cheap insurance against building the wrong thing.</span>
+                        <span data-lang="zh">喺 Claude 開始做任何非程式碼嘅嘢之前——一個計劃、一個設計、一個決定——呢個 skill 會先發動一輪窮追不捨嘅提問嚟壓力測試。用嚟避免整錯嘢，抵洗。</span>
+                    </p>
+                    <p class="recommendation-card__link"><a href="https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me" target="_blank" rel="noopener"><span data-lang="en">View SKILL.md →</span><span data-lang="zh">查看 SKILL.md →</span></a></p>
+                </article>
+
+                <article class="recommendation-card">
+                    <p class="recommendation-card__eyebrow"><span data-lang="en">Code review</span><span data-lang="zh">程式碼審查</span></p>
+                    <h3 class="recommendation-card__name">code-review</h3>
+                    <p class="recommendation-card__desc">
+                        <span data-lang="en">Reviews a diff along two axes in parallel — does it follow the repo's coding standards, and does it actually match the spec it was meant to implement — then reports both side by side. Ships with a built-in Fowler code-smell checklist as a baseline.</span>
+                        <span data-lang="zh">沿兩條軸線平行審查一個 diff——係咪跟返個 repo 嘅程式碼規範、同埋係咪真係做到個 spec 要求嘅嘢——然後將兩邊結果並排報告。內建 Fowler code-smell checklist 做底線標準。</span>
+                    </p>
+                    <p class="recommendation-card__link"><a href="https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review" target="_blank" rel="noopener"><span data-lang="en">View SKILL.md →</span><span data-lang="zh">查看 SKILL.md →</span></a></p>
+                </article>
+            </div>
+
+            <p class="recommendation-empty">
+                <span data-lang="en">More will land here as I actually put skills through real work — not just because they look good in a list.</span>
+                <span data-lang="zh">之後會加返其他 skills 落嚟——前提係我真係用過，唔係得個名好聽。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Books -->
+    <section id="books" class="section recommendation-sec" data-category="books" style="display:none">
+        <div class="container">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 03 / <span data-lang="en">Reading</span><span data-lang="zh">閱讀</span></div>
+                    <h2 class="section-title"><span data-lang="en">Books.</span><span data-lang="zh">書</span></h2>
+                </div>
+            </header>
+            <p class="recommendation-empty">
+                <span data-lang="en">Real picks go here once there's a list worth publishing — not a placeholder shelf.</span>
+                <span data-lang="zh">有真正值得推薦嘅書單先會擺喺呢度——唔想擺個假書架。</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Camera -->
+    <section id="camera" class="section recommendation-sec" data-category="camera" style="display:none">
+        <div class="container">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 04 / <span data-lang="en">Gear</span><span data-lang="zh">器材</span></div>
+                    <h2 class="section-title"><span data-lang="en">Camera &amp; gear.</span><span data-lang="zh">相機與器材</span></h2>
+                </div>
+            </header>
+            <p class="recommendation-empty">
+                <span data-lang="en">Gear notes go here once they're worth publishing — see the <a href="/photos/">Photos</a> section for the results in the meantime.</span>
+                <span data-lang="zh">值得寫嘅器材筆記先會擺喺度——喺咁之前，可以先睇下<a href="/photos/">相片</a>版嘅成果。</span>
+            </p>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/recommendations/"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script>
+    (function () {
+        var tabs = document.querySelectorAll("#recommendation-tabs .category-btn");
+        var sections = document.querySelectorAll(".recommendation-sec");
+        tabs.forEach(function (tab) {
+            tab.addEventListener("click", function () {
+                tabs.forEach(function (t) { t.classList.remove("active"); });
+                this.classList.add("active");
+                var category = this.getAttribute("data-category");
+                sections.forEach(function (sec) {
+                    sec.style.display = sec.getAttribute("data-category") === category ? "block" : "none";
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
