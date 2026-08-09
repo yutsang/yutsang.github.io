@@ -104,6 +104,30 @@
   transform: translateY(-2px);
 }
 
+/* Product-shot thumbnail — contain (not cover), so isolated product
+   photography doesn't get cropped the way editorial/lifestyle images do. */
+.recommendation-card__img {
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recommendation-card__img img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
 .recommendation-card__eyebrow {
   font-family: var(--font-mono);
   font-size: 0.625rem;
