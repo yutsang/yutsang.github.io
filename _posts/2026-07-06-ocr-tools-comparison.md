@@ -1,14 +1,14 @@
 ---
 layout: insight
-title: "MarkItDown, MinerU, or PaddleOCR? Choosing a Document-Parsing Stack in 2026"
-title_zh: "MarkItDown、MinerU 還是 PaddleOCR？2026 年文件解析工具如何選"
+title: "MarkItDown, MinerU, PaddleOCR, or Docling? Choosing a Document-Parsing Stack in 2026"
+title_zh: "MarkItDown、MinerU、PaddleOCR 定係 Docling？2026 年文件解析工具點揀"
 date: 2026-07-06
 tags: [AI, Tutorial, Engineering]
 permalink: /insights/ocr-tools-comparison/
 thumbnail: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=90&auto=format&fit=crop
 hero_image: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=2000&q=90&auto=format&fit=crop
-excerpt: "Three popular open-source tools all promise to turn documents into clean Markdown — but they are three different species. A practical comparison of Microsoft's MarkItDown, OpenDataLab's MinerU, and Baidu's PaddleOCR: what each actually does, where each breaks, and how to pick."
-excerpt_zh: "三個熱門開源工具都聲稱能把文件變成乾淨的 Markdown——但它們其實是三種完全不同的物種。實測比較微軟 MarkItDown、OpenDataLab MinerU 與百度 PaddleOCR：各自真正做什麼、在哪裡出問題、該如何選。"
+excerpt: "Four popular open-source tools all promise to turn documents into clean Markdown — but they're not even all playing the same game. A practical comparison of Microsoft's MarkItDown, Baidu's PaddleOCR, OpenDataLab's MinerU, and IBM's Docling: what each actually does, where each breaks, and how to pick."
+excerpt_zh: "四個熱門開源工具都話可以將文件變成乾淨嘅 Markdown——但佢哋根本唔係同一種物種。實測比較微軟 MarkItDown、百度 PaddleOCR、OpenDataLab MinerU，同埋 IBM Docling：各自真正做緊咩、喺邊度會出事、應該點揀。"
 ---
 
 <div data-lang="en" markdown="1">
@@ -19,13 +19,14 @@ Ten years ago, OCR meant one thing: pixels in, characters out. Tesseract read a 
 
 In 2026 the job has changed. The consumer of your extracted text is usually not a human — it's an LLM pipeline: RAG indexing, agent tool calls, fine-tuning corpora, key-information extraction. That raises the bar in a specific way. The model doesn't just need the *characters*; it needs the **structure** — headings that are actually headings, tables that survive as tables, formulas as LaTeX instead of Unicode soup, multi-column layouts read in the right order, headers and footers stripped so they don't pollute every chunk.
 
-"PDF to Markdown" has quietly become the real product category, and three open-source names come up constantly: **MarkItDown** (Microsoft), **MinerU** (OpenDataLab / Shanghai AI Lab), and **PaddleOCR** (Baidu). People compare them as if they were interchangeable. They are not — they sit at three different layers of the stack, and picking the wrong one is how you end up with a RAG index full of garbage.
+"PDF to Markdown" has quietly become the real product category, and four open-source names come up constantly: **MarkItDown** (Microsoft), **PaddleOCR** (Baidu), **MinerU** (OpenDataLab / Shanghai AI Lab), and **Docling** (IBM Research). People compare them as if they were interchangeable. They are not — they sit at three different layers of the stack, and the busiest of those layers now has two very different answers to the same problem.
 
 Here's the one-line version before we go deep:
 
 - **MarkItDown** is a *format converter*. It reads the digital structure a file already has and re-serializes it as Markdown. It does almost no OCR of its own.
 - **PaddleOCR** is an *OCR engine and toolkit*. It's the layer that actually turns pixels into text, plus an optional document-parsing pipeline on top.
 - **MinerU** is an *end-to-end document-parsing pipeline*. It chains layout detection, OCR, formula and table recognition into one opinionated PDF → Markdown machine.
+- **Docling** is *also* an end-to-end pipeline — MinerU's most direct rival — trading MinerU's AGPL-3.0 license and peak table/formula accuracy for MIT licensing, CPU-friendly operation, and the widest input-format coverage of the four.
 
 ## MarkItDown: the format converter
 
@@ -111,30 +112,55 @@ The trade-offs are equally real. First, **weight**: the first run downloads seve
 
 **Don't use it** as a lightweight library inside a proprietary product, or for Office-format documents it was never designed for.
 
+## Docling: the other pipeline
+
+[Docling](https://github.com/docling-project/docling) comes out of IBM Research, hosted under the LF AI & Data Foundation, and it plays in the same layer as MinerU — a full document-parsing pipeline, not just a converter or a bare OCR engine. The difference is what it optimizes for.
+
+```python
+# pip install docling
+from docling.document_converter import DocumentConverter
+
+converter = DocumentConverter()
+result = converter.convert("annual_report.pdf")
+print(result.document.export_to_markdown())
+```
+
+Three things set it apart from MinerU immediately. First, **license**: Docling is MIT, full stop — no AGPL question to raise with legal, ever. Second, **format breadth**: it ingests PDF, DOCX, PPTX, XLSX, HTML, EPUB, email, audio, video, even XBRL — a wider net than any of the other three, MarkItDown included. Third, **hardware**: it runs on pure CPU by default, with an optional `--pipeline vlm` mode built on IBM's own compact Granite-Docling-258M vision-language model for harder pages.
+
+Under the hood it does real document understanding — layout, reading order, table structure, formulas, code blocks, even chart-to-table conversion — and ships native integrations for LangChain, LlamaIndex, Haystack, and CrewAI, plus an MCP server and a hosted API mode (`docling-serve`). Of the four, it's the most "batteries included for agents."
+
+The catch shows up exactly where you'd expect from something optimized for breadth: on the hardest documents — dense multi-column scans, complex nested tables — independent 2026 benchmarks put MinerU ahead on table and formula fidelity. Docling reliably *detects* a table; whether its internal structure survives intact is less consistent than MinerU's dedicated table model gets you. And unlike MarkItDown or PaddleOCR, Docling doesn't show up on the major public accuracy leaderboards, so "trust the benchmark" isn't really available here — you evaluate it on your own documents or not at all.
+
+**Use it when** license cleanliness matters, your inputs span many formats, you want CPU-only operation, or you're building directly on LangChain / LlamaIndex / Haystack.
+
+**Don't use it** when you're squeezing every point of table or formula accuracy out of the hardest scanned PDFs — that's still MinerU's job.
+
 ## Side by side
 
-| | **MarkItDown** | **PaddleOCR** | **MinerU** |
-|---|---|---|---|
-| What it really is | Format converter | OCR engine + toolkit | PDF-parsing pipeline |
-| Made by | Microsoft | Baidu | OpenDataLab (Shanghai AI Lab) |
-| Real OCR (scans) | ✗ (needs Azure DI plug-in) | ✓ core competency | ✓ (via PaddleOCR / VLM) |
-| Input formats | Office, PDF, HTML, images, audio, EPUB… | Images, PDF | PDF, images |
-| Tables | Good from Office; poor from PDF | ✓ PP-StructureV3 | ✓ HTML in Markdown |
-| Formulas → LaTeX | ✗ | ✓ (formula module) | ✓ best of the three |
-| Reading order on complex layouts | Weak for PDF | ✓ | ✓ strongest |
-| Chinese / CJK | Pass-through only | Excellent (incl. Traditional, handwriting) | Very good (inherits PaddleOCR) |
-| Hardware | Any laptop | CPU OK, GPU faster | GPU strongly recommended |
-| License | MIT | Apache-2.0 | **AGPL-3.0** |
-| Feels like | A utility | A toolkit | A product |
+| | **MarkItDown** | **PaddleOCR** | **MinerU** | **Docling** |
+|---|---|---|---|---|
+| What it really is | Format converter | OCR engine + toolkit | PDF-parsing pipeline | PDF-parsing pipeline |
+| Made by | Microsoft | Baidu | OpenDataLab (Shanghai AI Lab) | IBM Research |
+| Real OCR (scans) | ✗ (needs Azure DI plug-in) | ✓ core competency | ✓ (via PaddleOCR / VLM) | ✓ (own VLM: Granite-Docling-258M) |
+| Input formats | Office, PDF, HTML, images, audio, EPUB… | Images, PDF | PDF, images | Broadest: PDF, Office, HTML, EPUB, email, audio, video, XBRL |
+| Tables | Good from Office; poor from PDF | ✓ PP-StructureV3 | ✓ HTML in Markdown, strongest fidelity | ✓ detected, structure less consistent on hard cases |
+| Formulas → LaTeX | ✗ | ✓ (formula module) | ✓ best of the four | ✓ |
+| Reading order on complex layouts | Weak for PDF | ✓ | ✓ strongest | ✓ good, not MinerU-best |
+| Chinese / CJK | Pass-through only | Excellent (incl. Traditional, handwriting) | Very good (inherits PaddleOCR) | Not CJK-specialized |
+| Hardware | Any laptop | CPU OK, GPU faster | GPU strongly recommended | CPU by default, GPU optional (VLM mode) |
+| License | MIT | Apache-2.0 | **AGPL-3.0** | MIT |
+| RAG framework integrations | ✗ | ✗ | Partial (JSON output) | ✓ LangChain, LlamaIndex, Haystack, CrewAI, MCP |
+| Feels like | A utility | A toolkit | A product | A platform |
 
 ## How I'd actually choose
 
 The honest answer is that these tools compose rather than compete:
 
 1. **Mostly Office docs and clean digital PDFs, feeding an LLM?** MarkItDown alone. One `pip install`, done. Route the occasional scan to something else.
-2. **Technical PDFs, scans, papers, anything with tables and math?** MinerU for the batch conversion. Accept the GPU and model downloads; the output quality pays for them.
-3. **Building OCR into a product, or shipping to customers?** PaddleOCR. Apache-2.0, deployable from server to edge, and PP-StructureV3 gets you surprisingly close to MinerU-grade parsing without the AGPL question.
-4. **A general-purpose ingestion service?** Use MarkItDown as the front door for everything digital-native, and route PDFs/scans to MinerU (internal tools) or PP-StructureV3 (commercial products). This two-tier setup — cheap converter first, heavy parser only when needed — is what most production RAG pipelines converge on anyway.
+2. **Technical PDFs, scans, papers, anything with tables and math, and license isn't a constraint?** MinerU for the batch conversion. Accept the GPU and model downloads; the output quality pays for them.
+3. **Same hard documents, but you need a permissive license, CPU-only deployment, or inputs that go well beyond PDF?** Docling. You trade a slice of MinerU's peak table/formula accuracy for MIT licensing, the widest format coverage of the four, and native RAG-framework integrations.
+4. **Building OCR into a product, or shipping to customers?** PaddleOCR. Apache-2.0, deployable from server to edge, and PP-StructureV3 gets you surprisingly close to MinerU-grade parsing without the AGPL question.
+5. **A general-purpose ingestion service?** Use MarkItDown as the front door for everything digital-native, and route PDFs/scans to MinerU or Docling (whichever license and accuracy trade-off fits) or PP-StructureV3 (commercial products). This two-tier setup — cheap converter first, heavy parser only when needed — is what most production RAG pipelines converge on anyway.
 
 One closing caveat: whichever you pick, **evaluate on your own documents**. Every benchmark in this space is dominated by academic papers and clean reports; your invoices, forms, and 1990s fax-quality scans are a different distribution. Twenty representative files and an afternoon of eyeballing the Markdown will tell you more than any leaderboard.
 
@@ -148,13 +174,14 @@ One closing caveat: whichever you pick, **evaluate on your own documents**. Ever
 
 到了 2026 年，這件事的本質變了。讀你抽取結果的通常不是人，而是 LLM 管線：RAG 索引、agent 工具呼叫、微調語料、關鍵資訊抽取。這把門檻往一個特定方向抬高——模型要的不只是*字元*，而是**結構**：標題真的是標題、表格活著離開、公式是 LaTeX 而不是 Unicode 亂碼、多欄版面按正確順序閱讀、頁首頁尾被剝掉而不是污染每一個 chunk。
 
-「PDF 轉 Markdown」悄悄變成了真正的產品類別，而三個開源名字反覆出現：**MarkItDown**（微軟）、**MinerU**（OpenDataLab／上海人工智能實驗室）、**PaddleOCR**（百度）。很多人把它們當成可互換的同類工具來比較——其實不是。它們位於技術棧的三個不同層次，選錯一個，你的 RAG 索引就會裝滿垃圾。
+「PDF 轉 Markdown」悄悄變成咗真正嘅產品類別，四個開源名字反覆出現：**MarkItDown**（微軟）、**PaddleOCR**（百度）、**MinerU**（OpenDataLab／上海人工智能實驗室）、**Docling**（IBM Research）。好多人將佢哋當成可互換嘅同類工具嚟比較——其實唔係。佢哋處於技術棧嘅三個唔同層次，而最多人爭嗰一層，而家有兩個截然不同嘅答案。
 
-深入之前，先給一句話版本：
+深入之前，先畀一句話版本：
 
 - **MarkItDown** 是*格式轉換器*：讀取檔案本來就有的數位結構，重新序列化成 Markdown，本身幾乎不做 OCR。
 - **PaddleOCR** 是 *OCR 引擎與工具箱*：真正把像素變成文字的那一層，上面再加一條可選的文件解析管線。
 - **MinerU** 是*端對端文件解析管線*：把版面偵測、OCR、公式與表格辨識串成一台立場鮮明的 PDF → Markdown 機器。
+- **Docling** *都係*端對端管線——MinerU 最直接嘅對手——用 MIT 授權、CPU 都跑得、四個入面最闊嘅輸入格式覆蓋，換取放棄 MinerU 嘅 AGPL-3.0 同表格／公式頂尖準確度。
 
 ## MarkItDown：格式轉換器
 
@@ -240,30 +267,55 @@ mineru -p paper.pdf -o out/
 
 **不適合**：當成專有產品裡的輕量函式庫，或處理它本來就不是為此設計的 Office 格式。
 
+## Docling：另一條管線
+
+[Docling](https://github.com/docling-project/docling) 出自 IBM Research，掛喺 LF AI & Data Foundation 底下，同 MinerU 玩緊同一層——完整嘅文件解析管線，唔係得個轉換器或者裸 OCR 引擎。分別在於兩者優化緊嘅嘢唔同。
+
+```python
+# pip install docling
+from docling.document_converter import DocumentConverter
+
+converter = DocumentConverter()
+result = converter.convert("annual_report.pdf")
+print(result.document.export_to_markdown())
+```
+
+同 MinerU 相比，三樣嘢即刻分得出：第一，**授權**——Docling 係 MIT，冇 AGPL 呢個要同法務部門解釋嘅問題，永遠都唔使。第二，**格式闊度**——PDF、DOCX、PPTX、XLSX、HTML、EPUB、email、音訊、影片，甚至 XBRL 都食得晒，比其餘三個（連 MarkItDown 都計埋）覆蓋更廣。第三，**硬件**——預設純 CPU 都跑得，仲有個可選嘅 `--pipeline vlm` 模式，用 IBM 自家細型號 Granite-Docling-258M 視覺語言模型處理難搞嘅頁面。
+
+底層做緊真正嘅文件理解——版面、閱讀順序、表格結構、公式、code block，甚至圖表轉表格——仲原生支援 LangChain、LlamaIndex、Haystack、CrewAI，加埋 MCP 伺服器同託管 API 模式（`docling-serve`）。四個入面，佢係最「為 agent 度身訂造」嗰個。
+
+代價出現喺你估到嘅地方——優化闊度嘅嘢，通常喺最難嗰批文件度見真章：密集多欄掃描、複雜巢狀表格，2026 年獨立基準測試入面 MinerU 喺表格同公式準確度仲係贏。Docling 穩定咁「偵測到」表格，但表格內部結構係咪完整留低，就冇 MinerU 專屬表格模型咁穩。而且同 MarkItDown 或 PaddleOCR 唔同，Docling 未上主流公開準確度排行榜，即係「信排行榜」呢招用唔到——要就用自己嘅文件評測，要就唔好信。
+
+**適合**：授權要乾淨、輸入格式多元、想要純 CPU 運行，或者直接喺 LangChain／LlamaIndex／Haystack 上面砌嘢。
+
+**不適合**：想喺最難嘅掃描 PDF 度榨盡每一分表格／公式準確度——嗰份工仍然係 MinerU 嘅。
+
 ## 並排比較
 
-| | **MarkItDown** | **PaddleOCR** | **MinerU** |
-|---|---|---|---|
-| 本質 | 格式轉換器 | OCR 引擎＋工具箱 | PDF 解析管線 |
-| 出品方 | 微軟 | 百度 | OpenDataLab（上海 AI Lab） |
-| 真 OCR（掃描件） | ✗（需外掛 Azure DI） | ✓ 核心能力 | ✓（經 PaddleOCR／VLM） |
-| 輸入格式 | Office、PDF、HTML、圖片、音訊、EPUB… | 圖片、PDF | PDF、圖片 |
-| 表格 | Office 佳；PDF 差 | ✓ PP-StructureV3 | ✓ Markdown 內嵌 HTML |
-| 公式 → LaTeX | ✗ | ✓（公式模組） | ✓ 三者最強 |
-| 複雜版面閱讀順序 | PDF 偏弱 | ✓ | ✓ 最強 |
-| 中文／CJK | 只能透傳 | 優異（含繁體、手寫） | 很好（繼承 PaddleOCR） |
-| 硬體 | 任何筆電 | CPU 可用，GPU 更快 | 強烈建議 GPU |
-| 授權 | MIT | Apache-2.0 | **AGPL-3.0** |
-| 用起來像 | 一個小工具 | 一個工具箱 | 一個產品 |
+| | **MarkItDown** | **PaddleOCR** | **MinerU** | **Docling** |
+|---|---|---|---|---|
+| 本質 | 格式轉換器 | OCR 引擎＋工具箱 | PDF 解析管線 | PDF 解析管線 |
+| 出品方 | 微軟 | 百度 | OpenDataLab（上海 AI Lab） | IBM Research |
+| 真 OCR（掃描件） | ✗（需外掛 Azure DI） | ✓ 核心能力 | ✓（經 PaddleOCR／VLM） | ✓（自家 VLM：Granite-Docling-258M） |
+| 輸入格式 | Office、PDF、HTML、圖片、音訊、EPUB… | 圖片、PDF | PDF、圖片 | 四者最闊：PDF、Office、HTML、EPUB、email、音訊、影片、XBRL |
+| 表格 | Office 佳；PDF 差 | ✓ PP-StructureV3 | ✓ Markdown 內嵌 HTML，準確度最強 | ✓ 偵測到，難案例結構冇咁穩 |
+| 公式 → LaTeX | ✗ | ✓（公式模組） | ✓ 四者最強 | ✓ |
+| 複雜版面閱讀順序 | PDF 偏弱 | ✓ | ✓ 最強 | ✓ 好，但未及 MinerU |
+| 中文／CJK | 只能透傳 | 優異（含繁體、手寫） | 很好（繼承 PaddleOCR） | 未有 CJK 專項優化 |
+| 硬體 | 任何筆電 | CPU 可用，GPU 更快 | 強烈建議 GPU | 預設純 CPU，VLM 模式可選 GPU |
+| 授權 | MIT | Apache-2.0 | **AGPL-3.0** | MIT |
+| RAG 框架整合 | ✗ | ✗ | 部分（JSON 輸出） | ✓ LangChain、LlamaIndex、Haystack、CrewAI、MCP |
+| 用起來像 | 一個小工具 | 一個工具箱 | 一個產品 | 一個平台 |
 
 ## 我實際上會如何選
 
-誠實的答案是：這三個工具是互補多於競爭。
+誠實嘅答案係：呢四個工具係互補多於競爭。
 
 1. **主要是 Office 文件和乾淨的數位 PDF，餵給 LLM？** 只用 MarkItDown。一個 `pip install` 完事，偶爾出現的掃描件另外處理。
-2. **技術 PDF、掃描件、論文、任何帶表格和數學的東西？** 用 MinerU 做批次轉換。接受 GPU 和模型下載——輸出品質對得起這個成本。
-3. **在產品裡內建 OCR，或要出貨給客戶？** PaddleOCR。Apache-2.0、從伺服器到端側都能部署，PP-StructureV3 能讓你在沒有 AGPL 問題的前提下，逼近 MinerU 級的解析品質。
-4. **通用的文件攝取服務？** MarkItDown 當所有數位原生檔案的前門，PDF／掃描件路由給 MinerU（內部工具）或 PP-StructureV3（商業產品）。這種兩層架構——便宜的轉換器先上、重型解析器按需出動——本來就是多數生產級 RAG 管線最後收斂到的形態。
+2. **技術 PDF、掃描件、論文、帶表格和數學，而授權唔係限制？** 用 MinerU 做批次轉換。接受 GPU 和模型下載——輸出品質對得起這個成本。
+3. **同樣係難搞文件，但要授權乾淨、CPU-only 部署，或者輸入格式遠超 PDF？** 用 Docling。你用 MinerU 頂尖表格／公式準確度嘅一小部分，換返 MIT 授權、四者最闊嘅格式覆蓋，同原生 RAG 框架整合。
+4. **在產品裡內建 OCR，或要出貨給客戶？** PaddleOCR。Apache-2.0、從伺服器到端側都能部署，PP-StructureV3 能讓你在沒有 AGPL 問題的前提下，逼近 MinerU 級的解析品質。
+5. **通用的文件攝取服務？** MarkItDown 當所有數位原生檔案的前門，PDF／掃描件路由去 MinerU 或 Docling（睇你重視授權定係準確度）或 PP-StructureV3（商業產品）。呢種兩層架構——便宜嘅轉換器先上、重型解析器按需出動——本來就是多數生產級 RAG 管線最後收斂到的形態。
 
 最後一個提醒：無論選哪個，**用你自己的文件做評測**。這個領域的所有基準測試都被學術論文和乾淨報告主導；你的發票、表單和 1990 年代傳真畫質的掃描件是另一個分佈。挑二十份代表性檔案、花一個下午親眼看輸出的 Markdown，比任何排行榜都能告訴你更多。
 
