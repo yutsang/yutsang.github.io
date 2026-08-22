@@ -2,8 +2,8 @@
 
 ## Commit rules
 
-- **Do NOT add a co-author trailer** to commits. Never append `Co-Authored-By: Claude <noreply@anthropic.com>` or any `Co-Authored-By:` line. Commit messages should contain only the human-authored subject and body.
-- Do not add "Generated with Claude Code" footers or similar attribution lines in commit messages.
+- **Do NOT add a co-author trailer** to commits. Never append `Co-Authored-By: Claude <noreply@anthropic.com>`, `Co-Authored-By: Cursor <...>`, or any `Co-Authored-By:` line, regardless of which AI tool or agent made the change. Commit messages should contain only the human-authored subject and body.
+- Do not add "Generated with Claude Code", "Generated with Cursor", or similar attribution/footer lines from any agent in commit messages.
 - Keep commit messages concise and focused on the "why".
 
 ## Bilingual / i18n system
