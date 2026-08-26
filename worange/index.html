@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>WOrange 和橙 — Marketing Proposal</title>
+<style>
+/* ============================================================
+   WOrange Marketing Proposal
+   Visual system: professional-services style (KPMG-like palette)
+   NOTE: 這不是 KPMG 專案，全篇不使用 KPMG 標誌或名稱。
+   Palette roles (fixed, never remapped):
+     --c-base  = deep blue      主色 / 第一序列
+     --c-bull  = teal           第二序列（正向）
+     --c-bear  = light blue     第三序列
+     --c-alt-a = violet         第四序列
+     --c-crit  = pink           警示 / 對比
+     --c-alt-b = purple         第五序列
+     --c-brand = medium blue    強調
+   ============================================================ */
+:root{
+  /* corporate palette */
+  --pc-deep:    #00338D;
+  --pc-medium:  #005EB8;
+  --pc-light:   #0091DA;
+  --pc-violet:  #483698;
+  --pc-purple:  #470A68;
+  --pc-teal:    #00A3A1;
+  --pc-pink:    #C6007E;
+
+  --surface-1:      #ffffff;
+  --page-plane:     #ffffff;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #4d4d4d;
+  --text-muted:     #767676;
+  --grid:           #e3e3e3;
+  --baseline:       #c9c9c9;
+  --border:         #dcdcdc;
+  --line-soft:      #ededed;
+  --card-bg:        #ffffff;
+  --tint:           #f2f6fb;
+  --tint-2:         #e8f1f9;
+
+  --c-base:  #00338D;
+  --c-bull:  #00A3A1;
+  --c-bear:  #0091DA;
+  --c-alt-a: #483698;
+  --c-crit:  #C6007E;
+  --c-alt-b: #470A68;
+  --c-brand: #005EB8;
+
+  --s-good:     #00A3A1;
+  --s-warning:  #EAAA00;
+  --s-serious:  #E87722;
+  --s-critical: #C6007E;
+
+  --seq-100:#dbe7f6; --seq-200:#b3ccec; --seq-300:#7fa9de; --seq-400:#4b85cf; --seq-500:#2465b8; --seq-600:#00338D; --seq-700:#052360;
+}
+[data-theme="dark"]{
+  --surface-1:      #14181f;
+  --page-plane:     #0d1117;
+  --text-primary:   #ffffff;
+  --text-secondary: #c4cad4;
+  --text-muted:     #8b93a1;
+  --grid:           #2a3038;
+  --baseline:       #3a424c;
+  --border:         #2f3640;
+  --line-soft:      #262c34;
+  --card-bg:        #181d25;
+  --tint:           #16202e;
+  --tint-2:         #1a2839;
+
+  --c-base:  #4d8fe0;
+  --c-bull:  #16b5b3;
+  --c-bear:  #35a9e8;
+  --c-alt-a: #8b7ce0;
+  --c-crit:  #e0509f;
+  --c-alt-b: #9a6bc4;
+  --c-brand: #4d8fe0;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Open Sans","Noto Sans TC","PingFang HK","Microsoft JhengHei",sans-serif;
+  background:var(--page-plane);
+  color:var(--text-primary);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,ul,ol{margin:0;}
+.tabular{font-variant-numeric:tabular-nums;}
+
+/* ---------- Deck shell ---------- */
+#deck{width:100vw;height:100vh;overflow:hidden;position:relative;}
+.slide{
+  display:none;
+  position:relative;
+  width:100vw;height:100vh;
+  padding:52px 64px 74px 64px;
+  flex-direction:column;
+  background:var(--surface-1);
+}
+.slide.active{display:flex;}
+
+/* ---------- Slide header ---------- */
+.slide-head{flex:0 0 auto;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px;}
+.kicker{
+  font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--pc-light);
+}
+[data-theme="dark"] .kicker{color:var(--c-bear);}
+.title{
+  font-size:30px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
+  color:var(--pc-deep);margin-top:9px;max-width:1500px;
+}
+[data-theme="dark"] .title{color:#ffffff;}
+.title .hi{color:var(--pc-light);}
+[data-theme="dark"] .title .hi{color:var(--c-bear);}
+.subtitle{font-size:16px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
+
+/* ---------- Slide footer ---------- */
+.slide-foot{
+  position:absolute;left:64px;right:64px;bottom:26px;
+  border-top:1px solid var(--line-soft);padding-top:9px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:var(--text-muted);letter-spacing:.02em;
+}
+.slide-foot .pg{font-weight:600;color:var(--text-secondary);font-variant-numeric:tabular-nums;}
+
+/* ---------- Body / columns ---------- */
+.body{flex:1;display:flex;gap:26px;min-height:0;}
+.body.col{flex-direction:column;}
+.col{min-width:0;min-height:0;display:flex;flex-direction:column;gap:14px;}
+.c4{flex:0 0 33%;} .c5{flex:0 0 41.5%;} .c6{flex:1;}
+.c7{flex:0 0 58%;} .c8{flex:0 0 66%;}
+.vc{justify-content:center;}
+
+/* ---------- Text ---------- */
+.bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+.bullets li{position:relative;padding-left:20px;font-size:17px;line-height:1.5;color:var(--text-primary);}
+.bullets li::before{
+  content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--pc-light);
+}
+.bullets.compact{gap:8px;}
+.bullets.spread{flex:1;justify-content:space-evenly;}
+.bullets.compact li{font-size:15px;line-height:1.45;padding-left:18px;}
+.bullets.compact li::before{width:6px;height:6px;top:8px;}
+.bullets b{font-weight:700;color:var(--pc-deep);}
+[data-theme="dark"] .bullets b{color:var(--c-bear);}
+.bullets li.warn::before{background:var(--pc-pink);}
+.bullets li.warn{color:var(--pc-pink);font-weight:600;}
+
+.note{font-size:14px;color:var(--text-muted);line-height:1.5;}
+.src{font-size:11.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
+
+.callout{
+  background:var(--tint);border-left:4px solid var(--pc-deep);
+  padding:15px 18px;font-size:16.5px;font-weight:600;line-height:1.5;color:var(--text-primary);
+  flex:0 0 auto;
+}
+.callout b{color:var(--pc-deep);}
+[data-theme="dark"] .callout b{color:var(--c-bear);}
+.flag{
+  display:flex;gap:11px;align-items:flex-start;
+  background:var(--tint);border-left:4px solid var(--pc-light);
+  padding:11px 16px;font-size:14.5px;line-height:1.5;color:var(--text-primary);flex:0 0 auto;
+}
+.flag b{color:var(--pc-deep);white-space:nowrap;font-weight:700;}
+[data-theme="dark"] .flag b{color:var(--c-bear);}
+.flag.todo{border-left-color:var(--s-warning);}
+.flag.todo b{color:#8a6100;}
+[data-theme="dark"] .flag.todo b{color:var(--s-warning);}
+
+/* ---------- Tables ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.tbl th{
+  background:var(--pc-deep);color:#fff;text-align:left;
+  padding:9px 11px;font-size:12.5px;font-weight:600;letter-spacing:.03em;
+}
+.tbl td{padding:8px 11px;border-bottom:1px solid var(--grid);color:var(--text-primary);vertical-align:top;}
+.tbl tbody tr:nth-child(even){background:var(--tint);}
+.tbl td.num{text-align:right;font-variant-numeric:tabular-nums;}
+.tbl td b{color:var(--pc-deep);}
+[data-theme="dark"] .tbl td b{color:var(--c-bear);}
+.tbl.plain th{background:transparent;color:var(--text-muted);border-bottom:2px solid var(--pc-deep);}
+.tbl.plain tbody tr:nth-child(even){background:transparent;}
+
+/* ---------- Stat cards ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.stat{background:var(--tint);border-left:4px solid var(--pc-light);padding:15px 17px;}
+.stat .lbl{font-size:12.5px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+.stat .val{font-size:30px;font-weight:700;color:var(--pc-deep);margin-top:6px;letter-spacing:-.02em;}
+[data-theme="dark"] .stat .val{color:#fff;}
+.stat .sub{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
+
+/* ---------- Cards ---------- */
+.cards{display:flex;gap:14px;}
+.card{
+  flex:1;min-width:0;background:var(--card-bg);border:1px solid var(--border);
+  border-top:3px solid var(--pc-deep);padding:15px 17px;display:flex;flex-direction:column;gap:7px;
+}
+.card .tag{font-size:11px;font-weight:700;color:#fff;background:var(--pc-deep);padding:2px 7px;width:fit-content;letter-spacing:.04em;}
+.card .h{font-size:16px;font-weight:700;color:var(--pc-deep);}
+[data-theme="dark"] .card .h{color:var(--c-bear);}
+.card .b{font-size:14px;color:var(--text-secondary);line-height:1.5;}
+.card.alt{border-top-color:var(--pc-teal);}
+.card.alt .h{color:var(--pc-teal);}
+.card.alt .tag{background:var(--pc-teal);}
+
+/* ---------- Panels ---------- */
+.panel{
+  background:var(--card-bg);border:1px solid var(--border);
+  padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-height:0;overflow:hidden;
+}
+.panel.tinted{background:var(--tint);border-color:transparent;}
+.panel-title{
+  font-size:12.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
+  padding-bottom:7px;border-bottom:1px solid var(--grid);
+}
+[data-theme="dark"] .panel-title{color:var(--c-bear);}
+.chart{flex:1;min-height:0;position:relative;overflow:hidden;}
+.chart-visual{width:100%;height:100%;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
+.chart svg{width:100%;height:100%;display:block;overflow:visible;min-height:0;}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--text-secondary);}
+.legend-item{display:flex;align-items:center;gap:6px;}
+.legend-item .sw{width:10px;height:10px;flex:0 0 auto;}
+.hidden{display:none !important;}
+.tv-toggle{
+  position:absolute;top:8px;right:8px;font-size:11px;font-weight:600;color:var(--text-secondary);
+  background:var(--surface-1);border:1px solid var(--border);padding:3px 8px;cursor:pointer;z-index:5;
+}
+.data-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.data-table th,.data-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--grid);}
+.data-table th{color:var(--text-muted);font-weight:600;font-size:12px;text-transform:uppercase;}
+.data-table td.num{text-align:right;font-variant-numeric:tabular-nums;}
+
+/* ---------- Process / flow ---------- */
+.flow{display:flex;align-items:stretch;gap:9px;}
+.step{
+  flex:1;background:var(--tint);border-top:3px solid var(--pc-deep);
+  padding:12px 13px;font-size:13.5px;line-height:1.4;text-align:center;color:var(--text-primary);
+}
+.step b{display:block;font-size:15px;color:var(--pc-deep);margin-bottom:4px;}
+[data-theme="dark"] .step b{color:var(--c-bear);}
+.step .sm{font-size:11.5px;color:var(--text-muted);}
+.arrow{display:flex;align-items:center;color:var(--baseline);font-size:17px;}
+
+/* ---------- Images ---------- */
+.rail{display:grid;gap:11px;min-height:0;flex:1;}
+.rail.c2{grid-template-columns:repeat(2,1fr);}
+.rail.c3{grid-template-columns:repeat(3,1fr);}
+.rail.c4{grid-template-columns:repeat(4,1fr);}
+.tile{position:relative;min-height:0;overflow:hidden;background:var(--tint);border:1px solid var(--border);}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.tile.fit img{object-fit:contain;background:var(--card-bg);}
+.cap{
+  position:absolute;left:0;right:0;bottom:0;padding:6px 10px;
+  font-size:11.5px;font-weight:600;color:#fff;
+  background:linear-gradient(transparent,rgba(0,20,50,.78));
+}
+.tile.fit .cap{background:rgba(0,51,141,.88);}
+
+/* ---------- Cover ---------- */
+.cover{
+  display:flex;flex-direction:column;justify-content:center;height:100%;
+  padding-bottom:40px;
+}
+.cover .rule{width:64px;height:5px;background:var(--pc-light);margin-bottom:26px;}
+.cover h1{font-size:54px;line-height:1.14;font-weight:700;color:var(--pc-deep);letter-spacing:-.015em;}
+[data-theme="dark"] .cover h1{color:#fff;}
+.cover .sub{font-size:20px;color:var(--text-secondary);margin-top:16px;font-weight:400;}
+.cover .meta{margin-top:34px;font-size:14px;color:var(--text-muted);letter-spacing:.03em;}
+.wordmark{
+  position:absolute;top:46px;right:64px;
+  font-size:15px;font-weight:700;color:var(--pc-deep);letter-spacing:.04em;
+}
+[data-theme="dark"] .wordmark{color:#fff;}
+.wordmark span{color:var(--pc-light);font-weight:400;}
+
+/* ---------- Nav ---------- */
+#nav{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:10px;background:var(--surface-1);border:1px solid var(--border);
+  padding:6px 12px;box-shadow:0 6px 22px rgba(0,30,80,.12);z-index:100;
+}
+#nav button{
+  border:none;background:transparent;color:var(--text-primary);font-size:14px;cursor:pointer;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+}
+#nav button:hover{background:var(--tint);}
+#nav .cnt{font-size:12px;color:var(--text-secondary);min-width:54px;text-align:center;font-variant-numeric:tabular-nums;}
+#nav .sep{width:1px;height:18px;background:var(--border);}
+
+
+/* ---------- 頁底一句總結 ---------- */
+.takeaway{
+  flex:0 0 auto;border-top:2px solid var(--pc-deep);padding-top:10px;margin-top:2px;
+  font-size:15.5px;font-weight:700;color:var(--pc-deep);line-height:1.45;
+}
+[data-theme="dark"] .takeaway{color:var(--c-bear);border-top-color:var(--c-bear);}
+
+/* ---------- Event 圖卡 ---------- */
+.evgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;min-height:0;}
+.ev{position:relative;overflow:hidden;background:var(--tint);border:1px solid var(--border);display:flex;flex-direction:column;}
+.ev img{width:100%;flex:1;min-height:0;object-fit:cover;display:block;}
+.ev .lb{padding:8px 10px;font-size:13.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
+
+
+
+/* ---------- 貼文引用卡 ---------- */
+.post{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--pc-deep);padding:12px 14px;display:flex;flex-direction:column;gap:7px;}
+.post .ph{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:.02em;}
+.post .pb{font-size:16px;line-height:1.55;color:var(--text-primary);}
+.post .pb.big{font-size:30px;font-weight:700;color:var(--pc-deep);}
+.post .pstat{font-size:12.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
+.post .plink{font-size:11px;color:var(--text-muted);word-break:break-all;}
+.msg{padding:8px 11px;font-size:14.5px;line-height:1.5;}
+.msg.u{background:var(--grid);color:var(--text-primary);}
+.msg.b{background:var(--tint-2);border-left:3px solid var(--pc-light);color:var(--text-primary);}
+.msg span{display:block;font-size:11.5px;color:var(--text-muted);font-weight:600;margin-bottom:3px;}
+
+/* ---------- Section divider ---------- */
+.slide.divider{background:var(--pc-deep);color:#fff;justify-content:center;}
+.divider .wordmark{color:#fff;}
+.divider .wordmark span{color:rgba(255,255,255,.65);}
+.divider .num{font-size:14px;font-weight:600;letter-spacing:.2em;color:rgba(255,255,255,.6);}
+.divider h2{font-size:46px;font-weight:700;line-height:1.2;margin-top:16px;color:#fff;}
+.divider .desc{font-size:18px;line-height:1.65;color:rgba(255,255,255,.86);margin-top:18px;max-width:1000px;}
+.divider .items{display:flex;margin-top:44px;border-top:1px solid rgba(255,255,255,.28);max-width:1300px;}
+.divider .items div{flex:1;padding:16px 20px 0 0;font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.5;}
+.divider .items div b{display:block;color:#fff;font-weight:600;margin-bottom:3px;}
+.divider .slide-foot{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.6);}
+.divider .slide-foot .pg{color:#fff;}
+
+/* ---------- Section indicator on content slides ---------- */
+.kicker .sec{color:var(--text-muted);font-weight:400;}
+
+/* ---------- Dark tile for technical drawings ---------- */
+.tile.dark{background:#0f1822;border-color:#0f1822;}
+.tile.dark .cap{background:rgba(15,24,34,.9);}
+
+/* ---------- Agenda ---------- */
+.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;min-height:0;}
+.agenda .item{border-top:3px solid var(--pc-deep);background:var(--tint);padding:20px 22px;display:flex;flex-direction:column;gap:10px;justify-content:flex-start;}
+.agenda .item .d{margin-top:auto;}
+.agenda .item .n{font-size:13px;font-weight:700;color:var(--pc-light);letter-spacing:.12em;}
+.agenda .item .t{font-size:19px;font-weight:700;color:var(--pc-deep);line-height:1.3;}
+.agenda .item .d{font-size:14px;color:var(--text-secondary);line-height:1.55;}
+[data-theme="dark"] .agenda .item .t{color:#fff;}
+
+@media print{
+  #nav{display:none !important;}
+  .tv-toggle{display:none !important;}
+  html,body{width:1920px;height:auto;margin:0;padding:0;background:#fff;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  #deck{width:1920px;height:auto;overflow:visible;}
+  .slide{
+    display:flex !important;
+    width:1920px !important;height:1080px !important;
+    min-height:1080px !important;max-height:1080px !important;
+    page-break-after:always;break-after:page;
+    page-break-inside:avoid;break-inside:avoid;
+    padding:52px 64px 74px 64px;box-sizing:border-box;overflow:hidden;
+  }
+  .slide:last-child{page-break-after:auto;break-after:auto;}
+  @page{size:1920px 1080px;margin:0;}
+}
+</style>
+</head>
+<body>
+
+<div id="nav">
+  <button id="prevBtn" title="上一頁 (←)">&#8592;</button>
+  <span class="cnt" id="slideCnt">1 / 33</span>
+  <button id="nextBtn" title="下一頁 (→)">&#8594;</button>
+  <span class="sep"></span>
+  <button id="themeToggle" title="切換淺色/深色">&#9788;</button>
+  <button id="printBtn" title="列印 / 匯出 PDF">&#128438;</button>
+</div>
+
+<main id="deck">
+
+<!-- 1 · Cover -->
+<section class="slide active" data-slide="1" id="s1">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="cover">
+    <div class="rule"></div>
+    <h1>WOrange<br>Marketing Proposal</h1>
+    <div class="sub">和橙 · 香港市場行銷建議書</div>
+    <div class="meta">Anderson　·　Aston　·　Dylan　·　Grace<br style="line-height:2.2"><span style="color:var(--text-muted)">HKUST 商學院案例競賽 UST174 · Project 2</span></div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">1</span></div>
+</section>
+
+<!-- 2 · 本建議書就六個範疇提出行銷方案，目標為提升香港直銷銷 -->
+<section class="slide" data-slide="2" id="s2">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">Agenda</div>
+    <div class="title">本建議書就六個範疇提出行銷方案，目標為提升香港直銷銷量</div>
+    <div class="subtitle">和橙的產品與認證已具備條件，樽頸在於認知度與成交渠道。以下六節各自對應一項可即時執行的措施。</div>
+  </div>
+  <div class="body col">
+    <table class="tbl" style="font-size:15px;">
+      <thead><tr><th style="width:110px;">SECTION</th><th style="width:190px;">主題</th><th>內容</th><th style="width:90px;">頁</th></tr></thead>
+      <tbody>
+        <tr><td><b>I</b></td><td><b>現況與定價</b></td><td>先確立和橙在香港貨架上的實際位置與價格區間，作為後續建議的基準</td><td>4–5</td></tr>
+        <tr><td><b>II</b></td><td><b>品牌重塑</b></td><td>行銷的本質、Logo 重新設計、刀疤橙故事，以及品牌實體的統一</td><td>7–13</td></tr>
+        <tr><td><b>III</b></td><td><b>內容策略</b></td><td>拍攝規格與佈光、AI 內容的問題與正確流程、爆紅內容的結構拆解</td><td>15–20</td></tr>
+        <tr><td><b>IV</b></td><td><b>渠道與活動</b></td><td>B2C 三層鋪貨、B2B 企業採購、Pop-up、學校巡迴、社企資格路徑</td><td>22–26</td></tr>
+        <tr><td><b>V</b></td><td><b>產品體驗</b></td><td>禮盒規格、貨架陳列參考，以及可延伸曝光的周邊商品</td><td>28–31</td></tr>
+        <tr><td><b>VI</b></td><td><b>生態旅遊</b></td><td>以花期編排全年行程，令農場收入不再受產季限制</td><td>33</td></tr>
+      </tbody>
+    </table>
+    <div class="body" style="min-height:0;">
+      <div class="col c8">
+        <div class="panel tinted" style="flex:1;">
+          <div class="panel-title">貫穿全份建議書的三項判斷</div>
+          <ul class="bullets">
+            <li><b>樽頸不在產品，在被看見。</b>認證、碳足跡、不打蠟都已具備，缺的是有人記得住和橙是誰。</li>
+            <li><b>爆紅靠語氣，不靠產品。</b>近 30 天已查證的爆文，沒有一則是靠產品本身爆的。</li>
+            <li><b>香港仍是空白市場。</b>台灣品牌小編人格化已有多個成功案例，香港近 30 天則一個都沒有。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col c4">
+        <div class="rail c2" style="flex:1;">
+          <div class="tile"><img src="fb/WOrange-Farming.jpg" alt=""><div class="cap">莊園</div></div>
+          <div class="tile"><img src="fb/WOrange-Production.jpg" alt=""><div class="cap">分選</div></div>
+          <div class="tile"><img src="fb/WOrange-TRUE.jpg" alt=""><div class="cap">打假帖：互動最高的題材</div></div>
+          <div class="tile"><img src="fb/WOrange-CNY.jpg" alt=""><div class="cap">節慶產品圖</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">2</span></div>
+</section>
+
+<!-- 3 · 現況與定價 -->
+<section class="slide divider" data-slide="3" id="s3">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION I</div>
+    <h2>現況與定價</h2>
+    <div class="desc">和橙的產品線與鋪貨點已經成形，價格亦處於 Premium 區間。本節先以門市實拍標價確認市場的價格結構，再提出兩線並行的定價方案。</div>
+    <div class="items">
+      <div><b>01　現況 4P</b>產品、價格、渠道、推廣的實際狀況</div>
+      <div><b>02　定價策略</b>金裝與日常兩條線的價帶與隔離機制</div>
+      <div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">3</span></div>
+</section>
+
+<!-- 4 · 現況 -->
+<section class="slide" data-slide="4" id="s4">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">I · 現況與定價　<span class="sec">01</span></div>
+    <div class="title">現況：活動辦得不少，惟未接上社群——尤其 Threads 幾近未開發</div>
+  </div>
+  <div class="body">
+    <div class="col c4">
+      <table class="tbl">
+        <thead><tr><th style="width:104px;">4P</th><th>現況</th></tr></thead>
+        <tbody>
+          <tr><td><b>Product</b></td><td>黃肉 85／80／70mm、紅肉 70mm、有機檸檬</td></tr>
+          <tr><td><b>Price</b></td><td>Premium，約 <b>HKD7–15／個</b></td></tr>
+          <tr><td><b>Place</b></td><td>官網；永安（上環、油麻地）；Organic Plus（跑馬地、將軍澳）</td></tr>
+          <tr><td><b>Promotion</b></td><td>已有 Logo 與識別；Tagline「香港品牌　以心栽種」</td></tr>
+        </tbody>
+      </table>
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title">社群基數</div>
+        <div class="stats" style="grid-template-columns:1fr;gap:9px;">
+          <div class="stat" style="background:var(--card-bg);"><div class="lbl">Facebook</div><div class="val" style="font-size:25px;">6,738</div></div>
+          <div class="stat" style="background:var(--card-bg);border-left-color:var(--pc-pink);"><div class="lbl">Instagram</div><div class="val" style="font-size:25px;">873</div></div>
+          <div class="stat" style="background:var(--card-bg);border-left-color:var(--pc-pink);"><div class="lbl">Threads</div><div class="val" style="font-size:25px;">232</div></div>
+        </div>
+        <ul class="bullets compact" style="margin-top:8px;">
+          <li><b>Threads 是目前最值得開的一條線。</b>四個月只發了 5 帖，每帖 0–1 個讚，等同尚未起步；而台灣近月的品牌爆文幾乎全部出自 Threads。</li>
+          <li><b>IG 同樣關鍵：</b>短片與付費投放的主場在 IG，873 的基數過低。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col c8">
+      <div class="panel-title">已執行的 Marketing Event</div>
+      <div class="evgrid">
+        <div class="ev"><img src="fb/WOrange-Bus.jpg" alt=""><div class="lb">巴士車身廣告</div></div>
+        <div class="ev"><img src="fb/WOrange-Exhibition2.jpg" alt=""><div class="lb">科學園 Pop-up</div></div>
+        <div class="ev"><img src="fb/WOrange-Exhibition.jpg" alt=""><div class="lb">亞洲素食展</div></div>
+        <div class="ev"><img src="fb/WOrange-School.jpg" alt=""><div class="lb">送橙到校園 2026</div></div>
+        <div class="ev"><img src="fb/WOrange-Parent-Child-Tour.jpg" alt=""><div class="lb">親子有機洗潔精工作坊</div></div>
+        <div class="ev"><img src="fb/WOrange-Sales-Promotion.jpg" alt=""><div class="lb">深水埗派橙行動</div></div>
+        <div class="ev"><img src="fb/WOrange-CNY3.jpg" alt=""><div class="lb">愉景灣聖誕市集</div></div>
+        <div class="ev"><img src="fb/WOrange-HKUST.jpg" alt=""><div class="lb">大學及院校合作</div></div>
+      </div>
+      <div class="src">圖片取自品牌 Facebook 專頁截圖，部分為同類活動示意；對外簡報前宜換上該場活動的原圖。</div>
+    </div>
+  </div>
+  <div class="takeaway">活動數量足夠，缺的是把每一場接回社群與訂單——尤其 Threads 232 的基數，等同尚未起步。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">4</span></div>
+</section>
+
+<!-- 5 · 定價策略 -->
+<section class="slide" data-slide="5" id="s5">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">I · 現況與定價　<span class="sec">02</span></div>
+    <div class="title">定價策略：<span class="hi">金裝和橙 HKD8–15</span>／個，<span class="hi">和橙 HKD4–7</span>／個</div>
+  </div>
+  <div class="body col">
+    <div class="stats" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat"><div class="lbl">金裝和橙</div><div class="val">8–15</div><div class="sub">HKD／個 · 送禮與旗艦</div></div>
+      <div class="stat"><div class="lbl">和橙</div><div class="val">4–7</div><div class="sub">HKD／個 · 日常自用</div></div>
+      <div class="stat" style="border-left-color:var(--pc-teal);"><div class="lbl">大眾散裝實測</div><div class="val">3–5</div><div class="sub">HKD／個 · 新奇士已佔據</div></div>
+      <div class="stat" style="border-left-color:var(--pc-violet);"><div class="lbl">高端單顆實測</div><div class="val">18</div><div class="sub">HKD／個 · 澳洲橙貼標</div></div>
+    </div>
+    <div class="body" style="min-height:0;">
+      <div class="col c4">
+        <div class="panel tinted" style="flex:1;">
+          <div class="panel-title">兩條線各有位置</div>
+          <ul class="bullets compact">
+            <li><b>3–5 是比價區</b>，已被新奇士佔據，不宜進入。</li>
+            <li><b>7–9 是交手區</b>，靠故事與包裝分勝負。</li>
+            <li><b>18 證明高價區存在</b>，金裝 8–15 仍有向上空間。</li>
+          </ul>
+          <div class="panel-title" style="margin-top:10px;">兩線並行的隔離機制</div>
+          <ul class="bullets compact">
+            <li><b>包裝：</b>金裝用木盒或紙盒配透明蓋，日常線用紙箱及小包裝。</li>
+            <li><b>貨架：</b>金裝只進官網與中高檔超市，日常線只走優惠平台與果欄。</li>
+            <li><b>折扣：</b>金裝原則上不參與大幅折扣，日常線可設下限。</li>
+            <li class="warn">4–7 與新奇士價帶重疊，屬直接競爭區，毛利須按實際到岸成本核算。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col c8">
+        <div class="rail c3" style="flex:1;">
+          <div class="tile"><img src="proposal/s02_3.jpg" alt=""><div class="cap">超市：$20／6 個、$15／3 個</div></div>
+          <div class="tile"><img src="proposal/s02_5.jpg" alt=""><div class="cap">果欄：$28／4 個、$20／5 個</div></div>
+          <div class="tile"><img src="proposal/s02_2.jpg" alt=""><div class="cap">XL 鮮橙：單價 9.0、3 件平均 7.3</div></div>
+          <div class="tile"><img src="proposal/s02_1.jpg" alt=""><div class="cap">新奇士超甜橙：$32／pack</div></div>
+          <div class="tile"><img src="proposal/s02_4.jpg" alt=""><div class="cap">澳洲橙單顆貼標：$18.0</div></div>
+          <div class="tile"><img src="fb/WOrange-Price.jpg" alt=""><div class="cap">和橙官網現行價</div></div>
+        </div>
+        <div class="src">競品價格為門市實拍標價（組內市調）。對外簡報前須補上拍攝日期與門市名稱。</div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">兩條線的分別不在品質，在包裝與貨架；價帶一旦混用，溢價即失守。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">5</span></div>
+</section>
+
+<!-- 6 · 品牌重塑 -->
+<section class="slide divider" data-slide="6" id="s6">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION II</div>
+    <h2>品牌重塑</h2>
+    <div class="desc">先確立要講甚麼，再處理識別與敘事，最後把所有名稱收攏到同一個實體名下。三者互相支撐，缺一環都會漏。</div>
+    <div class="items">
+      <div><b>01　行銷的本質</b>Jobs 談 values，以及和橙的對照</div>
+      <div><b>02　Logo 重新設計</b>圓章結構與網格</div>
+      <div><b>03　設計變體</b>W 與蚯蚓 John 的融合</div>
+      <div><b>04–05　刀疤橙</b>現代版與武俠版兩套故事</div>
+      <div><b>06　品牌實體</b>網站、收款、發票的統一</div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">6</span></div>
+</section>
+
+<!-- 7 · 行銷的本質 -->
+<section class="slide" data-slide="7" id="s7">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">01</span></div>
+    <div class="title">行銷的本質：Jobs 講的是 <span class="hi">values</span>，不是 speeds and feeds</div>
+    <div class="subtitle">1997 年 9 月 23 日，Apple 內部員工會議。放這段在這裡，是因為他當時面對的處境，跟和橙現在很像。</div>
+  </div>
+  <div class="body">
+    <div class="col c6">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">他的說法</div>
+        <ul class="bullets compact">
+          <li>他先講世界太嘈雜：「It's a very noisy world... we're not going to get a chance to get people to remember much about us. <b>No company is.</b>」</li>
+          <li>所以他說，不要講速度與規格，也不要講自己為甚麼比 Windows 好。</li>
+          <li>然後他舉 Nike：「Nike sells a commodity. They sell shoes.」但你想起 Nike，不會想起一間鞋公司。</li>
+          <li>原因在最後一句：「They honor great athletes, and they honor great athletics. <b>That's who they are. That's what they are about.</b>」</li>
+        </ul>
+        <div class="callout">「To me, marketing is about values.」</div>
+        <div class="src">出處：Apple 內部員工會議，1997-09-23（非 Think Different 發表會）。原片與逐字稿存於 Internet Archive。</div>
+        <div class="tile" style="flex:1;min-height:140px;"><img src="fb/WOrange-Story.jpg" alt=""><div class="cap">和橙現有的故事素材</div></div>
+      </div>
+    </div>
+    <div class="col c6">
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title">換成和橙</div>
+        <ul class="bullets compact">
+          <li>和橙賣的也是商品，跟 Nike 賣鞋一樣。</li>
+          <li>現在講的是有機認證、BSI 碳足跡、不打蠟、五日到家——<b>全部都屬於 Jobs 說不要講的那一類</b>。</li>
+          <li>應該講的是：一個香港工業家，2004 年徒步長征籌款建校，2010 年上山開荒，堅持人手除草、不用農藥，六年才等到第一造果。</li>
+          <li>那不是產品特性，那是他是誰。</li>
+        </ul>
+        <div class="panel-title" style="margin-top:10px;">和橙版 34 秒腳本（草稿）</div>
+        <table class="tbl plain" style="font-size:13px;">
+          <tbody>
+            <tr><td style="width:70px;"><b>0–8s</b></td><td>貨架上一排光滑的橙。旁白：「香港每日賣出這麼多橙，你分得出哪個是哪個嗎？」</td></tr>
+            <tr><td><b>8–18s</b></td><td>切到郴州山頭與開荒舊照。旁白：「有一個香港人，十五年前上了那座山。」</td></tr>
+            <tr><td><b>18–28s</b></td><td>人手除草、蚯蚓、無人機巡園。旁白：「不用農藥，人手除草，六年才等到第一造果。」</td></tr>
+            <tr><td><b>28–34s</b></td><td>刀疤橙特寫。旁白：「我們敬重的，是願意等六年的那種人。」</td></tr>
+          </tbody>
+        </table>
+        <ul class="bullets compact" style="margin-top:8px;">
+          <li><b>剪點：</b>原片 03:22 至 05:30（2 分 08 秒）；極短版 04:56 至 05:30。</li>
+          <li><b>只用 Jobs 講話段，不要用廣告片</b>——廣告裡的名人肖像權不在 Apple 手上。</li>
+          <li class="warn">切勿引用「Here's to the crazy ones」——該句是廣告旁白，並非 Jobs 所說。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">和橙一直在講規格，但真正會被記住的，是創辦人為甚麼願意上山。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">7</span></div>
+</section>
+
+<!-- 8 · Logo 重新設計 -->
+<section class="slide" data-slide="8" id="s8">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">02</span></div>
+    <div class="title">Logo 重新設計：一枚圓章，中英文都能用</div>
+  </div>
+  <div class="body">
+    <div class="col c4 vc">
+      <ul class="bullets">
+        <li>把「和」字與「W」收進同一枚圓章，中英文場合都能單獨使用。W 的筆劃順勢畫成蚯蚓 John。</li>
+        <li>先用網格把比例與筆劃粗細定下來。縮到單果貼紙那麼小，仍然要認得出是和橙。</li>
+        <li>現時「和橙」「HK Farmer Story」「展翔」三個名並存。換標若兩邊同時大改，消費者認不出，防偽就失效——建議新舊並行一季。</li>
+      </ul>
+      <div class="flag"><b>下一頁</b><span>在這個結構上發展的彩色變體，以及 John 融入 W 的幾個方案。</span></div>
+    </div>
+    <div class="col c8">
+      <div class="tile dark fit" style="flex:1;">
+        <img src="proposal/s03_1_crop.png" alt="Logo 結構網格稿">
+        <div class="cap">結構網格稿</div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">識別要經得起縮小；換標則要經得起一季的過渡，否則防偽先失效。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">8</span></div>
+</section>
+
+<!-- 9 · 設計變體 -->
+<section class="slide" data-slide="9" id="s9">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">03</span></div>
+    <div class="title">設計變體：W 的筆劃即是蚯蚓 John，把生態閉環收進識別</div>
+  </div>
+  <div class="body col">
+    <div class="tile fit" style="flex:1;">
+      <img src="proposal/s04_1_crop.png" alt="Logo 設計變體">
+      <div class="cap">手繪草稿 · 彩色變體 · 單色與反白測試 · 「和」字圖形化</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="tag">A</div><div class="h">圓章「和」</div><div class="b">中文主標，印章形態，適用於包裝與盒面。</div></div>
+      <div class="card"><div class="tag">B</div><div class="h">圓章「W」</div><div class="b">英文主標，W 的筆劃繪成蚯蚓 John。</div></div>
+      <div class="card"><div class="tag">C</div><div class="h">單色與反白</div><div class="b">已測試黑白及條紋背景，貼紙與燙印均可使用。</div></div>
+      <div class="card"><div class="tag">D</div><div class="h">「和」字圖形化</div><div class="b">橙瓣切面填入字腔，可作大面積主視覺。</div></div>
+    </div>
+  </div>
+  <div class="takeaway">四個方案共用同一枚圓章，分別只在應用場合——不必為每個場合另起爐灶。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">9</span></div>
+</section>
+
+<!-- 10 · 刀疤橙 · 故事一（上） -->
+<section class="slide" data-slide="10" id="s10">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">04</span></div>
+    <div class="title">刀疤橙 · 故事一（上）：被嘲笑，然後被解釋</div>
+    <div class="subtitle">前半段：刀疤強因滿身疤痕被同伴嘲笑，在市場上一次又一次被留下；直到果園主人把他帶回去，告訴他那些疤是不灑農藥、自行癒合的結果。</div>
+  </div>
+  <div class="body col">
+    <div class="tile fit" style="flex:1;"><img src="proposal/story1_1.jpg" alt="分鏡一"><div class="cap">① 被嘲笑、被留下</div></div>
+    <div class="tile fit" style="flex:1;"><img src="proposal/story1_2.jpg" alt="分鏡二"><div class="cap">② 主人解釋疤痕的來歷</div></div>
+  </div>
+  <div class="takeaway">前半段負責建立同理：先讓觀眾替刀疤強不值，後半段的翻轉才有力。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">10</span></div>
+</section>
+
+<!-- 11 · 刀疤橙 · 故事一（下） -->
+<section class="slide" data-slide="11" id="s11">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">04</span></div>
+    <div class="title">刀疤橙 · 故事一（下）：<span class="hi">沒疤的，不叫天然</span></div>
+    <div class="subtitle">後半段：光滑的橙被打蠟送上貨架；一位母親反而因為花紋而選了刀疤強，孩子試食後直言比以前的橙更好吃。</div>
+  </div>
+  <div class="body col">
+    <div class="tile fit" style="flex:1;"><img src="proposal/story1_3.jpg" alt="分鏡三"><div class="cap">③ 光滑的橙打蠟，疤痕成了「天然認證」</div></div>
+    <div class="tile fit" style="flex:1;"><img src="proposal/story1_4.jpg" alt="分鏡四"><div class="cap">④ 孩子試食，疤痕終於被讀懂</div></div>
+  </div>
+  <div class="takeaway">結語「天然敢留疤，健康才好吃」——一句話同時解釋了賣相、價格與不打蠟。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">11</span></div>
+</section>
+
+<!-- 12 · 刀疤橙 · 故事二《江湖錄》 -->
+<section class="slide" data-slide="12" id="s12">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">05</span></div>
+    <div class="title">刀疤橙 · 故事二《江湖錄》：<span class="hi">風雨鍛鍊，刀疤為證</span></div>
+    <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為。六段分鏡已完成，適合長版品牌片或連載式短片。</div>
+  </div>
+  <div class="body">
+    <div class="col c4 vc">
+      <ul class="bullets compact">
+        <li><b>傳聞：</b>嶺南有一種奇橙，表皮滿佈刀疤似的花痕，因不施農藥、長年承受風刀霜劍所致。</li>
+        <li><b>拜師：</b>體弱少年阿強跌入橙林，白髮果農告訴他，每道疤都是橙自行癒合的證明。</li>
+        <li><b>歷練：</b>阿強在瀑布下、山巔上、烈日中苦練，身上留下傷疤，身體卻日益強壯。</li>
+        <li><b>揚名：</b>下山回到市集，昔日惡霸被他滿身刀疤嚇退；他把刀疤橙遞給圍觀的孩子。</li>
+        <li><b>作結：</b>「風雨鍛鍊，刀疤為證。」與現代版共用同一個精神。</li>
+      </ul>
+      <div class="flag"><b>用途</b><span>現代版拍 15–30 秒 Reels，武俠版拍長片或連載。兩者不必二選一。</span></div>
+    </div>
+    <div class="col c8">
+      <div class="tile fit" style="flex:1;">
+        <img src="proposal/s06_2_crop.jpg" alt="刀疤橙江湖錄分鏡">
+        <div class="cap">六段分鏡全稿</div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">武俠框架的作用，是把「不用農藥」講成一種修為，而不是一項規格。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">12</span></div>
+</section>
+
+<!-- 13 · 品牌實體 -->
+<section class="slide" data-slide="13" id="s13">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">II · 品牌重塑　<span class="sec">06</span></div>
+    <div class="title">品牌實體：網站、收款、發票應該收攏到<span class="hi">同一個名下</span></div>
+    <div class="subtitle">現時品牌叫和橙，網店叫 HK Farmer Story，社交帳號是 @hkfarmerstory，生產實體是郴州展翔，而收款戶口用的是信興實業。名太多，會在最不該出事的地方出事。</div>
+  </div>
+  <div class="body">
+    <div class="col c5">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">現時並存的名稱</div>
+        <table class="tbl">
+          <thead><tr><th style="width:120px;">用途</th><th>現時名稱</th></tr></thead>
+          <tbody>
+            <tr><td><b>品牌</b></td><td>和橙 WOrange</td></tr>
+            <tr><td><b>網店</b></td><td>HK Farmer Story（hkfarmerstoryshop.com）</td></tr>
+            <tr><td><b>社交帳號</b></td><td>@hkfarmerstory（IG／Threads）</td></tr>
+            <tr><td><b>生產實體</b></td><td>郴州展翔綠色農業</td></tr>
+            <tr><td><b>收款戶口</b></td><td>信興實業 Shun Hing Industrial</td></tr>
+          </tbody>
+        </table>
+        <div class="note">創辦人的塑膠製品廠與農場業務共用同一個收款主體，屬歷史沿革，非刻意安排。</div>
+      </div>
+    </div>
+    <div class="col c7">
+      <div class="panel" style="flex:0 0 auto;">
+        <div class="panel-title">實際會出問題的四個位置</div>
+        <ul class="bullets compact">
+          <li><b>付款一刻：</b>消費者在官網落單，過數畫面出現的卻是一間塑膠廠的名。這是整個購買流程中最脆弱的一秒。</li>
+          <li><b>打假：</b>叫人「認住正版商標」，但品牌本身有四個名——這正是假貨最容易鑽的空隙。</li>
+          <li><b>企業客：</b>ESG 採購要開發票，抬頭與品牌不一致，每一單都要額外解釋一次。</li>
+          <li><b>資格申請：</b>社企認證、商界展關懷、BUD／EMF 資助都要指定申請實體；用哪一個，資格與稅務後果不同。</li>
+        </ul>
+      </div>
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title">建議</div>
+        <ul class="bullets compact">
+          <li><b>成立獨立香港實體</b>（例如 WOrange Limited），作為香港銷售與品牌持有方。</li>
+          <li><b>五樣東西統一到該實體名下：</b>網域、社交帳號、收款戶口、發票抬頭、包裝標示。</li>
+          <li><b>過渡期新舊並行一季</b>，並在官網明確寫出彼此關係，避免被誤認為冒牌。</li>
+          <li class="warn">開戶、轉讓與稅務安排須先向會計師及銀行確認；本頁只提方向，不構成專業意見。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">一個賣「可追溯」的品牌，自己的名字不應該是四個。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">13</span></div>
+</section>
+
+<!-- 14 · 內容策略 -->
+<section class="slide divider" data-slide="14" id="s14">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION III</div>
+    <h2>內容策略</h2>
+    <div class="desc">和橙目前發帖頻密，惟互動偏低，問題不在數量而在製作規格與選題。本節提出拍攝標準、AI 內容的正確用法，以及爆紅內容的結構拆解。</div>
+    <div class="items">
+      <div><b>01　拍攝技巧</b>佈光、道具、必備鏡頭</div>
+      <div><b>02　AI 內容診斷</b>現時 AI 圖的實際問題</div>
+      <div><b>03　AI 產品攝影</b>2026 年的正確流程</div>
+      <div><b>04　影片製作</b>AI 幫得上與幫不上的部分</div>
+      <div><b>05–06　爆紅內容</b>實際案例與可照做的規律</div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">14</span></div>
+</section>
+
+<!-- 15 · 拍攝技巧 -->
+<section class="slide" data-slide="15" id="s15">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">01</span></div>
+    <div class="title">拍攝技巧：圓形水果最難拍，關鍵在壓暗，不在打亮</div>
+    <div class="subtitle">橙是球體，全打亮會變成一團平的黃色。業界拍柑橘的做法是先控反光，再用黑旗把邊緣壓出暗帶，立體感才出得來。</div>
+  </div>
+  <div class="body">
+    <div class="col c7">
+      <div class="body" style="min-height:0;">
+        <div class="col c6">
+          <div class="panel" style="flex:1;">
+            <div class="panel-title">佈光</div>
+            <ul class="bullets compact spread">
+              <li><b>主燈離軸 30–45°</b>，控制果皮上的 specular 反光，避免整片死白。</li>
+              <li><b>黑旗 negative fill 壓暗果皮邊緣</b>——這一步決定球體感，是拍圓形水果最關鍵的動作。</li>
+              <li><b>背光燈位 90–120° 略高</b>，用來拍切面的透光。</li>
+              <li><b>在黑卡挖一個水果形狀的洞</b>，令光只穿過主體，背景自然沉下去。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col c6">
+          <div class="panel" style="flex:1;">
+            <div class="panel-title">道具與處理</div>
+            <ul class="bullets compact spread">
+              <li><b>水珠用甘油與水 1:1。</b>純水會滑走，而且水珠大小要刻意混合，才不像噴出來的。</li>
+              <li><b>切面防氧化：</b>抗壞血酸 2 大匙兌 1 杯水，浸 20 分鐘，每一個切面都要浸到。</li>
+              <li><b>拍 splash 需要 1/5000 秒級閃光</b>，一般連拍追不上。</li>
+              <li><b>人物只拍手</b>：農戶的手部特寫比全身鏡頭更有說服力。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="flex:0 0 auto;">
+        <div class="panel-title">必備鏡頭清單（每次上山拍齊，建立素材庫）</div>
+        <div class="rail c3" style="flex:0 0 auto;gap:9px;">
+          <div class="step">樹上果實特寫</div>
+          <div class="step">採摘動作</div>
+          <div class="step">分選線運作</div>
+          <div class="step">包裝過程</div>
+          <div class="step">切開與果肉</div>
+          <div class="step">試食反應</div>
+        </div>
+      </div>
+      <div class="src">佈光與道具做法整理自多個柑橘攝影幕後教學；參考連結見 research_ig_and_photography.md。</div>
+    </div>
+    <div class="col c5">
+      <div class="panel tinted" style="flex:0 0 auto;">
+        <div class="panel-title">格式規格</div>
+        <ul class="bullets compact">
+          <li>直向 9:16 為主，一條片同時投放 IG Reels 與 Facebook</li>
+          <li>首 3 秒必須有鉤子，否則完播率急跌</li>
+          <li>全片加字幕，假設觀眾靜音觀看</li>
+          <li>主力片長 15–30 秒，長版故事片另拍</li>
+        </ul>
+      </div>
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">五個參考方向（Pinterest）</div>
+        <table class="tbl" style="font-size:13px;">
+          <thead><tr><th style="width:112px;">方向</th><th>和橙可以怎麼用</th></tr></thead>
+          <tbody>
+            <tr><td><b>深色高級感</b></td><td>深底配側逆光——金裝禮盒的主視覺</td></tr>
+            <tr><td><b>淺色清新</b></td><td>米白底配自然光——日常線與網店產品圖</td></tr>
+            <tr><td><b>切面與汁水</b></td><td>特寫配水珠——短片首 3 秒的鉤子畫面</td></tr>
+            <tr><td><b>手部生活感</b></td><td>帶手、帶場景——農戶與消費者之間的連結</td></tr>
+            <tr><td><b>禮盒包裝</b></td><td>商品照——CNY 與企業禮品</td></tr>
+          </tbody>
+        </table>
+        <div class="note">時間有限的話先看三條：<b>dark-moody</b>（高級感）、<b>ingeris1645/oranges</b>（帶葉，有機感）、<b>fruit-packaging-ideas</b>（禮盒感）。</div>
+        <div class="src">共 21 條連結已逐條實測可開，見 research_photo_refs_and_ai_video.md。</div>
+        <div class="rail c2" style="flex:1;min-height:130px;">
+          <div class="tile"><img src="fb/WOrange-QC2.jpg" alt=""><div class="cap">切面</div></div>
+          <div class="tile"><img src="fb/WOrange-Skin.jpg" alt=""><div class="cap">果皮質感</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">先把規格與佈光定死，再談產量。沒有鉤子與字幕，拍得再靚也留不住人。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">15</span></div>
+</section>
+
+<!-- 16 · AI 內容診斷 -->
+<section class="slide" data-slide="16" id="s16">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">02</span></div>
+    <div class="title">AI 內容診斷：現時的 AI 圖正在<span class="hi">拉低互動</span>，而且畫錯了自己的 Logo</div>
+    <div class="subtitle">和橙已經在用 AI 生圖。問題不在用不用，而在用法——以下數據全部來自品牌自己的 IG 與 Facebook 帖文。</div>
+  </div>
+  <div class="body">
+    <div class="col c4">
+      <div class="panel tinted" style="flex:0 0 auto;">
+        <div class="panel-title">互動對照（品牌自身帖文）</div>
+        <table class="tbl plain">
+          <thead><tr><th>類型</th><th class="num">互動中位數</th></tr></thead>
+          <tbody>
+            <tr><td><b>實拍</b></td><td class="num"><b>32 讚</b></td></tr>
+            <tr><td>AI 生成</td><td class="num">17.5 讚</td></tr>
+          </tbody>
+        </table>
+        <ul class="bullets compact" style="margin-top:8px;">
+          <li>表現最好的四帖<b>全部是實拍</b>：打假（163 讚／39 留言／27 分享）、開摘（85）、科大教授（54）、回應質疑（47）。</li>
+          <li>表現最差的一帖是 AI 賀年產品渲染，<b>7 讚</b>。</li>
+          <li>IG 可判定的 11 格中，6 格為 AI 生成；畫風至少 5 套並行。</li>
+        </ul>
+      </div>
+      <div class="callout" style="flex:0 0 auto;">最要緊的一點矛盾：品牌<b>最有擴散力的題材是打假</b>，卻用一張畫錯自己 Logo 的圖，去叫人「認住正版商標」。</div>
+      <div class="note">放大檢視後可見：Logo 被畫成兩個重疊圓圈、包裝上的書法字整段消失、真橙是逐個獨立膠袋加貼紙而 AI 圖畫成散裝裸橙、血橙切面糊成一塊紅色實心。</div>
+    </div>
+    <div class="col c8">
+      <div class="rail c2" style="flex:1;">
+        <div class="tile"><img src="fb/WOrange-TRUE.jpg" alt=""><div class="cap">實拍 · 打假帖：163 讚／39 留言／27 分享</div></div>
+        <div class="tile"><img src="fb/WOrange-CNY.jpg" alt=""><div class="cap">AI 渲染 · 節慶產品圖</div></div>
+      </div>
+      <div class="src">同一專頁、同一時期。左為實拍議題帖，右為 AI 渲染產品圖。</div>
+    </div>
+  </div>
+  <div class="takeaway">賣的是「可追溯、不造假」，圖卻經不起放大——這不只是美術問題，是信任問題。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">16</span></div>
+</section>
+
+<!-- 17 · AI 產品攝影 -->
+<section class="slide" data-slide="17" id="s17">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">03</span></div>
+    <div class="title">AI 產品攝影：2026 年的做法是<span class="hi">實拍為主，AI 只生背景</span></div>
+    <div class="subtitle">過時的做法是打一段 prompt 生出一整張圖，產品由模型憑空畫出——上一頁的 Logo 出錯，正是這樣來的。</div>
+  </div>
+  <div class="body col">
+    <div class="flow" style="flex:0 0 auto;">
+      <div class="step" style="border-top-color:var(--pc-deep);"><b>01　實拍</b>依上一頁的佈光拍好產品本身</div>
+      <div class="step" style="border-top-color:var(--pc-medium);"><b>02　去背</b>把產品從背景抽出，保留原始像素</div>
+      <div class="step" style="border-top-color:var(--pc-light);"><b>03　AI 生背景</b>模型只負責場景，不碰產品</div>
+      <div class="step" style="border-top-color:var(--pc-teal);"><b>04　Relight</b>令產品與新背景的光向、色溫一致</div>
+      <div class="step" style="border-top-color:var(--pc-violet);"><b>05　收尾</b>合成、修邊、加回 Logo 與包裝文字</div>
+    </div>
+    <div class="callout" style="flex:0 0 auto;">貫穿五步的一條原則：<b>產品像素盡量不要進入模型</b>。Logo、書法字、防偽貼紙一旦由 AI 重畫，就會出錯。</div>
+    <div class="body" style="min-height:0;">
+      <div class="col c6">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">業界常用工具（2026）</div>
+          <table class="tbl">
+            <thead><tr><th style="width:130px;">環節</th><th>工具</th></tr></thead>
+            <tbody>
+              <tr><td><b>生成與參考</b></td><td>Nano Banana Pro／2（可用 14 張參考圖、支援圖內文字）；FLUX.2（10 張參考圖）</td></tr>
+              <tr><td><b>重新打光</b></td><td>Seedream 4.5（ComfyUI 官方 relight 模板的核心）</td></tr>
+              <tr><td><b>合成收尾</b></td><td>Photoshop 27 的 Harmonize 配 Firefly Image 5</td></tr>
+            </tbody>
+          </table>
+          <div class="src">工具資料多來自廠商網誌，非官方規格文件；採用前須自行試機。</div>
+        </div>
+      </div>
+      <div class="col c6">
+        <div class="panel tinted" style="flex:1;">
+          <div class="panel-title">兩項必須留意的變動</div>
+          <ul class="bullets compact">
+            <li class="warn"><b>Sora 已停止服務</b>，API 於 2026-09-24 關閉。任何流程都不應建立在其上。</li>
+            <li class="warn"><b>內地《AI 生成合成內容標識辦法》2025-09-01 已施行</b>：要求顯式與隱式雙重標識，平台會核驗，刪除標識屬違規。和橙有內地銷售，宜以此為最嚴基準。</li>
+            <li>Google Merchant Center 要求「實拍產品＋AI 背景」標為 <b>CompositeSynthetic</b>；同時要留意自家 CDN 不要把 metadata 洗掉。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">AI 用來省時間，不是用來代替事實。產品本身一定要是拍出來的。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">17</span></div>
+</section>
+
+<!-- 18 · 影片製作 -->
+<section class="slide" data-slide="18" id="s18">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">04</span></div>
+    <div class="title">影片製作：AI 幫得上甚麼，以及一條<span class="hi">走不通</span>的路</div>
+    <div class="subtitle">承接前頁的 Jobs 二創構想。以下是實際查過工具與條款之後的結論，連每月成本一併列出。</div>
+  </div>
+  <div class="body">
+    <div class="col c7">
+      <div class="panel" style="flex:0 0 auto;">
+        <div class="panel-title">可行路徑（每月約 US$50–60）</div>
+        <table class="tbl">
+          <thead><tr><th style="width:130px;">環節</th><th>做法</th></tr></thead>
+          <tbody>
+            <tr><td><b>字幕與翻譯</b></td><td>自動生成繁中與英文字幕，一條片同時投香港與海外</td></tr>
+            <tr><td><b>旁白</b></td><td>用<b>自己的聲音</b>建語音模型，不是克隆別人</td></tr>
+            <tr><td><b>B-roll 空鏡</b></td><td>橙園、切橙、果汁流動這類無人臉畫面——AI 目前最穩的守備範圍，CP 值最高</td></tr>
+            <tr><td><b>切短版</b></td><td>一條長片自動剪成多條 Reels，測試不同開頭</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title">工具與價格</div>
+        <ul class="bullets compact">
+          <li><b>Runway Standard　US$12／月</b>——一份訂閱同時用到 Kling 3.0、Veo 3.1、Seedance 2.5、Nano Banana Pro，無浮水印。對只有幾個人的團隊最實際，不必開四個帳號分別付款。</li>
+          <li><b>Veo 3.1 / Flow</b>——唯一原生帶同步音訊。Fast 720p 每秒 US$0.10，一支 8 秒空鏡約 <b>HKD6</b>。</li>
+          <li><b>ElevenLabs Creator　US$22／月</b>——配音環節。</li>
+          <li class="warn"><b>Sora 不能用：</b>Web 與 App 已於 2026-04-26 停止，API 2026-09-24 關閉，且原廠未提供替代模型。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col c5">
+      <div class="panel" style="flex:0 0 auto;border-top:3px solid var(--pc-pink);">
+        <div class="panel-title" style="color:var(--pc-pink);">走不通的一條路</div>
+        <ul class="bullets compact">
+          <li class="warn">用 AI 克隆 Jobs 的聲音去講和橙文案——<b>技術上就走不通</b>，不是風險高低的問題。</li>
+          <li>ElevenLabs 官方條款明文寫著：即使對方同意，也不能克隆他人聲音，並須通過本人聲紋驗證。</li>
+          <li>建議由提案中直接劃走，改為只用原片講話段配中文字幕。</li>
+        </ul>
+      </div>
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title">要先寫成明文的一條原則</div>
+        <div class="callout" style="margin-bottom:8px;">凡宣稱「<b>我們的果園、我們的農戶</b>」的畫面，一律實拍。AI 空鏡只用於示意與抽象畫面。</div>
+        <ul class="bullets compact">
+          <li>和橙賣的是「有機、真實、可追溯」。AI 空鏡愈像實拍果園，被人發現時的傷害愈大。</li>
+          <li><b>內地：</b>深度合成規定第 14 條要求「單獨同意」；標識辦法 2025-09-01 已生效，須顯式加隱式雙重標識。</li>
+          <li><b>香港：</b>暫無專門立法，2026-03 才成立跨部門工作小組；標示 AI 屬建議而非法定要求。惟普通法「假冒」對用名人聲音形象作商業用途最相關。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">AI 可以幫你省下拍空鏡與剪片的時間，但不能幫你借別人的聲音講自己的故事。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">18</span></div>
+</section>
+
+<!-- 19 · 爆紅案例 -->
+<section class="slide" data-slide="19" id="s19">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">05</span></div>
+    <div class="title">爆紅案例：爆點不在產品，在<span class="hi">語氣</span></div>
+    <div class="subtitle">以下為原文引用，互動數字為 2026-08-26 實測。三則全部出自 Threads，全部由官方帳號發出，全部與產品無關。</div>
+  </div>
+  <div class="body">
+    <div class="col c4">
+      <div class="post" style="flex:1;justify-content:center;">
+        <div class="ph">故宮南院 @npm_south · Threads · 2026-07-25</div>
+        <div class="msg u"><span>網友　20:14</span>故宮南院</div>
+        <div class="msg b"><span>小編　21:22</span>幹嘛</div>
+        <div class="pstat">95.5K 讚 · 182 回覆 · 389 轉發 · 3.5K 分享 · 1.1M 瀏覽</div>
+        <div class="pb" style="font-size:14px;">其後的神回覆：「可以是可以，可是明天你只能在庭院玩！」「躺著」</div>
+        <div class="plink">threads.com/@npm_south/post/DbN6UebCbCB</div>
+        <div class="note">官方承認由一名助理研究員經營。整串對話只有兩個字，是機構身份配人類語氣的極致。</div>
+      </div>
+    </div>
+    <div class="col c4">
+      <div class="post" style="flex:1;justify-content:center;">
+        <div class="ph">SUZUKI @suzukimotortw · Threads · 2026-08-11</div>
+        <div class="pb">「⋯以上認真回答完畢。但我還是想問一下⋯⋯<b>這到底關我 SUZUKI 什麼事啦！</b>(╯°□°）╯︵ ┻━┻」</div>
+        <div class="pstat">309K 瀏覽 · 25.4K 讚 · 87 回覆</div>
+        <div class="plink">threads.com/@suzukimotortw/post/Db5DfF7CU6t</div>
+        <div class="note">網友問 iPhone 電池，機車品牌認真答完再吐槽自己。追蹤由 1.8 萬升至 4.17 萬。</div>
+        <div class="ph" style="margin-top:4px;">同一位「鈴編」的日常</div>
+        <div class="pb" style="font-size:13.5px;">奇葩騎士吐槽 404 讚 · 「鈴編教你學日文」連載 295 讚 · 到別人留言區回「價格都差不多，服務比較重要 👍🏻」僅 169 瀏覽</div>
+      </div>
+    </div>
+    <div class="col c4">
+      <div class="post" style="flex:1;justify-content:center;">
+        <div class="ph">「如履薄冰」薄冰哥 · Threads 迷因</div>
+        <div class="pb" style="font-size:14.5px;">原句出自《投名狀》龐青雲：「我這一生如履薄冰，你說，我能走到對岸嗎」</div>
+        <div class="msg b"><span>標準用法</span>「呦，這不是薄冰哥嗎？」<br>——接「給你二十塊錢打車過去吧」</div>
+        <div class="pstat">單則示範：9.8K 讚／234K 瀏覽；另一則 2.8 萬讚／53 萬瀏覽</div>
+        <div class="note">笑點機制：把比喻義故意曲解成字面義。畫面是吉伊卡哇穿黑風衣走路。</div>
+        <div class="note" style="color:var(--pc-pink);">版權：二創屬未授權使用吉伊卡哇。品牌只可借用<b>文字結構</b>，不要用其素材。</div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">三則都是官方帳號、都與產品無關、都靠一句人話。香港品牌帳號至今無人做到，位置仍然空著。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">19</span></div>
+</section>
+
+<!-- 20 · 規律怎麼用 -->
+<section class="slide" data-slide="20" id="s20">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">III · 內容策略　<span class="sec">06</span></div>
+    <div class="title">規律怎麼用：五條觀察，各自對應一個和橙可以照做的動作</div>
+    <div class="subtitle">左欄是從上一頁案例歸納出來的規律，右欄是和橙下個月就能開始做的事。不必等到有大預算。</div>
+  </div>
+  <div class="body">
+    <div class="col c7">
+      <table class="tbl">
+        <thead><tr><th style="width:250px;">觀察到的規律</th><th>和橙照著做甚麼</th></tr></thead>
+        <tbody>
+          <tr><td><b>爆點是反差</b><br><span class="note">機構身份配人類語氣</span></td><td>讓農場的人直接說話，署名到人。不要用「小編」這種代稱，那本身就是機構語氣。</td></tr>
+          <tr><td><b>回覆比發文重要</b><br><span class="note">Buffer 就約 12.8 萬則 Threads 貼文的分析：會回覆留言的帳號互動高約 42%，六平台之最</span></td><td>每一則留言都回，用農夫語氣回。回覆的時間成本，遠低於再拍一條片。</td></tr>
+          <tr><td><b>去別人的留言區</b><br><span class="note">故宮南院館方說小編「連下班都在海巡」；Suzuki 鈴編亦有到他人貼文回覆的紀錄</span></td><td>不要只守自己的專頁。到有機食材、親子、送禮的討論串裡留一兩句有用的話。</td></tr>
+          <tr><td><b>地基是 bio</b><br><span class="note">故宮南院的簡介以第一人稱寫成「一個住嘉義的人」</span></td><td>先改 IG 與 Threads 的簡介：寫明是誰在打理、他在郴州還是香港。</td></tr>
+          <tr><td><b>零門檻互動勝過精美內容</b><br><span class="note">鮮乳坊開「灌水專區」讓網友留言接力</span></td><td>開一個長期帖：「今日邊個橙最靚」投票、收成倒數、改名徵集。一句話就能參與。</td></tr>
+        </tbody>
+      </table>
+      <div class="src">Buffer 分析自身聲明約三分之一帳號無效，且屬相關而非因果。查證過程見 research_viral_posts_content.md。</div>
+    </div>
+    <div class="col c5">
+      <div class="post" style="flex:0 0 auto;">
+        <div class="ph">鮮乳坊 @bettermilk.tw · Threads「灌水專區」</div>
+        <div class="pb" style="font-size:14.5px;">開一條長期帖讓網友留言接力，以顏文字排版。玩法本身就是內容，不需要製作成本。</div>
+        <div class="pstat">71 讚 · 12 回覆 · 1.2K 瀏覽</div>
+        <div class="plink">threads.com/@bettermilk.tw/post/DcbWiTXE0tA</div>
+      </div>
+      <div class="post" style="flex:1;justify-content:center;">
+        <div class="ph">故宮南院 · 另一則值得學的做法</div>
+        <div class="pb" style="font-size:14.5px;">〈宋 蘇焯 端陽戲嬰圖〉的擬人文：整段搞笑，<b>最後一行才接上展名與展期</b>。</div>
+        <div class="callout" style="margin-top:6px;font-size:15px;">幽默是手段，導流才是目的。每一條片的最後三秒，都要有人知道下一步去哪裡。</div>
+        <div class="note">和橙版：刀疤橙自嘲完，最後一行接「本週開摘，官網預訂」。</div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">可複製的是語氣與回覆節奏，不可複製的是運氣——先把能複製的那半做齊。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">20</span></div>
+</section>
+
+<!-- 21 · 渠道與活動 -->
+<section class="slide divider" data-slide="21" id="s21">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION IV</div>
+    <h2>渠道與活動</h2>
+    <div class="desc">內容負責帶來認知，渠道負責接住成交。本節按 B2C、B2B、線下活動三條線鋪排，並就社企資格提出申請路徑。</div>
+    <div class="items">
+      <div><b>01　銷售渠道 B2C</b>三層鋪貨與上架條款</div>
+      <div><b>02　銷售渠道 B2B</b>協會、企業 ESG 與員工福利</div>
+      <div><b>03　Pop-up Booth</b>以橙換取社群追蹤</div>
+      <div><b>04　學校巡迴</b>經學生接觸家長</div>
+      <div><b>05　社企路徑</b>認證、名錄與合作對象</div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">21</span></div>
+</section>
+
+<!-- 22 · 銷售渠道 B2C -->
+<section class="slide" data-slide="22" id="s22">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">01</span></div>
+    <div class="title">銷售渠道 B2C：官網、中高檔超市、優惠平台三層分工</div>
+  </div>
+  <div class="body">
+    <div class="col c6">
+      <table class="tbl">
+        <thead><tr><th style="width:126px;">層級</th><th>渠道</th></tr></thead>
+        <tbody>
+          <tr><td><b>官網</b></td><td>hkfarmerstoryshop.com（連自取點）</td></tr>
+          <tr><td><b>中高檔超市</b></td><td>Sogo、一田、city'super、Market Place、Taste、Oliver's The Delicatessen、Great、3hreeSixty</td></tr>
+          <tr><td><b>優惠平台</b></td><td>HKTVmall、果欄</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">同一品牌可同時出現於兩種貨架，前提是<b>包裝、規格、價帶完全分開</b>：金裝只走中高檔，日常線只走優惠平台。</div>
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">上架前須談妥的四項條款</div>
+        <ul class="bullets compact spread">
+          <li><b>費用與賬期：</b>入場費、陳列費、回佣比例、結賬天期。</li>
+          <li><b>供貨規格：</b>起訂量、送貨頻率、缺貨罰則、退貨及爛果處理。</li>
+          <li><b>檔期：</b>主產季只有 11 月底至 3 月，合約須列明季節性供貨。</li>
+          <li><b>價格保護：</b>設最低廣告價，避免日常線折扣打穿金裝價帶。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col c6">
+      <div class="rail c3" style="flex:1;">
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_1.png" alt="Sogo"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_2.png" alt="一田"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_3.png" alt="city'super"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_4.png" alt="Market Place"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_6.png" alt="3hreeSixty"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_7.png" alt="Oliver's"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_8.png" alt="Taste"></div>
+        <div class="tile fit" style="background:#fff;"><img src="proposal/s10_5.png" alt="Great"></div>
+        <div class="tile"><img src="fb/WOrange-HKTV-mall.jpg" alt=""><div class="cap">HKTVmall</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">同一品牌可以上兩種貨架，前提是四項條款先談妥。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">22</span></div>
+</section>
+
+<!-- 23 · 銷售渠道 B2B -->
+<section class="slide" data-slide="23" id="s23">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">02</span></div>
+    <div class="title">銷售渠道 B2B：先經協會接觸 HR，再談企業 ESG 與員工福利採購</div>
+  </div>
+  <div class="body col">
+    <div class="body" style="min-height:0;">
+      <div class="col c5">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">第一步 · 專業協會</div>
+          <ul class="bullets compact">
+            <li><b>HKIHRM</b> 香港人力資源管理學會</li>
+            <li><b>HKPMA</b> 香港人才管理協會</li>
+            <li><b>HKMA</b> 香港管理專業協會</li>
+          </ul>
+          <div class="note">切入方式：贊助會員活動果籃、年會攤位、HR 電子報專欄（員工健康 × ESG 禮品）。</div>
+          <div class="panel-title" style="margin-top:8px;">須先備妥的材料</div>
+          <ul class="bullets compact">
+            <li>BSI 碳足跡證書及有機／Global G.A.P. 證書（附 QR）</li>
+            <li>企業果籃報價表：規格、入數、起訂量、送貨安排</li>
+            <li>認養方案一頁紙：認養、員工福利、慈善捐贈三合一</li>
+          </ul>
+          <div class="tile" style="flex:1;min-height:170px;"><img src="fb/WOrange-Exhibition.jpg" alt=""><div class="cap">展會與協會活動可一次接觸大量 HR</div></div>
+        </div>
+      </div>
+      <div class="col c7">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">第二步 · 目標企業（ESG／員工福利）</div>
+          <table class="tbl plain" style="font-size:13.5px;">
+            <tbody>
+              <tr><td>中華電力 CLP</td><td>香港電燈 HK Electric</td><td>香港中華煤氣 Towngas</td></tr>
+              <tr><td>港鐵 MTR</td><td>滙豐銀行 HSBC</td><td>香港賽馬會 HKJC</td></tr>
+              <tr><td>迪士尼樂園 Disneyland</td><td>新鴻基地產 SHKP</td><td>太古地產 Swire Properties</td></tr>
+            </tbody>
+          </table>
+          <ul class="bullets compact" style="margin-top:6px;">
+            <li><b>優先接觸：</b>公用事業（中電、港燈、煤氣、港鐵）碳減排壓力最直接，與 BSI 數據最為對應。</li>
+            <li><b>銷售組合：</b>員工果籃（節慶）→ 認養果樹（年度）→ 基地共建及贊助（長期）。</li>
+            <li><b>須釐清：</b>對方 ESG 報告的披露口徑，決定和橙須提供哪一種證明文件。</li>
+            <li><b>時序：</b>企業年度禮品採購一般提前 2–3 個月定案，CNY 檔期須於第三季開始接觸。</li>
+          </ul>
+          <div class="tile" style="flex:1;min-height:170px;"><img src="fb/WOrange-Certificate.jpg" alt=""><div class="cap">證書為 B2B 洽談的入場券</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">可售的不止果籃：認養果樹、員工福利、慈善捐贈三者合一，令對方的 ESG 報告有具體內容可寫。</div>
+  </div>
+  <div class="takeaway">企業要的不是果籃，是一段可以寫進 ESG 報告的文字。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">23</span></div>
+</section>
+
+<!-- 24 · Pop-up Booth -->
+<section class="slide" data-slide="24" id="s24">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">03</span></div>
+    <div class="title">Pop-up Booth：以<span class="hi">兩個橙</span>換取一次社群追蹤</div>
+  </div>
+  <div class="body">
+    <div class="col c6 vc">
+      <div class="panel" style="flex:0 0 auto;">
+        <div class="panel-title">換領機制</div>
+        <table class="tbl">
+          <thead><tr><th style="width:150px;">方案</th><th>內容</th><th style="width:200px;">用意</th></tr></thead>
+          <tbody>
+            <tr><td><b>標準</b></td><td>追蹤任一社群帳號，換 <b>2 個和橙</b></td><td>一個自用，一個轉贈，形成二次傳播</td></tr>
+            <tr><td><b>建議</b></td><td>一大一細（85mm ＋ 70mm）</td><td>當場示範尺寸分級與定價邏輯</td></tr>
+            <tr><td><b>加碼</b></td><td>三個平台全追蹤，加送金裝一個</td><td>把 IG 與 Threads 的基數一併拉起</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="bullets compact">
+        <li><b>為何不是一個：</b>單一個橙不足以讓人比較尺寸與口感，亦不會產生分享行為；兩個才會出現「俾人食」這一步。</li>
+        <li><b>為何值得：</b>IG 現時僅 868、Threads 233，基數低，每一場的增量都清楚可見。</li>
+        <li><b>打卡框：</b>設 FB／IG／Threads 造型立牌，讓參加者自行拍照發文，換取二次曝光。</li>
+        <li><b>已有基礎：</b>科學園 Pop-up、亞洲素食展、愉景灣聖誕市集均已執行。</li>
+      </ul>
+      <div class="callout">每場須記錄三個數字：新增追蹤數、掃碼數、當場落單數。否則仍舊只有曝光，沒有歸因。</div>
+    </div>
+    <div class="col c6">
+      <div class="tile fit" style="flex:1;">
+        <img src="proposal/s12_1.jpg" alt="社交媒體打卡框">
+        <div class="cap">打卡框參考</div>
+      </div>
+      <div class="tile" style="flex:0 0 190px;"><img src="fb/WOrange-Exhibition2.jpg" alt=""><div class="cap">現有展會現場</div></div>
+    </div>
+  </div>
+  <div class="takeaway">兩個橙的成本，換一次追蹤加一次轉贈——比單純派發划算。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">24</span></div>
+</section>
+
+<!-- 25 · 學校巡迴 -->
+<section class="slide" data-slide="25" id="s25">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">04</span></div>
+    <div class="title">學校巡迴：全港約 <span class="hi">138 間</span>國際、私立及直資學校</div>
+  </div>
+  <div class="body">
+    <div class="col c6 vc">
+      <table class="tbl">
+        <thead><tr><th>類型</th><th class="num">間數</th><th>組成</th></tr></thead>
+        <tbody>
+          <tr><td><b>國際學校</b></td><td class="num"><b>52</b></td><td>小學 16、中學 7、中小學 28、特殊學校 1</td></tr>
+          <tr><td><b>私立學校</b></td><td class="num"><b>8</b></td><td>—</td></tr>
+          <tr><td><b>直資學校</b></td><td class="num"><b>78</b></td><td>小學 21、中學 57、中小學 9</td></tr>
+          <tr><td><b>合計</b></td><td class="num"><b>138</b></td><td>—</td></tr>
+        </tbody>
+      </table>
+      <div class="src">註：直資學校組成分項相加為 87，與 78 有出入，對外簡報前須核對原始名單。</div>
+      <ul class="bullets compact" style="margin-top:6px;">
+        <li>「送橙到校園 2026」已執行，模式可直接複製。</li>
+        <li>可配合親子工作坊與農場導賞，構成一條龍體驗。</li>
+        <li>每間學校須留下家長入口：訂購連結、班級團購、節慶禮盒單張。</li>
+      </ul>
+      <div class="callout">送橙接觸的是學生，落單的是家長——校園是進入中高收入家庭成本最低的入口。</div>
+    </div>
+    <div class="col c6">
+      <div class="rail c2" style="flex:1;">
+        <div class="tile"><img src="fb/WOrange-School.jpg" alt=""><div class="cap">送橙到校園</div></div>
+        <div class="tile"><img src="fb/WOrange-School2.jpg" alt=""><div class="cap">校園互動</div></div>
+        <div class="tile"><img src="fb/WOrange-School3.jpg" alt=""><div class="cap">學生反應本身就是素材</div></div>
+        <div class="tile"><img src="fb/WOrange-Parent-Child-Tour.jpg" alt=""><div class="cap">親子農場團</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">接觸的是學生，落單的是家長；每一場都要留下家長入口。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">25</span></div>
+</section>
+
+<!-- 26 · 社企路徑 -->
+<section class="slide" data-slide="26" id="s26">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">05</span></div>
+    <div class="title">社企路徑：先取標誌與名錄資格，再談企業客與政府採購</div>
+  </div>
+  <div class="body col">
+    <div class="flag"><b>用意</b><span>社企身份對 B2B 有直接作用——企業採購與 ESG 部門需要可載入報告的第三方憑證，而非品牌自述。</span></div>
+    <div class="body" style="min-height:0;">
+      <div class="col c7">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">可申請的標誌與名錄</div>
+          <table class="tbl">
+            <thead><tr><th style="width:190px;">標誌／名錄</th><th style="width:180px;">主辦機構</th><th>對和橙的用途</th></tr></thead>
+            <tbody>
+              <tr><td><b>SEE Mark 社企認證</b></td><td>香港社會企業總會</td><td>可見的第三方社企身份，適合印於包裝與企業提案</td></tr>
+              <tr><td><b>商界展關懷</b></td><td>香港社會服務聯會</td><td>企業客最熟悉的標誌，直接對應 CSR 採購名單</td></tr>
+              <tr><td><b>社企指南</b></td><td>香港社會服務聯會</td><td>收錄後可被企業與政府採購部門主動搜尋到</td></tr>
+              <tr><td>良心消費運動</td><td>香港社會企業總會</td><td>零售端曝光，配合門市與電商標示</td></tr>
+            </tbody>
+          </table>
+          <div class="src">各計劃的申請資格、費用與週期須向主辦機構查證最新版本；上表僅列出用途方向。</div>
+          <div class="panel-title" style="margin-top:10px;">建議的申請次序</div>
+          <ul class="bullets compact">
+            <li><b>先取「商界展關懷」：</b>企業採購與 HR 對此標誌最為熟悉，直接服務 B2B 一線。</li>
+            <li><b>再入「社企指南」：</b>令企業與政府採購部門可主動搜尋到和橙。</li>
+            <li><b>後取 SEE Mark：</b>取得後才有第三方身份可印於包裝與零售端。</li>
+            <li class="warn">三者均要求持續的社會效益紀錄，故派發與捐贈須由現在開始留檔。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col c5">
+        <div class="panel tinted" style="flex:1;">
+          <div class="panel-title">建議的社企合作方向</div>
+          <ul class="bullets compact spread">
+            <li><b>次級果轉贈：</b>賣相欠佳但品質無損的果實，捐予食物援助機構，同時處理庫存並取得社會效益紀錄。</li>
+            <li><b>長者就業社企：</b>果籃包裝與節慶分裝工序外判，既符合社企精神，亦可寫入企業客的 ESG 報告。</li>
+            <li><b>社區派發制度化：</b>深水埗派橙行動已執行，宜定為每年常設項目並記錄受惠人數。</li>
+            <li><b>校園與教育：</b>有機耕作工作坊可申請成為教育服務，接通學校巡迴一線。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">標誌需要時間累積，故派發與捐贈的紀錄須由現在開始留檔。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">26</span></div>
+</section>
+
+<!-- 27 · 產品體驗 -->
+<section class="slide divider" data-slide="27" id="s27">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION V</div>
+    <h2>產品體驗</h2>
+    <div class="desc">同一批橙，靠包裝與陳列拉開檔次，毋須另立品牌。周邊商品則負責把品牌角色帶出農場，延長曝光。</div>
+    <div class="items">
+      <div><b>01　包裝參考（一）</b>透明蓋、祝福訊息、產地標示</div>
+      <div><b>02　包裝參考（二）</b>色彩、品牌標籤、展銷架</div>
+      <div><b>03　Packaging 規格</b>兩級禮盒的形態與入數</div>
+      <div><b>04　紀念品</b>可攜帶的品牌角色</div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">27</span></div>
+</section>
+
+<!-- 28 · 包裝參考 -->
+<section class="slide" data-slide="28" id="s28">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">V · 產品體驗　<span class="sec">01</span></div>
+    <div class="title">包裝參考：透明蓋、祝福訊息、產地標示——參考日本做法</div>
+  </div>
+  <div class="body col">
+    <div class="tile fit" style="flex:1;">
+      <img src="proposal/s14_1.jpg" alt="包裝參考一">
+      <div class="cap">日本及本地百貨貨架實拍</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="h">頂蓋透明顯示</div><div class="b">Clear-lid Packaging。透明頂蓋令水果看來更豐滿，吸引顧客駐足。</div></div>
+      <div class="card"><div class="h">禮物包裝搭配祝福訊息</div><div class="b">送禮時附上祝福心意，令送禮者與收禮者均感親切。</div></div>
+      <div class="card"><div class="h">來源產地與產品介紹</div><div class="b">提供產品相關資訊，提升消費者信心並增強購買意願。</div></div>
+    </div>
+  </div>
+  <div class="takeaway">透明蓋、祝福語、產地標示，三者都是在替消費者省下判斷成本。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">28</span></div>
+</section>
+
+<!-- 29 · 包裝參考 -->
+<section class="slide" data-slide="29" id="s29">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">V · 產品體驗　<span class="sec">02</span></div>
+    <div class="title">包裝參考：色彩、品牌標籤、展銷架</div>
+  </div>
+  <div class="body col">
+    <div class="tile fit" style="flex:1;">
+      <img src="proposal/s15_1.jpg" alt="包裝參考二">
+      <div class="cap">韓國及本地超市貨架實拍</div>
+    </div>
+    <div class="cards">
+      <div class="card alt"><div class="h">以色彩活化包裝特色</div><div class="b">卡通角色能吸引目光，亦提升包裝層次感，令袋內食物看來更具品質——正好安放刀疤橙。</div></div>
+      <div class="card alt"><div class="h">品牌標籤創造優勢</div><div class="b">使用外語標籤可提升優越感，特別適合海外銷售，亦強化本地推廣時的觀感。</div></div>
+      <div class="card alt"><div class="h">品牌展銷效應</div><div class="b">向經銷商提供創意展示架，令產品擁有專屬推廣位置，突出品牌形象。</div></div>
+    </div>
+  </div>
+  <div class="takeaway">卡通角色不是裝飾，是讓貨架上的和橙一眼認得出。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">29</span></div>
+</section>
+
+<!-- 30 · Packaging -->
+<section class="slide" data-slide="30" id="s30">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">V · 產品體驗　<span class="sec">03</span></div>
+    <div class="title">Packaging：兩級規格，均採透明蓋讓果實自行說話</div>
+  </div>
+  <div class="body">
+    <div class="col c5 vc">
+      <table class="tbl">
+        <thead><tr><th>級別</th><th>形態</th><th>入數</th></tr></thead>
+        <tbody>
+          <tr><td><b>Luxury Gift</b></td><td>Wood Box ＋ Transparent Cover</td><td>2–6 個<br><span class="note">視乎果徑</span></td></tr>
+          <tr><td><b>High End</b></td><td>Food Grade Carton Box ＋ Transparent Cover</td><td>4–6 個<br><span class="note">視乎果徑</span></td></tr>
+        </tbody>
+      </table>
+      <ul class="bullets compact">
+        <li><b>祝福字樣：</b>Merry Christmas 或「大吉大利」，按節慶更換。</li>
+        <li><b>可再利用：</b>錢罌、婚禮小盒等造型（和睦共處），令盒身留在家中持續曝光。</li>
+        <li><b>實用紙盒：</b>另附可提可疊的紙盒建議，便於運送與陳列。</li>
+      </ul>
+      <div class="callout">透明蓋有一項前提：果實須禁得起注視。刀疤橙的故事必須先行講述，疤痕才會被讀成證據而非瑕疵。</div>
+    </div>
+    <div class="col c7">
+      <div class="rail c2" style="flex:1;">
+        <div class="tile"><img src="proposal/s16_3.jpg" alt=""><div class="cap">木盒配透明蓋</div></div>
+        <div class="tile"><img src="proposal/s16_4.jpg" alt=""><div class="cap">食品級紙盒</div></div>
+        <div class="tile"><img src="proposal/s16_1.jpg" alt=""><div class="cap">可提式紙盒</div></div>
+        <div class="tile fit"><img src="proposal/s16_2.png" alt=""><div class="cap">錢罌／婚禮盒：和睦共處</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">兩級規格共用同一套識別；檔次靠盒，不靠改名。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">30</span></div>
+</section>
+
+<!-- 31 · 紀念品 -->
+<section class="slide" data-slide="31" id="s31">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">V · 產品體驗　<span class="sec">04</span></div>
+    <div class="title">紀念品：將品牌角色轉化為可攜帶的實物</div>
+  </div>
+  <div class="body">
+    <div class="col c6 vc">
+      <div class="cards" style="flex-wrap:wrap;">
+        <div class="card" style="flex:0 0 47%;"><div class="h">盲盒公仔</div><div class="b">刀疤橙、雞公橙成套推出；農旅、認養、禮盒均可搭售。</div></div>
+        <div class="card" style="flex:0 0 47%;"><div class="h">利是封</div><div class="b">隨 CNY 禮盒附贈，每年一款，建立收藏誘因。</div></div>
+      </div>
+      <div class="cards" style="flex-wrap:wrap;">
+        <div class="card" style="flex:0 0 47%;"><div class="h">開橙器</div><div class="b">實用小物，直接對應產品使用場景。</div></div>
+        <div class="card" style="flex:0 0 47%;"><div class="h">環保袋與水樽</div><div class="b">呼應有機及低碳定位，適合企業客與工作坊。</div></div>
+      </div>
+      <div class="cards">
+        <div class="card" style="flex:0 0 47%;"><div class="h">微型巴士</div><div class="b">承接已投放的巴士車身廣告，製成可收藏模型。</div></div>
+      </div>
+    </div>
+    <div class="col c6">
+      <div class="rail c2" style="flex:1;">
+        <div class="tile fit"><img src="proposal/s17_1.jpg" alt=""></div>
+        <div class="tile"><img src="proposal/s17_2.jpg" alt=""></div>
+        <div class="tile fit"><img src="proposal/s17_4.jpg" alt=""></div>
+        <div class="tile"><img src="proposal/s17_3.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">周邊的作用不是賺錢，是讓品牌離開農場後仍然被看見。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">31</span></div>
+</section>
+
+<!-- 32 · 生態旅遊 -->
+<section class="slide divider" data-slide="32" id="s32">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="body col" style="justify-content:center;">
+    <div class="num">SECTION VI</div>
+    <h2>生態旅遊</h2>
+    <div class="desc">摘橙只佔兩個月，其餘十個月農場仍須有理由讓人前來。以花期編排全年行程，令收入不再受產季限制。</div>
+    <div class="items">
+      <div><b>01　全年花期編排</b>十二個月的行程與收入來源</div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
+</section>
+
+<!-- 33 · 以花期把農場撐成全年營運 -->
+<section class="slide" data-slide="33" id="s33">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">VI · 生態旅遊　<span class="sec">01</span></div>
+    <div class="title">以花期把農場撐成<span class="hi">全年</span>營運</div>
+  </div>
+  <div class="body col">
+    <div class="flow">
+      <div class="step" style="border-top-color:var(--pc-deep);"><b>11–12月</b>摘橙</div>
+      <div class="step" style="border-top-color:var(--pc-pink);"><b>1–2月</b>茶花 · 桃花</div>
+      <div class="step" style="border-top-color:var(--pc-violet);"><b>3–4月</b>櫻花 · 油菜花</div>
+      <div class="step" style="border-top-color:var(--pc-purple);"><b>5–6月</b>杜鵑花</div>
+      <div class="step" style="border-top-color:var(--pc-medium);"><b>7–8月</b>向日葵 · 學接枝 · 餵動物</div>
+      <div class="step" style="border-top-color:var(--pc-teal);"><b>9–10月</b>桂花</div>
+    </div>
+    <div class="body" style="min-height:0;">
+      <div class="col c5 vc">
+        <ul class="bullets">
+          <li><b>參考日本農場：</b>飲品店、雪糕店、足夠座位、打卡點、手信店——目的是延長停留時間以帶動園內消費，而非拍照後即離開。</li>
+          <li><b>收入來源：</b>入場費，以及園內消費（餐飲、手信、體驗）。</li>
+          <li><b>已有基礎：</b>三日兩夜農旅套餐、每年逾 1,000 名訪客且以港客為主、香港乘高鐵至郴州不足三小時。</li>
+        </ul>
+        <div class="callout">此節同時回答「產季只有四個月如何是好」——把農場本身變成產品，收入便不再跟隨橙的檔期。</div>
+      </div>
+      <div class="col c7">
+        <div class="rail c2" style="flex:1;">
+          <div class="tile"><img src="proposal/s18_2.jpg" alt=""><div class="cap">花期景觀</div></div>
+          <div class="tile"><img src="proposal/s18_1.jpg" alt=""><div class="cap">園內設施參考</div></div>
+          <div class="tile"><img src="proposal/s18_3.jpg" alt=""><div class="cap">日本農場動線參考</div></div>
+          <div class="tile"><img src="proposal/s18_4.jpg" alt=""><div class="cap">手信與園內消費</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="takeaway">把農場本身變成產品，收入就不再跟著橙的檔期走。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">33</span></div>
+</section>
+
+</main>
+
+<script>
+/* ==================================================================
+   Navigation + theme
+   ================================================================== */
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let idx = 0;
+  const cnt = document.getElementById('slideCnt');
+  function show(i){
+    idx = Math.max(0, Math.min(total-1, i));
+    slides.forEach((s,j)=> s.classList.toggle('active', j===idx));
+    cnt.textContent = (idx+1) + ' / ' + total;
+    location.hash = 's' + (idx+1);
+    setTimeout(renderVisible, 0);
+  }
+  document.getElementById('prevBtn').addEventListener('click', ()=>show(idx-1));
+  document.getElementById('nextBtn').addEventListener('click', ()=>show(idx+1));
+  window.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowRight' || e.key===' ') { show(idx+1); e.preventDefault(); }
+    if(e.key==='ArrowLeft') { show(idx-1); e.preventDefault(); }
+  });
+  const hashMatch = location.hash.match(/s(\d+)/);
+  if(hashMatch) idx = parseInt(hashMatch[1],10)-1;
+
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    if(t) document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.removeAttribute('data-theme');
+  }
+  applyTheme(localStorage.getItem('worange-proposal-theme'));
+  themeBtn.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? null : 'dark';
+    applyTheme(next);
+    if(next) localStorage.setItem('worange-proposal-theme', next); else localStorage.removeItem('worange-proposal-theme');
+    setTimeout(renderVisible, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', ()=>window.print());
+
+  window.renderVisible = function(){
+    if(window.CHART_REGISTRY && window.CHART_REGISTRY[idx+1]){
+      try{ window.CHART_REGISTRY[idx+1](); }catch(e){ console.error('chart render error slide', idx+1, e); }
+    }
+  };
+  window.addEventListener('load', ()=>{ show(idx); });
+})();
+</script>
+
+<script>
+/* ==================================================================
+   Chart engine — small SVG-generating helpers.
+   Color roles (fixed, never remapped across the deck):
+     base=--c-base(blue,Base) bull=--c-bull(aqua,Bull) bear=--c-bear(yellow,Bear)
+     brand=--c-brand(orange,WOrange) altA=--c-alt-a(violet) crit=--c-crit(red) altB=--c-alt-b(magenta)
+   ================================================================== */
+(function(){
+  const CV = getComputedStyle(document.documentElement);
+  function cvar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  const COL = {
+    get base(){return cvar('--c-base');}, get bull(){return cvar('--c-bull');}, get bear(){return cvar('--c-bear');},
+    get altA(){return cvar('--c-alt-a');}, get crit(){return cvar('--c-crit');}, get altB(){return cvar('--c-alt-b');},
+    get brand(){return cvar('--c-brand');},
+    get good(){return cvar('--s-good');}, get warning(){return cvar('--s-warning');}, get serious(){return cvar('--s-serious');}, get critical(){return cvar('--s-critical');},
+    get grid(){return cvar('--grid');}, get baseline(){return cvar('--baseline');},
+    get txt(){return cvar('--text-primary');}, get txt2(){return cvar('--text-secondary');}, get muted(){return cvar('--text-muted');},
+    get surface(){return cvar('--card-bg');}
+  };
+  window.WCOL = COL;
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function legendHTML(items){
+    return '<div class="legend">' + items.map(it =>
+      `<div class="legend-item"><span class="sw" style="background:${it.color}"></span>${esc(it.label)}</div>`
+    ).join('') + '</div>';
+  }
+  window.legendHTML = legendHTML;
+
+  function svgTag(vbW, vbH, inner){
+    return `<svg viewBox="0 0 ${vbW} ${vbH}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;
+  }
+
+  function tvToggleHTML(id){
+    return `<button class="tv-toggle" onclick="const c=document.getElementById('${id}');c.querySelector('.chart-visual').classList.toggle('hidden');c.querySelector('.chart-table').classList.toggle('hidden');">表格檢視</button>`;
+  }
+  window.tvToggleHTML = tvToggleHTML;
+
+  /* ---------------- Horizontal bar chart ---------------- */
+  // data: [{label, value, display, color}]
+  function hBarChart(el, opts){
+    const {data, xMax, unit='', showTableToggle=false} = opts;
+    const W=640, H=Math.max(220, data.length*46+30);
+    const labelW = 190, chartL = labelW+10, chartR = W-70, plotW = chartR-chartL;
+    const max = xMax || Math.max(...data.map(d=>d.value)) * 1.12;
+    const rowH = (H-20)/data.length;
+    let bars='', grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x = chartL + plotW*t;
+      grid += `<line x1="${x}" y1="6" x2="${x}" y2="${H-14}" stroke="${COL.grid}" stroke-width="1"/>`;
+    });
+    data.forEach((d,i)=>{
+      const y = 10 + i*rowH + rowH*0.5;
+      const bw = Math.max(2, plotW * (d.value/max));
+      const barH = Math.min(22, rowH*0.52);
+      bars += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12.5" fill="${COL.txt}" font-weight="600">${esc(d.label)}</text>`;
+      bars += `<rect x="${chartL}" y="${y-barH/2}" width="${bw}" height="${barH}" rx="4" fill="${d.color||COL.base}"><title>${esc(d.label)}: ${esc(d.display||d.value)}</title></rect>`;
+      bars += `<text x="${chartL+bw+8}" y="${y+4}" font-size="12.5" font-weight="700" fill="${COL.txt}">${esc(d.display!=null?d.display:d.value+unit)}</text>`;
+    });
+    const visual = svgTag(W,H, grid+bars);
+    el.innerHTML = `<div class="chart-visual">${visual}</div>`;
+    if(showTableToggle){
+      el.innerHTML += tableHTML(['項目','數值'], data.map(d=>[d.label, d.display||d.value]));
+    }
+  }
+  window.hBarChart = hBarChart;
+
+  /* ---------------- Horizontal STACKED bar (segments sum to a total, e.g. weighted score) ---------------- */
+  // data:[{label, total, display, segments:[{value,color,name}]}]
+  function hStackedBarChart(el, opts){
+    const {data, xMax, unit=''} = opts;
+    const W=640, H=data.length*42+30;
+    const labelW=150, chartL=labelW+10, chartR=W-60, plotW=chartR-chartL;
+    const max = xMax || Math.max(...data.map(d=>d.total))*1.1;
+    const rowH=(H-16)/data.length;
+    let grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x=chartL+plotW*t;
+      grid += `<line x1="${x}" y1="4" x2="${x}" y2="${H-14}" stroke="${WCOL.grid}" stroke-width="1"/>`;
+    });
+    let out='';
+    data.forEach((d,i)=>{
+      const y=8+i*rowH+rowH*0.5, barH=Math.min(22,rowH*0.55);
+      out += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${WCOL.txt}">${esc(d.label)}</text>`;
+      let cx = chartL;
+      d.segments.forEach(seg=>{
+        const w = plotW*(seg.value/max);
+        out += `<rect x="${cx}" y="${y-barH/2}" width="${Math.max(0,w-1.5)}" height="${barH}" fill="${seg.color}"><title>${esc(d.label)} · ${esc(seg.name)}: ${seg.value.toFixed(2)}</title></rect>`;
+        cx += w;
+      });
+      out += `<text x="${cx+8}" y="${y+4}" font-size="12.5" font-weight="800" fill="${WCOL.txt}">${esc(d.display!=null?d.display:d.total)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H,grid+out)}</div>`;
+  }
+  window.hStackedBarChart = hStackedBarChart;
+
+  /* ---------------- Horizontal diverging bar (supports negative values from a zero baseline) ---------------- */
+  // data:[{label,value,display,color}]  xMin<0<xMax
+  function hDivergingBarChart(el, opts){
+    const {data, xMin, xMax, unit=''} = opts;
+    const W=640, H=data.length*40+30;
+    const labelW=170, chartL=labelW+10, chartR=W-40, plotW=chartR-chartL;
+    function X(v){ return chartL + plotW*((v-xMin)/(xMax-xMin)); }
+    const zeroX = X(0);
+    const rowH=(H-16)/data.length;
+    let grid = `<line x1="${zeroX}" y1="4" x2="${zeroX}" y2="${H-14}" stroke="${WCOL.baseline}" stroke-width="1.5"/>`;
+    let out='';
+    data.forEach((d,i)=>{
+      const y=8+i*rowH+rowH*0.5, barH=Math.min(20,rowH*0.55);
+      out += `<text x="${chartL-10}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${WCOL.txt}">${esc(d.label)}</text>`;
+      const bx = X(Math.min(0,d.value)), bw = Math.abs(X(d.value)-zeroX);
+      out += `<rect x="${bx}" y="${y-barH/2}" width="${Math.max(1,bw)}" height="${barH}" rx="3" fill="${d.color}"><title>${esc(d.label)}: ${esc(d.display)}</title></rect>`;
+      const lx = d.value>=0 ? X(d.value)+6 : X(d.value)-6;
+      out += `<text x="${lx}" y="${y+4}" text-anchor="${d.value>=0?'start':'end'}" font-size="11.5" font-weight="800" fill="${WCOL.txt}">${esc(d.display)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+out)}</div>`;
+  }
+  window.hDivergingBarChart = hDivergingBarChart;
+
+  /* ---------------- Risk heat matrix (5x5 likelihood x impact grid, HTML/CSS) ---------------- */
+  // risks: [{id,label,likelihood(1-5),impact(1-5)}]
+  function riskMatrixGrid(el, opts){
+    const {risks} = opts;
+    function bandColor(v){
+      if(v>=15) return WCOL.critical; if(v>=12) return WCOL.serious; if(v>=9) return WCOL.warning; return WCOL.good;
+    }
+    const cellsByPos = {};
+    risks.forEach(r=>{ const k=r.likelihood+'-'+r.impact; (cellsByPos[k]=cellsByPos[k]||[]).push(r); });
+    let rowsHtml='';
+    for(let impact=5; impact>=1; impact--){
+      let rowCells = `<div style="display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:${WCOL.txt2};width:34px;">影響${impact}</div>`;
+      for(let like=1; like<=5; like++){
+        const v = like*impact;
+        const c = bandColor(v);
+        const items = cellsByPos[like+'-'+impact] || [];
+        rowCells += `<div style="flex:1;aspect-ratio:1.6;background:${c};opacity:${items.length?0.85:0.28};border-radius:5px;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:2px;padding:2px;">` +
+          items.map(it=>`<span title="${esc(it.label)} (值${v})" style="background:rgba(255,255,255,.92);color:#111;font-size:10px;font-weight:800;border-radius:3px;padding:0 4px;">${esc(it.id)}</span>`).join('') +
+          `</div>`;
+      }
+      rowsHtml += `<div style="display:flex;gap:3px;margin-bottom:3px;">${rowCells}</div>`;
+    }
+    let xAxis = `<div style="display:flex;gap:3px;margin-left:34px;">` + [1,2,3,4,5].map(l=>`<div style="flex:1;text-align:center;font-size:10.5px;font-weight:700;color:${WCOL.txt2};">可能性${l}</div>`).join('') + `</div>`;
+    el.innerHTML = `<div class="chart-visual">${rowsHtml}${xAxis}</div>`;
+  }
+  window.riskMatrixGrid = riskMatrixGrid;
+
+  /* ---------------- Grouped horizontal/vertical bar (multi-series across categories) ---------------- */
+  // categories:[label,...] series:[{name,color,values:[...],displays:[...]}]
+  function groupedBarChart(el, opts){
+    const {categories, series, yMax, unit=''} = opts;
+    const W=640, H=300;
+    const padL=54, padR=16, padT=14, padB=40;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    const max = yMax || Math.max(...series.flatMap(s=>s.values))*1.15;
+    const groupW = plotW/categories.length;
+    const barGap=3, barW = Math.min(30,(groupW-14)/series.length);
+    let grid='', bars='', axisLabels='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y = padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      const tickValue = max*t;
+      const tickLabel = max < 5 ? tickValue.toFixed(1) : Math.round(tickValue);
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10.5" fill="${COL.muted}">${tickLabel}${unit}</text>`;
+    });
+    grid += `<line x1="${padL}" y1="${padT+plotH}" x2="${W-padR}" y2="${padT+plotH}" stroke="${COL.baseline}" stroke-width="1.5"/>`;
+    categories.forEach((cat,ci)=>{
+      const gx = padL + ci*groupW;
+      const total = series.length*barW + (series.length-1)*barGap;
+      const startX = gx + (groupW-total)/2;
+      series.forEach((s,si)=>{
+        const v = s.values[ci];
+        const bh = plotH * (v/max);
+        const bx = startX + si*(barW+barGap);
+        const by = padT+plotH-bh;
+        bars += `<rect x="${bx}" y="${by}" width="${barW}" height="${Math.max(1,bh)}" rx="3" fill="${s.color}"><title>${esc(s.name)} · ${esc(cat)}: ${esc(s.displays?s.displays[ci]:v)}</title></rect>`;
+        if(s.displays && s.displays[ci]!=null && barW>16){
+          bars += `<text x="${bx+barW/2}" y="${by-4}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${COL.txt2}">${esc(s.displays[ci])}</text>`;
+        }
+      });
+      axisLabels += `<text x="${gx+groupW/2}" y="${padT+plotH+18}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600">${esc(cat)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+bars+axisLabels)}</div>` +
+      legendHTML(series.map(s=>({label:s.name,color:s.color})));
+  }
+  window.groupedBarChart = groupedBarChart;
+
+  /* ---------------- Multi-series line chart ---------------- */
+  // xLabels:[...] series:[{name,color,values:[...], endLabel}]
+  function lineChart(el, opts){
+    const {xLabels, series, yMax, unit='', yMin=0} = opts;
+    const W=640, H=300;
+    const padL=54, padR=90, padT=16, padB=34;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    const max = yMax || Math.max(...series.flatMap(s=>s.values))*1.1;
+    const min = yMin;
+    const xStep = plotW/(xLabels.length-1);
+    function xy(i,v){ return [padL+i*xStep, padT+plotH*(1-(v-min)/(max-min))]; }
+    let grid='', lines='', axisLabels='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y = padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10.5" fill="${COL.muted}">${(min+(max-min)*t).toFixed(0)}${unit}</text>`;
+    });
+    xLabels.forEach((xl,i)=>{
+      axisLabels += `<text x="${xy(i,min)[0]}" y="${padT+plotH+20}" text-anchor="middle" font-size="11" fill="${COL.txt2}" font-weight="600">${esc(xl)}</text>`;
+    });
+    series.forEach(s=>{
+      const pts = s.values.map((v,i)=>xy(i,v));
+      const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      lines += `<path d="${path}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linecap="round"/>`;
+      pts.forEach((p,i)=>{
+        lines += `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${COL.surface}" stroke="${s.color}" stroke-width="2.5"><title>${esc(s.name)} · ${esc(xLabels[i])}: ${esc(s.displays?s.displays[i]:s.values[i])}</title></circle>`;
+      });
+      const last = pts[pts.length-1];
+      lines += `<text x="${last[0]+8}" y="${last[1]+4}" font-size="12" font-weight="800" fill="${s.color}">${esc(s.endLabel!=null?s.endLabel:s.name)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+lines+axisLabels)}</div>` +
+      legendHTML(series.map(s=>({label:s.name,color:s.color})));
+  }
+  window.lineChart = lineChart;
+
+  /* ---------------- Funnel chart ---------------- */
+  // stages: [{label, value(0-1 relative width), display, color, sub}]
+  function funnelChart(el, opts){
+    const {stages} = opts;
+    const W=640, H=stages.length*76+10;
+    let out='';
+    stages.forEach((s,i)=>{
+      const y = 8 + i*76;
+      const w = 120 + (W-260) * s.value;
+      const x = (W-w)/2;
+      out += `<rect x="${x}" y="${y}" width="${w}" height="46" rx="6" fill="${s.color}" opacity="${1-i*0.12}"><title>${esc(s.label)}: ${esc(s.display)}</title></rect>`;
+      out += `<text x="${W/2}" y="${y+21}" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">${esc(s.label)}</text>`;
+      out += `<text x="${W/2}" y="${y+38}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" opacity="0.92">${esc(s.display)}</text>`;
+      if(s.sub) out += `<text x="${W/2}" y="${y+58}" text-anchor="middle" font-size="10.5" fill="${COL.muted}">${esc(s.sub)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H,out)}</div>`;
+  }
+  window.funnelChart = funnelChart;
+
+  /* ---------------- Radar chart (single series) ---------------- */
+  // axes:[label,...] values:[0-5,...] max
+  function radarChart(el, opts){
+    const {axes, values, max=5, color} = opts;
+    const c = color || COL.brand;
+    const W=440,H=340, cx=W/2, cy=H/2-6, R=118;
+    const n=axes.length;
+    function pt(i,v){
+      const ang = -Math.PI/2 + i*(2*Math.PI/n);
+      const r = R*(v/max);
+      return [cx+r*Math.cos(ang), cy+r*Math.sin(ang)];
+    }
+    let rings='', spokes='', axisLabels='';
+    [0.25,0.5,0.75,1].forEach(t=>{
+      const p = axes.map((a,i)=>pt(i,max*t));
+      rings += `<polygon points="${p.map(q=>q.join(',')).join(' ')}" fill="none" stroke="${COL.grid}" stroke-width="1"/>`;
+    });
+    axes.forEach((a,i)=>{
+      const p = pt(i,max);
+      spokes += `<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="${COL.grid}" stroke-width="1"/>`;
+      const lp = pt(i,max*1.24);
+      axisLabels += `<text x="${lp[0]}" y="${lp[1]}" text-anchor="middle" font-size="11.5" font-weight="600" fill="${COL.txt2}">${esc(a)}</text>`;
+    });
+    const dataPts = values.map((v,i)=>pt(i,v));
+    const poly = `<polygon points="${dataPts.map(q=>q.join(',')).join(' ')}" fill="${c}" fill-opacity="0.22" stroke="${c}" stroke-width="2.5"/>`;
+    const dots = dataPts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="${c}"><title>${esc(axes[i])}: ${values[i]}/${max}</title></circle>`+
+      `<text x="${p[0]}" y="${p[1]-8}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${c}">${values[i]}</text>`).join('');
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, rings+spokes+poly+dots+axisLabels)}</div>`;
+  }
+  window.radarChart = radarChart;
+
+  /* ---------------- Bubble / scatter chart ---------------- */
+  // points:[{x,y,r,label,color,sub}] xMax,yMax,xMin,yMin,xLabel,yLabel,quadrant:bool
+  function bubbleChart(el, opts){
+    const {points, xMax, yMax, xMin=0, yMin=0, xLabel='', yLabel='', quadrant=false} = opts;
+    const W=640,H=340;
+    const padL=46,padR=26,padT=16,padB=40;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    function X(v){ return padL + plotW*((v-xMin)/(xMax-xMin)); }
+    function Y(v){ return padT + plotH*(1-(v-yMin)/(yMax-yMin)); }
+    let grid=`<rect x="${padL}" y="${padT}" width="${plotW}" height="${plotH}" fill="none" stroke="${COL.baseline}" stroke-width="1"/>`;
+    if(quadrant){
+      grid += `<line x1="${X((xMax+xMin)/2)}" y1="${padT}" x2="${X((xMax+xMin)/2)}" y2="${padT+plotH}" stroke="${COL.grid}" stroke-dasharray="3,3"/>`;
+      grid += `<line x1="${padL}" y1="${Y((yMax+yMin)/2)}" x2="${padL+plotW}" y2="${Y((yMax+yMin)/2)}" stroke="${COL.grid}" stroke-dasharray="3,3"/>`;
+    }
+    let dots='';
+    points.forEach(p=>{
+      const cx=X(p.x), cy=Y(p.y), r=p.r||9;
+      dots += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${p.color||COL.base}" fill-opacity="0.85" stroke="${COL.surface}" stroke-width="2"><title>${esc(p.label)}${p.sub?(' — '+esc(p.sub)):''}</title></circle>`;
+      const lx = p.labelDx!=null? cx+p.labelDx : cx;
+      const ly = p.labelDy!=null? cy+p.labelDy : cy - r - 7;
+      dots += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" font-weight="700" fill="${COL.txt}">${esc(p.label)}</text>`;
+    });
+    const axisLabels = `<text x="${padL+plotW/2}" y="${H-6}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600">${esc(xLabel)}</text>`+
+      `<text x="12" y="${padT+plotH/2}" text-anchor="middle" font-size="11.5" fill="${COL.txt2}" font-weight="600" transform="rotate(-90,12,${padT+plotH/2})">${esc(yLabel)}</text>`;
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+dots+axisLabels)}</div>`;
+  }
+  window.bubbleChart = bubbleChart;
+
+  /* ---------------- Waterfall chart ---------------- */
+  // steps:[{label,value,display,type:'total'|'delta',color}]  value can be negative for delta
+  function waterfallChart(el, opts){
+    const {steps, unit=''} = opts;
+    const W=640,H=300;
+    const padL=54,padR=16,padT=16,padB=44;
+    const plotW=W-padL-padR, plotH=H-padT-padB;
+    let running=0;
+    const bars = steps.map(s=>{
+      let start, end;
+      if(s.type==='total'){ start=0; end=s.value; running=s.value; }
+      else { start=running; end=running+s.value; running=end; }
+      return {...s, start, end};
+    });
+    const maxV = Math.max(...bars.map(b=>Math.max(b.start,b.end)))*1.15;
+    const n = bars.length;
+    const gap=10; const bw=(plotW-gap*(n-1))/n;
+    function Y(v){ return padT+plotH*(1-v/maxV); }
+    let grid='', rects='', connectors='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const y=padT+plotH*(1-t);
+      grid += `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${padL-8}" y="${y+3}" text-anchor="end" font-size="10" fill="${COL.muted}">${(maxV*t).toFixed(0)}${unit}</text>`;
+    });
+    bars.forEach((b,i)=>{
+      const x = padL + i*(bw+gap);
+      const y1=Y(Math.max(b.start,b.end)), y2=Y(Math.min(b.start,b.end));
+      const h = Math.max(2,y2-y1);
+      rects += `<rect x="${x}" y="${y1}" width="${bw}" height="${h}" rx="3" fill="${b.color}"><title>${esc(b.label)}: ${esc(b.display)}</title></rect>`;
+      rects += `<text x="${x+bw/2}" y="${y1-6}" text-anchor="middle" font-size="11" font-weight="800" fill="${COL.txt}">${esc(b.display)}</text>`;
+      rects += `<text x="${x+bw/2}" y="${padT+plotH+18}" text-anchor="middle" font-size="10.5" font-weight="600" fill="${COL.txt2}">${esc(b.label)}</text>`;
+      if(i<bars.length-1){
+        const nx = padL+(i+1)*(bw+gap);
+        connectors += `<line x1="${x+bw}" y1="${Y(b.end)}" x2="${nx}" y2="${Y(b.end)}" stroke="${COL.baseline}" stroke-dasharray="2,3"/>`;
+      }
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+connectors+rects)}</div>`;
+  }
+  window.waterfallChart = waterfallChart;
+
+  /* ---------------- Range bar (football field) ---------------- */
+  // rows:[{label,low,mid,high,color,note}] xMax, band:[lo,hi]
+  function rangeBarChart(el, opts){
+    const {rows, xMax, band, bandLabel, unit=''} = opts;
+    const W=640, H=rows.length*52+40;
+    const padL=150, padR=20, padT=10, padB=30;
+    const plotW=W-padL-padR;
+    function X(v){ return padL + plotW*(v/xMax); }
+    let grid='';
+    [0,0.25,0.5,0.75,1].forEach(t=>{
+      const x = padL+plotW*t;
+      grid += `<line x1="${x}" y1="4" x2="${x}" y2="${H-padB+4}" stroke="${COL.grid}" stroke-width="1"/>`;
+      grid += `<text x="${x}" y="${H-padB+18}" text-anchor="middle" font-size="10" fill="${COL.muted}">${Math.round(xMax*t)}${unit}</text>`;
+    });
+    let band_rect='';
+    if(band){
+      band_rect = `<rect x="${X(band[0])}" y="0" width="${X(band[1])-X(band[0])}" height="${H-padB}" fill="${COL.brand}" opacity="0.12"/>`;
+    }
+    let rowsOut='';
+    rows.forEach((r,i)=>{
+      const y = padT + i*52 + 20;
+      rowsOut += `<text x="${padL-12}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${COL.txt}">${esc(r.label)}</text>`;
+      rowsOut += `<line x1="${X(r.low)}" y1="${y}" x2="${X(r.high)}" y2="${y}" stroke="${r.color}" stroke-width="6" stroke-linecap="round"><title>${esc(r.label)}: ${esc(r.note||'')}</title></line>`;
+      if(r.mid!=null) rowsOut += `<circle cx="${X(r.mid)}" cy="${y}" r="5.5" fill="${COL.surface}" stroke="${r.color}" stroke-width="2.5"/>`;
+      if((r.high-r.low)/xMax < 0.05){
+        const single = (r.mid!=null) ? r.mid : Math.round((r.low+r.high)/2*10)/10;
+        rowsOut += `<text x="${X((r.low+r.high)/2)}" y="${y-9}" text-anchor="middle" font-size="10" fill="${COL.txt2}">${single}</text>`;
+      } else {
+        rowsOut += `<text x="${X(r.low)}" y="${y-9}" text-anchor="middle" font-size="10" fill="${COL.txt2}">${r.low}</text>`;
+        rowsOut += `<text x="${X(r.high)}" y="${y-9}" text-anchor="middle" font-size="10" fill="${COL.txt2}">${r.high}</text>`;
+      }
+    });
+    let bandText='';
+    if(band && bandLabel){
+      bandText = `<text x="${X((band[0]+band[1])/2)}" y="${H-6}" text-anchor="middle" font-size="11" font-weight="800" fill="${COL.brand}">${esc(bandLabel)}</text>`;
+    }
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, band_rect+grid+rowsOut+bandText)}</div>`;
+  }
+  window.rangeBarChart = rangeBarChart;
+
+  /* ---------------- Tornado (diverging sensitivity) chart ---------------- */
+  // rows:[{label, neg, pos, negDisplay, posDisplay}] xMax(abs)
+  function tornadoChart(el, opts){
+    const {rows, xMax} = opts;
+    const W=640, H=rows.length*54+30;
+    const padL=150, padR=20, padT=10, padB=20;
+    const plotW=W-padL-padR; const mid=padL+plotW/2;
+    function X(v){ return mid + (plotW/2)*(v/xMax); }
+    let grid = `<line x1="${mid}" y1="4" x2="${mid}" y2="${H-padB}" stroke="${COL.baseline}" stroke-width="1.5"/>`;
+    let out='';
+    rows.forEach((r,i)=>{
+      const y = padT + i*54 + 20;
+      out += `<text x="${padL-12}" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" fill="${COL.txt}">${esc(r.label)}</text>`;
+      const x1=X(r.neg), x2=X(r.pos);
+      out += `<rect x="${Math.min(x1,mid)}" y="${y-11}" width="${Math.abs(mid-x1)}" height="22" rx="3" fill="${COL.bear}"><title>${esc(r.negDisplay)}</title></rect>`;
+      out += `<rect x="${mid}" y="${y-11}" width="${Math.abs(x2-mid)}" height="22" rx="3" fill="${COL.bull}"><title>${esc(r.posDisplay)}</title></rect>`;
+      const negInside = x1 < (padL + 58);
+      if(negInside){
+        out += `<text x="${Math.min(x1,mid)+8}" y="${y+4}" text-anchor="start" font-size="10.5" font-weight="700" fill="#ffffff">${esc(r.negDisplay)}</text>`;
+      } else {
+        out += `<text x="${x1-6}" y="${y+4}" text-anchor="end" font-size="10.5" font-weight="700" fill="${COL.txt}">${esc(r.negDisplay)}</text>`;
+      }
+      out += `<text x="${x2+6}" y="${y+4}" text-anchor="start" font-size="10.5" font-weight="700" fill="${COL.txt}">${esc(r.posDisplay)}</text>`;
+    });
+    el.innerHTML = `<div class="chart-visual">${svgTag(W,H, grid+out)}</div>` +
+      legendHTML([{label:'下行 (Bear方向)',color:COL.bear},{label:'上行 (Bull方向)',color:COL.bull}]);
+  }
+  window.tornadoChart = tornadoChart;
+
+  function tableHTML(headers, rows){
+    return `<table class="data-table chart-table hidden"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>` +
+      `<tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td class="${i>0?'num':''}">${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  }
+  window.tableHTML = tableHTML;
+
+})();
+
+</script>
+
+<script>
+window.CHART_REGISTRY = window.CHART_REGISTRY || {};
+
+</script>
+
+</body>
+</html>
