@@ -253,6 +253,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .rail.c2{grid-template-columns:repeat(2,1fr);}
 .rail.c3{grid-template-columns:repeat(3,1fr);}
 .rail.c4{grid-template-columns:repeat(4,1fr);}
+.rail.c5{grid-template-columns:repeat(5,1fr);}
 .tile{position:relative;min-height:0;overflow:hidden;background:var(--tint);border:1px solid var(--border);}
 .tile img{width:100%;height:100%;object-fit:cover;display:block;}
 .tile.fit img{object-fit:contain;background:var(--card-bg);}
@@ -391,6 +392,10 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:2px;font-size:12.5px;}
 [data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
 .stage{flex:1;min-height:0;display:flex;gap:12px;}
+.stage.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
+.stage.g2 .figblock{min-height:0;}
+.stage.g2 .tile img{object-fit:contain;background:var(--tint);}
+.stage.fitall .tile img{object-fit:contain;background:var(--tint);}
 
 /* 標籤置於圖片上方（先讀標題再看圖） */
 .figblock{display:flex;flex-direction:column;flex:1;min-height:0;gap:0;}
@@ -430,6 +435,30 @@ h1,h2,h3,p,ul,ol{margin:0;}
 [data-theme="dark"] .rb-o b{color:var(--c-bear);}
 .rulehead{display:grid;grid-template-columns:40px 1fr 1.3fr;background:var(--pc-deep);color:#fff;}
 .rulehead div{padding:7px 15px;font-size:12.5px;font-weight:700;letter-spacing:.04em;}
+
+/* 互動量對比條 */
+.impact{display:flex;flex-direction:column;gap:7px;}
+.ibar{display:grid;grid-template-columns:112px 1fr 74px;align-items:center;gap:10px;font-size:12.5px;}
+.ibar .lb{color:var(--text-secondary);font-weight:600;}
+.ibar .tr{background:var(--grid);height:15px;position:relative;overflow:hidden;}
+.ibar .fl{position:absolute;left:0;top:0;bottom:0;background:var(--pc-medium);}
+.ibar .fl.a{background:var(--pc-deep);}
+.ibar .fl.c{background:var(--pc-light);}
+.ibar .vn{text-align:right;font-weight:700;color:var(--pc-deep);font-size:13px;}
+[data-theme="dark"] .ibar .vn{color:var(--c-bear);}
+
+/* 分鏡上下疊：每段一列，圖左（高度決定寬度）、說明右 */
+.vstack{flex:1;min-height:0;display:flex;flex-direction:column;gap:14px;}
+.srow{flex:1;min-height:0;display:grid;grid-template-columns:auto 1fr;gap:22px;}
+.srow{--ar:1.76;}
+.srow .fig{height:100%;display:flex;flex-direction:column;min-height:0;width:fit-content;max-width:100%;}
+.srow .fig .figlab{flex:0 0 auto;}
+.srow .fig .tile{flex:1;min-height:0;aspect-ratio:var(--ar);width:auto;border:none;background:transparent;}
+.srow .fig .tile img{height:100%;width:100%;object-fit:contain;display:block;}
+.srow .txt{display:flex;flex-direction:column;justify-content:center;gap:7px;padding-right:6px;}
+.srow .txt .tt{font-size:15px;font-weight:700;color:var(--pc-deep);}
+.srow .txt .td{font-size:13.5px;line-height:1.62;color:var(--text-secondary);}
+[data-theme="dark"] .srow .txt .tt{color:var(--c-bear);}
 </style>
 </head>
 <body>
@@ -462,40 +491,33 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">Agenda</div>
-    <div class="title">本建議書就六個範疇提出行銷方案，目標為提升香港直銷銷量</div>
+    <div class="title">本建議書就<span class="hi">六個範疇</span>提出行銷方案，目標為提升香港直銷銷量</div>
     <div class="subtitle">和橙的產品與認證已具備條件，樽頸在於認知度與成交渠道。以下六節各自對應一項可即時執行的措施。</div>
   </div>
   <div class="body col">
-    <table class="tbl" style="font-size:15px;">
-      <thead><tr><th style="width:110px;">SECTION</th><th style="width:190px;">主題</th><th>內容</th><th style="width:90px;">頁</th></tr></thead>
+    <table class="tbl" style="font-size:14.5px;flex:0 0 auto;">
+      <thead><tr><th style="width:96px;">SECTION</th><th style="width:170px;">主題</th><th>內容</th><th style="width:80px;">頁</th></tr></thead>
       <tbody>
-        <tr><td><b>I</b></td><td><b>現況與定價</b></td><td>先確立和橙在香港貨架上的實際位置與價格區間，作為後續建議的基準</td><td>4–5</td></tr>
-        <tr><td><b>II</b></td><td><b>品牌重塑</b></td><td>行銷的本質、Logo 重新設計、刀疤橙故事，以及品牌實體的統一</td><td>7–13</td></tr>
-        <tr><td><b>III</b></td><td><b>內容策略</b></td><td>拍攝規格與佈光、AI 內容的問題與正確流程、爆紅內容的結構拆解</td><td>15–20</td></tr>
-        <tr><td><b>IV</b></td><td><b>渠道與活動</b></td><td>B2C 三層鋪貨、B2B 企業採購、Pop-up、學校巡迴、社企資格路徑</td><td>22–26</td></tr>
+        <tr><td><b>I</b></td><td><b>現況與定價</b></td><td>先確立和橙在香港貨架上的實際位置與價格區間</td><td>4–5</td></tr>
+        <tr><td><b>II</b></td><td><b>品牌重塑</b></td><td>行銷的本質、Logo 重新設計、刀疤橙兩個版本的故事、品牌實體統一</td><td>7–15</td></tr>
+        <tr><td><b>III</b></td><td><b>內容策略</b></td><td>拍攝佈光、AI 內容的問題、爆紅內容的結構拆解</td><td>17–19</td></tr>
+        <tr><td><b>IV</b></td><td><b>渠道與活動</b></td><td>B2C 三層鋪貨、品牌聯乘、B2B 企業採購、Pop-up、學校巡迴、社企資格</td><td>21–26</td></tr>
         <tr><td><b>V</b></td><td><b>產品體驗</b></td><td>禮盒規格、貨架陳列參考，以及可延伸曝光的周邊商品</td><td>28–31</td></tr>
         <tr><td><b>VI</b></td><td><b>生態旅遊</b></td><td>以花期編排全年行程，令農場收入不再受產季限制</td><td>33</td></tr>
       </tbody>
     </table>
-    <div class="body" style="min-height:0;">
-      <div class="col c8">
-        <div class="panel tinted" style="flex:1;">
-          <div class="panel-title">貫穿全份建議書的三項判斷</div>
-          <ul class="bullets">
-            <li><b>樽頸不在產品，在被看見。</b>認證、碳足跡、不打蠟都已具備，缺的是有人記得住和橙是誰。</li>
-            <li><b>爆紅靠語氣，不靠產品。</b>近 30 天已查證的爆文，沒有一則是靠產品本身爆的。</li>
-            <li><b>香港仍是空白市場。</b>台灣品牌小編人格化已有多個成功案例，香港近 30 天則一個都沒有。</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col c4">
-        <div class="rail c2" style="flex:1;">
-          <div class="tile"><img src="fb/WOrange-Farming.jpg" alt=""><div class="cap">莊園</div></div>
-          <div class="tile"><img src="fb/WOrange-Production.jpg" alt=""><div class="cap">分選</div></div>
-          <div class="tile"><img src="fb/WOrange-TRUE.jpg" alt=""><div class="cap">打假帖：互動最高的題材</div></div>
-          <div class="tile"><img src="fb/WOrange-CNY.jpg" alt=""><div class="cap">節慶產品圖</div></div>
-        </div>
-      </div>
+    <div class="topstrip t3">
+      <div class="ts"><b>樽頸不在產品，在被看見</b>認證、碳足跡、不打蠟都已具備，缺的是有人記得住和橙是誰。</div>
+      <div class="ts"><b>爆紅靠語氣，不靠產品</b>近期已查證的爆文，沒有一則是靠產品本身爆的。</div>
+      <div class="ts"><b>香港仍是空白市場</b>台灣品牌小編人格化已有多個成功案例，香港近 30 天則一個都沒有。</div>
+    </div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">I · 現況與定價</div><div class="tile"><img src="fb/WOrange-Price.jpg" alt="現況與定價"></div></div>
+      <div class="figblock"><div class="figlab">II · 品牌重塑</div><div class="tile"><img src="fb/WOrange-Story.jpg" alt="品牌重塑"></div></div>
+      <div class="figblock"><div class="figlab">III · 內容策略</div><div class="tile"><img src="fb/WOrange-TRUE.jpg" alt="內容策略"></div></div>
+      <div class="figblock"><div class="figlab">IV · 渠道與活動</div><div class="tile"><img src="fb/WOrange-Bus_ev.jpg" alt="渠道與活動"></div></div>
+      <div class="figblock"><div class="figlab">V · 產品體驗</div><div class="tile"><img src="fb/WOrange-CNY.jpg" alt="產品體驗"></div></div>
+      <div class="figblock"><div class="figlab">VI · 生態旅遊</div><div class="tile"><img src="fb/WOrange-Farming.jpg" alt="生態旅遊"></div></div>
     </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">2</span></div>
@@ -616,8 +638,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
           <li>原因在最後一句：「They honor great athletes, and they honor great athletics. <b>That's who they are. That's what they are about.</b>」</li>
         </ul>
         <div class="callout">「To me, marketing is about values.」</div>
-        <div class="src">出處：Apple 內部員工會議，1997-09-23（非 Think Different 發表會）。此處為原片 0:00–2:25，涵蓋 values 開場與 Nike 一段，<b>不含其後的廣告片</b>。</div>
-        <div class="vidframe" style="flex:0 0 auto;margin-top:2px;"><video src="video/jobs_values.mp4" poster="video/jobs_values.jpg" width="470" height="353" controls preload="metadata" playsinline title="Steve Jobs 1997-09-23 Apple 內部員工會議"></video></div>
+        <div class="src">出處：Apple 內部員工會議，1997-09-23（非 Think Different 發表會）。此處為 <b>53 秒剪輯</b>：金句開場 22 秒 ＋ Nike 一段 31 秒，附中英字幕，不含其後的廣告片。</div>
+        <div class="vidframe" style="flex:0 0 auto;margin-top:2px;"><video src="video/jobs_short.mp4" poster="video/jobs_short.jpg" width="470" height="353" controls preload="metadata" playsinline crossorigin="anonymous" title="Steve Jobs 1997-09-23 Apple 內部員工會議"><track kind="subtitles" src="video/jobs_short.vtt" srclang="zh" label="中英字幕" default></video></div>
       </div>
     </div>
     <div class="col c6">
@@ -639,7 +661,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
           </tbody>
         </table>
         <ul class="bullets compact" style="margin-top:8px;">
-          <li><b>本頁片段的時間點：</b>0:00 「marketing is about values」／0:40 noisy world／1:05 speeds and feeds／<b>1:41 Nike sells a commodity</b>／2:04 that's who they are。簡報只播 1:41–2:10 亦成立。</li>
+          <li><b>本頁片段：</b>0:00–0:22 「To me, marketing is about values」與 noisy world；0:22–0:53 Nike 一段，收在「That's who they are」。<b>全長 53 秒，字幕預設開啟</b>。</li>
           <li><b>只用 Jobs 講話段，不要用廣告片</b>——廣告裡的名人肖像權不在 Apple 手上。</li>
           <li class="warn">切勿引用「Here's to the crazy ones」——該句是廣告旁白，並非 Jobs 所說。</li>
         </ul>
@@ -659,13 +681,17 @@ h1,h2,h3,p,ul,ol{margin:0;}
   </div>
   <div class="body col">
     <div class="topstrip t3">
-      <div class="ts"><b>一枚圓章通用</b>把「和」字與「W」收進同一枚圓章，中英文場合都能單獨使用；W 的筆劃順勢畫成蚯蚓 John。</div>
+      <div class="ts"><b>一枚圓章通用</b>把「和」字與「W」收進同一枚圓章，中英文場合都能單獨使用；W 的筆劃順勢畫成蚯蚓 John，把生態閉環收進識別。</div>
       <div class="ts"><b>先定網格再定細節</b>用網格把比例與筆劃粗細定下來——縮到單果貼紙那麼小，仍然要認得出是和橙。</div>
       <div class="ts"><b>換標要留過渡期</b>現時「和橙」「HK Farmer Story」「展翔」三名並存；兩邊同時大改會令消費者認不出，防偽即失效，建議新舊並行一季。</div>
     </div>
-    <div class="tile dark fit" style="flex:1;">
-      <img src="proposal/s03_1_crop.png" alt="Logo 結構網格稿">
-      <div class="cap">結構網格稿 — 下一頁為彩色變體與 John 融入 W 的方案</div>
+    <div class="stage" style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:12px;">
+      <div class="figblock"><div class="figlab">A · 圓章「和」· 網格定稿</div><div class="tile dark fit" title="比例與筆劃粗細以網格定死"><img src="proposal/logo_v1.png" alt="A · 圓章「和」· 網格定稿"></div></div>
+      <div class="figblock"><div class="figlab">B · 圓章「和」· 陰陽切分</div><div class="tile dark fit" title="左實右虛，中英場合都能單獨使用"><img src="proposal/logo_v2.png" alt="B · 圓章「和」· 陰陽切分"></div></div>
+      <div class="figblock"><div class="figlab">C · 「和」+ 蜂巢紋理</div><div class="tile dark fit" title="果肉肌理填入字腔"><img src="proposal/logo_v3.png" alt="C · 「和」+ 蜂巢紋理"></div></div>
+      <div class="figblock"><div class="figlab">D · 圓章「W」· 蚯蚓 John</div><div class="tile dark fit" title="W 的筆劃順勢畫成蚯蚓"><img src="proposal/logo_v4.png" alt="D · 圓章「W」· 蚯蚓 John"></div></div>
+      <div class="figblock"><div class="figlab">E · John 完整形態</div><div class="tile dark fit" title="橙形外框加葉，適合貼紙與周邊"><img src="proposal/logo_v5.png" alt="E · John 完整形態"></div></div>
+      <div class="figblock"><div class="figlab">F · 「和」字圖形化</div><div class="tile dark fit" title="橙瓣切面填入字腔，可作大面積主視覺"><img src="proposal/logo_v6.png" alt="F · 「和」字圖形化"></div></div>
     </div>
   </div>
   <div class="takeaway">識別要經得起縮小；換標則要經得起一季的過渡，否則防偽先失效。</div>
@@ -704,19 +730,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">前半段：刀疤強因滿身疤痕被同伴嘲笑，在市場上一次又一次被留下；直到果園主人把他帶回去，告訴他那些疤是不灑農藥、自行癒合的結果。</div>
   </div>
   <div class="body col">
-    <div class="stage">
-    <div class="figblock ar">
-      <div class="figlab">① 被嘲笑、被留下</div>
-      <div class="tile fit"><img src="proposal/story1_seg1.jpg" alt="① 被嘲笑、被留下"></div>
-    </div>
-    <div class="figblock ar">
-      <div class="figlab">② 主人解釋疤痕的來歷</div>
-      <div class="tile fit"><img src="proposal/story1_seg2.jpg" alt="② 主人解釋疤痕的來歷"></div>
-    </div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>① 被嘲笑、被留下</b>刀疤強是果園裡最醜的一顆。同伴笑他滿臉疤，市場上的顧客一次又一次挑走光滑的橙，把他留在最後。這一段不解釋，只讓觀眾看見他被留下。</div>
-      <div class="ts"><b>② 主人解釋疤痕的來歷</b>果園主人把他帶回去：風刮過、樹枝劃過、蟲咬過，每一道疤都是他自己癒合回來的——因為這片果園從不灑除草劑，也不用農藥。</div>
+    <div class="vstack">
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">① 被嘲笑、被留下</div>
+          <div class="tile"><img src="proposal/story1_seg1.jpg" alt="① 被嘲笑、被留下"></div>
+        </div>
+        <div class="txt"><div class="tt">① 被嘲笑、被留下</div><div class="td">刀疤強是果園裡最醜的一顆。同伴笑他滿臉疤，市場上的顧客一次又一次挑走光滑的橙，把他留在最後。這一段不解釋，只讓觀眾看見他被留下。</div></div>
+      </div>
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">② 主人解釋疤痕的來歷</div>
+          <div class="tile"><img src="proposal/story1_seg2.jpg" alt="② 主人解釋疤痕的來歷"></div>
+        </div>
+        <div class="txt"><div class="tt">② 主人解釋疤痕的來歷</div><div class="td">果園主人把他帶回去：風刮過、樹枝劃過、蟲咬過，每一道疤都是他自己癒合回來的——因為這片果園從不灑除草劑，也不用農藥。</div></div>
+      </div>
     </div>
   </div>
   <div class="takeaway">前半段負責建立同理：先讓觀眾替刀疤強不值，後半段的翻轉才有力。</div>
@@ -732,19 +760,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">後半段：光滑的橙被打蠟送上貨架；一位母親反而因為花紋而選了刀疤強，孩子試食後直言比以前的橙更好吃。</div>
   </div>
   <div class="body col">
-    <div class="stage">
-    <div class="figblock ar">
-      <div class="figlab">③ 光滑的橙打蠟，疤痕成了「天然認證」</div>
-      <div class="tile fit"><img src="proposal/story1_seg3.jpg" alt="③ 光滑的橙打蠟，疤痕成了「天然認證」"></div>
-    </div>
-    <div class="figblock ar">
-      <div class="figlab">④ 孩子試食，疤痕終於被讀懂</div>
-      <div class="tile fit"><img src="proposal/story1_seg4.jpg" alt="④ 孩子試食，疤痕終於被讀懂"></div>
-    </div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>③ 疤痕成了「天然認證」</b>對照組出現：光滑的橙被打蠟送上貨架。刀疤強終於明白，自己身上那些痕跡，正好是沒有農藥的證明。</div>
-      <div class="ts"><b>④ 孩子試食，疤痕終於被讀懂</b>一位母親因為花紋而選了他，孩子吃過之後直言比以前的橙更甜。結語落在「天然敢留疤，健康才好吃」。</div>
+    <div class="vstack">
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">③ 光滑的橙打蠟，疤痕成了「天然認證」</div>
+          <div class="tile"><img src="proposal/story1_seg3.jpg" alt="③ 光滑的橙打蠟，疤痕成了「天然認證」"></div>
+        </div>
+        <div class="txt"><div class="tt">③ 光滑的橙打蠟，疤痕成了「天然認證」</div><div class="td">對照組出現：光滑的橙被打蠟送上貨架。刀疤強終於明白，自己身上那些痕跡，正好是沒有農藥的證明。</div></div>
+      </div>
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">④ 孩子試食，疤痕終於被讀懂</div>
+          <div class="tile"><img src="proposal/story1_seg4.jpg" alt="④ 孩子試食，疤痕終於被讀懂"></div>
+        </div>
+        <div class="txt"><div class="tt">④ 孩子試食，疤痕終於被讀懂</div><div class="td">一位母親因為花紋而選了他，孩子吃過之後直言比以前的橙更甜。結語落在「天然敢留疤，健康才好吃」。</div></div>
+      </div>
     </div>
   </div>
   <div class="takeaway">結語「天然敢留疤，健康才好吃」——一句話同時解釋了賣相、價格與不打蠟。</div>
@@ -760,19 +790,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為。六段分鏡已完成，適合長版品牌片或連載式短片。</div>
   </div>
   <div class="body col">
-    <div class="stage">
-      <div class="figblock ar ar2">
-        <div class="figlab">① 江湖傳聞 · 初遇刀疤橙</div>
-        <div class="tile fit"><img src="proposal/story2_seg1.jpg" alt="① 江湖傳聞 · 初遇刀疤橙"></div>
+    <div class="vstack" style="--ar:1.4;">
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">① 江湖傳聞 · 初遇刀疤橙</div>
+          <div class="tile"><img src="proposal/story2_seg1.jpg" alt="① 江湖傳聞 · 初遇刀疤橙"></div>
+        </div>
+        <div class="txt"><div class="tt">① 江湖傳聞 · 初遇刀疤橙</div><div class="td">客棧風雲、奇果現世、老俠現身、少年渴望。江湖傳言嶺南有一種奇橙，表皮滿佈刀疤似的花痕，食之能強筋健骨——體弱少年阿強在客棧外偷聽此傳聞，心生希望。</div></div>
       </div>
-      <div class="figblock ar ar2">
-        <div class="figlab">② 入林拜師 · 疤是自癒的證明</div>
-        <div class="tile fit"><img src="proposal/story2_seg2.jpg" alt="② 入林拜師 · 疤是自癒的證明"></div>
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">② 入林拜師 · 疤是自癒的證明</div>
+          <div class="tile"><img src="proposal/story2_seg2.jpg" alt="② 入林拜師 · 疤是自癒的證明"></div>
+        </div>
+        <div class="txt"><div class="tt">② 入林拜師 · 疤是自癒的證明</div><div class="td">晨跑鍛鍊、發現荒野、自然之林、風雨傷痕。阿強在山間奔跑時跌入一片橙林，遇見白髮果農。果農露出自己滿佈舊傷的手臂，說傷疤是強者的勳章。</div></div>
       </div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>① 江湖傳聞 · 初遇刀疤橙</b>客棧風雲、奇果現世、老俠現身、少年渴望。江湖傳言嶺南有一種奇橙，表皮滿佈刀疤似的花痕，食之能強筋健骨——體弱少年阿強在客棧外偷聽此傳聞，心生希望。</div>
-      <div class="ts"><b>② 入林拜師 · 疤是自癒的證明</b>晨跑鍛鍊、發現荒野、自然之林、風雨傷痕。阿強在山間奔跑時跌入一片橙林，遇見白髮果農。果農露出自己滿佈舊傷的手臂，說傷疤是強者的勳章。</div>
     </div>
     <div class="src"><b>用途：</b>現代版拍 15–30 秒 Reels，武俠版拍長片或連載，兩者不必二選一。　<b>原稿待修：</b>分鏡切自組內 pptx 第 2 頁；該頁把「PROJECT HIGHLIGHTS／1. REBRANDING」標題層疊在第 ① 段之上，且各段頁碼標示不一致（「第八頁」重複出現數次），出片前宜請組員重出該頁。</div>
   </div>
@@ -789,19 +821,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為。六段分鏡已完成，適合長版品牌片或連載式短片。</div>
   </div>
   <div class="body col">
-    <div class="stage">
-      <div class="figblock ar ar2">
-        <div class="figlab">③ 刀疤的秘密 · 吃橙練功</div>
-        <div class="tile fit"><img src="proposal/story2_seg3.jpg" alt="③ 刀疤的秘密 · 吃橙練功"></div>
+    <div class="vstack" style="--ar:1.4;">
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">③ 刀疤的秘密 · 吃橙練功</div>
+          <div class="tile"><img src="proposal/story2_seg3.jpg" alt="③ 刀疤的秘密 · 吃橙練功"></div>
+        </div>
+        <div class="txt"><div class="tt">③ 刀疤的秘密 · 吃橙練功</div><div class="td">自然之林、風雨傷痕、吃橙蓄力、瀑布馭馬。果農告訴他，這片橙林從不灑除草劑、不用農藥，每道疤都是橙自行癒合的證明。阿強深受觸動，開始苦練。</div></div>
       </div>
-      <div class="figblock ar ar2">
-        <div class="figlab">④ 風雨歷練 · 下山揚名</div>
-        <div class="tile fit"><img src="proposal/story2_seg4.jpg" alt="④ 風雨歷練 · 下山揚名"></div>
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">④ 風雨歷練 · 下山揚名</div>
+          <div class="tile"><img src="proposal/story2_seg4.jpg" alt="④ 風雨歷練 · 下山揚名"></div>
+        </div>
+        <div class="txt"><div class="tt">④ 風雨歷練 · 下山揚名</div><div class="td">雷雨行拳、力斷木樁、市集惡霸、真相顯露。經歷風雨，身上留下傷疤，身體卻日益強壯。學成下山回到市集，昔日惡霸前來挑釁，卻被他滿身精壯肌肉與刀疤嚇退。</div></div>
       </div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>③ 刀疤的秘密 · 吃橙練功</b>自然之林、風雨傷痕、吃橙蓄力、瀑布馭馬。果農告訴他，這片橙林從不灑除草劑、不用農藥，每道疤都是橙自行癒合的證明。阿強深受觸動，開始苦練。</div>
-      <div class="ts"><b>④ 風雨歷練 · 下山揚名</b>雷雨行拳、力斷木樁、市集惡霸、真相顯露。經歷風雨，身上留下傷疤，身體卻日益強壯。學成下山回到市集，昔日惡霸前來挑釁，卻被他滿身精壯肌肉與刀疤嚇退。</div>
     </div>
   </div>
   <div class="takeaway">武俠框架的作用，是把「不用農藥」講成一種修為，而不是一項規格。</div>
@@ -817,19 +851,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為。六段分鏡已完成，適合長版品牌片或連載式短片。</div>
   </div>
   <div class="body col">
-    <div class="stage">
-      <div class="figblock ar ar2">
-        <div class="figlab">⑤ 刀疤橙的奧義 · 大俠遠眺</div>
-        <div class="tile fit"><img src="proposal/story2_seg5.jpg" alt="⑤ 刀疤橙的奧義 · 大俠遠眺"></div>
+    <div class="vstack" style="--ar:1.4;">
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">⑤ 刀疤橙的奧義 · 大俠遠眺</div>
+          <div class="tile"><img src="proposal/story2_seg5.jpg" alt="⑤ 刀疤橙的奧義 · 大俠遠眺"></div>
+        </div>
+        <div class="txt"><div class="tt">⑤ 刀疤橙的奧義 · 大俠遠眺</div><div class="td">橙林之誓、天然純淨、刀疤一派、大俠遠眺。阿強與果農創立「刀疤門」，以橙為師、以疤為榮，向世人傳達「天然敢留疤，健康才好吃」。</div></div>
       </div>
-      <div class="figblock ar ar2">
-        <div class="figlab">⑥ 以疤為傲（大結局）</div>
-        <div class="tile fit"><img src="proposal/story2_seg6.jpg" alt="⑥ 以疤為傲（大結局）"></div>
+      <div class="srow">
+        <div class="fig">
+          <div class="figlab">⑥ 以疤為傲（大結局）</div>
+          <div class="tile"><img src="proposal/story2_seg6.jpg" alt="⑥ 以疤為傲（大結局）"></div>
+        </div>
+        <div class="txt"><div class="tt">⑥ 以疤為傲（大結局）</div><div class="td">手臂對比、門徒齊心、刀疤之誓、天然真章。以手臂與橙的疤痕對照收結，落在「刀疤橙——淡疤的，不叫天然」，與現代版共用同一個精神。</div></div>
       </div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>⑤ 刀疤橙的奧義 · 大俠遠眺</b>橙林之誓、天然純淨、刀疤一派、大俠遠眺。阿強與果農創立「刀疤門」，以橙為師、以疤為榮，向世人傳達「天然敢留疤，健康才好吃」。</div>
-      <div class="ts"><b>⑥ 以疤為傲（大結局）</b>手臂對比、門徒齊心、刀疤之誓、天然真章。以手臂與橙的疤痕對照收結，落在「刀疤橙——淡疤的，不叫天然」，與現代版共用同一個精神。</div>
     </div>
   </div>
   <div class="takeaway">武俠框架的作用，是把「不用農藥」講成一種修為，而不是一項規格。</div>
@@ -893,59 +929,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">16</span></div>
 </section>
 
-<!-- 17 · 拍攝技巧 -->
+<!-- 17 · 拍攝參考影片 -->
 <section class="slide" data-slide="17" id="s17">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">III · 內容策略　<span class="sec">01</span></div>
-    <div class="title">拍攝技巧：圓形水果最難拍，關鍵在<span class="hi">壓暗</span>，不在打亮</div>
-    <div class="subtitle">橙是球體，全打亮會變成一團平的黃色。業界拍柑橘的做法是先控反光，再用黑旗把邊緣壓出暗帶，立體感才出得來。下一頁有三條實測片示範同一個原理。</div>
-  </div>
-  <div class="body col">
-    <div class="topstrip t4">
-      <div class="ts"><b>① 主燈離軸 30–45°</b>控制果皮上的 specular 反光，避免整片死白。</div>
-      <div class="ts"><b>② 黑旗 negative fill 壓暗邊緣</b>這一步決定球體感，是拍圓形水果<b style="display:inline">最關鍵的動作</b>。</div>
-      <div class="ts"><b>③ 背光燈位 90–120° 略高</b>用來拍切面的透光。</div>
-      <div class="ts"><b>④ 黑卡挖一個水果形狀的洞</b>令光只穿過主體，背景自然沉下去。</div>
-    </div>
-    <div class="stage">
-      <div class="panel" style="flex:1;">
-        <div class="panel-title">道具與處理（四項會立刻看到差別的）</div>
-        <ul class="bullets compact spread">
-          <li><b>水珠用甘油與水 1:1。</b>純水會滑走，而且水珠大小要刻意混合，才不像噴出來的。</li>
-          <li><b>切面防氧化：</b>抗壞血酸 2 大匙兌 1 杯水，浸 20 分鐘，每一個切面都要浸到。</li>
-          <li><b>拍 splash 需要 1/5000 秒級閃光</b>，一般連拍追不上。</li>
-          <li><b>人物只拍手</b>：農戶的手部特寫比全身鏡頭更有說服力。</li>
-        </ul>
-      </div>
-      <div class="panel tinted" style="flex:1;">
-        <div class="panel-title">必備鏡頭清單（每次上山拍齊，建立素材庫）</div>
-        <div class="rail c3" style="flex:0 0 auto;gap:9px;">
-          <div class="step">樹上果實特寫</div>
-          <div class="step">採摘動作</div>
-          <div class="step">分選線運作</div>
-          <div class="step">包裝過程</div>
-          <div class="step">切開與果肉</div>
-          <div class="step">試食反應</div>
-        </div>
-        <div class="callout" style="margin-top:10px;">六個鏡頭一次拍齊，之後三個月的貼文都有素材可用——不必每次要發帖才上山。</div>
-        <ul class="bullets compact" style="margin-top:4px;">
-          <li><b>格式規格、AI 產品攝影流程、工具價格與法規</b>不放在簡報，整理成可下載的操作手冊。<a class="vidlink" href="skills.md" download>下載 skills.md ↓</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="takeaway">先把佈光定死，再談產量。壓暗那一步做不到，拍幾多條都是平的。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">17</span></div>
-</section>
-
-<!-- 18 · 拍攝參考影片 -->
-<section class="slide" data-slide="18" id="s18">
-  <div class="wordmark">WOrange <span>和橙</span></div>
-  <div class="slide-head">
-    <div class="kicker">III · 內容策略　<span class="sec">02</span></div>
     <div class="title">拍攝參考：三條片示範<span class="hi">同一個原理</span>——先壓暗，再給輪廓</div>
-    <div class="subtitle">承接前頁的佈光做法。三條均為 Facebook 上的實測片段（數據為 2026-08 實測），已存為本機檔案直接播放：按播放即可看，切頁會暫停而不會從頭重來。</div>
+    <div class="subtitle">橙是球體，全打亮會變成一團平的黃色——<b>關鍵在壓暗，不在打亮</b>。以下三條片示範同一個原理：先控反光，再用黑旗把邊緣壓出暗帶。已存為本機檔案，按播放即可看。詳細佈光步驟與器材見可下載的 <a class="vidlink" href="skills.md" download>skills.md ↓</a></div>
   </div>
   <div class="body">
     <div class="col c4">
@@ -983,15 +973,15 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">三條片的共通點：光不是用來照亮，是用來把主體和背景分開。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">18</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">17</span></div>
 </section>
 
-<!-- 19 · AI 內容診斷 -->
-<section class="slide" data-slide="19" id="s19">
+<!-- 18 · AI 內容診斷 -->
+<section class="slide" data-slide="18" id="s18">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
-    <div class="kicker">III · 內容策略　<span class="sec">03</span></div>
-    <div class="title">AI 內容診斷：現時的 AI 圖正在<span class="hi">拉低互動</span>，而且畫錯了自己的 Logo</div>
+    <div class="kicker">III · 內容策略　<span class="sec">02</span></div>
+    <div class="title">AI 內容診斷：現時的 AI 圖正在<span class="hi">拉低互動</span></div>
     <div class="subtitle">和橙已經在用 AI 生圖。問題不在用不用，而在用法——以下數據全部來自品牌自己的 IG 與 Facebook 帖文。</div>
   </div>
   <div class="body col">
@@ -999,142 +989,76 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>實拍贏 AI 接近一倍</b>互動中位數：實拍 <b style="display:inline">32 讚</b>／AI 生成 17.5 讚。最差一帖是 AI 賀年產品渲染，只有 7 讚。</div>
       <div class="ts"><b>最好的四帖全是實拍</b>打假 163 讚／39 留言／27 分享、開摘 85、科大教授 54、回應質疑 47。</div>
       <div class="ts"><b>畫風至少 5 套並行</b>IG 可判定的 11 格中有 6 格為 AI 生成，彼此風格不一，看不出是同一個品牌。</div>
-      <div class="ts"><b>致命的一點矛盾</b>最有擴散力的題材是打假，卻用一張<b style="display:inline">畫錯自己 Logo</b> 的圖，去叫人「認住正版商標」。</div>
+      <div class="ts"><b>細節經不起放大</b>縮圖尺寸看得過去，放大即見破綻：包裝上的字糊掉、產品規格與實物不符。<b style="display:inline">而和橙賣的正是「可追溯」</b>——這不只是美術問題。</div>
     </div>
     <div class="stage">
       <div class="tile fit" style="flex:1;"><img src="fb/WOrange-TRUE.jpg" alt="實拍打假帖"><div class="cap">實拍 · 打假帖：163 讚／39 留言／27 分享</div></div>
-      <div class="tile fit" style="flex:1;"><img src="fb/WOrange-CNY.jpg" alt="AI 渲染節慶產品圖"><div class="cap">AI 渲染 · 節慶產品圖：7 讚 — 放大可見 Logo 成兩個重疊圓圈、包裝書法字整段消失、真橙的獨立膠袋與貼紙不見了</div></div>
+      <div class="tile fit" style="flex:1;"><img src="fb/WOrange-CNY.jpg" alt="AI 渲染節慶產品圖"><div class="cap">AI 渲染 · 節慶產品圖：7 讚 — 同期最低的一帖</div></div>
     </div>
   </div>
   <div class="takeaway">賣的是「可追溯、不造假」，圖卻經不起放大——這不只是美術問題，是信任問題。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">19</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">18</span></div>
 </section>
 
-<!-- 20 · AI 產品攝影 -->
-<section class="slide" data-slide="20" id="s20">
+<!-- 19 · 內容製作與爆紅案例 -->
+<section class="slide" data-slide="19" id="s19">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
-    <div class="kicker">III · 內容策略　<span class="sec">04</span></div>
-    <div class="title">AI 產品攝影：2026 年的做法是<span class="hi">實拍為主，AI 只生背景</span></div>
-    <div class="subtitle">過時的做法是打一段 prompt 生出一整張圖，產品由模型憑空畫出——上一頁的 Logo 出錯，正是這樣來的。</div>
-  </div>
-  <div class="body col">
-    <div class="flow" style="flex:0 0 auto;">
-      <div class="step" style="border-top-color:var(--pc-deep);"><b>01　實拍</b>依上一頁的佈光拍好產品本身</div>
-      <div class="step" style="border-top-color:var(--pc-medium);"><b>02　去背</b>把產品從背景抽出，保留原始像素</div>
-      <div class="step" style="border-top-color:var(--pc-light);"><b>03　AI 生背景</b>模型只負責場景，不碰產品</div>
-      <div class="step" style="border-top-color:var(--pc-teal);"><b>04　Relight</b>令產品與新背景的光向、色溫一致</div>
-      <div class="step" style="border-top-color:var(--pc-violet);"><b>05　收尾</b>合成、修邊、加回 Logo 與包裝文字</div>
-    </div>
-    <div class="callout" style="flex:0 0 auto;">貫穿五步的一條原則：<b>產品像素盡量不要進入模型</b>。Logo、書法字、防偽貼紙一旦由 AI 重畫，就會出錯。</div>
-    <div class="body" style="min-height:0;">
-      <div class="col c6">
-        <div class="panel" style="flex:1;">
-          <div class="panel-title">業界常用工具（2026）</div>
-          <table class="tbl">
-            <thead><tr><th style="width:130px;">環節</th><th>工具</th></tr></thead>
-            <tbody>
-              <tr><td><b>生成與參考</b></td><td>Nano Banana Pro／2（可用 14 張參考圖、支援圖內文字）；FLUX.2（10 張參考圖）</td></tr>
-              <tr><td><b>重新打光</b></td><td>Seedream 4.5（ComfyUI 官方 relight 模板的核心）</td></tr>
-              <tr><td><b>合成收尾</b></td><td>Photoshop 27 的 Harmonize 配 Firefly Image 5</td></tr>
-            </tbody>
-          </table>
-          <div class="src">工具資料多來自廠商網誌，非官方規格文件；採用前須自行試機。</div>
-        </div>
-      </div>
-      <div class="col c6">
-        <div class="panel tinted" style="flex:1;">
-          <div class="panel-title">兩項必須留意的變動</div>
-          <ul class="bullets compact">
-            <li class="warn"><b>Sora 已停止服務</b>，API 於 2026-09-24 關閉。任何流程都不應建立在其上。</li>
-            <li class="warn"><b>內地《AI 生成合成內容標識辦法》2025-09-01 已施行</b>：要求顯式與隱式雙重標識，平台會核驗，刪除標識屬違規。和橙有內地銷售，宜以此為最嚴基準。</li>
-            <li>Google Merchant Center 要求「實拍產品＋AI 背景」標為 <b>CompositeSynthetic</b>；同時要留意自家 CDN 不要把 metadata 洗掉。</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="takeaway">AI 用來省時間，不是用來代替事實。產品本身一定要是拍出來的。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">20</span></div>
-</section>
-
-<!-- 21 · 內容製作與爆紅案例（原 P19 + P20 合併） -->
-<section class="slide" data-slide="21" id="s21">
-  <div class="wordmark">WOrange <span>和橙</span></div>
-  <div class="slide-head">
-    <div class="kicker">III · 內容策略　<span class="sec">05</span></div>
+    <div class="kicker">III · 內容策略　<span class="sec">03</span></div>
     <div class="title">內容怎麼做，甚麼才會紅：工具只是成本，<span class="hi">爆點在語氣</span></div>
-    <div class="subtitle">上方是實際查過條款與價格之後的工具結論（詳細操作步驟見可下載的 skills 檔）；下方三則為原文引用，互動數字為 2026-08-26 實測——三則全部出自 Threads、全部由官方帳號發出、全部與產品無關。</div>
+    <div class="subtitle">三則原文引用，互動數字為 2026-08-26 實測——全部出自 Threads、全部由官方帳號發出、全部與產品無關。工具與逐步流程見可下載的 <a class="vidlink" href="skills.md" download>skills.md ↓</a></div>
   </div>
   <div class="body col">
-    <div class="topstrip t4">
-      <div class="ts"><b>影片與空鏡：Google Veo（Gemini）／Runway</b>一份 Runway 訂閱約 US$12／月即可用到多個主流模型；Veo 一支 8 秒空鏡約 HKD 6。<b style="display:inline">OpenAI Sora 已停服</b>（Web 與 App 2026-04-26 停止、API 2026-09-24 關閉），不要再寫進提案。</div>
-      <div class="ts"><b>配音：ElevenLabs（約 US$22／月）</b>用<b style="display:inline">自己的聲音</b>建語音模型。克隆他人聲音在官方條款是明文禁止的，即使對方同意也要通過本人聲紋驗證——所以「AI 講 Jobs 聲」技術上就走不通，已從提案劃走。</div>
-      <div class="ts"><b>一條要寫成明文的原則</b>凡宣稱「我們的果園、我們的農戶」的畫面，<b style="display:inline">一律實拍</b>；AI 只用於示意與抽象空鏡。和橙賣的是可追溯，AI 空鏡愈像實拍，被拆穿時傷害愈大。</div>
-      <div class="ts"><b>操作細節不放這裡</b>逐步流程、每個環節用哪個工具、內地標識辦法與香港法規現況，整理成一份可下載的 skills 檔。<a class="vidlink" href="skills.md" download>下載 skills.md ↓</a></div>
-    </div>
     <div class="stage">
       <div class="post" style="flex:1;">
-        <div class="ph">故宮南院 @npm_south · Threads · 2026-07-25 · <b>95.5K 讚／1.1M 瀏覽</b></div>
-        <div class="pb" style="font-size:13.5px;"><b>前文：</b>一名網友在 Threads 發帖，內文<b>只有「故宮南院」四個字</b>——像在人群裡直接喊一個名字，沒有問題、沒有標註。</div>
+        <div class="ph">故宮南院 @npm_south · Threads · 2026-07-25</div>
+        <div class="pb" style="font-size:13px;"><b>前文：</b>一名網友發帖，內文<b>只有「故宮南院」四個字</b>——像在人群裡直接喊一個名字，沒有問題、沒有標註。</div>
         <div class="msg u"><span>網友　20:14</span>故宮南院</div>
         <div class="msg b"><span>小編　21:22</span>幹嘛</div>
-        <div class="pb" style="font-size:13.5px;"><b>後理：</b>官方帳號隔了 68 分鐘，回了兩個字。笑點在於——被點名的是一間<b>國立博物館</b>，它卻用「被叫到名字的人不耐煩應一聲」的語氣回話。整串對話合共六個字。</div>
-        <div class="pstat">182 回覆 · 389 轉發 · 3.5K 分享　其後神回覆：「可以是可以，可是明天你只能在庭院玩！」</div>
-        <div class="note">官方承認由一名助理研究員經營。這是「機構身份配人類語氣」的極致。</div>
+        <div class="pb" style="font-size:13px;"><b>後理：</b>官方隔了 68 分鐘回兩個字。笑點在於被點名的是一間<b>國立博物館</b>，卻用「被叫到名字的人不耐煩應一聲」的語氣回話。整串合共六個字。</div>
+        <div class="pstat"><b>95.5K 讚</b> · 182 回覆 · 389 轉發 · 3.5K 分享 · 1.1M 瀏覽</div>
+        <div class="note">官方承認由一名助理研究員經營。「機構身份配人類語氣」的極致。</div>
       </div>
-      <div class="post" style="flex:1;">
-        <div class="ph">SUZUKI @suzukimotortw · Threads · 2026-08-11 · <b>25.4K 讚／309K 瀏覽</b></div>
-        <div class="pb" style="font-size:13.5px;"><b>前文：</b>有網友跑到<b>機車品牌</b>的官方帳號下面，問一條關於 <b>iPhone 電池</b>的問題——與機車毫無關係。</div>
-        <div class="pb" style="font-size:13.5px;"><b>中段：</b>鈴編沒有已讀不回，也沒有「這不屬於我們的服務範圍」，而是<b>認真把電池問題答完</b>。</div>
-        <div class="msg b"><span>最後一句</span>「⋯以上認真回答完畢。但我還是想問一下⋯⋯<b>這到底關我 SUZUKI 什麼事啦！</b>(╯°□°）╯︵ ┻━┻」</div>
-        <div class="pb" style="font-size:13.5px;"><b>後理：</b>笑點是「先完整配合，再突然抽離」。追蹤數由 1.8 萬升至 <b>4.17 萬</b>。</div>
-        <div class="note">同一位鈴編的日常：奇葩騎士吐槽 404 讚、「鈴編教你學日文」連載 295 讚、到別人留言區回一句「價格都差不多，服務比較重要 👍🏻」。</div>
+      <div class="post" style="flex:1.12;">
+        <div class="ph">SUZUKI @suzukimotortw · Threads · 2026-08-11 · 全串 30 萬次瀏覽</div>
+        <div class="msg u"><span>@chenze2106　網友原問</span>為什麼我的電池健康度會這麼慘 🫪<br><span style="font-size:11.5px;opacity:.75;">（附圖：iPhone 電池健康度 77%。這裡是<b>機車品牌</b>的帳號。）</span></div>
+        <div class="msg b"><span>@suzukimotortw　鈴編全文</span>「電池健康度 77% 代表電池已經有明顯老化，續航力跟效能都有可能受到影響，如果平常已經很容易掉電，建議可以考慮更換電池。<br><br>以上認真回答完畢。<br><br>但我還是想問一下…… 你 iPhone 電池健康度 77%，<b>這到底關我 SUZUKI 什麼事啦！</b>(╯°□°）╯︵ ┻━┻」</div>
+        <div class="pstat">原問 1,730 讚　→　<b>回覆 2.5 萬讚</b> · 87 回覆 · 105 轉發 · 903 分享</div>
+        <div class="pb" style="font-size:13px;"><b>後續兩句同樣有互動：</b>翌日鈴編補一句「順便推廣一下 SUI ✌🏻」（278 讚）；原 po 回「哈哈 你真的被我們玩壞了 😂 小編辛苦了 ❤️」（222 讚）；另有網友留「你真的快追上內建 AI 了，我下次皮膚病也來問你」（525 讚）。</div>
+        <div class="note"><b>結構：先完整配合，再突然抽離。</b>先把不關自己事的問題認真答完，最後一句才吐槽——追蹤數由 1.8 萬升至 4.17 萬。</div>
       </div>
       <div class="post" style="flex:1;">
         <div class="ph">「如履薄冰」薄冰哥 · Threads 迷因 · 迷因百科解說</div>
         <div class="vidframe" style="align-self:stretch;margin:2px 0 6px;">
           <video src="video/bobing.mp4" poster="video/bobing.jpg" width="100%" controls preload="metadata" playsinline title="我這一生如履薄冰 是什麼迷因"></video>
         </div>
-        <div class="pb" style="font-size:13.5px;">原句出自《投名狀》龐青雲：「我這一生如履薄冰，你說，我能走到對岸嗎」。迷因把這句<b>悲壯的比喻，故意曲解成字面義</b>——既然是走在薄冰上，那就給你錢搭車過去。</div>
+        <div class="pb" style="font-size:13px;">原句出自《投名狀》龐青雲：「我這一生如履薄冰，你說，我能走到對岸嗎」。迷因把這句<b>悲壯的比喻，故意曲解成字面義</b>——既然是走在薄冰上，那就給你錢搭車過去。</div>
         <div class="msg b"><span>標準句型</span>「呦，這不是薄冰哥嗎？」——接「給你二十塊錢打車過去吧」</div>
-        <div class="note" style="color:var(--pc-pink);">畫面用的是吉伊卡哇二創，屬未授權素材。<b>品牌只可借用文字結構，不要用其素材</b>——本頁放的是解說影片，不是二創本身。</div>
+        <div class="pstat">單則示範 <b>9.8K 讚</b>／234K 瀏覽；另一則 2.8 萬讚／53 萬瀏覽</div>
+        <div class="note" style="color:var(--pc-pink);">畫面用的是吉伊卡哇二創，屬未授權素材。<b>只可借用文字結構，不要用其素材</b>——本頁放的是解說影片，不是二創本身。</div>
+      </div>
+    </div>
+    <div class="topstrip" style="grid-template-columns:1.1fr 1.1fr 1.1fr 1.25fr;">
+      <div class="ts"><b>① 回覆比發文重要</b>Buffer 分析約 12.8 萬則 Threads 貼文：會回覆留言的帳號<b style="display:inline">互動高約 42%</b>，為六平台之最。回一則留言的成本，遠低於再拍一條片。</div>
+      <div class="ts"><b>② 去別人的留言區</b>故宮南院館方形容小編「連下班都在海巡」；鈴編亦有到他人貼文回覆的紀錄。不要只守自己的專頁——上面 Suzuki 那一則，起點就是別人的貼文。</div>
+      <div class="ts"><b>③ 零門檻互動勝過精美內容</b>鮮乳坊開「灌水專區」讓網友留言接力（71 讚／12 回覆）。和橙版：「今日邊個橙最靚」投票、收成倒數、改名徵集——一句話就能參與，毋須製作成本。</div>
+      <div class="ts">
+        <b>這樣做的量級（單則讚數）</b>
+        <div class="impact" style="margin-top:5px;">
+          <div class="ibar"><span class="lb">故宮南院「幹嘛」</span><span class="tr"><span class="fl a" style="width:100%"></span></span><span class="vn">95.5K</span></div>
+          <div class="ibar"><span class="lb">Suzuki 電池文</span><span class="tr"><span class="fl" style="width:26.6%"></span></span><span class="vn">25.4K</span></div>
+          <div class="ibar"><span class="lb">薄冰哥迷因</span><span class="tr"><span class="fl c" style="width:10.3%"></span></span><span class="vn">9.8K</span></div>
+          <div class="ibar"><span class="lb">和橙最佳一帖</span><span class="tr"><span class="fl c" style="width:0.17%"></span></span><span class="vn">163</span></div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="takeaway">三則都是官方帳號、都與產品無關、都靠一句人話。香港品牌帳號至今無人做到，位置仍然空著。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">21</span></div>
+  <div class="takeaway">三則都是官方帳號、都與產品無關、都靠一句人話。和橙最好的一帖是 163 讚——差的不是預算，是語氣。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">19</span></div>
 </section>
 
-<!-- 22 · 規律怎麼用 -->
-<section class="slide" data-slide="22" id="s22">
-  <div class="wordmark">WOrange <span>和橙</span></div>
-  <div class="slide-head">
-    <div class="kicker">III · 內容策略　<span class="sec">06</span></div>
-    <div class="title">規律怎麼用：五條觀察，各自對應<span class="hi">一個下個月就能做的動作</span></div>
-    <div class="subtitle">左欄是從上一頁案例歸納出來的規律與它的證據，右欄是和橙照著做甚麼。五條都不需要預算。</div>
-  </div>
-  <div class="body col">
-    <div class="topstrip t2">
-      <div class="ts"><b>先做哪一條</b>由第 2、4 條入手：改 bio 是一次性動作，回覆留言是每日動作，兩者都不必等內容排期。第 1 條需要先決定「由誰做代言的人」。</div>
-      <div class="ts"><b>幽默是手段，導流才是目的</b>故宮南院〈端陽戲嬰圖〉的擬人文：整段搞笑，<b style="display:inline">最後一行才接上展名與展期</b>。和橙版即：刀疤橙自嘲完，最後一行接「本週開摘，官網預訂」。</div>
-    </div>
-    <div class="stage" style="flex-direction:column;gap:0;">
-      <div class="rulehead"><div>#</div><div>觀察到的規律（與證據）</div><div>和橙照著做甚麼</div></div>
-      <div class="rulerow"><div class="rb-n">1</div><div class="rb-o"><b>爆點是反差</b><div class="ev">機構身份配人類語氣</div></div><div class="rb-a">讓農場的人直接說話，署名到人。不要用「小編」這種代稱——那本身就是機構語氣。</div></div>
-      <div class="rulerow"><div class="rb-n">2</div><div class="rb-o"><b>回覆比發文重要</b><div class="ev">Buffer 分析約 12.8 萬則 Threads 貼文：會回覆留言的帳號互動高約 42%，為六平台之最</div></div><div class="rb-a">每一則留言都回，用農夫語氣回。回覆的時間成本，遠低於再拍一條片。</div></div>
-      <div class="rulerow"><div class="rb-n">3</div><div class="rb-o"><b>去別人的留言區</b><div class="ev">故宮南院館方形容小編「連下班都在海巡」；Suzuki 鈴編亦有到他人貼文回覆的紀錄</div></div><div class="rb-a">不要只守自己的專頁。到有機食材、親子、送禮的討論串裡留一兩句有用的話。</div></div>
-      <div class="rulerow"><div class="rb-n">4</div><div class="rb-o"><b>地基是 bio</b><div class="ev">故宮南院的簡介以第一人稱寫成「一個住嘉義的人」</div></div><div class="rb-a">先改 IG 與 Threads 的簡介：寫明是誰在打理、他在郴州還是香港。</div></div>
-      <div class="rulerow"><div class="rb-n">5</div><div class="rb-o"><b>零門檻互動勝過精美內容</b><div class="ev">鮮乳坊開「灌水專區」讓網友留言接力（71 讚／12 回覆）</div></div><div class="rb-a">開一個長期帖：「今日邊個橙最靚」投票、收成倒數、改名徵集。一句話就能參與。</div></div>
-    </div>
-    <div class="src">Buffer 分析自身聲明約三分之一帳號無效，且屬相關而非因果。查證過程見 research_viral_posts_content.md。</div>
-  </div>
-  <div class="takeaway">五條全部不需要預算，只需要有人肯用自己的名字說話。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">22</span></div>
-</section>
-
-<!-- 23 · 渠道與活動 -->
-<section class="slide divider" data-slide="23" id="s23">
+<!-- 20 · 渠道與活動 -->
+<section class="slide divider" data-slide="20" id="s20">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="body col" style="justify-content:center;">
     <div class="num">SECTION IV</div>
@@ -1148,11 +1072,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div><b>05　社企路徑</b>認證、名錄與合作對象</div>
     </div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">23</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">20</span></div>
 </section>
 
-<!-- 24 · 銷售渠道 B2C -->
-<section class="slide" data-slide="24" id="s24">
+<!-- 21 · 銷售渠道 B2C -->
+<section class="slide" data-slide="21" id="s21">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">01</span></div>
@@ -1182,11 +1106,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">同一品牌可以上兩種貨架，前提是四項條款先談妥。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">24</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">21</span></div>
 </section>
 
 <!-- 23b · 品牌聯乘 -->
-<section class="slide" data-slide="25" id="s25">
+<section class="slide" data-slide="22" id="s22">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">02</span></div>
@@ -1222,11 +1146,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">日韓 IP 已經很貴很擠；本地 IP 便宜、談得動，而且沒有人做過食品聯乘。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">25</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">22</span></div>
 </section>
 
-<!-- 26 · 銷售渠道 B2B -->
-<section class="slide" data-slide="26" id="s26">
+<!-- 23 · 銷售渠道 B2B -->
+<section class="slide" data-slide="23" id="s23">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">03</span></div>
@@ -1275,11 +1199,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="callout">可售的不止果籃：認養果樹、員工福利、慈善捐贈三者合一，令對方的 ESG 報告有具體內容可寫。</div>
   </div>
   <div class="takeaway">企業要的不是果籃，是一段可以寫進 ESG 報告的文字。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">26</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">23</span></div>
 </section>
 
-<!-- 27 · Pop-up Booth -->
-<section class="slide" data-slide="27" id="s27">
+<!-- 24 · Pop-up Booth -->
+<section class="slide" data-slide="24" id="s24">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">04</span></div>
@@ -1293,7 +1217,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>加碼：三個平台全追蹤，加送金裝一個</b>把 IG 與 Threads 的基數一併拉起，而不是只餵飽已經有 6,738 人的 Facebook。</div>
       <div class="ts"><b>每場必記三個數字</b>新增追蹤數、掃碼數、當場落單數。<b style="display:inline">否則仍舊只有曝光，沒有歸因</b>——這是現時所有活動的共同缺口。</div>
     </div>
-    <div class="stage">
+    <div class="stage g2">
       <div class="figblock"><div class="figlab">科學園 Pop-up · 現場已執行</div><div class="tile"><img src="fb/WOrange-Exhibition2_ev.jpg" alt="科學園 Pop-up"></div></div>
       <div class="figblock"><div class="figlab">亞洲素食展 · 攤位形式</div><div class="tile"><img src="fb/WOrange-Exhibition_ev.jpg" alt="亞洲素食展"></div></div>
       <div class="figblock"><div class="figlab">愉景灣聖誕市集 · 節慶檔期</div><div class="tile"><img src="fb/WOrange-CNY3_ev.jpg" alt="愉景灣聖誕市集"></div></div>
@@ -1302,11 +1226,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="src">打卡框為通用樣板示意；實際製作宜換成和橙自家配色與刀疤橙角色，並把 X（原 Twitter）一格改為 Threads。</div>
   </div>
   <div class="takeaway">兩個橙的成本，換一次追蹤加一次轉贈——比單純派發划算。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">27</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">24</span></div>
 </section>
 
-<!-- 28 · 學校巡迴 -->
-<section class="slide" data-slide="28" id="s28">
+<!-- 25 · 學校巡迴 -->
+<section class="slide" data-slide="25" id="s25">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">05</span></div>
@@ -1320,7 +1244,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>一條龍體驗</b>校園派橙可接親子工作坊與農場導賞，一次接觸延伸成三次。</div>
       <div class="ts"><b>每場必留家長入口</b>訂購連結、班級團購、節慶禮盒單張——否則接觸到的只有學生，訂單不會發生。</div>
     </div>
-    <div class="stage">
+    <div class="stage g2">
       <div class="figblock"><div class="figlab">送橙到校園 2026</div><div class="tile"><img src="fb/WOrange-School.jpg" alt="送橙到校園"></div></div>
       <div class="figblock"><div class="figlab">校園互動</div><div class="tile"><img src="fb/WOrange-School2.jpg" alt="校園互動"></div></div>
       <div class="figblock"><div class="figlab">學生反應本身就是素材</div><div class="tile"><img src="fb/WOrange-School3.jpg" alt="學生反應"></div></div>
@@ -1328,11 +1252,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">接觸的是學生，落單的是家長；每一場都要留下家長入口。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">28</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">25</span></div>
 </section>
 
-<!-- 29 · 社企路徑 -->
-<section class="slide" data-slide="29" id="s29">
+<!-- 26 · 社企路徑 -->
+<section class="slide" data-slide="26" id="s26">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">06</span></div>
@@ -1340,16 +1264,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">社企身份對 B2B 有直接作用——企業採購與 ESG 部門需要可載入報告的第三方憑證，而非品牌自述。但「社企」在香港<b>並無法律定義</b>，各計劃是自願性認證，門檻與代價差異極大。</div>
   </div>
   <div class="body col">
-    <div class="topstrip t3">
-      <div class="ts"><b>結論一：商界展關懷應該即刻做</b>申請費僅 <b style="display:inline">HKD 600</b>（一次性，不論提名機構數量）。和橙已有深水埗派橙、送橙到校園、親子工作坊——實績夠，缺的只是一個提名人。</div>
-      <div class="ts"><b>結論二：SEE Mark 只取低階，不碰創越級</b>創越級要求<b style="display:inline">不少於 65% 可分配利潤再投資於社會目的</b>，且收入至少 50% 來自業務經營。對一間要向股東交代的農業公司，這是實質的財務約束。</div>
-      <div class="ts"><b>結論三：現在就要開始留檔</b>兩個計劃都要求社會效益紀錄。派發數量、受惠人數、合作機構名稱——由今造開始逐場記錄，否則明年申請時無憑證可交。</div>
-    </div>
-    <div class="stage">
-      <div class="panel" style="flex:1.25;">
+    <div class="stage" style="flex-direction:column;gap:13px;">
+      <div class="panel" style="flex:1;">
         <div class="panel-title">可行性對照</div>
         <table class="tbl">
-          <thead><tr><th style="width:126px;">計劃</th><th style="width:150px;">實質門檻</th><th style="width:92px;">成本</th><th style="width:118px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
+          <thead><tr><th style="width:112px;">計劃</th><th style="width:300px;">實質門檻</th><th style="width:86px;">成本</th><th style="width:132px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
           <tbody>
             <tr>
               <td><b>商界展關懷</b><br><span class="note">社聯</span></td>
@@ -1376,24 +1295,24 @@ h1,h2,h3,p,ul,ol{margin:0;}
         </table>
         <div class="src">資料為 2026-08 查證；各計劃的費用、級別要求與截止日期按年度調整，落實前須向主辦機構確認最新版指引。SEE Mark 級別門檻曾由四級調整為三級。</div>
       </div>
-      <div class="panel tinted" style="flex:0.75;">
+      <div class="panel tinted" style="flex:0 0 auto;">
         <div class="panel-title">社會效益從哪裡來（毋須額外成本的四項）</div>
-        <ul class="bullets compact spread">
+        <ul class="bullets compact" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px;">
           <li><b>次級果轉贈：</b>賣相欠佳但品質無損的果實捐予食物援助機構——同時處理庫存與取得效益紀錄，是成本最低的一項。</li>
           <li><b>長者就業社企：</b>果籃包裝與節慶分裝工序外判，既符合社企精神，亦可直接寫入企業客的 ESG 報告。</li>
           <li><b>社區派發制度化：</b>深水埗派橙行動已執行，宜定為每年常設項目並記錄受惠人數。</li>
           <li><b>校園與教育：</b>有機耕作工作坊可申請成為教育服務，接通學校巡迴一線。</li>
         </ul>
-        <div class="callout" style="margin-top:4px;">四項都是已在做的事，缺的只是<b>把它記下來</b>。</div>
+        
       </div>
     </div>
   </div>
   <div class="takeaway">先花 600 蚊拿商界展關懷，不要為了 SEE Mark 創越級去承諾 65% 利潤再投資。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">29</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">26</span></div>
 </section>
 
-<!-- 30 · 產品體驗 -->
-<section class="slide divider" data-slide="30" id="s30">
+<!-- 27 · 產品體驗 -->
+<section class="slide divider" data-slide="27" id="s27">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="body col" style="justify-content:center;">
     <div class="num">SECTION V</div>
@@ -1406,11 +1325,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div><b>04　紀念品</b>可攜帶的品牌角色</div>
     </div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">30</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">27</span></div>
 </section>
 
-<!-- 31 · 包裝參考 -->
-<section class="slide" data-slide="31" id="s31">
+<!-- 28 · 包裝參考 -->
+<section class="slide" data-slide="28" id="s28">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">01</span></div>
@@ -1423,18 +1342,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>禮物包裝搭配祝福訊息</b>送禮時附上祝福心意，令送禮者與收禮者均感親切；同一盒型換字即可對應不同節慶。</div>
       <div class="ts"><b>來源產地與產品介紹</b>提供產地、品種、甜度等資訊，提升信心並增強購買意願——這正是和橙「可追溯」主張的貨架版本。</div>
     </div>
-    <div class="stage">
+    <div class="stage fitall">
       <div class="figblock"><div class="figlab">日本桃禮盒 · 透明開窗與產地標示</div><div class="tile"><img src="proposal/s14_1_p1.jpg" alt="日本水果禮盒"></div></div>
       <div class="figblock"><div class="figlab">祝福訊息與節慶字樣</div><div class="tile"><img src="proposal/s14_1_p2.jpg" alt="祝福訊息包裝"></div></div>
       <div class="figblock"><div class="figlab">本地百貨貨架 · 分級陳列</div><div class="tile"><img src="proposal/s14_1_p3.jpg" alt="本地百貨貨架"></div></div>
     </div>
   </div>
   <div class="takeaway">透明蓋、祝福語、產地標示，三者都是在替消費者省下判斷成本。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">31</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">28</span></div>
 </section>
 
-<!-- 32 · 包裝參考 -->
-<section class="slide" data-slide="32" id="s32">
+<!-- 29 · 包裝參考 -->
+<section class="slide" data-slide="29" id="s29">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">02</span></div>
@@ -1447,18 +1366,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>品牌標籤創造優勢</b>原文的做法是用外語標籤提升優越感。<b style="display:inline">但和橙賣的是「香港品牌」</b>——這一項宜反過來做：用中文與香港產地標示，走反方向的差異化。</div>
       <div class="ts"><b>品牌展銷效應</b>向經銷商提供創意展示架，讓產品擁有專屬推廣位置。對應 P23 的中高檔超市一線，入場時可一併提出。</div>
     </div>
-    <div class="stage">
+    <div class="stage fitall">
       <div class="figblock"><div class="figlab">色彩與卡通角色 · 袋裝農產</div><div class="tile"><img src="proposal/s15_1_p1.jpg" alt="色彩與卡通角色包裝"></div></div>
       <div class="figblock"><div class="figlab">品牌標籤 · 貨架識別</div><div class="tile"><img src="proposal/s15_1_p2.jpg" alt="品牌標籤"></div></div>
       <div class="figblock"><div class="figlab">創意展銷架 · 專屬陳列位</div><div class="tile"><img src="proposal/s15_1_p3.jpg" alt="創意展銷架"></div></div>
     </div>
   </div>
   <div class="takeaway">卡通角色不是裝飾，是讓貨架上的和橙一眼認得出。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">29</span></div>
 </section>
 
-<!-- 33 · Packaging -->
-<section class="slide" data-slide="33" id="s33">
+<!-- 30 · Packaging -->
+<section class="slide" data-slide="30" id="s30">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">03</span></div>
@@ -1471,7 +1390,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>可再利用的盒身</b>錢罌、婚禮小盒等造型（和睦共處），令盒身留在家中持續曝光——一次包裝成本，長期曝光。</div>
       <div class="ts"><b>透明蓋的前提</b>果實須禁得起注視。<b style="display:inline">刀疤橙的故事必須先講</b>，疤痕才會被讀成證據而非瑕疵。</div>
     </div>
-    <div class="stage">
+    <div class="stage g2">
       <div class="figblock"><div class="figlab">木盒配透明蓋 · Luxury Gift</div><div class="tile"><img src="proposal/s16_3.jpg" alt="木盒配透明蓋"></div></div>
       <div class="figblock"><div class="figlab">食品級紙盒 · High End</div><div class="tile"><img src="proposal/s16_4.jpg" alt="食品級紙盒"></div></div>
       <div class="figblock"><div class="figlab">可提式紙盒 · 便於運送陳列</div><div class="tile"><img src="proposal/s16_1.jpg" alt="可提式紙盒"></div></div>
@@ -1479,11 +1398,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">兩級規格共用同一套識別；檔次靠盒，不靠改名。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">33</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">30</span></div>
 </section>
 
-<!-- 34 · 紀念品 -->
-<section class="slide" data-slide="34" id="s34">
+<!-- 31 · 紀念品 -->
+<section class="slide" data-slide="31" id="s31">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">04</span></div>
@@ -1498,7 +1417,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>環保袋與水樽</b>呼應有機及低碳定位，適合企業客與工作坊。</div>
       <div class="ts"><b>微型巴士</b>承接已投放的巴士車身廣告，製成可收藏模型。</div>
     </div>
-    <div class="stage">
+    <div class="stage g2">
       <div class="figblock"><div class="figlab">盲盒公仔 · 角色成套</div><div class="tile fit"><img src="proposal/s17_1.jpg" alt="盲盒公仔"></div></div>
       <div class="figblock"><div class="figlab">利是封 · 每年一款</div><div class="tile"><img src="proposal/s17_2.jpg" alt="利是封"></div></div>
       <div class="figblock"><div class="figlab">開橙器與實用小物</div><div class="tile fit"><img src="proposal/s17_4.jpg" alt="開橙器"></div></div>
@@ -1506,11 +1425,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">周邊的作用不是賺錢，是讓品牌離開農場後仍然被看見。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">34</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">31</span></div>
 </section>
 
-<!-- 35 · 生態旅遊 -->
-<section class="slide divider" data-slide="35" id="s35">
+<!-- 32 · 生態旅遊 -->
+<section class="slide divider" data-slide="32" id="s32">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="body col" style="justify-content:center;">
     <div class="num">SECTION VI</div>
@@ -1522,11 +1441,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div></div>
     </div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">35</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
 </section>
 
-<!-- 36 · 以花期把農場撐成全年營運 -->
-<section class="slide" data-slide="36" id="s36">
+<!-- 33 · 以花期把農場撐成全年營運 -->
+<section class="slide" data-slide="33" id="s33">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">VI · 生態旅遊　<span class="sec">01</span></div>
@@ -1548,7 +1467,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
           <li><b>收入來源：</b>入場費，以及園內消費（餐飲、手信、體驗）。</li>
           <li><b>已有基礎：</b>三日兩夜農旅套餐、每年逾 1,000 名訪客且以港客為主、香港乘高鐵至郴州不足三小時。</li>
         </ul>
-        <div class="callout">此節同時回答「產季只有四個月如何是好」——把農場本身變成產品，收入便不再跟隨橙的檔期。</div>
+        <div class="callout"></div>
       </div>
       <div class="col c7">
         <div class="rail c2" style="flex:1;">
@@ -1561,7 +1480,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">把農場本身變成產品，收入就不再跟著橙的檔期走。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">36</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">33</span></div>
 </section>
 
 </main>
