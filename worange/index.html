@@ -371,13 +371,26 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* 參考影片嵌入（Facebook video plugin iframe） */
 .vidframe{align-self:center;line-height:0;background:#0f1822;border:1px solid var(--border);}
-.vidframe iframe{display:block;border:0;}
+.vidframe iframe,.vidframe video{display:block;border:0;background:#0f1822;}
 .vidname{font-size:13.5px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
 .vidstat{font-size:11.5px;color:var(--text-muted);margin-top:2px;}
 .vidnote{font-size:12.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
 [data-theme="dark"] .vidname{color:var(--c-bear);}
 .vidlink{color:var(--pc-medium);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap;}
 [data-theme="dark"] .vidlink{color:var(--c-bear);}
+
+/* 80/20 版式：上方一條橫向摘要帶，下方全寬視覺 */
+.topstrip{
+  flex:0 0 auto;display:grid;gap:16px;padding:13px 17px;
+  background:var(--tint);border-left:3px solid var(--pc-deep);
+}
+.topstrip.t2{grid-template-columns:repeat(2,1fr);}
+.topstrip.t3{grid-template-columns:repeat(3,1fr);}
+.topstrip.t4{grid-template-columns:repeat(4,1fr);}
+.topstrip .ts{font-size:12.8px;line-height:1.52;color:var(--text-secondary);}
+.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:2px;font-size:12.5px;}
+[data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
+.stage{flex:1;min-height:0;display:flex;gap:12px;}
 </style>
 </head>
 <body>
@@ -640,22 +653,17 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">02</span></div>
-    <div class="title">Logo 重新設計：一枚圓章，中英文都能用</div>
+    <div class="title">Logo 重新設計：<span class="hi">一枚圓章</span>，中英文都能用</div>
   </div>
-  <div class="body">
-    <div class="col c4 vc">
-      <ul class="bullets">
-        <li>把「和」字與「W」收進同一枚圓章，中英文場合都能單獨使用。W 的筆劃順勢畫成蚯蚓 John。</li>
-        <li>先用網格把比例與筆劃粗細定下來。縮到單果貼紙那麼小，仍然要認得出是和橙。</li>
-        <li>現時「和橙」「HK Farmer Story」「展翔」三個名並存。換標若兩邊同時大改，消費者認不出，防偽就失效——建議新舊並行一季。</li>
-      </ul>
-      <div class="flag"><b>下一頁</b><span>在這個結構上發展的彩色變體，以及 John 融入 W 的幾個方案。</span></div>
+  <div class="body col">
+    <div class="topstrip t3">
+      <div class="ts"><b>一枚圓章通用</b>把「和」字與「W」收進同一枚圓章，中英文場合都能單獨使用；W 的筆劃順勢畫成蚯蚓 John。</div>
+      <div class="ts"><b>先定網格再定細節</b>用網格把比例與筆劃粗細定下來——縮到單果貼紙那麼小，仍然要認得出是和橙。</div>
+      <div class="ts"><b>換標要留過渡期</b>現時「和橙」「HK Farmer Story」「展翔」三名並存；兩邊同時大改會令消費者認不出，防偽即失效，建議新舊並行一季。</div>
     </div>
-    <div class="col c8">
-      <div class="tile dark fit" style="flex:1;">
-        <img src="proposal/s03_1_crop.png" alt="Logo 結構網格稿">
-        <div class="cap">結構網格稿</div>
-      </div>
+    <div class="tile dark fit" style="flex:1;">
+      <img src="proposal/s03_1_crop.png" alt="Logo 結構網格稿">
+      <div class="cap">結構網格稿 — 下一頁為彩色變體與 John 融入 W 的方案</div>
     </div>
   </div>
   <div class="takeaway">識別要經得起縮小；換標則要經得起一季的過渡，否則防偽先失效。</div>
@@ -898,13 +906,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">III · 內容策略　<span class="sec">02</span></div>
     <div class="title">拍攝參考：三條片示範<span class="hi">同一個原理</span>——先壓暗，再給輪廓</div>
-    <div class="subtitle">承接前頁的佈光做法。三條均為 Facebook 上可直接播放的片段，數據為 2026-08 實測；按播放即可在本頁內看，毋須登入。</div>
+    <div class="subtitle">承接前頁的佈光做法。三條均為 Facebook 上的實測片段（數據為 2026-08 實測），已存為本機檔案直接播放：按播放即可看，切頁會暫停而不會從頭重來。</div>
   </div>
   <div class="body">
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title">01 · 暗調水果</div>
-        <div class="vidframe"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1571333827913056&show_text=false&width=352&height=626&t=0" width="352" height="626" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" title="甜胚子 · 20 秒拍出荔枝高級感"></iframe></div>
+        <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="352" height="626" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
         <div>
           <div class="vidname">甜胚子 · 20 秒拍出荔枝高級感</div>
           <div class="vidstat">13 萬次觀看 · 1,568 個心情 · 172 次分享　<a class="vidlink" href="https://www.facebook.com/reel/1571333827913056" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -915,7 +923,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title">02 · 佈光設定</div>
-        <div class="vidframe"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1022251727088426&show_text=false&width=352&height=626&t=0" width="352" height="626" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" title="Mykyta Vasyliev · 一組可照抄的佈光"></iframe></div>
+        <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="352" height="626" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · 一組可照抄的佈光</div>
           <div class="vidstat">134 萬次觀看 · 5.1 萬個心情 · 1,612 次分享　<a class="vidlink" href="https://www.facebook.com/reel/1022251727088426" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -926,7 +934,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title">03 · 入門器材</div>
-        <div class="vidframe"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1544045607760175&show_text=false&width=352&height=626&t=0" width="352" height="626" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" title="Mykyta Vasyliev · TARION 套裝示範"></iframe></div>
+        <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="352" height="626" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · TARION 套裝示範</div>
           <div class="vidstat">2 萬次觀看 · 287 個心情　<a class="vidlink" href="https://www.facebook.com/reel/1544045607760175" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -1614,6 +1622,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
   const cnt = document.getElementById('slideCnt');
   function show(i){
     idx = Math.max(0, Math.min(total-1, i));
+    // 離開該頁時暫停影片：保留播放進度，切回來可以續播
+    document.querySelectorAll('video').forEach(v=>{ if(!v.paused) v.pause(); });
     slides.forEach((s,j)=> s.classList.toggle('active', j===idx));
     cnt.textContent = (idx+1) + ' / ' + total;
     location.hash = 's' + (idx+1);
