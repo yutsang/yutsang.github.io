@@ -415,6 +415,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .cvtarget ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}
 .cvtarget li{font-size:13.5px;padding-left:15px;position:relative;}
 .cvtarget li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--pc-light);}
+
+/* 觀察 → 動作 逐條對位 */
+.stage > .rulerow{flex:1;}
+.rulerow{display:grid;grid-template-columns:40px 1fr 1.3fr;border:1px solid var(--border);min-height:0;}
+.rulerow + .rulerow{border-top:none;}
+.rb-n{background:var(--pc-deep);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;}
+.rb-o{padding:10px 15px;background:var(--tint);display:flex;flex-direction:column;justify-content:center;}
+.rb-o b{font-size:14.5px;color:var(--pc-deep);}
+.rb-o .ev{font-size:11.5px;color:var(--text-muted);line-height:1.42;margin-top:3px;}
+.rb-a{padding:10px 15px;display:flex;align-items:center;font-size:13.5px;line-height:1.5;}
+[data-theme="dark"] .rb-o b{color:var(--c-bear);}
+.rulehead{display:grid;grid-template-columns:40px 1fr 1.3fr;background:var(--pc-deep);color:#fff;}
+.rulehead div{padding:7px 15px;font-size:12.5px;font-weight:700;letter-spacing:.04em;}
 </style>
 </head>
 <body>
@@ -1126,39 +1140,25 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">III · 內容策略　<span class="sec">07</span></div>
-    <div class="title">規律怎麼用：五條觀察，各自對應一個和橙可以照做的動作</div>
-    <div class="subtitle">左欄是從上一頁案例歸納出來的規律，右欄是和橙下個月就能開始做的事。不必等到有大預算。</div>
+    <div class="title">規律怎麼用：五條觀察，各自對應<span class="hi">一個下個月就能做的動作</span></div>
+    <div class="subtitle">左欄是從上一頁案例歸納出來的規律與它的證據，右欄是和橙照著做甚麼。五條都不需要預算。</div>
   </div>
-  <div class="body">
-    <div class="col c7">
-      <table class="tbl">
-        <thead><tr><th style="width:250px;">觀察到的規律</th><th>和橙照著做甚麼</th></tr></thead>
-        <tbody>
-          <tr><td><b>爆點是反差</b><br><span class="note">機構身份配人類語氣</span></td><td>讓農場的人直接說話，署名到人。不要用「小編」這種代稱，那本身就是機構語氣。</td></tr>
-          <tr><td><b>回覆比發文重要</b><br><span class="note">Buffer 就約 12.8 萬則 Threads 貼文的分析：會回覆留言的帳號互動高約 42%，六平台之最</span></td><td>每一則留言都回，用農夫語氣回。回覆的時間成本，遠低於再拍一條片。</td></tr>
-          <tr><td><b>去別人的留言區</b><br><span class="note">故宮南院館方說小編「連下班都在海巡」；Suzuki 鈴編亦有到他人貼文回覆的紀錄</span></td><td>不要只守自己的專頁。到有機食材、親子、送禮的討論串裡留一兩句有用的話。</td></tr>
-          <tr><td><b>地基是 bio</b><br><span class="note">故宮南院的簡介以第一人稱寫成「一個住嘉義的人」</span></td><td>先改 IG 與 Threads 的簡介：寫明是誰在打理、他在郴州還是香港。</td></tr>
-          <tr><td><b>零門檻互動勝過精美內容</b><br><span class="note">鮮乳坊開「灌水專區」讓網友留言接力</span></td><td>開一個長期帖：「今日邊個橙最靚」投票、收成倒數、改名徵集。一句話就能參與。</td></tr>
-        </tbody>
-      </table>
-      <div class="src">Buffer 分析自身聲明約三分之一帳號無效，且屬相關而非因果。查證過程見 research_viral_posts_content.md。</div>
+  <div class="body col">
+    <div class="topstrip t2">
+      <div class="ts"><b>先做哪一條</b>由第 2、4 條入手：改 bio 是一次性動作，回覆留言是每日動作，兩者都不必等內容排期。第 1 條需要先決定「由誰做代言的人」。</div>
+      <div class="ts"><b>幽默是手段，導流才是目的</b>故宮南院〈端陽戲嬰圖〉的擬人文：整段搞笑，<b style="display:inline">最後一行才接上展名與展期</b>。和橙版即：刀疤橙自嘲完，最後一行接「本週開摘，官網預訂」。</div>
     </div>
-    <div class="col c5">
-      <div class="post" style="flex:0 0 auto;">
-        <div class="ph">鮮乳坊 @bettermilk.tw · Threads「灌水專區」</div>
-        <div class="pb" style="font-size:14.5px;">開一條長期帖讓網友留言接力，以顏文字排版。玩法本身就是內容，不需要製作成本。</div>
-        <div class="pstat">71 讚 · 12 回覆 · 1.2K 瀏覽</div>
-        <div class="plink">threads.com/@bettermilk.tw/post/DcbWiTXE0tA</div>
-      </div>
-      <div class="post" style="flex:1;justify-content:center;">
-        <div class="ph">故宮南院 · 另一則值得學的做法</div>
-        <div class="pb" style="font-size:14.5px;">〈宋 蘇焯 端陽戲嬰圖〉的擬人文：整段搞笑，<b>最後一行才接上展名與展期</b>。</div>
-        <div class="callout" style="margin-top:6px;font-size:15px;">幽默是手段，導流才是目的。每一條片的最後三秒，都要有人知道下一步去哪裡。</div>
-        <div class="note">和橙版：刀疤橙自嘲完，最後一行接「本週開摘，官網預訂」。</div>
-      </div>
+    <div class="stage" style="flex-direction:column;gap:0;">
+      <div class="rulehead"><div>#</div><div>觀察到的規律（與證據）</div><div>和橙照著做甚麼</div></div>
+      <div class="rulerow"><div class="rb-n">1</div><div class="rb-o"><b>爆點是反差</b><div class="ev">機構身份配人類語氣</div></div><div class="rb-a">讓農場的人直接說話，署名到人。不要用「小編」這種代稱——那本身就是機構語氣。</div></div>
+      <div class="rulerow"><div class="rb-n">2</div><div class="rb-o"><b>回覆比發文重要</b><div class="ev">Buffer 分析約 12.8 萬則 Threads 貼文：會回覆留言的帳號互動高約 42%，為六平台之最</div></div><div class="rb-a">每一則留言都回，用農夫語氣回。回覆的時間成本，遠低於再拍一條片。</div></div>
+      <div class="rulerow"><div class="rb-n">3</div><div class="rb-o"><b>去別人的留言區</b><div class="ev">故宮南院館方形容小編「連下班都在海巡」；Suzuki 鈴編亦有到他人貼文回覆的紀錄</div></div><div class="rb-a">不要只守自己的專頁。到有機食材、親子、送禮的討論串裡留一兩句有用的話。</div></div>
+      <div class="rulerow"><div class="rb-n">4</div><div class="rb-o"><b>地基是 bio</b><div class="ev">故宮南院的簡介以第一人稱寫成「一個住嘉義的人」</div></div><div class="rb-a">先改 IG 與 Threads 的簡介：寫明是誰在打理、他在郴州還是香港。</div></div>
+      <div class="rulerow"><div class="rb-n">5</div><div class="rb-o"><b>零門檻互動勝過精美內容</b><div class="ev">鮮乳坊開「灌水專區」讓網友留言接力（71 讚／12 回覆）</div></div><div class="rb-a">開一個長期帖：「今日邊個橙最靚」投票、收成倒數、改名徵集。一句話就能參與。</div></div>
     </div>
+    <div class="src">Buffer 分析自身聲明約三分之一帳號無效，且屬相關而非因果。查證過程見 research_viral_posts_content.md。</div>
   </div>
-  <div class="takeaway">可複製的是語氣與回覆節奏，不可複製的是運氣——先把能複製的那半做齊。</div>
+  <div class="takeaway">五條全部不需要預算，只需要有人肯用自己的名字說話。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">21</span></div>
 </section>
 
@@ -1185,31 +1185,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">01</span></div>
-    <div class="title">銷售渠道 B2C：官網、中高檔超市、優惠平台三層分工</div>
+    <div class="title">銷售渠道 B2C：官網、中高檔超市、優惠平台<span class="hi">三層分工</span></div>
+    <div class="subtitle">同一品牌可同時出現於兩種貨架，前提是包裝、規格、價帶完全分開：金裝只走中高檔，日常線只走優惠平台。</div>
   </div>
-  <div class="body">
-    <div class="col c6">
-      <table class="tbl">
-        <thead><tr><th style="width:126px;">層級</th><th>渠道</th></tr></thead>
-        <tbody>
-          <tr><td><b>官網</b></td><td>hkfarmerstoryshop.com（連自取點）</td></tr>
-          <tr><td><b>中高檔超市</b></td><td>Sogo、一田、city'super、Market Place、Taste、Oliver's The Delicatessen、Great、3hreeSixty</td></tr>
-          <tr><td><b>優惠平台</b></td><td>HKTVmall、果欄</td></tr>
-        </tbody>
-      </table>
-      <div class="callout">同一品牌可同時出現於兩種貨架，前提是<b>包裝、規格、價帶完全分開</b>：金裝只走中高檔，日常線只走優惠平台。</div>
-      <div class="panel" style="flex:1;">
-        <div class="panel-title">上架前須談妥的四項條款</div>
-        <ul class="bullets compact spread">
-          <li><b>費用與賬期：</b>入場費、陳列費、回佣比例、結賬天期。</li>
-          <li><b>供貨規格：</b>起訂量、送貨頻率、缺貨罰則、退貨及爛果處理。</li>
-          <li><b>檔期：</b>主產季只有 11 月底至 3 月，合約須列明季節性供貨。</li>
-          <li><b>價格保護：</b>設最低廣告價，避免日常線折扣打穿金裝價帶。</li>
-        </ul>
-      </div>
+  <div class="body col">
+    <div class="topstrip t4">
+      <div class="ts"><b>三層渠道</b>官網 hkfarmerstoryshop.com（連自取點）／中高檔超市八間／優惠平台 HKTVmall 與果欄。</div>
+      <div class="ts"><b>費用與供貨</b>入場費、陳列費、回佣比例、結賬天期；起訂量、送貨頻率、缺貨罰則、退貨及爛果處理。</div>
+      <div class="ts"><b>檔期</b>主產季只有 11 月底至 3 月，合約須列明季節性供貨，否則全年條款會綁住淡季。</div>
+      <div class="ts"><b>價格保護</b>設最低廣告價，避免日常線折扣打穿金裝價帶——這是兩線並行唯一會失守的地方。</div>
     </div>
-    <div class="col c6">
-      <div class="rail c3" style="flex:1;">
+    <div class="stage">
+      <div class="rail c5" style="flex:1;">
         <div class="tile fit" style="background:#fff;"><img src="proposal/s10_1.png" alt="Sogo"></div>
         <div class="tile fit" style="background:#fff;"><img src="proposal/s10_2.png" alt="一田"></div>
         <div class="tile fit" style="background:#fff;"><img src="proposal/s10_3.png" alt="city'super"></div>
@@ -1219,11 +1206,52 @@ h1,h2,h3,p,ul,ol{margin:0;}
         <div class="tile fit" style="background:#fff;"><img src="proposal/s10_8.png" alt="Taste"></div>
         <div class="tile fit" style="background:#fff;"><img src="proposal/s10_5.png" alt="Great"></div>
         <div class="tile"><img src="fb/WOrange-HKTV-mall.jpg" alt=""><div class="cap">HKTVmall</div></div>
+        <div class="tile fit" style="background:var(--tint);"><div class="cap" style="position:static;background:var(--pc-deep);">果欄 · 批發走量</div></div>
       </div>
     </div>
   </div>
   <div class="takeaway">同一品牌可以上兩種貨架，前提是四項條款先談妥。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">23</span></div>
+</section>
+
+<!-- 23b · 品牌聯乘 -->
+<section class="slide" data-slide="231" id="s231">
+  <div class="wordmark">WOrange <span>和橙</span></div>
+  <div class="slide-head">
+    <div class="kicker">IV · 渠道與活動　<span class="sec">02</span></div>
+    <div class="title">品牌聯乘：本地 IP × 食品，<span class="hi">在香港仍是未飽和的空位</span></div>
+    <div class="subtitle">香港食品品牌的大型聯乘至今仍以日韓 IP 為主（7-Eleven × Sanrio、MCP × Esther Bunny、周大福 × Chiikawa）；本地插畫 IP 的聯乘多停留在商場佈置與市集，尚未真正走進食品。這正是刀疤橙人格化可以切入的地方。</div>
+  </div>
+  <div class="body col">
+    <div class="topstrip t3">
+      <div class="ts"><b>為何值得做</b>和橙已有自己的角色（刀疤橙、蚯蚓 John），聯乘不必從零建立形象，只需借對方的受眾。對方要的是「食物實體」，這正是我們手上有的。</div>
+      <div class="ts"><b>可照抄的機制</b>7-Eleven × Sanrio 的模式：買滿指定金額送角色贈品。換成和橙即「買一盒金裝送聯乘貼紙／磁石」，成本低而且直接推高客單價。</div>
+      <div class="ts"><b>最近的入場點</b><b style="display:inline">香港插畫及文創展 11</b>：2026-05-23 至 25，灣仔會展，約 500 個文創品牌集中在同一場地——一次過見完所有候選對象。</div>
+    </div>
+    <div class="stage">
+      <div class="panel" style="flex:1;">
+        <div class="panel-title">四個值得接觸的對象（按契合度排序）</div>
+        <table class="tbl">
+          <thead><tr><th style="width:150px;">對象</th><th style="width:120px;">類型</th><th>為何合適 / 已有的聯乘紀錄</th></tr></thead>
+          <tbody>
+            <tr><td><b>oh…little sweet</b></td><td>本地插畫 IP<br><span class="note">插畫家波比</span></td><td><b>契合度最高</b>：角色本身就是食物擬人——小湯圓、咸蛋黃、抹茶圓、柴火人。2026-01-23 至 03-08 與尖沙咀 iSQUARE 做過春日甜蜜樂園。橙加進這組角色毫無違和。</td></tr>
+            <tr><td><b>大麻成</b></td><td>本地插畫 IP</td><td>與朗豪坊、白紙市集連續合作主題市集（2 月每週末，並加開年宵場）。走市集路線，跟 Pop-up Booth 的形式直接對接。</td></tr>
+            <tr><td><b>癲噹 / Plastic Thing / 麥嘜麥兜</b></td><td>本地經典 IP</td><td>認知度高、港味重，適合節慶禮盒；麥兜與「香港本土」的聯想最強，但授權成本與談判周期須先問清楚。</td></tr>
+            <tr><td><b>Lady M</b></td><td>高端甜品<br><span class="note">非本地品牌</span></td><td class="warn">你提到的這個要留意：Lady M 是紐約品牌，由香港楊氏夫婦引入，<b>美國母公司已於 2023 年申請破產保護</b>（香港及亞洲業務由不同持牌方經營、分店仍在營運）。作為「本地品牌聯乘」的例子並不準確，但作為<b>高端甜品聯乘</b>（血橙千層、橙皮糖）仍然成立。</td></tr>
+          </tbody>
+        </table>
+        <div class="src">「大大與小妹」<b>查不到</b>——搜尋香港 IP、插畫、聯乘相關資料均無此名，請確認正確寫法或提供帳號連結。其餘對象與日期均為 2026-08 實測可查。</div>
+      </div>
+    </div>
+    <div class="topstrip t4">
+      <div class="ts"><b>授權費與分成</b>本地插畫 IP 多為個人或小團隊，常見做法是一次性授權費加銷售分成；金額遠低於日韓 IP，但要寫清楚「聯乘款」的定義，避免與日常線混淆。</div>
+      <div class="ts"><b>期限與獨家</b>談清楚檔期（建議綁主產季 11 月底至 3 月）與同類目獨家——否則對方下一季就跟另一間果商做同樣的事。</div>
+      <div class="ts"><b>素材使用範圍</b>包裝、貼紙、社交帖文、實體立牌、線下市集，逐項列明。<b style="display:inline">尤其要問清楚能否用於電商平台的商品主圖</b>。</div>
+      <div class="ts"><b>誰出內容</b>最省事的分工：對方出角色，和橙出實物與拍攝。刀疤橙已有分鏡與人格設定，可直接提供對方作二創起點。</div>
+    </div>
+  </div>
+  <div class="takeaway">日韓 IP 已經很貴很擠；本地 IP 便宜、談得動，而且沒有人做過食品聯乘。</div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">231</span></div>
 </section>
 
 <!-- 24 · 銷售渠道 B2B -->
@@ -1285,35 +1313,22 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">03</span></div>
     <div class="title">Pop-up Booth：以<span class="hi">兩個橙</span>換取一次社群追蹤</div>
+    <div class="subtitle">科學園 Pop-up、亞洲素食展、愉景灣聖誕市集均已執行，機制可直接套用；IG 現時 873、Threads 232，基數低，每一場的增量都清楚可見。</div>
   </div>
-  <div class="body">
-    <div class="col c6 vc">
-      <div class="panel" style="flex:0 0 auto;">
-        <div class="panel-title">換領機制</div>
-        <table class="tbl">
-          <thead><tr><th style="width:150px;">方案</th><th>內容</th><th style="width:200px;">用意</th></tr></thead>
-          <tbody>
-            <tr><td><b>標準</b></td><td>追蹤任一社群帳號，換 <b>2 個和橙</b></td><td>一個自用，一個轉贈，形成二次傳播</td></tr>
-            <tr><td><b>建議</b></td><td>一大一細（85mm ＋ 70mm）</td><td>當場示範尺寸分級與定價邏輯</td></tr>
-            <tr><td><b>加碼</b></td><td>三個平台全追蹤，加送金裝一個</td><td>把 IG 與 Threads 的基數一併拉起</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <ul class="bullets compact">
-        <li><b>為何不是一個：</b>單一個橙不足以讓人比較尺寸與口感，亦不會產生分享行為；兩個才會出現「俾人食」這一步。</li>
-        <li><b>為何值得：</b>IG 現時僅 868、Threads 233，基數低，每一場的增量都清楚可見。</li>
-        <li><b>打卡框：</b>設 FB／IG／Threads 造型立牌，讓參加者自行拍照發文，換取二次曝光。</li>
-        <li><b>已有基礎：</b>科學園 Pop-up、亞洲素食展、愉景灣聖誕市集均已執行。</li>
-      </ul>
-      <div class="callout">每場須記錄三個數字：新增追蹤數、掃碼數、當場落單數。否則仍舊只有曝光，沒有歸因。</div>
+  <div class="body col">
+    <div class="topstrip t4">
+      <div class="ts"><b>標準：追蹤任一帳號換 2 個和橙</b>一個自用，一個轉贈。單一個橙不會產生分享行為，兩個才會出現「俾人食」這一步。</div>
+      <div class="ts"><b>建議：一大一細（85mm ＋ 70mm）</b>當場示範尺寸分級與定價邏輯，順帶解釋為何金裝賣得比較貴。</div>
+      <div class="ts"><b>加碼：三個平台全追蹤，加送金裝一個</b>把 IG 與 Threads 的基數一併拉起，而不是只餵飽已經有 6,738 人的 Facebook。</div>
+      <div class="ts"><b>每場必記三個數字</b>新增追蹤數、掃碼數、當場落單數。<b style="display:inline">否則仍舊只有曝光，沒有歸因</b>——這是現時所有活動的共同缺口。</div>
     </div>
-    <div class="col c6">
-      <div class="tile fit" style="flex:1;">
-        <img src="proposal/s12_1.jpg" alt="社交媒體打卡框">
-        <div class="cap">打卡框參考</div>
-      </div>
-      <div class="tile" style="flex:0 0 190px;"><img src="fb/WOrange-Exhibition2.jpg" alt=""><div class="cap">現有展會現場</div></div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">科學園 Pop-up · 現場已執行</div><div class="tile"><img src="fb/WOrange-Exhibition2_ev.jpg" alt="科學園 Pop-up"></div></div>
+      <div class="figblock"><div class="figlab">亞洲素食展 · 攤位形式</div><div class="tile"><img src="fb/WOrange-Exhibition_ev.jpg" alt="亞洲素食展"></div></div>
+      <div class="figblock"><div class="figlab">愉景灣聖誕市集 · 節慶檔期</div><div class="tile"><img src="fb/WOrange-CNY3_ev.jpg" alt="愉景灣聖誕市集"></div></div>
+      <div class="figblock"><div class="figlab">打卡框立牌 · 樣式參考</div><div class="tile fit" style="background:var(--tint);"><img src="proposal/s12_1.jpg" alt="社交媒體打卡框參考"></div></div>
     </div>
+    <div class="src">打卡框為通用樣板示意；實際製作宜換成和橙自家配色與刀疤橙角色，並把 X（原 Twitter）一格改為 Threads。</div>
   </div>
   <div class="takeaway">兩個橙的成本，換一次追蹤加一次轉贈——比單純派發划算。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">25</span></div>
@@ -1325,33 +1340,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">04</span></div>
     <div class="title">學校巡迴：全港約 <span class="hi">138 間</span>國際、私立及直資學校</div>
+    <div class="subtitle">「送橙到校園 2026」已執行，模式可直接複製；接觸的是學生，落單的是家長。</div>
   </div>
-  <div class="body">
-    <div class="col c6 vc">
-      <table class="tbl">
-        <thead><tr><th>類型</th><th class="num">間數</th><th>組成</th></tr></thead>
-        <tbody>
-          <tr><td><b>國際學校</b></td><td class="num"><b>52</b></td><td>小學 16、中學 7、中小學 28、特殊學校 1</td></tr>
-          <tr><td><b>私立學校</b></td><td class="num"><b>8</b></td><td>—</td></tr>
-          <tr><td><b>直資學校</b></td><td class="num"><b>78</b></td><td>小學 21、中學 57、中小學 9</td></tr>
-          <tr><td><b>合計</b></td><td class="num"><b>138</b></td><td>—</td></tr>
-        </tbody>
-      </table>
-      <div class="src">註：直資學校組成分項相加為 87，與 78 有出入，對外簡報前須核對原始名單。</div>
-      <ul class="bullets compact" style="margin-top:6px;">
-        <li>「送橙到校園 2026」已執行，模式可直接複製。</li>
-        <li>可配合親子工作坊與農場導賞，構成一條龍體驗。</li>
-        <li>每間學校須留下家長入口：訂購連結、班級團購、節慶禮盒單張。</li>
-      </ul>
-      <div class="callout">送橙接觸的是學生，落單的是家長——校園是進入中高收入家庭成本最低的入口。</div>
+  <div class="body col">
+    <div class="topstrip t4">
+      <div class="ts"><b>國際學校 52 間</b>小學 16、中學 7、中小學 28、特殊學校 1。</div>
+      <div class="ts"><b>私立 8 間　直資 78 間</b>直資組成：小學 21、中學 57、中小學 9。<b style="display:inline">分項相加為 87，與 78 有出入</b>，對外簡報前須核對原始名單。</div>
+      <div class="ts"><b>一條龍體驗</b>校園派橙可接親子工作坊與農場導賞，一次接觸延伸成三次。</div>
+      <div class="ts"><b>每場必留家長入口</b>訂購連結、班級團購、節慶禮盒單張——否則接觸到的只有學生，訂單不會發生。</div>
     </div>
-    <div class="col c6">
-      <div class="rail c2" style="flex:1;">
-        <div class="tile"><img src="fb/WOrange-School.jpg" alt=""><div class="cap">送橙到校園</div></div>
-        <div class="tile"><img src="fb/WOrange-School2.jpg" alt=""><div class="cap">校園互動</div></div>
-        <div class="tile"><img src="fb/WOrange-School3.jpg" alt=""><div class="cap">學生反應本身就是素材</div></div>
-        <div class="tile"><img src="fb/WOrange-Parent-Child-Tour.jpg" alt=""><div class="cap">親子農場團</div></div>
-      </div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">送橙到校園 2026</div><div class="tile"><img src="fb/WOrange-School.jpg" alt="送橙到校園"></div></div>
+      <div class="figblock"><div class="figlab">校園互動</div><div class="tile"><img src="fb/WOrange-School2.jpg" alt="校園互動"></div></div>
+      <div class="figblock"><div class="figlab">學生反應本身就是素材</div><div class="tile"><img src="fb/WOrange-School3.jpg" alt="學生反應"></div></div>
+      <div class="figblock"><div class="figlab">親子農場團</div><div class="tile"><img src="fb/WOrange-Parent-Child-Tour_ev.jpg" alt="親子農場團"></div></div>
     </div>
   </div>
   <div class="takeaway">接觸的是學生，落單的是家長；每一場都要留下家長入口。</div>
@@ -1363,47 +1365,59 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">05</span></div>
-    <div class="title">社企路徑：先取標誌與名錄資格，再談企業客與政府採購</div>
+    <div class="title">社企路徑可行性：<span class="hi">兩條路門檻差很遠</span>，建議只走成本低的那條</div>
+    <div class="subtitle">社企身份對 B2B 有直接作用——企業採購與 ESG 部門需要可載入報告的第三方憑證，而非品牌自述。但「社企」在香港<b>並無法律定義</b>，各計劃是自願性認證，門檻與代價差異極大。</div>
   </div>
   <div class="body col">
-    <div class="flag"><b>用意</b><span>社企身份對 B2B 有直接作用——企業採購與 ESG 部門需要可載入報告的第三方憑證，而非品牌自述。</span></div>
-    <div class="body" style="min-height:0;">
-      <div class="col c7">
-        <div class="panel" style="flex:1;">
-          <div class="panel-title">可申請的標誌與名錄</div>
-          <table class="tbl">
-            <thead><tr><th style="width:190px;">標誌／名錄</th><th style="width:180px;">主辦機構</th><th>對和橙的用途</th></tr></thead>
-            <tbody>
-              <tr><td><b>SEE Mark 社企認證</b></td><td>香港社會企業總會</td><td>可見的第三方社企身份，適合印於包裝與企業提案</td></tr>
-              <tr><td><b>商界展關懷</b></td><td>香港社會服務聯會</td><td>企業客最熟悉的標誌，直接對應 CSR 採購名單</td></tr>
-              <tr><td><b>社企指南</b></td><td>香港社會服務聯會</td><td>收錄後可被企業與政府採購部門主動搜尋到</td></tr>
-              <tr><td>良心消費運動</td><td>香港社會企業總會</td><td>零售端曝光，配合門市與電商標示</td></tr>
-            </tbody>
-          </table>
-          <div class="src">各計劃的申請資格、費用與週期須向主辦機構查證最新版本；上表僅列出用途方向。</div>
-          <div class="panel-title" style="margin-top:10px;">建議的申請次序</div>
-          <ul class="bullets compact">
-            <li><b>先取「商界展關懷」：</b>企業採購與 HR 對此標誌最為熟悉，直接服務 B2B 一線。</li>
-            <li><b>再入「社企指南」：</b>令企業與政府採購部門可主動搜尋到和橙。</li>
-            <li><b>後取 SEE Mark：</b>取得後才有第三方身份可印於包裝與零售端。</li>
-            <li class="warn">三者均要求持續的社會效益紀錄，故派發與捐贈須由現在開始留檔。</li>
-          </ul>
-        </div>
+    <div class="topstrip t3">
+      <div class="ts"><b>結論一：商界展關懷應該即刻做</b>申請費僅 <b style="display:inline">HKD 600</b>（一次性，不論提名機構數量）。和橙已有深水埗派橙、送橙到校園、親子工作坊——實績夠，缺的只是一個提名人。</div>
+      <div class="ts"><b>結論二：SEE Mark 只取低階，不碰創越級</b>創越級要求<b style="display:inline">不少於 65% 可分配利潤再投資於社會目的</b>，且收入至少 50% 來自業務經營。對一間要向股東交代的農業公司，這是實質的財務約束。</div>
+      <div class="ts"><b>結論三：現在就要開始留檔</b>兩個計劃都要求社會效益紀錄。派發數量、受惠人數、合作機構名稱——由今造開始逐場記錄，否則明年申請時無憑證可交。</div>
+    </div>
+    <div class="stage">
+      <div class="panel" style="flex:1.25;">
+        <div class="panel-title">可行性對照</div>
+        <table class="tbl">
+          <thead><tr><th style="width:126px;">計劃</th><th style="width:150px;">實質門檻</th><th style="width:92px;">成本</th><th style="width:118px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><b>商界展關懷</b><br><span class="note">社聯</span></td>
+              <td><b>必須獲社區伙伴提名</b>才有申請資格；填表格 A（社區伙伴合作）與 B（可持續發展），約 60 組題目、須回應 65 項標準</td>
+              <td><b>HKD 600</b><br><span class="note">一次性</span></td>
+              <td>每年一次<br><span class="note">參考 2024/25：帳戶註冊約 9 月底、申請及提名約 10 月初截止</span></td>
+              <td><b>可行，建議首選。</b>唯一要解決的是提名人——可從已合作的學校、食物援助機構或區內團體入手。企業客最認得這個標誌，直接對應 CSR 採購名單。</td>
+            </tr>
+            <tr>
+              <td><b>SEE Mark</b><br><span class="note">社企總會</span></td>
+              <td>需最少營運 6 個月。創啟級：12 個月內開業或營運未逾 2 年；創進級：營運 3 年以上或全職員工等值逾 10 人；<b>創越級：營運 5 年以上 ＋ 收入 ≥50% 來自業務 ＋ 可分配利潤 ≥65% 再投資</b></td>
+              <td>須向總會查證</td>
+              <td>每年審批三次<br><span class="note">4／8／12 月；截止點為 2/1、6/1、10/1</span></td>
+              <td><b>只取創啟或創進級。</b>創越級的 65% 利潤再投資會直接壓縮可分派盈利，與現有股東結構衝突——除非另設一間專責實體承接社會目的業務（見 P13 的實體收攏建議）。</td>
+            </tr>
+            <tr>
+              <td><b>社企指南</b><br><span class="note">社聯</span></td>
+              <td>收錄制，門檻低於認證</td>
+              <td>低</td>
+              <td>持續收錄</td>
+              <td><b>順手做。</b>收錄後企業與政府採購部門可主動搜尋到和橙，屬被動獲客管道。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="src">資料為 2026-08 查證；各計劃的費用、級別要求與截止日期按年度調整，落實前須向主辦機構確認最新版指引。SEE Mark 級別門檻曾由四級調整為三級。</div>
       </div>
-      <div class="col c5">
-        <div class="panel tinted" style="flex:1;">
-          <div class="panel-title">建議的社企合作方向</div>
-          <ul class="bullets compact spread">
-            <li><b>次級果轉贈：</b>賣相欠佳但品質無損的果實，捐予食物援助機構，同時處理庫存並取得社會效益紀錄。</li>
-            <li><b>長者就業社企：</b>果籃包裝與節慶分裝工序外判，既符合社企精神，亦可寫入企業客的 ESG 報告。</li>
-            <li><b>社區派發制度化：</b>深水埗派橙行動已執行，宜定為每年常設項目並記錄受惠人數。</li>
-            <li><b>校園與教育：</b>有機耕作工作坊可申請成為教育服務，接通學校巡迴一線。</li>
-          </ul>
-        </div>
+      <div class="panel tinted" style="flex:0.75;">
+        <div class="panel-title">社會效益從哪裡來（毋須額外成本的四項）</div>
+        <ul class="bullets compact spread">
+          <li><b>次級果轉贈：</b>賣相欠佳但品質無損的果實捐予食物援助機構——同時處理庫存與取得效益紀錄，是成本最低的一項。</li>
+          <li><b>長者就業社企：</b>果籃包裝與節慶分裝工序外判，既符合社企精神，亦可直接寫入企業客的 ESG 報告。</li>
+          <li><b>社區派發制度化：</b>深水埗派橙行動已執行，宜定為每年常設項目並記錄受惠人數。</li>
+          <li><b>校園與教育：</b>有機耕作工作坊可申請成為教育服務，接通學校巡迴一線。</li>
+        </ul>
+        <div class="callout" style="margin-top:4px;">四項都是已在做的事，缺的只是<b>把它記下來</b>。</div>
       </div>
     </div>
   </div>
-  <div class="takeaway">標誌需要時間累積，故派發與捐贈的紀錄須由現在開始留檔。</div>
+  <div class="takeaway">先花 600 蚊拿商界展關懷，不要為了 SEE Mark 創越級去承諾 65% 利潤再投資。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">27</span></div>
 </section>
 
@@ -1429,17 +1443,19 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">01</span></div>
-    <div class="title">包裝參考：透明蓋、祝福訊息、產地標示——參考日本做法</div>
+    <div class="title">包裝參考：透明蓋、祝福訊息、產地標示——<span class="hi">參考日本做法</span></div>
+    <div class="subtitle">日本及本地百貨的水果禮盒貨架實拍。三項共通做法，都是在替消費者省下判斷成本。</div>
   </div>
   <div class="body col">
-    <div class="tile fit" style="flex:1;">
-      <img src="proposal/s14_1.jpg" alt="包裝參考一">
-      <div class="cap">日本及本地百貨貨架實拍</div>
+    <div class="topstrip t3">
+      <div class="ts"><b>頂蓋透明顯示</b>Clear-lid packaging。透明頂蓋令水果看來更豐滿，吸引顧客駐足——前提是果實本身禁得起注視。</div>
+      <div class="ts"><b>禮物包裝搭配祝福訊息</b>送禮時附上祝福心意，令送禮者與收禮者均感親切；同一盒型換字即可對應不同節慶。</div>
+      <div class="ts"><b>來源產地與產品介紹</b>提供產地、品種、甜度等資訊，提升信心並增強購買意願——這正是和橙「可追溯」主張的貨架版本。</div>
     </div>
-    <div class="cards">
-      <div class="card"><div class="h">頂蓋透明顯示</div><div class="b">Clear-lid Packaging。透明頂蓋令水果看來更豐滿，吸引顧客駐足。</div></div>
-      <div class="card"><div class="h">禮物包裝搭配祝福訊息</div><div class="b">送禮時附上祝福心意，令送禮者與收禮者均感親切。</div></div>
-      <div class="card"><div class="h">來源產地與產品介紹</div><div class="b">提供產品相關資訊，提升消費者信心並增強購買意願。</div></div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">日本桃禮盒 · 透明開窗與產地標示</div><div class="tile"><img src="proposal/s14_1_p1.jpg" alt="日本水果禮盒"></div></div>
+      <div class="figblock"><div class="figlab">祝福訊息與節慶字樣</div><div class="tile"><img src="proposal/s14_1_p2.jpg" alt="祝福訊息包裝"></div></div>
+      <div class="figblock"><div class="figlab">本地百貨貨架 · 分級陳列</div><div class="tile"><img src="proposal/s14_1_p3.jpg" alt="本地百貨貨架"></div></div>
     </div>
   </div>
   <div class="takeaway">透明蓋、祝福語、產地標示，三者都是在替消費者省下判斷成本。</div>
@@ -1451,17 +1467,19 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">02</span></div>
-    <div class="title">包裝參考：色彩、品牌標籤、展銷架</div>
+    <div class="title">包裝參考：色彩、品牌標籤、<span class="hi">展銷架</span></div>
+    <div class="subtitle">韓國及本地超市貨架實拍。卡通角色不是裝飾，是讓貨架上的和橙一眼認得出——這一頁與刀疤橙的人格化直接相關。</div>
   </div>
   <div class="body col">
-    <div class="tile fit" style="flex:1;">
-      <img src="proposal/s15_1.jpg" alt="包裝參考二">
-      <div class="cap">韓國及本地超市貨架實拍</div>
+    <div class="topstrip t3">
+      <div class="ts"><b>用色彩活化包裝特色</b>卡通公仔能吸引目光，亦能提升包裝層次感，令袋內食物看來更具品質。和橙已有刀疤橙與蚯蚓 John，毋須另找角色。</div>
+      <div class="ts"><b>品牌標籤創造優勢</b>原文的做法是用外語標籤提升優越感。<b style="display:inline">但和橙賣的是「香港品牌」</b>——這一項宜反過來做：用中文與香港產地標示，走反方向的差異化。</div>
+      <div class="ts"><b>品牌展銷效應</b>向經銷商提供創意展示架，讓產品擁有專屬推廣位置。對應 P23 的中高檔超市一線，入場時可一併提出。</div>
     </div>
-    <div class="cards">
-      <div class="card alt"><div class="h">以色彩活化包裝特色</div><div class="b">卡通角色能吸引目光，亦提升包裝層次感，令袋內食物看來更具品質——正好安放刀疤橙。</div></div>
-      <div class="card alt"><div class="h">品牌標籤創造優勢</div><div class="b">使用外語標籤可提升優越感，特別適合海外銷售，亦強化本地推廣時的觀感。</div></div>
-      <div class="card alt"><div class="h">品牌展銷效應</div><div class="b">向經銷商提供創意展示架，令產品擁有專屬推廣位置，突出品牌形象。</div></div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">色彩與卡通角色 · 袋裝農產</div><div class="tile"><img src="proposal/s15_1_p1.jpg" alt="色彩與卡通角色包裝"></div></div>
+      <div class="figblock"><div class="figlab">品牌標籤 · 貨架識別</div><div class="tile"><img src="proposal/s15_1_p2.jpg" alt="品牌標籤"></div></div>
+      <div class="figblock"><div class="figlab">創意展銷架 · 專屬陳列位</div><div class="tile"><img src="proposal/s15_1_p3.jpg" alt="創意展銷架"></div></div>
     </div>
   </div>
   <div class="takeaway">卡通角色不是裝飾，是讓貨架上的和橙一眼認得出。</div>
@@ -1473,31 +1491,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">03</span></div>
-    <div class="title">Packaging：兩級規格，均採透明蓋讓果實自行說話</div>
+    <div class="title">Packaging：兩級規格，均採<span class="hi">透明蓋</span>讓果實自行說話</div>
+    <div class="subtitle">兩級規格共用同一套識別，檔次靠盒不靠改名：Luxury Gift 用木盒配透明蓋、2–6 個裝；High End 用食品級紙盒配透明蓋、4–6 個裝，入數視乎果徑。</div>
   </div>
-  <div class="body">
-    <div class="col c5 vc">
-      <table class="tbl">
-        <thead><tr><th>級別</th><th>形態</th><th>入數</th></tr></thead>
-        <tbody>
-          <tr><td><b>Luxury Gift</b></td><td>Wood Box ＋ Transparent Cover</td><td>2–6 個<br><span class="note">視乎果徑</span></td></tr>
-          <tr><td><b>High End</b></td><td>Food Grade Carton Box ＋ Transparent Cover</td><td>4–6 個<br><span class="note">視乎果徑</span></td></tr>
-        </tbody>
-      </table>
-      <ul class="bullets compact">
-        <li><b>祝福字樣：</b>Merry Christmas 或「大吉大利」，按節慶更換。</li>
-        <li><b>可再利用：</b>錢罌、婚禮小盒等造型（和睦共處），令盒身留在家中持續曝光。</li>
-        <li><b>實用紙盒：</b>另附可提可疊的紙盒建議，便於運送與陳列。</li>
-      </ul>
-      <div class="callout">透明蓋有一項前提：果實須禁得起注視。刀疤橙的故事必須先行講述，疤痕才會被讀成證據而非瑕疵。</div>
+  <div class="body col">
+    <div class="topstrip t3">
+      <div class="ts"><b>祝福字樣按節慶更換</b>Merry Christmas 或「大吉大利」，同一套盒型換字即可，不必重開模。</div>
+      <div class="ts"><b>可再利用的盒身</b>錢罌、婚禮小盒等造型（和睦共處），令盒身留在家中持續曝光——一次包裝成本，長期曝光。</div>
+      <div class="ts"><b>透明蓋的前提</b>果實須禁得起注視。<b style="display:inline">刀疤橙的故事必須先講</b>，疤痕才會被讀成證據而非瑕疵。</div>
     </div>
-    <div class="col c7">
-      <div class="rail c2" style="flex:1;">
-        <div class="tile"><img src="proposal/s16_3.jpg" alt=""><div class="cap">木盒配透明蓋</div></div>
-        <div class="tile"><img src="proposal/s16_4.jpg" alt=""><div class="cap">食品級紙盒</div></div>
-        <div class="tile"><img src="proposal/s16_1.jpg" alt=""><div class="cap">可提式紙盒</div></div>
-        <div class="tile fit"><img src="proposal/s16_2.png" alt=""><div class="cap">錢罌／婚禮盒：和睦共處</div></div>
-      </div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">木盒配透明蓋 · Luxury Gift</div><div class="tile"><img src="proposal/s16_3.jpg" alt="木盒配透明蓋"></div></div>
+      <div class="figblock"><div class="figlab">食品級紙盒 · High End</div><div class="tile"><img src="proposal/s16_4.jpg" alt="食品級紙盒"></div></div>
+      <div class="figblock"><div class="figlab">可提式紙盒 · 便於運送陳列</div><div class="tile"><img src="proposal/s16_1.jpg" alt="可提式紙盒"></div></div>
+      <div class="figblock"><div class="figlab">錢罌／婚禮盒 · 和睦共處</div><div class="tile fit"><img src="proposal/s16_2.png" alt="錢罌婚禮盒"></div></div>
     </div>
   </div>
   <div class="takeaway">兩級規格共用同一套識別；檔次靠盒，不靠改名。</div>
@@ -1509,29 +1516,22 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">04</span></div>
-    <div class="title">紀念品：將品牌角色轉化為可攜帶的實物</div>
+    <div class="title">紀念品：將品牌角色轉化為<span class="hi">可攜帶的實物</span></div>
+    <div class="subtitle">周邊的作用不是賺錢，是讓品牌離開農場之後仍然被看見。五項之中，前兩項可直接搭上現有的禮盒與農旅。</div>
   </div>
-  <div class="body">
-    <div class="col c6 vc">
-      <div class="cards" style="flex-wrap:wrap;">
-        <div class="card" style="flex:0 0 47%;"><div class="h">盲盒公仔</div><div class="b">刀疤橙、雞公橙成套推出；農旅、認養、禮盒均可搭售。</div></div>
-        <div class="card" style="flex:0 0 47%;"><div class="h">利是封</div><div class="b">隨 CNY 禮盒附贈，每年一款，建立收藏誘因。</div></div>
-      </div>
-      <div class="cards" style="flex-wrap:wrap;">
-        <div class="card" style="flex:0 0 47%;"><div class="h">開橙器</div><div class="b">實用小物，直接對應產品使用場景。</div></div>
-        <div class="card" style="flex:0 0 47%;"><div class="h">環保袋與水樽</div><div class="b">呼應有機及低碳定位，適合企業客與工作坊。</div></div>
-      </div>
-      <div class="cards">
-        <div class="card" style="flex:0 0 47%;"><div class="h">微型巴士</div><div class="b">承接已投放的巴士車身廣告，製成可收藏模型。</div></div>
-      </div>
+  <div class="body col">
+    <div class="topstrip" style="grid-template-columns:repeat(5,1fr);">
+      <div class="ts"><b>盲盒公仔</b>刀疤橙、雞公橙成套推出；農旅、認養、禮盒均可搭售。</div>
+      <div class="ts"><b>利是封</b>隨 CNY 禮盒附贈，每年一款，建立收藏誘因。</div>
+      <div class="ts"><b>開橙器</b>實用小物，直接對應產品使用場景。</div>
+      <div class="ts"><b>環保袋與水樽</b>呼應有機及低碳定位，適合企業客與工作坊。</div>
+      <div class="ts"><b>微型巴士</b>承接已投放的巴士車身廣告，製成可收藏模型。</div>
     </div>
-    <div class="col c6">
-      <div class="rail c2" style="flex:1;">
-        <div class="tile fit"><img src="proposal/s17_1.jpg" alt=""></div>
-        <div class="tile"><img src="proposal/s17_2.jpg" alt=""></div>
-        <div class="tile fit"><img src="proposal/s17_4.jpg" alt=""></div>
-        <div class="tile"><img src="proposal/s17_3.jpg" alt=""></div>
-      </div>
+    <div class="stage">
+      <div class="figblock"><div class="figlab">盲盒公仔 · 角色成套</div><div class="tile fit"><img src="proposal/s17_1.jpg" alt="盲盒公仔"></div></div>
+      <div class="figblock"><div class="figlab">利是封 · 每年一款</div><div class="tile"><img src="proposal/s17_2.jpg" alt="利是封"></div></div>
+      <div class="figblock"><div class="figlab">開橙器與實用小物</div><div class="tile fit"><img src="proposal/s17_4.jpg" alt="開橙器"></div></div>
+      <div class="figblock"><div class="figlab">環保袋 · 企業客與工作坊</div><div class="tile"><img src="proposal/s17_3.jpg" alt="環保袋"></div></div>
     </div>
   </div>
   <div class="takeaway">周邊的作用不是賺錢，是讓品牌離開農場後仍然被看見。</div>
