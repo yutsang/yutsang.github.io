@@ -391,6 +391,30 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:2px;font-size:12.5px;}
 [data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
 .stage{flex:1;min-height:0;display:flex;gap:12px;}
+
+/* 標籤置於圖片上方（先讀標題再看圖） */
+.figblock{display:flex;flex-direction:column;flex:1;min-height:0;gap:0;}
+.figlab{flex:0 0 auto;padding:7px 12px;font-size:13.5px;font-weight:700;color:#fff;
+  background:var(--pc-deep);line-height:1.35;}
+.figblock .tile{flex:1;min-height:0;}
+.figblock.ar{flex:1;justify-content:center;}
+.figblock.ar .tile{flex:0 0 auto;width:100%;aspect-ratio:1.76;}
+
+/* 名稱收攏圖解 */
+.converge{flex:1;min-height:0;display:grid;grid-template-columns:1fr 92px 1.05fr;align-items:center;gap:0;padding:14px 0;}
+.cvlist{display:flex;flex-direction:column;gap:11px;}
+.cvitem{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--baseline);
+  padding:11px 15px;font-size:14px;}
+.cvitem .u{font-size:11.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
+.cvitem .n{font-weight:700;color:var(--text-primary);margin-top:2px;}
+.cvarrow{position:relative;height:100%;}
+.cvarrow svg{position:absolute;inset:0;width:100%;height:100%;}
+.cvtarget{background:var(--pc-deep);color:#fff;padding:22px 26px;}
+.cvtarget .t{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.75;font-weight:600;}
+.cvtarget .n{font-size:29px;font-weight:700;margin:7px 0 14px;letter-spacing:-.01em;}
+.cvtarget ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}
+.cvtarget li{font-size:13.5px;padding-left:15px;position:relative;}
+.cvtarget li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--pc-light);}
 </style>
 </head>
 <body>
@@ -641,15 +665,15 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="title">設計變體：W 的筆劃即是蚯蚓 John，把生態閉環收進識別</div>
   </div>
   <div class="body col">
-    <div class="tile fit" style="flex:1;">
-      <img src="proposal/s04_1_crop.png" alt="Logo 設計變體">
-      <div class="cap">手繪草稿 · 彩色變體 · 單色與反白測試 · 「和」字圖形化</div>
-    </div>
     <div class="cards">
       <div class="card"><div class="tag">A</div><div class="h">圓章「和」</div><div class="b">中文主標，印章形態，適用於包裝與盒面。</div></div>
       <div class="card"><div class="tag">B</div><div class="h">圓章「W」</div><div class="b">英文主標，W 的筆劃繪成蚯蚓 John。</div></div>
       <div class="card"><div class="tag">C</div><div class="h">單色與反白</div><div class="b">已測試黑白及條紋背景，貼紙與燙印均可使用。</div></div>
       <div class="card"><div class="tag">D</div><div class="h">「和」字圖形化</div><div class="b">橙瓣切面填入字腔，可作大面積主視覺。</div></div>
+    </div>
+    <div class="tile fit" style="flex:1;">
+      <img src="proposal/s04_1_crop.png" alt="Logo 設計變體">
+      <div class="cap">手繪草稿 · 彩色變體 · 單色與反白測試 · 「和」字圖形化</div>
     </div>
   </div>
   <div class="takeaway">四個方案共用同一枚圓章，分別只在應用場合——不必為每個場合另起爐灶。</div>
@@ -665,8 +689,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">前半段：刀疤強因滿身疤痕被同伴嘲笑，在市場上一次又一次被留下；直到果園主人把他帶回去，告訴他那些疤是不灑農藥、自行癒合的結果。</div>
   </div>
   <div class="body col">
-    <div class="tile fit" style="flex:1;"><img src="proposal/story1_1.jpg" alt="分鏡一"><div class="cap">① 被嘲笑、被留下</div></div>
-    <div class="tile fit" style="flex:1;"><img src="proposal/story1_2.jpg" alt="分鏡二"><div class="cap">② 主人解釋疤痕的來歷</div></div>
+    <div class="stage">
+    <div class="figblock ar">
+      <div class="figlab">① 被嘲笑、被留下</div>
+      <div class="tile fit"><img src="proposal/story1_seg1.jpg" alt="① 被嘲笑、被留下"></div>
+    </div>
+    <div class="figblock ar">
+      <div class="figlab">② 主人解釋疤痕的來歷</div>
+      <div class="tile fit"><img src="proposal/story1_seg2.jpg" alt="② 主人解釋疤痕的來歷"></div>
+    </div>
+    </div>
+    <div class="topstrip t2">
+      <div class="ts"><b>① 被嘲笑、被留下</b>刀疤強是果園裡最醜的一顆。同伴笑他滿臉疤，市場上的顧客一次又一次挑走光滑的橙，把他留在最後。這一段不解釋，只讓觀眾看見他被留下。</div>
+      <div class="ts"><b>② 主人解釋疤痕的來歷</b>果園主人把他帶回去：風刮過、樹枝劃過、蟲咬過，每一道疤都是他自己癒合回來的——因為這片果園從不灑除草劑，也不用農藥。</div>
+    </div>
   </div>
   <div class="takeaway">前半段負責建立同理：先讓觀眾替刀疤強不值，後半段的翻轉才有力。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">10</span></div>
@@ -681,8 +717,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">後半段：光滑的橙被打蠟送上貨架；一位母親反而因為花紋而選了刀疤強，孩子試食後直言比以前的橙更好吃。</div>
   </div>
   <div class="body col">
-    <div class="tile fit" style="flex:1;"><img src="proposal/story1_3.jpg" alt="分鏡三"><div class="cap">③ 光滑的橙打蠟，疤痕成了「天然認證」</div></div>
-    <div class="tile fit" style="flex:1;"><img src="proposal/story1_4.jpg" alt="分鏡四"><div class="cap">④ 孩子試食，疤痕終於被讀懂</div></div>
+    <div class="stage">
+    <div class="figblock ar">
+      <div class="figlab">③ 光滑的橙打蠟，疤痕成了「天然認證」</div>
+      <div class="tile fit"><img src="proposal/story1_seg3.jpg" alt="③ 光滑的橙打蠟，疤痕成了「天然認證」"></div>
+    </div>
+    <div class="figblock ar">
+      <div class="figlab">④ 孩子試食，疤痕終於被讀懂</div>
+      <div class="tile fit"><img src="proposal/story1_seg4.jpg" alt="④ 孩子試食，疤痕終於被讀懂"></div>
+    </div>
+    </div>
+    <div class="topstrip t2">
+      <div class="ts"><b>③ 疤痕成了「天然認證」</b>對照組出現：光滑的橙被打蠟送上貨架。刀疤強終於明白，自己身上那些痕跡，正好是沒有農藥的證明。</div>
+      <div class="ts"><b>④ 孩子試食，疤痕終於被讀懂</b>一位母親因為花紋而選了他，孩子吃過之後直言比以前的橙更甜。結語落在「天然敢留疤，健康才好吃」。</div>
+    </div>
   </div>
   <div class="takeaway">結語「天然敢留疤，健康才好吃」——一句話同時解釋了賣相、價格與不打蠟。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">11</span></div>
@@ -721,42 +769,31 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="title">品牌實體：網站、收款、發票應該收攏到<span class="hi">同一個名下</span></div>
     <div class="subtitle">現時品牌叫和橙，網店叫 HK Farmer Story，社交帳號是 @hkfarmerstory，生產實體是郴州展翔，而收款戶口用的是信興實業。名太多，會在最不該出事的地方出事。</div>
   </div>
-  <div class="body">
-    <div class="col c5">
-      <div class="panel" style="flex:1;">
-        <div class="panel-title">現時並存的名稱</div>
-        <table class="tbl">
-          <thead><tr><th style="width:120px;">用途</th><th>現時名稱</th></tr></thead>
-          <tbody>
-            <tr><td><b>品牌</b></td><td>和橙 WOrange</td></tr>
-            <tr><td><b>網店</b></td><td>HK Farmer Story（hkfarmerstoryshop.com）</td></tr>
-            <tr><td><b>社交帳號</b></td><td>@hkfarmerstory（IG／Threads）</td></tr>
-            <tr><td><b>生產實體</b></td><td>郴州展翔綠色農業</td></tr>
-            <tr><td><b>收款戶口</b></td><td>信興實業 Shun Hing Industrial</td></tr>
-          </tbody>
-        </table>
-        <div class="note">創辦人的塑膠製品廠與農場業務共用同一個收款主體，屬歷史沿革，非刻意安排。</div>
+  <div class="body col">
+    <div class="converge">
+      <div class="cvlist">
+        <div class="cvitem"><div class="u">品牌</div><div class="n">和橙 WOrange</div></div>
+        <div class="cvitem"><div class="u">網店</div><div class="n">HK Farmer Story</div></div>
+        <div class="cvitem"><div class="u">社交帳號</div><div class="n">@hkfarmerstory</div></div>
+        <div class="cvitem"><div class="u">生產實體</div><div class="n">郴州展翔綠色農業</div></div>
+        <div class="cvitem"><div class="u">收款戶口</div><div class="n">信興實業 Shun Hing Industrial</div></div>
+      </div>
+      <div class="cvarrow"><svg viewBox="0 0 92 300" preserveAspectRatio="none"><path d="M4 30 C48 30 48 150 84 150 M4 90 C48 90 48 150 84 150 M4 150 L84 150 M4 210 C48 210 48 150 84 150 M4 270 C48 270 48 150 84 150" fill="none" stroke="#9bb3d4" stroke-width="1.6"/><path d="M78 144 L88 150 L78 156 Z" fill="#00338D"/></svg></div>
+      <div class="cvtarget">
+        <div class="t">建議收攏至單一香港實體</div>
+        <div class="n">WOrange Limited</div>
+        <ul>
+          <li>網域</li><li>社交帳號</li>
+          <li>收款戶口</li><li>發票抬頭</li>
+          <li>包裝標示</li><li>資助與認證申請</li>
+        </ul>
       </div>
     </div>
-    <div class="col c7">
-      <div class="panel" style="flex:0 0 auto;">
-        <div class="panel-title">實際會出問題的四個位置</div>
-        <ul class="bullets compact">
-          <li><b>付款一刻：</b>消費者在官網落單，過數畫面出現的卻是一間塑膠廠的名。這是整個購買流程中最脆弱的一秒。</li>
-          <li><b>打假：</b>叫人「認住正版商標」，但品牌本身有四個名——這正是假貨最容易鑽的空隙。</li>
-          <li><b>企業客：</b>ESG 採購要開發票，抬頭與品牌不一致，每一單都要額外解釋一次。</li>
-          <li><b>資格申請：</b>社企認證、商界展關懷、BUD／EMF 資助都要指定申請實體；用哪一個，資格與稅務後果不同。</li>
-        </ul>
-      </div>
-      <div class="panel tinted" style="flex:1;">
-        <div class="panel-title">建議</div>
-        <ul class="bullets compact">
-          <li><b>成立獨立香港實體</b>（例如 WOrange Limited），作為香港銷售與品牌持有方。</li>
-          <li><b>五樣東西統一到該實體名下：</b>網域、社交帳號、收款戶口、發票抬頭、包裝標示。</li>
-          <li><b>過渡期新舊並行一季</b>，並在官網明確寫出彼此關係，避免被誤認為冒牌。</li>
-          <li class="warn">開戶、轉讓與稅務安排須先向會計師及銀行確認；本頁只提方向，不構成專業意見。</li>
-        </ul>
-      </div>
+    <div class="topstrip t4">
+      <div class="ts"><b>付款一刻</b>消費者在官網落單，過數畫面出現的卻是一間塑膠廠的名——這是整個購買流程中最脆弱的一秒。</div>
+      <div class="ts"><b>打假</b>叫人「認住正版商標」，但品牌本身有四個名——這正是假貨最容易鑽的空隙。</div>
+      <div class="ts"><b>企業客與發票</b>ESG 採購要開發票，抬頭與品牌不一致，每一單都要額外解釋一次。</div>
+      <div class="ts"><b>過渡與風險</b>新舊並行一季，官網寫明彼此關係。<b style="display:inline">開戶、轉讓與稅務須先向會計師及銀行確認</b>，本頁只提方向。</div>
     </div>
   </div>
   <div class="takeaway">一個賣「可追溯」的品牌，自己的名字不應該是四個。</div>
