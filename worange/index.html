@@ -94,11 +94,15 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .tabular{font-variant-numeric:tabular-nums;}
 
 /* ---------- Deck shell ---------- */
-#deck{width:100vw;height:100vh;overflow:hidden;position:relative;}
+/* 固定 1920×1080 畫布，按視窗等比縮放置中——投影機無論 16:9 / 16:10 / 4:3
+   都會得到同一個版面，只是上下（或左右）出現黑邊，與投影機本身的做法一致。 */
+#deck{position:fixed;inset:0;overflow:hidden;background:#000;}
 .slide{
   display:none;
-  position:relative;
-  width:100vw;height:100vh;
+  position:absolute;left:50%;top:50%;
+  width:1920px;height:1080px;
+  transform:translate(-50%,-50%) scale(var(--fit,1));
+  transform-origin:center center;
   padding:52px 64px 74px 64px;
   flex-direction:column;
   background:var(--surface-1);
@@ -123,7 +127,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- Slide footer ---------- */
 .slide-foot{
-  position:absolute;left:64px;right:64px;bottom:26px;
+  position:absolute;left:64px;right:64px;bottom:34px;
   border-top:1px solid var(--line-soft);padding-top:9px;
   display:flex;justify-content:space-between;align-items:center;
   font-size:11px;color:var(--text-muted);letter-spacing:.02em;
@@ -360,6 +364,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
   #deck{width:1920px;height:auto;overflow:visible;}
   .slide{
     display:flex !important;
+    position:relative !important;left:auto !important;top:auto !important;
+    transform:none !important;
     width:1920px !important;height:1080px !important;
     min-height:1080px !important;max-height:1080px !important;
     page-break-after:always;break-after:page;
@@ -1585,7 +1591,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
   function setVolumes(){ document.querySelectorAll('video').forEach(v=>{ v.volume = 0.2; }); }
   setVolumes();
 
-  window.addEventListener('load', ()=>{ show(idx); setVolumes(); });
+  function fit(){
+    const k = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    document.documentElement.style.setProperty('--fit', k);
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', ()=>{ fit(); show(idx); setVolumes(); });
 })();
 </script>
 
