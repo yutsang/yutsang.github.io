@@ -100,7 +100,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .slide{
   display:none;
   position:absolute;left:50%;top:50%;
-  width:1920px;height:1080px;
+  width:var(--cw,1920px);height:var(--ch,1080px);
   transform:translate(-50%,-50%) scale(var(--fit,1));
   transform-origin:center center;
   padding:52px 64px 74px 64px;
@@ -1591,9 +1591,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   function setVolumes(){ document.querySelectorAll('video').forEach(v=>{ v.volume = 0.2; }); }
   setVolumes();
 
+  // 畫布闊度鎖定 1920（所有欄寬、字級都按這個排），高度跟螢幕比例走，
+  // 令 16:10 / 4:3 投影機多出的高度可以用來放大圖片，而不是變成黑邊。
   function fit(){
-    const k = Math.min(window.innerWidth/1920, window.innerHeight/1080);
-    document.documentElement.style.setProperty('--fit', k);
+    const vw = window.innerWidth, vh = window.innerHeight, W = 1920;
+    const H = Math.min(Math.max(Math.round(W * vh / vw), 1080), 1560);
+    const k = Math.min(vw/W, vh/H);
+    const root = document.documentElement;
+    root.style.setProperty('--cw', W + 'px');
+    root.style.setProperty('--ch', H + 'px');
+    root.style.setProperty('--fit', k);
   }
   fit();
   window.addEventListener('resize', fit);
