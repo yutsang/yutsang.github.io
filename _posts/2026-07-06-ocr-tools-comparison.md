@@ -174,14 +174,14 @@ One closing caveat: whichever you pick, **evaluate on your own documents**. Ever
 
 到了 2026 年，這件事的本質變了。讀你抽取結果的通常不是人，而是 LLM 管線：RAG 索引、agent 工具呼叫、微調語料、關鍵資訊抽取。這把門檻往一個特定方向抬高——模型要的不只是*字元*，而是**結構**：標題真的是標題、表格活著離開、公式是 LaTeX 而不是 Unicode 亂碼、多欄版面按正確順序閱讀、頁首頁尾被剝掉而不是污染每一個 chunk。
 
-「PDF 轉 Markdown」悄悄變成咗真正嘅產品類別，四個開源名字反覆出現：**MarkItDown**（微軟）、**PaddleOCR**（百度）、**MinerU**（OpenDataLab／上海人工智能實驗室）、**Docling**（IBM Research）。好多人將佢哋當成可互換嘅同類工具嚟比較——其實唔係。佢哋處於技術棧嘅三個唔同層次，而最多人爭嗰一層，而家有兩個截然不同嘅答案。
+「PDF 轉 Markdown」悄悄變成了真正的產品類別，四個開源名字反覆出現：**MarkItDown**（微軟）、**PaddleOCR**（百度）、**MinerU**（OpenDataLab／上海人工智能實驗室）、**Docling**（IBM Research）。許多人將它們當成可互換的同類工具來比較——其實不然。它們處於技術棧的三個不同層次，而競爭最激烈的那一層，現在有兩個截然不同的答案。
 
 深入之前，先畀一句話版本：
 
 - **MarkItDown** 是*格式轉換器*：讀取檔案本來就有的數位結構，重新序列化成 Markdown，本身幾乎不做 OCR。
 - **PaddleOCR** 是 *OCR 引擎與工具箱*：真正把像素變成文字的那一層，上面再加一條可選的文件解析管線。
 - **MinerU** 是*端對端文件解析管線*：把版面偵測、OCR、公式與表格辨識串成一台立場鮮明的 PDF → Markdown 機器。
-- **Docling** *都係*端對端管線——MinerU 最直接嘅對手——用 MIT 授權、CPU 都跑得、四個入面最闊嘅輸入格式覆蓋，換取放棄 MinerU 嘅 AGPL-3.0 同表格／公式頂尖準確度。
+- **Docling** *同樣*是端對端管線，是 MinerU 最直接的對手，以 MIT 授權、CPU 即可運行、四者之中最廣的輸入格式覆蓋，換取放棄 MinerU 的 AGPL-3.0 與表格／公式頂尖準確度。
 
 ## MarkItDown：格式轉換器
 
@@ -269,7 +269,7 @@ mineru -p paper.pdf -o out/
 
 ## Docling：另一條管線
 
-[Docling](https://github.com/docling-project/docling) 出自 IBM Research，掛喺 LF AI & Data Foundation 底下，同 MinerU 玩緊同一層——完整嘅文件解析管線，唔係得個轉換器或者裸 OCR 引擎。分別在於兩者優化緊嘅嘢唔同。
+[Docling](https://github.com/docling-project/docling) 出自 IBM Research，隸屬 LF AI & Data Foundation，與 MinerU 位於同一層次——完整的文件解析管線，而非單純的轉換器或裸 OCR 引擎。分別在於兩者優化的方向不同。
 
 ```python
 # pip install docling
@@ -280,15 +280,15 @@ result = converter.convert("annual_report.pdf")
 print(result.document.export_to_markdown())
 ```
 
-同 MinerU 相比，三樣嘢即刻分得出：第一，**授權**——Docling 係 MIT，冇 AGPL 呢個要同法務部門解釋嘅問題，永遠都唔使。第二，**格式闊度**——PDF、DOCX、PPTX、XLSX、HTML、EPUB、email、音訊、影片，甚至 XBRL 都食得晒，比其餘三個（連 MarkItDown 都計埋）覆蓋更廣。第三，**硬件**——預設純 CPU 都跑得，仲有個可選嘅 `--pipeline vlm` 模式，用 IBM 自家細型號 Granite-Docling-258M 視覺語言模型處理難搞嘅頁面。
+與 MinerU 相比，三件事立刻分得出來：第一，**授權**——Docling 是 MIT，沒有 AGPL 這個需要向法務部門解釋的問題，永遠不必擔心。第二，**格式廣度**——PDF、DOCX、PPTX、XLSX、HTML、EPUB、email、音訊、影片，甚至 XBRL 都能處理，比其餘三者（連 MarkItDown 也算在內）覆蓋更廣。第三，**硬件**——預設純 CPU 即可運行，還有一個可選的 `--pipeline vlm` 模式，使用 IBM 自家小型號 Granite-Docling-258M 視覺語言模型處理較難的頁面。
 
-底層做緊真正嘅文件理解——版面、閱讀順序、表格結構、公式、code block，甚至圖表轉表格——仲原生支援 LangChain、LlamaIndex、Haystack、CrewAI，加埋 MCP 伺服器同託管 API 模式（`docling-serve`）。四個入面，佢係最「為 agent 度身訂造」嗰個。
+底層執行的是真正的文件理解——版面、閱讀順序、表格結構、公式、code block，甚至圖表轉表格——並原生支援 LangChain、LlamaIndex、Haystack、CrewAI，加上 MCP 伺服器與託管 API 模式（`docling-serve`）。四者之中，它是最「為 agent 度身訂造」的一個。
 
-代價出現喺你估到嘅地方——優化闊度嘅嘢，通常喺最難嗰批文件度見真章：密集多欄掃描、複雜巢狀表格，2026 年獨立基準測試入面 MinerU 喺表格同公式準確度仲係贏。Docling 穩定咁「偵測到」表格，但表格內部結構係咪完整留低，就冇 MinerU 專屬表格模型咁穩。而且同 MarkItDown 或 PaddleOCR 唔同，Docling 未上主流公開準確度排行榜，即係「信排行榜」呢招用唔到——要就用自己嘅文件評測，要就唔好信。
+代價出現在可以預料的地方：優化廣度的東西，往往在最難的一批文件上見真章。密集多欄掃描、複雜巢狀表格，2026 年獨立基準測試中 MinerU 在表格與公式準確度上仍然領先。Docling 穩定地「偵測到」表格，但表格內部結構是否完整保留，就沒有 MinerU 專屬表格模型那麼穩定。而且與 MarkItDown 或 PaddleOCR 不同，Docling 尚未登上主流公開準確度排行榜，也就是說「參考排行榜」這一招用不上——要就用自己的文件評測，否則就不要輕信。
 
-**適合**：授權要乾淨、輸入格式多元、想要純 CPU 運行，或者直接喺 LangChain／LlamaIndex／Haystack 上面砌嘢。
+**適合**：授權要乾淨、輸入格式多元、想要純 CPU 運行，或者直接在 LangChain／LlamaIndex／Haystack 之上構建。
 
-**不適合**：想喺最難嘅掃描 PDF 度榨盡每一分表格／公式準確度——嗰份工仍然係 MinerU 嘅。
+**不適合**：想在最難的掃描 PDF 上榨盡每一分表格／公式準確度——那份工作仍然屬於 MinerU。
 
 ## 並排比較
 
@@ -309,13 +309,13 @@ print(result.document.export_to_markdown())
 
 ## 我實際上會如何選
 
-誠實嘅答案係：呢四個工具係互補多於競爭。
+誠實的答案是：這四個工具是互補多於競爭。
 
 1. **主要是 Office 文件和乾淨的數位 PDF，餵給 LLM？** 只用 MarkItDown。一個 `pip install` 完事，偶爾出現的掃描件另外處理。
-2. **技術 PDF、掃描件、論文、帶表格和數學，而授權唔係限制？** 用 MinerU 做批次轉換。接受 GPU 和模型下載——輸出品質對得起這個成本。
-3. **同樣係難搞文件，但要授權乾淨、CPU-only 部署，或者輸入格式遠超 PDF？** 用 Docling。你用 MinerU 頂尖表格／公式準確度嘅一小部分，換返 MIT 授權、四者最闊嘅格式覆蓋，同原生 RAG 框架整合。
+2. **技術 PDF、掃描件、論文、帶表格和數學，而授權不是限制？** 用 MinerU 做批次轉換。接受 GPU 和模型下載——輸出品質對得起這個成本。
+3. **同樣是難搞的文件，但要授權乾淨、CPU-only 部署，或者輸入格式遠超 PDF？** 用 Docling。以放棄 MinerU 頂尖的表格／公式準確度為代價，換取 MIT 授權、四者之中最廣的格式覆蓋，以及原生 RAG 框架整合。
 4. **在產品裡內建 OCR，或要出貨給客戶？** PaddleOCR。Apache-2.0、從伺服器到端側都能部署，PP-StructureV3 能讓你在沒有 AGPL 問題的前提下，逼近 MinerU 級的解析品質。
-5. **通用的文件攝取服務？** MarkItDown 當所有數位原生檔案的前門，PDF／掃描件路由去 MinerU 或 Docling（睇你重視授權定係準確度）或 PP-StructureV3（商業產品）。呢種兩層架構——便宜嘅轉換器先上、重型解析器按需出動——本來就是多數生產級 RAG 管線最後收斂到的形態。
+5. **通用的文件攝取服務？** MarkItDown 作為所有數位原生檔案的前門，PDF／掃描件則路由至 MinerU 或 Docling（視乎你重視授權還是準確度）或 PP-StructureV3（商業產品）。這種兩層架構——便宜的轉換器先上、重型解析器按需出動——本來就是多數生產級 RAG 管線最終收斂到的形態。
 
 最後一個提醒：無論選哪個，**用你自己的文件做評測**。這個領域的所有基準測試都被學術論文和乾淨報告主導；你的發票、表單和 1990 年代傳真畫質的掃描件是另一個分佈。挑二十份代表性檔案、花一個下午親眼看輸出的 Markdown，比任何排行榜都能告訴你更多。
 
