@@ -108,18 +108,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- Slide header ---------- */
 .slide-head{flex:0 0 auto;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px;}
 .kicker{
-  font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  font-size:13.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
   color:var(--pc-light);
 }
 [data-theme="dark"] .kicker{color:var(--c-bear);}
 .title{
-  font-size:30px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
+  font-size:33px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
   color:var(--pc-deep);margin-top:9px;max-width:1500px;
 }
 [data-theme="dark"] .title{color:#ffffff;}
 .title .hi{color:var(--pc-light);}
 [data-theme="dark"] .title .hi{color:var(--c-bear);}
-.subtitle{font-size:16px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
+.subtitle{font-size:17.5px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
 
 /* ---------- Slide footer ---------- */
 .slide-foot{
@@ -140,25 +140,25 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- Text ---------- */
 .bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
-.bullets li{position:relative;padding-left:20px;font-size:17px;line-height:1.5;color:var(--text-primary);}
+.bullets li{position:relative;padding-left:20px;font-size:18px;line-height:1.5;color:var(--text-primary);}
 .bullets li::before{
   content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--pc-light);
 }
 .bullets.compact{gap:8px;}
 .bullets.spread{flex:1;justify-content:space-evenly;}
-.bullets.compact li{font-size:15px;line-height:1.45;padding-left:18px;}
+.bullets.compact li{font-size:16px;line-height:1.45;padding-left:18px;}
 .bullets.compact li::before{width:6px;height:6px;top:8px;}
 .bullets b{font-weight:700;color:var(--pc-deep);}
 [data-theme="dark"] .bullets b{color:var(--c-bear);}
 .bullets li.warn::before{background:var(--pc-pink);}
 .bullets li.warn{color:var(--pc-pink);font-weight:600;}
 
-.note{font-size:14px;color:var(--text-muted);line-height:1.5;}
-.src{font-size:11.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
+.note{font-size:15px;color:var(--text-muted);line-height:1.5;}
+.src{font-size:12.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
 
 .callout{
   background:var(--tint);border-left:4px solid var(--pc-deep);
-  padding:15px 18px;font-size:16.5px;font-weight:600;line-height:1.5;color:var(--text-primary);
+  padding:15px 18px;font-size:18px;font-weight:600;line-height:1.5;color:var(--text-primary);
   flex:0 0 auto;
 }
 .callout b{color:var(--pc-deep);}
@@ -166,7 +166,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .flag{
   display:flex;gap:11px;align-items:flex-start;
   background:var(--tint);border-left:4px solid var(--pc-light);
-  padding:11px 16px;font-size:14.5px;line-height:1.5;color:var(--text-primary);flex:0 0 auto;
+  padding:11px 16px;font-size:15.5px;line-height:1.5;color:var(--text-primary);flex:0 0 auto;
 }
 .flag b{color:var(--pc-deep);white-space:nowrap;font-weight:700;}
 [data-theme="dark"] .flag b{color:var(--c-bear);}
@@ -175,10 +175,10 @@ h1,h2,h3,p,ul,ol{margin:0;}
 [data-theme="dark"] .flag.todo b{color:var(--s-warning);}
 
 /* ---------- Tables ---------- */
-.tbl{width:100%;border-collapse:collapse;font-size:14px;}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;}
 .tbl th{
   background:var(--pc-deep);color:#fff;text-align:left;
-  padding:9px 11px;font-size:12.5px;font-weight:600;letter-spacing:.03em;
+  padding:9px 11px;font-size:13.5px;font-weight:600;letter-spacing:.03em;
 }
 .tbl td{padding:8px 11px;border-bottom:1px solid var(--grid);color:var(--text-primary);vertical-align:top;}
 .tbl tbody tr:nth-child(even){background:var(--tint);}
@@ -191,10 +191,10 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- Stat cards ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
 .stat{background:var(--tint);border-left:4px solid var(--pc-light);padding:15px 17px;}
-.stat .lbl{font-size:12.5px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-.stat .val{font-size:30px;font-weight:700;color:var(--pc-deep);margin-top:6px;letter-spacing:-.02em;}
+.stat .lbl{font-size:13.5px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+.stat .val{font-size:33px;font-weight:700;color:var(--pc-deep);margin-top:6px;letter-spacing:-.02em;}
 [data-theme="dark"] .stat .val{color:#fff;}
-.stat .sub{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
+.stat .sub{font-size:14px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
 
 /* ---------- Cards ---------- */
 .cards{display:flex;gap:14px;}
@@ -203,9 +203,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
   border-top:3px solid var(--pc-deep);padding:15px 17px;display:flex;flex-direction:column;gap:7px;
 }
 .card .tag{font-size:11px;font-weight:700;color:#fff;background:var(--pc-deep);padding:2px 7px;width:fit-content;letter-spacing:.04em;}
-.card .h{font-size:16px;font-weight:700;color:var(--pc-deep);}
+.card .h{font-size:17px;font-weight:700;color:var(--pc-deep);}
 [data-theme="dark"] .card .h{color:var(--c-bear);}
-.card .b{font-size:14px;color:var(--text-secondary);line-height:1.5;}
+.card .b{font-size:15px;color:var(--text-secondary);line-height:1.5;}
 .card.alt{border-top-color:var(--pc-teal);}
 .card.alt .h{color:var(--pc-teal);}
 .card.alt .tag{background:var(--pc-teal);}
@@ -217,7 +217,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 }
 .panel.tinted{background:var(--tint);border-color:transparent;}
 .panel-title{
-  font-size:12.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
+  font-size:13.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
   padding-bottom:7px;border-bottom:1px solid var(--grid);
 }
 [data-theme="dark"] .panel-title{color:var(--c-bear);}
@@ -232,7 +232,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   position:absolute;top:8px;right:8px;font-size:11px;font-weight:600;color:var(--text-secondary);
   background:var(--surface-1);border:1px solid var(--border);padding:3px 8px;cursor:pointer;z-index:5;
 }
-.data-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.data-table{width:100%;border-collapse:collapse;font-size:14.5px;}
 .data-table th,.data-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--grid);}
 .data-table th{color:var(--text-muted);font-weight:600;font-size:12px;text-transform:uppercase;}
 .data-table td.num{text-align:right;font-variant-numeric:tabular-nums;}
@@ -241,9 +241,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .flow{display:flex;align-items:stretch;gap:9px;}
 .step{
   flex:1;background:var(--tint);border-top:3px solid var(--pc-deep);
-  padding:12px 13px;font-size:13.5px;line-height:1.4;text-align:center;color:var(--text-primary);
+  padding:12px 13px;font-size:14.5px;line-height:1.4;text-align:center;color:var(--text-primary);
 }
-.step b{display:block;font-size:15px;color:var(--pc-deep);margin-bottom:4px;}
+.step b{display:block;font-size:16px;color:var(--pc-deep);margin-bottom:4px;}
 [data-theme="dark"] .step b{color:var(--c-bear);}
 .step .sm{font-size:11.5px;color:var(--text-muted);}
 .arrow{display:flex;align-items:center;color:var(--baseline);font-size:17px;}
@@ -259,7 +259,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .tile.fit img{object-fit:contain;background:var(--card-bg);}
 .cap{
   position:absolute;left:0;right:0;bottom:0;padding:6px 10px;
-  font-size:11.5px;font-weight:600;color:#fff;
+  font-size:12.5px;font-weight:600;color:#fff;
   background:linear-gradient(transparent,rgba(0,20,50,.78));
 }
 .tile.fit .cap{background:rgba(0,51,141,.88);}
@@ -299,7 +299,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- 頁底一句總結 ---------- */
 .takeaway{
   flex:0 0 auto;border-top:2px solid var(--pc-deep);padding-top:10px;margin-top:2px;
-  font-size:15.5px;font-weight:700;color:var(--pc-deep);line-height:1.45;
+  font-size:17px;font-weight:700;color:var(--pc-deep);line-height:1.45;
 }
 [data-theme="dark"] .takeaway{color:var(--c-bear);border-top-color:var(--c-bear);}
 
@@ -307,18 +307,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .evgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;min-height:0;}
 .ev{position:relative;overflow:hidden;background:var(--tint);border:1px solid var(--border);display:flex;flex-direction:column-reverse;}
 .ev img{width:100%;flex:1;min-height:0;object-fit:cover;display:block;}
-.ev .lb{padding:8px 10px;font-size:13.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
+.ev .lb{padding:8px 10px;font-size:14.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
 
 
 
 /* ---------- 貼文引用卡 ---------- */
 .post{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--pc-deep);padding:12px 14px;display:flex;flex-direction:column;gap:7px;}
-.post .ph{font-size:12px;color:var(--text-muted);font-weight:600;letter-spacing:.02em;}
-.post .pb{font-size:16px;line-height:1.55;color:var(--text-primary);}
+.post .ph{font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.02em;}
+.post .pb{font-size:17px;line-height:1.55;color:var(--text-primary);}
 .post .pb.big{font-size:30px;font-weight:700;color:var(--pc-deep);}
-.post .pstat{font-size:12.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
+.post .pstat{font-size:13.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
 .post .plink{font-size:11px;color:var(--text-muted);word-break:break-all;}
-.msg{padding:8px 11px;font-size:14.5px;line-height:1.5;}
+.msg{padding:8px 11px;font-size:15.5px;line-height:1.5;}
 .msg.u{background:var(--grid);color:var(--text-primary);}
 .msg.b{background:var(--tint-2);border-left:3px solid var(--pc-light);color:var(--text-primary);}
 .msg span{display:block;font-size:11.5px;color:var(--text-muted);font-weight:600;margin-bottom:3px;}
@@ -331,7 +331,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .divider h2{font-size:46px;font-weight:700;line-height:1.2;margin-top:16px;color:#fff;}
 .divider .desc{font-size:18px;line-height:1.65;color:rgba(255,255,255,.86);margin-top:18px;max-width:1000px;}
 .divider .items{display:flex;margin-top:44px;border-top:1px solid rgba(255,255,255,.28);max-width:1300px;}
-.divider .items div{flex:1;padding:16px 20px 0 0;font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.5;}
+.divider .items div{flex:1;padding:16px 20px 0 0;font-size:15.5px;color:rgba(255,255,255,.78);line-height:1.5;}
 .divider .items div b{display:block;color:#fff;font-weight:600;margin-bottom:3px;}
 .divider .slide-foot{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.6);}
 .divider .slide-foot .pg{color:#fff;}
@@ -349,7 +349,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .agenda .item .d{margin-top:auto;}
 .agenda .item .n{font-size:13px;font-weight:700;color:var(--pc-light);letter-spacing:.12em;}
 .agenda .item .t{font-size:19px;font-weight:700;color:var(--pc-deep);line-height:1.3;}
-.agenda .item .d{font-size:14px;color:var(--text-secondary);line-height:1.55;}
+.agenda .item .d{font-size:15px;color:var(--text-secondary);line-height:1.55;}
 [data-theme="dark"] .agenda .item .t{color:#fff;}
 
 @media print{
@@ -373,9 +373,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* 參考影片嵌入（Facebook video plugin iframe） */
 .vidframe{align-self:center;line-height:0;background:#0f1822;border:1px solid var(--border);}
 .vidframe iframe,.vidframe video{display:block;border:0;background:#0f1822;}
-.vidname{font-size:13.5px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
-.vidstat{font-size:11.5px;color:var(--text-muted);margin-top:2px;}
-.vidnote{font-size:12.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
+.vidname{font-size:14.5px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
+.vidstat{font-size:12.5px;color:var(--text-muted);margin-top:2px;}
+.vidnote{font-size:13.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
 [data-theme="dark"] .vidname{color:var(--c-bear);}
 .vidlink{color:var(--pc-medium);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap;}
 [data-theme="dark"] .vidlink{color:var(--c-bear);}
@@ -388,8 +388,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .topstrip.t2{grid-template-columns:repeat(2,1fr);}
 .topstrip.t3{grid-template-columns:repeat(3,1fr);}
 .topstrip.t4{grid-template-columns:repeat(4,1fr);}
-.topstrip .ts{font-size:12.8px;line-height:1.52;color:var(--text-secondary);}
-.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:2px;font-size:12.5px;}
+.topstrip .ts{font-size:14px;line-height:1.55;color:var(--text-secondary);}
+.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:3px;font-size:13.6px;}
 [data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
 .stage{flex:1;min-height:0;display:flex;gap:12px;}
 .stage.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
@@ -400,7 +400,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* 標籤置於圖片上方（先讀標題再看圖） */
 .figblock{display:flex;flex-direction:column;flex:1;min-height:0;gap:0;}
-.figlab{flex:0 0 auto;padding:7px 12px;font-size:13.5px;font-weight:700;color:#fff;
+.figlab{flex:0 0 auto;padding:7px 12px;font-size:14.5px;font-weight:700;color:#fff;
   background:var(--pc-deep);line-height:1.35;}
 .figblock .tile{flex:1;min-height:0;}
 .figblock.ar{flex:1;justify-content:center;}
@@ -408,19 +408,20 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .figblock.ar2 .tile{flex:0 0 auto;width:100%;aspect-ratio:1.4;}
 
 /* 名稱收攏圖解 */
-.converge{flex:1;min-height:0;display:grid;grid-template-columns:1fr 92px 1.05fr;align-items:center;gap:0;padding:14px 0;}
-.cvlist{display:flex;flex-direction:column;gap:11px;}
+.converge{flex:1;min-height:0;display:grid;grid-template-columns:1fr 92px 1.05fr;align-items:stretch;gap:0;padding:14px 0;}
+.cvlist{display:flex;flex-direction:column;gap:11px;height:100%;}
+.cvlist .cvitem{flex:1;display:flex;flex-direction:column;justify-content:center;}
 .cvitem{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--baseline);
-  padding:11px 15px;font-size:14px;}
+  padding:11px 15px;font-size:15px;}
 .cvitem .u{font-size:11.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
 .cvitem .n{font-weight:700;color:var(--text-primary);margin-top:2px;}
 .cvarrow{position:relative;height:100%;}
 .cvarrow svg{position:absolute;inset:0;width:100%;height:100%;}
-.cvtarget{background:var(--pc-deep);color:#fff;padding:22px 26px;}
+.cvtarget{background:var(--pc-deep);color:#fff;padding:22px 26px;align-self:center;}
 .cvtarget .t{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.75;font-weight:600;}
 .cvtarget .n{font-size:29px;font-weight:700;margin:7px 0 14px;letter-spacing:-.01em;}
 .cvtarget ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}
-.cvtarget li{font-size:13.5px;padding-left:15px;position:relative;}
+.cvtarget li{font-size:14.5px;padding-left:15px;position:relative;}
 .cvtarget li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--pc-light);}
 
 /* 觀察 → 動作 逐條對位 */
@@ -430,9 +431,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .rb-n{background:var(--pc-deep);color:#fff;display:flex;align-items:center;justify-content:center;
   font-size:16px;font-weight:700;}
 .rb-o{padding:10px 15px;background:var(--tint);display:flex;flex-direction:column;justify-content:center;}
-.rb-o b{font-size:14.5px;color:var(--pc-deep);}
+.rb-o b{font-size:15.5px;color:var(--pc-deep);}
 .rb-o .ev{font-size:11.5px;color:var(--text-muted);line-height:1.42;margin-top:3px;}
-.rb-a{padding:10px 15px;display:flex;align-items:center;font-size:13.5px;line-height:1.5;}
+.rb-a{padding:10px 15px;display:flex;align-items:center;font-size:14.5px;line-height:1.5;}
 [data-theme="dark"] .rb-o b{color:var(--c-bear);}
 .rulehead{display:grid;grid-template-columns:40px 1fr 1.3fr;background:var(--pc-deep);color:#fff;}
 .rulehead div{padding:7px 15px;font-size:12.5px;font-weight:700;letter-spacing:.04em;}
@@ -458,12 +459,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .srow .fig .tile img{height:100%;width:100%;object-fit:contain;display:block;}
 .srow .txt{display:flex;flex-direction:column;justify-content:center;gap:7px;padding-right:6px;}
 .srow .txt .tt{font-size:15px;font-weight:700;color:var(--pc-deep);}
-.srow .txt .td{font-size:13.5px;line-height:1.62;color:var(--text-secondary);}
+.srow .txt .td{font-size:14.5px;line-height:1.62;color:var(--text-secondary);}
 [data-theme="dark"] .srow .txt .tt{color:var(--c-bear);}
 
 .rail.c6{grid-template-columns:repeat(6,1fr);}
 .rail.c6.sq{align-items:start;}
 .rail.c6.sq .tile{aspect-ratio:1.28;}
+.rail.c6.sq .tile img{object-fit:contain;background:var(--card-bg);}
 .evgrid.fitall .ev img{object-fit:contain;background:var(--tint);}
 
 /* 分鏡打橫：整段一長排，全寬 */
@@ -501,8 +503,28 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .stage.duo .figblock{min-height:0;}
 .stage.duo .tile img{object-fit:contain;background:var(--tint);}
 .topstrip.tall{padding:18px 22px;gap:22px;}
-.topstrip.tall .ts{font-size:14.5px;line-height:1.62;}
-.topstrip.tall .ts b{font-size:14px;margin-bottom:4px;}
+.topstrip.tall .ts{font-size:15.5px;line-height:1.62;}
+.topstrip.tall .ts b{font-size:15px;margin-bottom:4px;}
+
+/* ---------- 頁首章節進度條：六節全列，當前深色、其餘灰 ---------- */
+.kicker.secnav{display:flex;align-items:baseline;text-transform:none;letter-spacing:.01em;
+  font-size:13px;font-weight:600;color:var(--text-muted);
+  max-width:calc(100% - 200px);}
+.kicker.secnav .s{color:var(--baseline);padding:0 13px;border-right:1px solid var(--grid);white-space:nowrap;}
+.kicker.secnav .s:first-child{padding-left:0;}
+.kicker.secnav .s:last-of-type{border-right:none;}
+.kicker.secnav .s.on{color:var(--pc-light);}
+[data-theme="dark"] .kicker.secnav .s.on{color:var(--c-bear);}
+.kicker.secnav .n{margin-left:auto;color:var(--text-secondary);font-variant-numeric:tabular-nums;}
+
+/* ---------- 影片標題列：深底突出 ---------- */
+.panel-title.bar{background:var(--pc-deep);color:#fff;padding:8px 12px;border-bottom:none;
+  margin:-16px -18px 0;}
+[data-theme="dark"] .panel-title.bar{color:#fff;}
+
+/* ---------- 貼文卡標題列 ---------- */
+.post .phead{background:var(--pc-deep);color:#fff;font-size:14.5px;font-weight:700;line-height:1.35;
+  padding:7px 12px;margin:-12px -14px 4px;}
 
 /* ---------- 收結頁（Apple 發佈會式） ---------- */
 .slide.keynote{background:#000;color:#fff;padding:0;justify-content:center;}
@@ -950,7 +972,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="body">
     <div class="col c4">
       <div class="panel" style="flex:1;">
-        <div class="panel-title">01 · 暗調水果</div>
+        <div class="panel-title bar">01 · 暗調水果 · 壓暗與倒影</div>
         <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="338" height="600" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
         <div>
           <div class="vidname">甜胚子 · 20 秒拍出荔枝高級感</div>
@@ -961,7 +983,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
     <div class="col c4">
       <div class="panel" style="flex:1;">
-        <div class="panel-title">02 · 佈光設定</div>
+        <div class="panel-title bar">02 · 佈光設定 · 主燈＋輪廓光</div>
         <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="338" height="600" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · 一組可照抄的佈光</div>
@@ -972,7 +994,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
     <div class="col c4">
       <div class="panel" style="flex:1;">
-        <div class="panel-title">03 · 入門器材</div>
+        <div class="panel-title bar">03 · 入門器材 · 一套可照抄的組合</div>
         <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="338" height="600" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · TARION 套裝示範</div>
@@ -1002,8 +1024,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>細節經不起放大</b>縮圖看得過去，放大即見破綻：包裝上的字糊掉、產品規格與實物不符。<b style="display:inline">而和橙賣的正是「可追溯」</b>——這不只是美術問題，是信任問題。</div>
     </div>
     <div class="stage duo">
-      <div class="figblock"><div class="figlab">實拍 · 打假帖：163 讚／39 留言／27 分享</div><div class="tile fit"><img src="fb/WOrange-TRUE_ev.jpg" alt="實拍打假帖"></div></div>
-      <div class="figblock"><div class="figlab">AI 渲染 · 節慶產品圖：7 讚（同期最低）</div><div class="tile fit"><img src="fb/WOrange-CNY_ev.jpg" alt="AI 渲染節慶產品圖"></div></div>
+      <div class="figblock" style="flex:1.026;"><div class="figlab">實拍 · 打假帖：163 讚／39 留言／27 分享</div><div class="tile fit"><img src="fb/WOrange-TRUE_ev.jpg" alt="實拍打假帖"></div></div>
+      <div class="figblock" style="flex:1.188;"><div class="figlab">AI 渲染 · 節慶產品圖：7 讚（同期最低）</div><div class="tile fit"><img src="fb/WOrange-CNY_ev.jpg" alt="AI 渲染節慶產品圖"></div></div>
     </div>
   </div>
   <div class="takeaway">賣的是「可追溯、不造假」，圖卻經不起放大——這不只是美術問題，是信任問題。</div>
@@ -1021,7 +1043,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="body col">
     <div class="stage">
       <div class="post" style="flex:1;">
-        <div class="ph">故宮南院 @npm_south · Threads · 2026-07-25</div>
+        <div class="phead">案例一 · 機構身份，人類語氣</div>
+        <div class="ph">故宮南院 @npm_south · Threads · 2026-07-25　<a class="vidlink" href="https://www.threads.com/@npm_south" target="_blank" rel="noopener">開啟帳號 ↗</a></div>
         <div class="pb" style="font-size:13px;"><b>前文：</b>一名網友發帖，內文<b>只有「故宮南院」四個字</b>——像在人群裡直接喊一個名字，沒有問題、沒有標註。</div>
         <div class="msg u"><span>網友　20:14</span>故宮南院</div>
         <div class="msg b"><span>小編　21:22</span>幹嘛</div>
@@ -1029,15 +1052,17 @@ h1,h2,h3,p,ul,ol{margin:0;}
         <div class="pstat"><b>95.5K 讚</b> · 182 回覆 · 389 轉發 · 3.5K 分享 · 1.1M 瀏覽</div>
         <div class="note">官方承認由一名助理研究員經營。「機構身份配人類語氣」的極致。</div>
       </div>
-      <div class="post" style="flex:1.12;">
-        <div class="ph">SUZUKI @suzukimotortw · Threads · 2026-08-11 · 全串 30 萬次瀏覽</div>
+      <div class="post" style="flex:1.18;">
+        <div class="phead">案例二 · 先完整配合，再突然抽離</div>
+        <div class="ph">SUZUKI @suzukimotortw · Threads · 2026-08-11 · 全串 309K 次瀏覽　<a class="vidlink" href="https://www.threads.com/@suzukimotortw/post/Db5DfF7CU6t/" target="_blank" rel="noopener">開啟原文 ↗</a></div>
         <div class="msg u"><span>@chenze2106　網友原問</span>為什麼我的電池健康度會這麼慘 🫪<br><span style="font-size:11.5px;opacity:.75;">（附圖：iPhone 電池健康度 77%。這裡是<b>機車品牌</b>的帳號。）</span></div>
         <div class="msg b"><span>@suzukimotortw　鈴編全文</span>「電池健康度 77% 代表電池已經有明顯老化，續航力跟效能都有可能受到影響，如果平常已經很容易掉電，建議可以考慮更換電池。<br><br>以上認真回答完畢。<br><br>但我還是想問一下…… 你 iPhone 電池健康度 77%，<b>這到底關我 SUZUKI 什麼事啦！</b>(╯°□°）╯︵ ┻━┻」</div>
-        <div class="pstat">原問 1,730 讚　→　<b>回覆 2.5 萬讚</b> · 87 回覆 · 105 轉發 · 903 分享</div>
-        <div class="pb" style="font-size:13px;"><b>後續兩句同樣有互動：</b>翌日鈴編補一句「順便推廣一下 SUI ✌🏻」（278 讚）；原 po 回「哈哈 你真的被我們玩壞了 😂 小編辛苦了 ❤️」（222 讚）；另有網友留「你真的快追上內建 AI 了，我下次皮膚病也來問你」（525 讚）。</div>
+        <div class="pstat">原問 1.7K 讚／191 回覆　→　<b>回覆 25.4K 讚</b> · 87 回覆 · 105 轉發 · 903 分享</div>
+        <div class="pb" style="font-size:13px;"><b>整串都在滾：</b>網友「你真的快追上內建 AI 了，我下次皮膚病也來問你」（525 讚）；原 po 回「哈哈 你真的被我們玩壞了 😂 小編辛苦了 ❤️」（222 讚）；「你是不是很想換電池」（176 讚）；「第一個是有趣，跟風的是玩梗，大家不要一直玩，小心小編梗梗梗到煞不下來」（94 讚）；「既故宮小編之後，被玩壞的小編」。翌日鈴編補一句「順便推廣一下 SUI ✌🏻」（278 讚）。</div>
         <div class="note"><b>結構：先完整配合，再突然抽離。</b>先把不關自己事的問題認真答完，最後一句才吐槽——追蹤數由 1.8 萬升至 4.17 萬。</div>
       </div>
       <div class="post" style="flex:1;">
+        <div class="phead">案例三 · 借句型，不借素材</div>
         <div class="ph">「如履薄冰」薄冰哥 · 烏薩奇二創 · Threads 迷因</div>
         <div class="vidframe" style="align-self:stretch;margin:2px 0 6px;">
           <video src="video/usagi.mp4" poster="video/usagi.jpg" width="100%" controls preload="metadata" playsinline title="我這一生如履薄冰 · 烏薩奇二創段落"></video>
@@ -1116,7 +1141,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">02</span></div>
     <div class="title">品牌聯乘：本地 IP × 食品，<span class="hi">在香港仍是未飽和的空位</span></div>
-    <div class="subtitle">香港食品品牌的大型聯乘至今仍以日韓 IP 為主（7-Eleven × Sanrio、MCP × Esther Bunny、周大福 × Chiikawa）。本地插畫 IP 並非完全未進食品——奇華餅家 × 麥東記「香港心」禮盒、明閣月餅 × 何博欣都做過——但仍屬零星個案，未成風氣。這正是刀疤橙人格化可以切入的地方。</div>
+    <div class="subtitle">本地 IP × 食品已經有人做，而且做得成：9GAG 自家 IP「Potatoz」的 Golden P 尋寶聯乘咗逾 20 個食肆品牌、約 40 間門市；奇華餅家 × 麥東記出過「香港心」禮盒。<b>未有人做的是「本地 IP × 生鮮農產」</b>——貨架上仍然只有日韓 IP（7-Eleven × Sanrio、周大福 × Chiikawa）。這正是刀疤橙可以切入的位置。</div>
   </div>
   <div class="body col">
     <div class="topstrip t3">
@@ -1126,18 +1151,33 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
     <div class="stage">
       <div class="panel" style="flex:1;">
-        <div class="panel-title">五個值得接觸的對象（按契合度排序）</div>
+        <div class="panel-title">四個值得接觸的對象（按契合度排序）</div>
         <table class="tbl" style="font-size:13.5px;">
-          <thead><tr><th style="width:158px;">對象</th><th style="width:112px;">類型</th><th>為何合適 / 已有的聯乘紀錄</th></tr></thead>
+          <thead><tr><th style="width:196px;">對象</th><th style="width:112px;">類型</th><th>為何合適 / 已有的聯乘紀錄</th></tr></thead>
           <tbody>
-            <tr><td><b>oh…little sweet</b></td><td>本地插畫 IP<br><span class="note">插畫家波比</span></td><td><b>契合度最高</b>：角色本身就是食物擬人——小湯圓、咸蛋黃、抹茶圓、柴火人。2026-01-23 至 03-08 與尖沙咀 iSQUARE 做過春日甜蜜樂園。橙加進這組角色毫無違和。</td></tr>
-            <tr><td><b>大大與小妹</b></td><td>本地插畫 IP<br><span class="note">@lenus_ig</span></td><td><b>受眾最大。</b>2016 年起以情侶日常圖文起家，Facebook 約 <b>29 萬</b>讚好；2020 年在旺角開主題店、半年回本；TOYZEROPLUS 出過聯乘公仔，中華書局及點子出版有實體書，另有手遊與貼圖（WhatSticker 累計逾 900 萬人氣）。題材是「兩個人的生活」，與「買一送一、一個自用一個轉贈」的派橙機制天然吻合。</td></tr>
-            <tr><td><b>大麻成</b></td><td>本地插畫 IP</td><td>與朗豪坊、白紙市集連續合作主題市集（2 月每週末，並加開年宵場）。走市集路線，跟 Pop-up Booth 的形式直接對接。</td></tr>
-            <tr><td><b>癲噹 / Plastic Thing / 麥嘜麥兜</b></td><td>本地經典 IP</td><td>認知度高、港味重，適合節慶禮盒；麥兜與「香港本土」的聯想最強，但授權成本與談判周期須先問清楚。</td></tr>
-            <tr><td><b>Potatoz</b></td><td>本地數碼 IP<br><span class="note">9GAG 原創</span></td><td>香港 9GAG 自家 IP，2026 香港國際授權展主打的「情緒經濟」代表之一。走網絡迷因路線，與本建議書的「爆點在語氣」一線同源，適合社交平台聯乘多於實體禮盒。</td></tr>
+            <tr>
+              <td><b>大大與小妹</b><br><span class="note">@lenus_ig</span><br><img src="proposal/ip_daidai.jpg" alt="大大與小妹 角色" style="width:104px;height:104px;object-fit:contain;margin-top:6px;border:1px solid var(--border);"></td>
+              <td>本地插畫 IP</td>
+              <td><b>受眾最大。</b>2016 年起以情侶日常圖文起家，Facebook <b>293,765</b> 個讚好、8,197 人正在談論；2020 年在旺角開主題店、半年回本；TOYZEROPLUS 出過聯乘公仔，中華書局及點子出版有實體書，另有手遊與貼圖。題材是「兩個人的生活」，與「一個自用、一個轉贈」的兩個橙機制天然吻合。</td>
+            </tr>
+            <tr>
+              <td><b>Potatoz</b><br><span class="note">9GAG 原創</span></td>
+              <td>本地數碼 IP</td>
+              <td><b>唯一有食品聯乘往績的本地 IP。</b>2025-12 Golden P 全城尋寶：聯乘逾 20 個食肆品牌、約 40 間門市，買滿 HK$200 可換免費炸薯，另與海洋公園聯乘。走網絡迷因路線，與本建議書「爆點在語氣」同源。</td>
+            </tr>
+            <tr>
+              <td><b>oh…little sweet</b><br><span class="note">插畫家波比</span></td>
+              <td>本地插畫 IP</td>
+              <td><b>題材最貼。</b>角色本身就是食物擬人——小湯圓、咸蛋黃、抹茶圓、柴火人。2026-01-23 至 03-08 與尖沙咀 iSQUARE 做過春日甜蜜樂園；亦有做飾物授權。橙加進這組角色毫無違和。</td>
+            </tr>
+            <tr>
+              <td><b>癲噹 / Plastic Thing / 麥嘜麥兜</b></td>
+              <td>本地經典 IP</td>
+              <td>認知度高、港味重，適合節慶禮盒；麥兜與「香港本土」的聯想最強，但授權成本與談判周期須先問清楚。</td>
+            </tr>
           </tbody>
         </table>
-        <div class="src">以上對象、日期與數字均為 2026-08 實測可查。<b>Lady M 已從名單移除</b>：它是紐約品牌、由香港楊氏夫婦引入，美國母公司 2023 年已申請破產保護（港澳及亞洲業務由不同持牌方經營、分店仍營運），作為「本地品牌」例子並不準確；若只作高端甜品聯乘（血橙千層、橙皮糖）仍可另議。</div>
+        <div class="src">對象、日期與數字均為 2026-08 實測可查；角色圖為對方官方帳號的公開頭像，只作洽談對象識別用途，正式使用前須向對方索取素材與授權。<b>已從名單移除：</b>大麻成（走市集路線，與 Pop-up 重疊但無食品往績）、Lady M（紐約品牌，美國母公司 2023 年申請破產保護，作為「本地」例子不準確）。</div>
       </div>
     </div>
     <div class="topstrip t4">
@@ -1166,9 +1206,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>優先接觸的類型</b>公用事業與交通 ESG 預算穩定、年度採購量大；金融與地產看重禮品的故事性——刀疤橙正好對得上。</div>
       <div class="ts"><b>目標企業（ESG／員工福利）</b>中電 CLP、港燈 HK Electric、煤氣 Towngas、港鐵 MTR、滙豐 HSBC、賽馬會 HKJC、迪士尼、新地 SHKP、太古地產 Swire。<b style="display:inline">他們要的不是產品介紹，是可載入 ESG 報告的第三方憑證。</b></div>
     </div>
-    <div class="stage duo">
+    <div class="stage g4 ovl">
       <div class="figblock"><div class="figlab">展會與協會活動 · 一次接觸大量 HR</div><div class="tile"><img src="fb/WOrange-Exhibition_ev.jpg" alt="展會與協會活動"></div></div>
-      <div class="figblock"><div class="figlab">認證證書 · 企業客最需要的憑證</div><div class="tile"><img src="fb/WOrange-Certificate_ev.jpg" alt="認證證書"></div></div>
+      <div class="figblock"><div class="figlab">雙重認證 · 企業客最需要的憑證</div><div class="tile"><img src="fb/WOrange-Certificate_ev.jpg" alt="認證證書"></div></div>
+      <div class="figblock"><div class="figlab">節慶禮盒 · 企業果籃的現成規格</div><div class="tile"><img src="fb/WOrange-CNY3_ev.jpg" alt="節慶禮盒"></div></div>
+      <div class="figblock"><div class="figlab">院校與機構合作 · 已有先例可引用</div><div class="tile"><img src="fb/WOrange-HKUST_ev.jpg" alt="院校合作"></div></div>
     </div>
   </div>
   <div class="takeaway">B2B 的入口不是企業，是它們的 HR；而 HR 要的是能寫進報告的憑證。</div>
@@ -1237,7 +1279,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="stage" style="flex-direction:column;gap:13px;">
       <div class="panel" style="flex:1;">
         <div class="panel-title">可行性對照</div>
-        <table class="tbl">
+        <table class="tbl" style="font-size:13px;line-height:1.4;">
           <thead><tr><th style="width:112px;">計劃</th><th style="width:300px;">實質門檻</th><th style="width:86px;">成本</th><th style="width:132px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
           <tbody>
             <tr>
@@ -1265,15 +1307,22 @@ h1,h2,h3,p,ul,ol{margin:0;}
         </table>
         <div class="src">資料為 2026-08 查證；各計劃的費用、級別要求與截止日期按年度調整，落實前須向主辦機構確認最新版指引。SEE Mark 級別門檻曾由四級調整為三級。</div>
       </div>
-      <div class="panel tinted" style="flex:0 0 auto;">
-        <div class="panel-title">社會效益從哪裡來（毋須額外成本的四項）</div>
-        <ul class="bullets compact" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px 18px;">
-          <li><b>次級果轉贈：</b>賣相欠佳但品質無損的果實捐予食物援助機構——同時處理庫存與取得效益紀錄，是成本最低的一項。</li>
-          <li><b>長者就業社企：</b>果籃包裝與節慶分裝工序外判，既符合社企精神，亦可直接寫入企業客的 ESG 報告。</li>
-          <li><b>社區派發制度化：</b>深水埗派橙行動已執行，宜定為每年常設項目並記錄受惠人數。</li>
-          <li><b>校園與教育：</b>有機耕作工作坊可申請成為教育服務，接通學校巡迴一線。</li>
-        </ul>
-        
+      <div class="stage" style="flex:0 0 274px;gap:12px;">
+        <div class="figblock">
+          <div class="figlab">次級果轉贈 · 分級線就是分岔點</div>
+          <div class="tile"><img src="fb/WOrange-QC2_ev.jpg" alt="分級線"></div>
+          <div class="note" style="padding:6px 2px 0;">賣相欠佳但品質無損的果實捐予食物援助機構，同時處理庫存與取得效益紀錄。<b>成本最低的一項。</b></div>
+        </div>
+        <div class="figblock">
+          <div class="figlab">長者就業社企 · 包裝與分裝工序</div>
+          <div class="tile"><img src="fb/WOrange-Production_ev.jpg" alt="包裝分裝工序"></div>
+          <div class="note" style="padding:6px 2px 0;">果籃包裝與節慶分裝可外判，既符合社企精神，亦可直接寫入企業客的 ESG 報告。</div>
+        </div>
+        <div class="figblock">
+          <div class="figlab">校園與教育 · 工作坊可申請成為教育服務</div>
+          <div class="tile"><img src="fb/WOrange-School2_ev.jpg" alt="校園互動"></div>
+          <div class="note" style="padding:6px 2px 0;">有機耕作工作坊接通學校巡迴一線；社區派發（深水埗派橙）宜定為常設項目並記錄受惠人數。</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1393,7 +1442,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">VI · 生態旅遊　<span class="sec">01</span></div>
     <div class="title">以花期把農場撐成<span class="hi">全年</span>營運</div>
-    <div class="subtitle">收入來自入場費與園內消費（餐飲、手信、體驗）；已有基礎：三日兩夜農旅套餐、每年逾 1,000 名訪客且以港客為主、香港乘高鐵至郴州不足三小時。參考日本農場的做法——飲品店、雪糕店、足夠座位、打卡點、手信店，目的是延長停留時間。</div>
+    <div class="subtitle">收入來自入場費與園內消費；已有基礎：三日兩夜農旅套餐、每年逾 1,000 名訪客且以港客為主、香港乘高鐵至郴州不足三小時。</div>
   </div>
   <div class="body col">
     <div class="flow">
@@ -1501,7 +1550,26 @@ h1,h2,h3,p,ul,ol{margin:0;}
       try{ window.CHART_REGISTRY[idx+1](); }catch(e){ console.error('chart render error slide', idx+1, e); }
     }
   };
-  window.addEventListener('load', ()=>{ show(idx); });
+  // 頁首章節進度條：把 "III · 內容策略　01" 換成六節全列，當前一節上色
+  const SECTIONS = [['I','現況與定價'],['II','品牌重塑'],['III','內容策略'],
+                    ['IV','渠道與活動'],['V','產品體驗'],['VI','生態旅遊']];
+  document.querySelectorAll('.slide:not(.divider) .kicker').forEach(k=>{
+    const m = k.textContent.trim().match(/^([IVX]+)\s*·/);
+    if(!m) return;
+    const cur = m[1];
+    const secEl = k.querySelector('.sec');
+    const num = secEl ? secEl.textContent.trim() : '';
+    k.classList.add('secnav');
+    k.innerHTML = SECTIONS.map(([r,name]) =>
+      `<span class="s${r===cur?' on':''}">${r}　${name}</span>`).join('')
+      + (num ? `<span class="n">${cur} · ${num}</span>` : '');
+  });
+
+  // 影片預設音量 20%
+  function setVolumes(){ document.querySelectorAll('video').forEach(v=>{ v.volume = 0.2; }); }
+  setVolumes();
+
+  window.addEventListener('load', ()=>{ show(idx); setVolumes(); });
 })();
 </script>
 
