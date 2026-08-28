@@ -108,18 +108,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- Slide header ---------- */
 .slide-head{flex:0 0 auto;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px;}
 .kicker{
-  font-size:13.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  font-size:14.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
   color:var(--pc-light);
 }
 [data-theme="dark"] .kicker{color:var(--c-bear);}
 .title{
-  font-size:33px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
+  font-size:36px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
   color:var(--pc-deep);margin-top:9px;max-width:1500px;
 }
 [data-theme="dark"] .title{color:#ffffff;}
 .title .hi{color:var(--pc-light);}
 [data-theme="dark"] .title .hi{color:var(--c-bear);}
-.subtitle{font-size:17.5px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
+.subtitle{font-size:19px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
 
 /* ---------- Slide footer ---------- */
 .slide-foot{
@@ -140,21 +140,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- Text ---------- */
 .bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
-.bullets li{position:relative;padding-left:20px;font-size:18px;line-height:1.5;color:var(--text-primary);}
+.bullets li{position:relative;padding-left:20px;font-size:19px;line-height:1.5;color:var(--text-primary);}
 .bullets li::before{
   content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--pc-light);
 }
 .bullets.compact{gap:8px;}
 .bullets.spread{flex:1;justify-content:space-evenly;}
-.bullets.compact li{font-size:16px;line-height:1.45;padding-left:18px;}
+.bullets.compact li{font-size:17px;line-height:1.45;padding-left:18px;}
 .bullets.compact li::before{width:6px;height:6px;top:8px;}
 .bullets b{font-weight:700;color:var(--pc-deep);}
 [data-theme="dark"] .bullets b{color:var(--c-bear);}
 .bullets li.warn::before{background:var(--pc-pink);}
 .bullets li.warn{color:var(--pc-pink);font-weight:600;}
 
-.note{font-size:15px;color:var(--text-muted);line-height:1.5;}
-.src{font-size:12.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
+.note{font-size:16px;color:var(--text-muted);line-height:1.5;}
+.src{font-size:13.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
 
 .callout{
   background:var(--tint);border-left:4px solid var(--pc-deep);
@@ -175,12 +175,12 @@ h1,h2,h3,p,ul,ol{margin:0;}
 [data-theme="dark"] .flag.todo b{color:var(--s-warning);}
 
 /* ---------- Tables ---------- */
-.tbl{width:100%;border-collapse:collapse;font-size:15px;}
+.tbl{width:100%;border-collapse:collapse;font-size:16px;}
 .tbl th{
   background:var(--pc-deep);color:#fff;text-align:left;
-  padding:9px 11px;font-size:13.5px;font-weight:600;letter-spacing:.03em;
+  padding:9px 11px;font-size:14.5px;font-weight:600;letter-spacing:.03em;
 }
-.tbl td{padding:8px 11px;border-bottom:1px solid var(--grid);color:var(--text-primary);vertical-align:top;}
+.tbl td{padding:6px 10px;border-bottom:1px solid var(--grid);color:var(--text-primary);vertical-align:top;}
 .tbl tbody tr:nth-child(even){background:var(--tint);}
 .tbl td.num{text-align:right;font-variant-numeric:tabular-nums;}
 .tbl td b{color:var(--pc-deep);}
@@ -190,11 +190,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- Stat cards ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.stat{background:var(--tint);border-left:4px solid var(--pc-light);padding:15px 17px;}
-.stat .lbl{font-size:13.5px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-.stat .val{font-size:33px;font-weight:700;color:var(--pc-deep);margin-top:6px;letter-spacing:-.02em;}
+.stat{background:var(--tint);border-left:4px solid var(--pc-light);padding:10px 15px;}
+.stat .lbl{font-size:14px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+.stat .val{font-size:30px;font-weight:700;color:var(--pc-deep);margin-top:2px;letter-spacing:-.02em;}
 [data-theme="dark"] .stat .val{color:#fff;}
-.stat .sub{font-size:14px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
+.stat .sub{font-size:15px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
 
 /* ---------- Cards ---------- */
 .cards{display:flex;gap:14px;}
@@ -205,7 +205,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .card .tag{font-size:11px;font-weight:700;color:#fff;background:var(--pc-deep);padding:2px 7px;width:fit-content;letter-spacing:.04em;}
 .card .h{font-size:17px;font-weight:700;color:var(--pc-deep);}
 [data-theme="dark"] .card .h{color:var(--c-bear);}
-.card .b{font-size:15px;color:var(--text-secondary);line-height:1.5;}
+.card .b{font-size:16px;color:var(--text-secondary);line-height:1.5;}
 .card.alt{border-top-color:var(--pc-teal);}
 .card.alt .h{color:var(--pc-teal);}
 .card.alt .tag{background:var(--pc-teal);}
@@ -217,7 +217,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 }
 .panel.tinted{background:var(--tint);border-color:transparent;}
 .panel-title{
-  font-size:13.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
+  font-size:14.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
   padding-bottom:7px;border-bottom:1px solid var(--grid);
 }
 [data-theme="dark"] .panel-title{color:var(--c-bear);}
@@ -241,9 +241,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .flow{display:flex;align-items:stretch;gap:9px;}
 .step{
   flex:1;background:var(--tint);border-top:3px solid var(--pc-deep);
-  padding:12px 13px;font-size:14.5px;line-height:1.4;text-align:center;color:var(--text-primary);
+  padding:12px 13px;font-size:15.5px;line-height:1.4;text-align:center;color:var(--text-primary);
 }
-.step b{display:block;font-size:16px;color:var(--pc-deep);margin-bottom:4px;}
+.step b{display:block;font-size:17px;color:var(--pc-deep);margin-bottom:4px;}
 [data-theme="dark"] .step b{color:var(--c-bear);}
 .step .sm{font-size:11.5px;color:var(--text-muted);}
 .arrow{display:flex;align-items:center;color:var(--baseline);font-size:17px;}
@@ -259,7 +259,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .tile.fit img{object-fit:contain;background:var(--card-bg);}
 .cap{
   position:absolute;left:0;right:0;bottom:0;padding:6px 10px;
-  font-size:12.5px;font-weight:600;color:#fff;
+  font-size:13.5px;font-weight:600;color:#fff;
   background:linear-gradient(transparent,rgba(0,20,50,.78));
 }
 .tile.fit .cap{background:rgba(0,51,141,.88);}
@@ -299,7 +299,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- 頁底一句總結 ---------- */
 .takeaway{
   flex:0 0 auto;border-top:2px solid var(--pc-deep);padding-top:10px;margin-top:2px;
-  font-size:17px;font-weight:700;color:var(--pc-deep);line-height:1.45;
+  font-size:18.5px;font-weight:700;color:var(--pc-deep);line-height:1.45;
 }
 [data-theme="dark"] .takeaway{color:var(--c-bear);border-top-color:var(--c-bear);}
 
@@ -307,18 +307,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .evgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;min-height:0;}
 .ev{position:relative;overflow:hidden;background:var(--tint);border:1px solid var(--border);display:flex;flex-direction:column-reverse;}
 .ev img{width:100%;flex:1;min-height:0;object-fit:cover;display:block;}
-.ev .lb{padding:8px 10px;font-size:14.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
+.ev .lb{padding:8px 10px;font-size:15.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
 
 
 
 /* ---------- 貼文引用卡 ---------- */
 .post{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--pc-deep);padding:12px 14px;display:flex;flex-direction:column;gap:7px;}
 .post .ph{font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.02em;}
-.post .pb{font-size:17px;line-height:1.55;color:var(--text-primary);}
+.post .pb{font-size:18px;line-height:1.55;color:var(--text-primary);}
 .post .pb.big{font-size:30px;font-weight:700;color:var(--pc-deep);}
-.post .pstat{font-size:13.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
+.post .pstat{font-size:14.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
 .post .plink{font-size:11px;color:var(--text-muted);word-break:break-all;}
-.msg{padding:8px 11px;font-size:15.5px;line-height:1.5;}
+.msg{padding:8px 11px;font-size:16.5px;line-height:1.5;}
 .msg.u{background:var(--grid);color:var(--text-primary);}
 .msg.b{background:var(--tint-2);border-left:3px solid var(--pc-light);color:var(--text-primary);}
 .msg span{display:block;font-size:11.5px;color:var(--text-muted);font-weight:600;margin-bottom:3px;}
@@ -331,7 +331,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .divider h2{font-size:46px;font-weight:700;line-height:1.2;margin-top:16px;color:#fff;}
 .divider .desc{font-size:18px;line-height:1.65;color:rgba(255,255,255,.86);margin-top:18px;max-width:1000px;}
 .divider .items{display:flex;margin-top:44px;border-top:1px solid rgba(255,255,255,.28);max-width:1300px;}
-.divider .items div{flex:1;padding:16px 20px 0 0;font-size:15.5px;color:rgba(255,255,255,.78);line-height:1.5;}
+.divider .items div{flex:1;padding:16px 20px 0 0;font-size:16.5px;color:rgba(255,255,255,.78);line-height:1.5;}
 .divider .items div b{display:block;color:#fff;font-weight:600;margin-bottom:3px;}
 .divider .slide-foot{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.6);}
 .divider .slide-foot .pg{color:#fff;}
@@ -349,7 +349,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .agenda .item .d{margin-top:auto;}
 .agenda .item .n{font-size:13px;font-weight:700;color:var(--pc-light);letter-spacing:.12em;}
 .agenda .item .t{font-size:19px;font-weight:700;color:var(--pc-deep);line-height:1.3;}
-.agenda .item .d{font-size:15px;color:var(--text-secondary);line-height:1.55;}
+.agenda .item .d{font-size:16px;color:var(--text-secondary);line-height:1.55;}
 [data-theme="dark"] .agenda .item .t{color:#fff;}
 
 @media print{
@@ -373,9 +373,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* 參考影片嵌入（Facebook video plugin iframe） */
 .vidframe{align-self:center;line-height:0;background:#0f1822;border:1px solid var(--border);}
 .vidframe iframe,.vidframe video{display:block;border:0;background:#0f1822;}
-.vidname{font-size:14.5px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
+.vidname{font-size:15.5px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
 .vidstat{font-size:12.5px;color:var(--text-muted);margin-top:2px;}
-.vidnote{font-size:13.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
+.vidnote{font-size:14.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
 [data-theme="dark"] .vidname{color:var(--c-bear);}
 .vidlink{color:var(--pc-medium);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap;}
 [data-theme="dark"] .vidlink{color:var(--c-bear);}
@@ -388,8 +388,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .topstrip.t2{grid-template-columns:repeat(2,1fr);}
 .topstrip.t3{grid-template-columns:repeat(3,1fr);}
 .topstrip.t4{grid-template-columns:repeat(4,1fr);}
-.topstrip .ts{font-size:14px;line-height:1.55;color:var(--text-secondary);}
-.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:3px;font-size:13.6px;}
+.topstrip .ts{font-size:15px;line-height:1.55;color:var(--text-secondary);}
+.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:3px;font-size:14.6px;}
 [data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
 .stage{flex:1;min-height:0;display:flex;gap:12px;}
 .stage.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
@@ -400,7 +400,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* 標籤置於圖片上方（先讀標題再看圖） */
 .figblock{display:flex;flex-direction:column;flex:1;min-height:0;gap:0;}
-.figlab{flex:0 0 auto;padding:7px 12px;font-size:14.5px;font-weight:700;color:#fff;
+.figlab{flex:0 0 auto;padding:7px 12px;font-size:15.5px;font-weight:700;color:#fff;
   background:var(--pc-deep);line-height:1.35;}
 .figblock .tile{flex:1;min-height:0;}
 .figblock.ar{flex:1;justify-content:center;}
@@ -412,7 +412,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .cvlist{display:flex;flex-direction:column;gap:11px;height:100%;}
 .cvlist .cvitem{flex:1;display:flex;flex-direction:column;justify-content:center;}
 .cvitem{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--baseline);
-  padding:11px 15px;font-size:15px;}
+  padding:11px 15px;font-size:16px;}
 .cvitem .u{font-size:11.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600;}
 .cvitem .n{font-weight:700;color:var(--text-primary);margin-top:2px;}
 .cvarrow{position:relative;height:100%;}
@@ -421,7 +421,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .cvtarget .t{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.75;font-weight:600;}
 .cvtarget .n{font-size:29px;font-weight:700;margin:7px 0 14px;letter-spacing:-.01em;}
 .cvtarget ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}
-.cvtarget li{font-size:14.5px;padding-left:15px;position:relative;}
+.cvtarget li{font-size:15.5px;padding-left:15px;position:relative;}
 .cvtarget li:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--pc-light);}
 
 /* 觀察 → 動作 逐條對位 */
@@ -465,6 +465,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .rail.c6{grid-template-columns:repeat(6,1fr);}
 .rail.c6.sq{align-items:start;}
 .rail.c6.sq .tile{aspect-ratio:1.28;}
+.rail.c3x2{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;}
+.rail.c3x2 .tile img{object-fit:contain;background:var(--card-bg);}
 .rail.c6.sq .tile img{object-fit:contain;background:var(--card-bg);}
 .evgrid.fitall .ev img{object-fit:contain;background:var(--tint);}
 
@@ -508,7 +510,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- 頁首章節進度條：六節全列，當前深色、其餘灰 ---------- */
 .kicker.secnav{display:flex;align-items:baseline;text-transform:none;letter-spacing:.01em;
-  font-size:13px;font-weight:600;color:var(--text-muted);
+  font-size:14px;font-weight:600;color:var(--text-muted);
   max-width:calc(100% - 200px);}
 .kicker.secnav .s{color:var(--baseline);padding:0 13px;border-right:1px solid var(--grid);white-space:nowrap;}
 .kicker.secnav .s:first-child{padding-left:0;}
@@ -526,28 +528,43 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .post .phead{background:var(--pc-deep);color:#fff;font-size:14.5px;font-weight:700;line-height:1.35;
   padding:7px 12px;margin:-12px -14px 4px;}
 
-/* ---------- 收結頁（Apple 發佈會式） ---------- */
-.slide.keynote{background:#000;color:#fff;padding:0;justify-content:center;}
-.slide.keynote .wordmark{color:#fff;}
-.slide.keynote .wordmark span{color:rgba(255,255,255,.55);}
-.kn{display:flex;flex-direction:column;justify-content:center;height:100%;padding:64px 96px 96px;}
-.kn .eyebrow{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-  color:#f5a623;margin-bottom:26px;}
-.kn h2{font-size:74px;line-height:1.1;font-weight:700;letter-spacing:-.028em;color:#fff;}
-.kn h2 em{font-style:normal;color:#f5a623;}
-.kn .lede{font-size:22px;line-height:1.6;color:rgba(255,255,255,.72);margin-top:26px;max-width:1180px;}
-.knrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;
-  border-top:1px solid rgba(255,255,255,.18);}
-.knrow > div{padding:26px 30px 0 30px;border-right:1px solid rgba(255,255,255,.12);}
+
+/* ---------- 分鏡頁：圖 + 旁邊排好版的對白 ---------- */
+.sbwrap{flex:1;min-height:0;display:grid;grid-template-columns:auto 430px;gap:34px;align-items:center;justify-content:center;}
+.sbwrap .sbstage{min-height:0;height:100%;}
+.sbscript{align-self:center;display:flex;flex-direction:column;gap:20px;
+  border-left:3px solid var(--pc-deep);padding-left:22px;}
+.sbscript .sh{font-size:18px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
+.sbscript .sb{font-size:16px;line-height:1.75;color:var(--text-secondary);margin-top:6px;}
+[data-theme="dark"] .sbscript .sh{color:var(--c-bear);}
+
+/* ---------- 收結頁（Apple 發佈會式，淺底） ---------- */
+.slide.keynote{background:#fff;color:var(--text-primary);padding:0;justify-content:center;}
+.kn{display:flex;flex-direction:column;justify-content:center;height:100%;padding:56px 64px 92px;}
+.kn .eyebrow{font-size:15px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--s-serious);margin-bottom:16px;}
+.kn h2{font-size:76px;line-height:1.12;font-weight:700;letter-spacing:-.03em;color:var(--pc-deep);}
+.kn h2 em{font-style:normal;color:var(--s-serious);}
+.kn .lede{font-size:23px;line-height:1.6;color:var(--text-secondary);margin-top:22px;max-width:1360px;}
+.knrow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:42px;
+  border-top:2px solid var(--pc-deep);}
+.knrow > div{padding:24px 28px 22px 28px;border-right:1px solid var(--grid);}
 .knrow > div:first-child{padding-left:0;}
 .knrow > div:last-child{border-right:none;}
-.knrow .n{font-size:40px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1;}
-.knrow .n small{font-size:17px;font-weight:600;color:rgba(255,255,255,.5);margin-left:5px;}
-.knrow .k{font-size:13px;font-weight:600;letter-spacing:.05em;color:#f5a623;margin-top:12px;}
-.knrow .d{font-size:14px;line-height:1.55;color:rgba(255,255,255,.62);margin-top:7px;}
-.kn .sign{margin-top:52px;font-size:18px;color:rgba(255,255,255,.5);letter-spacing:.06em;}
-.slide.keynote .slide-foot{border-top-color:rgba(255,255,255,.16);color:rgba(255,255,255,.45);}
-.slide.keynote .slide-foot .pg{color:#fff;}
+.knrow .n{font-size:46px;font-weight:700;color:var(--pc-deep);letter-spacing:-.025em;line-height:1;}
+.knrow .n small{font-size:17px;font-weight:600;color:var(--text-muted);margin-left:5px;}
+.knrow .k{font-size:15px;font-weight:700;letter-spacing:.03em;color:var(--s-serious);margin-top:8px;}
+.knrow .d{font-size:15.5px;line-height:1.55;color:var(--text-secondary);margin-top:5px;}
+.knnext{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;}
+.knnext > div{background:var(--tint);border-left:4px solid var(--pc-deep);padding:18px 22px;}
+.knnext .w{font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--pc-light);}
+.knnext .h{font-size:22px;font-weight:700;color:var(--pc-deep);margin-top:4px;line-height:1.3;}
+.knnext .b{font-size:15.5px;line-height:1.55;color:var(--text-secondary);margin-top:6px;}
+.kn .sign{margin-top:34px;font-size:24px;font-weight:700;color:var(--pc-deep);letter-spacing:.02em;}
+[data-theme="dark"] .slide.keynote{background:var(--surface-1);}
+[data-theme="dark"] .kn h2,[data-theme="dark"] .knrow .n,[data-theme="dark"] .knnext .h,
+[data-theme="dark"] .kn .sign{color:#fff;}
+
 </style>
 </head>
 <body>
@@ -660,7 +677,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="title">定價策略：<span class="hi">金裝和橙 HKD8–15</span>／個，<span class="hi">和橙 HKD4–7</span>／個</div>
   </div>
   <div class="body col">
-    <div class="stats" style="grid-template-columns:repeat(4,1fr);flex:0 0 auto;">
+    <div class="stats" style="grid-template-columns:repeat(4,1fr);flex:0 0 auto;gap:12px;">
       <div class="stat"><div class="lbl">金裝和橙</div><div class="val">8–15</div><div class="sub">HKD／個 · 送禮與旗艦</div></div>
       <div class="stat"><div class="lbl">和橙</div><div class="val">4–7</div><div class="sub">HKD／個 · 日常自用</div></div>
       <div class="stat" style="border-left-color:var(--pc-teal);"><div class="lbl">大眾散裝實測</div><div class="val">3–5</div><div class="sub">HKD／個 · 新奇士已佔據</div></div>
@@ -671,7 +688,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>兩線並行靠三道隔離</b>包裝：金裝木盒／紙盒配透明蓋，日常線紙箱小包裝。貨架：金裝只進官網與中高檔超市，日常線只走優惠平台與果欄。折扣：金裝不參與大幅折扣。</div>
       <div class="ts"><b>要守住的一條線</b>4–7 與新奇士價帶重疊，屬直接競爭區，毛利須按<b style="display:inline">實際到岸成本</b>核算後才可落實。</div>
     </div>
-    <div class="rail c6 sq" style="flex:1;">
+    <div class="rail c3x2" style="flex:1;">
       <div class="tile"><img src="proposal/s02_3_sq.jpg" alt=""><div class="cap">超市：$20／6 個、$15／3 個</div></div>
       <div class="tile"><img src="proposal/s02_5_sq.jpg" alt=""><div class="cap">果欄：$28／4 個、$20／5 個</div></div>
       <div class="tile"><img src="proposal/s02_2_sq.jpg" alt=""><div class="cap">XL 鮮橙：單價 9.0、3 件平均 7.3</div></div>
@@ -679,8 +696,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="tile"><img src="proposal/s02_4_sq.jpg" alt=""><div class="cap">澳洲橙單顆貼標：$18.0</div></div>
       <div class="tile"><img src="fb/WOrange-Price.jpg" alt=""><div class="cap">和橙官網現行價</div></div>
     </div>
-    <div class="src">競品價格為門市實拍標價（組內市調）。對外簡報前須補上拍攝日期與門市名稱。</div>
-  </div>
+    </div>
   <div class="takeaway">兩條線的分別不在品質，在包裝與貨架；價帶一旦混用，溢價即失守。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">5</span></div>
 </section>
@@ -799,10 +815,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">04</span></div>
     <div class="title">刀疤橙 · 故事一（上）：<span class="hi">被嘲笑</span>，然後被解釋</div>
-    <div class="subtitle">① 果園裡最醜的一顆，在市場上一次又一次被留下。　② 主人把他帶回家，解釋那些疤是風吹、樹枝、蟲咬之後自行癒合的結果——光滑的那些，是被農藥保護出來的。</div>
+    <div class="subtitle">現代版分鏡，共 32 格。前半段負責建立同理，後半段的翻轉才有力。</div>
   </div>
   <div class="body col">
-    <div class="sbstage"><img src="proposal/story1_pg1.jpg" alt="刀疤橙 故事一 上半段分鏡"></div>
+    <div class="sbwrap">
+  <div class="sbstage"><img src="proposal/story1_pg1.jpg" alt="刀疤橙 故事一 上半段分鏡"></div>
+      <div class="sbscript">
+        <div><div class="sh">① 被嘲笑，被留下</div><div class="sb">「你看他，滿臉都是疤，好醜哦！」兄弟們個個皮膚光滑，只有我滿身風吹雨打的痕跡。送到市場之後，一次又一次，大家都選外表光鮮的橙——我總是被留下的那一個。</div></div>
+        <div><div class="sh">② 主人解釋疤痕的來歷</div><div class="sb">「怎麼又只剩你？沒關係，我帶你回家。」「傻孩子，這些疤是你最光榮的勳章。我們的果園從不灑除草劑、不用農藥；風來了樹枝劃傷你、蟲子輕咬一口，你靠樹的養分和陽光自己癒合。那些光滑的橙，很多是被農藥保護才沒有傷痕。每一道疤，都是你自然強韌活下來的證明。」</div></div>
+      </div>
+    </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">10</span></div>
 </section>
@@ -812,10 +834,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">05</span></div>
     <div class="title">刀疤橙 · 故事一（下）：<span class="hi">沒疤的，不叫天然</span></div>
-    <div class="subtitle">③ 完美的橙採下後打蠟，賣相蓋過生長過程；一位母親反而因為花紋而選了他。　④ 孩子試食話更甜——結語「天然敢留疤，健康才好吃」，一句話同時解釋了賣相、價格與不打蠟。</div>
+    <div class="subtitle">結語一句話同時解釋了賣相、價格與不打蠟——適合剪成 15–30 秒 Reels。</div>
   </div>
   <div class="body col">
-    <div class="sbstage"><img src="proposal/story1_pg2.jpg" alt="刀疤橙 故事一 下半段分鏡"></div>
+    <div class="sbwrap">
+  <div class="sbstage"><img src="proposal/story1_pg2.jpg" alt="刀疤橙 故事一 下半段分鏡"></div>
+      <div class="sbscript">
+        <div><div class="sh">③ 光滑的橙要打蠟</div><div class="sb">完美的橙採下之後，還要打上一層厚厚的蠟——看起來漂亮，卻蓋住了生長過程中用過農藥的事實。我雖然有疤，但從裡到外都是真實的。原來，我的疤是「天然認證」。</div></div>
+        <div><div class="sh">④ 第一次有人因為疤而選我</div><div class="sb">「媽媽，這個橙子為什麼有花紋？」「這代表它沒有噴農藥，是健康長大的橙子。」回到家，孩子一口咬下：「這個橙好甜，比以前的都好吃！」我的疤痕，終於被讀懂了——天然敢留疤，健康才好吃。</div></div>
+      </div>
+    </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">11</span></div>
 </section>
@@ -825,10 +853,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">06</span></div>
     <div class="title">刀疤橙 · 故事二《江湖錄》（上）：<span class="hi">傳聞、拜師與練功</span></div>
-    <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為。① 江湖傳聞　② 初遇刀疤橙　③ 刀疤的秘密　④ 吃橙練功。適合長版品牌片或連載式短片。</div>
+    <div class="subtitle">同一個內核換一套外衣：武俠版把「不用農藥」講成一種修為，適合長版品牌片或連載式短片。</div>
   </div>
   <div class="body col">
-    <div class="sbstage"><img src="proposal/story2_pg1.jpg" alt="江湖錄 分鏡 一至四"></div>
+    <div class="sbwrap">
+  <div class="sbstage"><img src="proposal/story2_pg1.jpg" alt="江湖錄 分鏡 一至四"></div>
+      <div class="sbscript">
+        <div><div class="sh">① 江湖傳聞　② 初遇刀疤橙</div><div class="sb">客棧夜話，傳說深山有一顆滿身刀疤的奇果；老俠現身，少年動了念頭。少年晨跑入林，在荒野發現果樹，遇上世外高人，得贈一橙。</div></div>
+        <div><div class="sh">③ 刀疤的秘密　④ 吃橙練功</div><div class="sb">自然之林、風雨傷痕——高人自己手臂上也有疤，那是強者的勳章，不是瑕疵。少年開始吃橙練功：瀑布紮馬、山巔迎風、烈日負重。</div></div>
+      </div>
+    </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">12</span></div>
 </section>
@@ -838,10 +872,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">07</span></div>
     <div class="title">刀疤橙 · 故事二《江湖錄》（中）：<span class="hi">歷練、揚名與奧義</span></div>
-    <div class="subtitle">⑤ 風雨歷練　⑥ 下山揚名　⑦ 刀疤橙的奧義　⑧ 大俠遠眺。武俠框架的作用，是把「不用農藥」講成一種修為，而不是一項規格。</div>
+    <div class="subtitle">武俠框架的作用，是把「不用農藥」講成一種修為，而不是一項規格。</div>
   </div>
   <div class="body col">
-    <div class="sbstage"><img src="proposal/story2_pg2.jpg" alt="江湖錄 分鏡 五至八"></div>
+    <div class="sbwrap">
+  <div class="sbstage"><img src="proposal/story2_pg2.jpg" alt="江湖錄 分鏡 五至八"></div>
+      <div class="sbscript">
+        <div><div class="sh">⑤ 風雨歷練　⑥ 下山揚名</div><div class="sb">雷雨行拳、力斷木樁，高人點頭，少年下山行俠。市集遇上惡霸，真相顯露，眾人驚嘆——他不動手，只以贈橙示強。</div></div>
+        <div><div class="sh">⑦ 刀疤橙的奧義　⑧ 大俠遠眺</div><div class="sb">柑林之誓、天然純淨：不靠農藥長成，才是真功夫。刀疤一派就此成形，大俠遠眺山林。</div></div>
+      </div>
+    </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">13</span></div>
 </section>
@@ -851,11 +891,16 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">II · 品牌重塑　<span class="sec">08</span></div>
     <div class="title">刀疤橙 · 故事二《江湖錄》（下）：<span class="hi">以疤為傲</span>（大結局）</div>
-    <div class="subtitle">⑨ 手臂對比、門徒齊心、刀疤之誓、天然真章——收在同一句金句上，與現代版共用結語。</div>
+    <div class="subtitle">全套九段分鏡完成，與現代版收在同一句結語上。</div>
   </div>
   <div class="body col">
-    <div class="sbstage"><img src="proposal/story2_pg3.jpg" alt="江湖錄 分鏡 大結局"></div>
-    <div class="src"><b>用途：</b>現代版拍 15–30 秒 Reels，武俠版拍長片或連載，兩者不必二選一。　<b>來源：</b>分鏡為 AI 生成原圖，已按九段重新編排，去掉原稿中重複出現的段落與 pptx 疊上的標題層。</div>
+    <div class="sbwrap">
+  <div class="sbstage"><img src="proposal/story2_pg3.jpg" alt="江湖錄 分鏡 大結局"></div>
+      <div class="sbscript">
+        <div><div class="sh">⑨ 以疤為傲（大結局）</div><div class="sb">手臂上的疤與果皮上的疤兩相對照；門徒齊心，橫額寫上「刀疤橙——沒疤的，不叫天然」。與現代版收在同一句：天然敢留疤，健康才好吃。</div></div>
+      </div>
+    </div>
+    <div class="src"><b>用途：</b>現代版拍 15–30 秒 Reels，武俠版拍長片或連載，兩者不必二選一。　<b>來源：</b>分鏡為 AI 生成原圖，已按九段重新編排、去掉重複段落與 pptx 疊上的標題層。<b style="display:inline">畫面內的中文是模型生成的，字形有誤、部分是亂碼</b>——右欄文字才是正稿；出片前需用同一工具重出一次分鏡，或改為後期加字。</div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">14</span></div>
 </section>
@@ -927,7 +972,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">01 · 暗調水果 · 壓暗與倒影</div>
-        <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="338" height="600" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
+        <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="320" height="548" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
         <div>
           <div class="vidname">甜胚子 · 20 秒拍出荔枝高級感</div>
           <div class="vidstat">13 萬觀看 · 1,568 心情　<a class="vidlink" href="https://www.facebook.com/reel/1571333827913056" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -938,7 +983,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">02 · 佈光設定 · 主燈＋輪廓光</div>
-        <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="338" height="600" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
+        <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="320" height="548" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · 一組可照抄的佈光</div>
           <div class="vidstat">134 萬觀看 · 5.1 萬心情　<a class="vidlink" href="https://www.facebook.com/reel/1022251727088426" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -949,7 +994,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">03 · 入門器材 · 一套可照抄的組合</div>
-        <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="338" height="600" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
+        <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="320" height="548" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · TARION 套裝示範</div>
           <div class="vidstat">2 萬觀看 · 287 心情　<a class="vidlink" href="https://www.facebook.com/reel/1544045607760175" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -1106,18 +1151,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="stage">
       <div class="panel" style="flex:1;">
         <div class="panel-title">四個值得接觸的對象（按契合度排序）</div>
-        <table class="tbl" style="font-size:13.5px;">
+        <table class="tbl" style="font-size:14px;line-height:1.38;">
           <thead><tr><th style="width:196px;">對象</th><th style="width:112px;">類型</th><th>為何合適 / 已有的聯乘紀錄</th></tr></thead>
           <tbody>
             <tr>
-              <td><b>大大與小妹</b><br><span class="note">@lenus_ig</span><br><img src="proposal/ip_daidai.jpg" alt="大大與小妹 角色" style="width:104px;height:104px;object-fit:contain;margin-top:6px;border:1px solid var(--border);"></td>
+              <td><b>大大與小妹</b><br><span class="note">@lenus_ig</span><br><img src="proposal/ip_daidai.jpg" alt="大大與小妹 角色" style="width:86px;height:86px;object-fit:contain;margin-top:5px;border:1px solid var(--border);"></td>
               <td>本地插畫 IP</td>
-              <td><b>受眾最大。</b>2016 年起以情侶日常圖文起家，Facebook <b>293,765</b> 個讚好、8,197 人正在談論；2020 年在旺角開主題店、半年回本；TOYZEROPLUS 出過聯乘公仔，中華書局及點子出版有實體書，另有手遊與貼圖。題材是「兩個人的生活」，與「一個自用、一個轉贈」的兩個橙機制天然吻合。</td>
+              <td><b>受眾最大。</b>2016 年起以情侶日常圖文起家，Facebook <b>293,765</b> 個讚好；2020 年旺角開主題店、半年回本；TOYZEROPLUS 出過聯乘公仔，中華書局及點子出版有實體書。題材是「兩個人的生活」，與「一個自用、一個轉贈」的兩個橙機制天然吻合。</td>
             </tr>
             <tr>
               <td><b>Potatoz</b><br><span class="note">9GAG 原創</span></td>
               <td>本地數碼 IP</td>
-              <td><b>唯一有食品聯乘往績的本地 IP。</b>2025-12 Golden P 全城尋寶：聯乘逾 20 個食肆品牌、約 40 間門市，買滿 HK$200 可換免費炸薯，另與海洋公園聯乘。走網絡迷因路線，與本建議書「爆點在語氣」同源。</td>
+              <td><b>唯一有食品聯乘往績的本地 IP。</b>2025-12 Golden P 全城尋寶：聯乘逾 20 個食肆品牌、約 40 間門市，買滿 HK$200 換免費炸薯，另與海洋公園聯乘。</td>
             </tr>
             <tr>
               <td><b>oh…little sweet</b><br><span class="note">插畫家波比</span></td>
@@ -1131,7 +1176,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
             </tr>
           </tbody>
         </table>
-        <div class="src">對象、日期與數字均為 2026-08 實測可查；角色圖為對方官方帳號的公開頭像，只作洽談對象識別用途，正式使用前須向對方索取素材與授權。<b>已從名單移除：</b>大麻成（走市集路線，與 Pop-up 重疊但無食品往績）、Lady M（紐約品牌，美國母公司 2023 年申請破產保護，作為「本地」例子不準確）。</div>
+        <div class="src">對象與數字為 2026-08 實測可查；角色圖取自對方官方帳號公開頭像，只作識別用途，正式使用須先取得授權。已移除：大麻成、Lady M（後者為紐約品牌，母公司 2023 年破產保護）。</div>
       </div>
     </div>
     <div class="topstrip t4">
@@ -1233,7 +1278,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="stage" style="flex-direction:column;gap:13px;">
       <div class="panel" style="flex:1;">
         <div class="panel-title">可行性對照</div>
-        <table class="tbl" style="font-size:13px;line-height:1.4;">
+        <table class="tbl" style="font-size:13.5px;line-height:1.35;">
           <thead><tr><th style="width:112px;">計劃</th><th style="width:300px;">實質門檻</th><th style="width:86px;">成本</th><th style="width:132px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
           <tbody>
             <tr>
@@ -1261,7 +1306,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
         </table>
         <div class="src">資料為 2026-08 查證；各計劃的費用、級別要求與截止日期按年度調整，落實前須向主辦機構確認最新版指引。SEE Mark 級別門檻曾由四級調整為三級。</div>
       </div>
-      <div class="stage" style="flex:0 0 274px;gap:12px;">
+      <div class="stage" style="flex:0 0 258px;gap:12px;">
         <div class="figblock">
           <div class="figlab">次級果轉贈 · 分級線就是分岔點</div>
           <div class="tile"><img src="fb/WOrange-QC2_ev.jpg" alt="分級線"></div>
@@ -1418,7 +1463,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
 </section>
 
-<!-- 32 · 收結 -->
+<!-- 33 · 收結 -->
 <section class="slide keynote" data-slide="33" id="s33">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="kn">
@@ -1429,7 +1474,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div>
         <div class="n">232</div>
         <div class="k">Threads 追蹤</div>
-        <div class="d">四個月只發 5 帖、每帖 0–1 讚。而台灣近月的品牌爆文，幾乎全部出自 Threads。</div>
+        <div class="d">四個月只發 5 帖、每帖 0–1 讚。台灣近月的品牌爆文幾乎全部出自 Threads。</div>
       </div>
       <div>
         <div class="n">163<small>→ 95.5K</small></div>
@@ -1444,7 +1489,24 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div>
         <div class="n">$600<small>一次性</small></div>
         <div class="k">商界展關懷申請費</div>
-        <div class="d">換一個企業採購認得、可載入 ESG 報告的第三方憑證。唯一要解決的是提名人。</div>
+        <div class="d">換一個企業採購認得、可載入 ESG 報告的第三方憑證。要解決的只是提名人。</div>
+      </div>
+    </div>
+    <div class="knnext">
+      <div>
+        <div class="w">第一步 · 零成本，本週可做</div>
+        <div class="h">先改語氣，不改預算</div>
+        <div class="b">Threads 每日一帖、每則留言必回、去別人的留言區。三個月把 232 拉到四位數——這一步不用拍片，也不用錢。</div>
+      </div>
+      <div>
+        <div class="w">第二步 · 一季內</div>
+        <div class="h">把刀疤橙拍出來</div>
+        <div class="b">先拍故事一的 15–30 秒 Reels：一套佈光、一個角色、一句結語。武俠版《江湖錄》留作長片或連載，不必二選一。</div>
+      </div>
+      <div>
+        <div class="w">第三步 · 一年內</div>
+        <div class="h">把認知接回訂單</div>
+        <div class="b">B2C 三層鋪貨與價格保護、B2B 經協會接觸 HR、每場活動記錄追蹤數與掃碼數。沒有歸因，就只剩曝光。</div>
       </div>
     </div>
     <div class="sign">天然敢留疤，健康才好吃。</div>
