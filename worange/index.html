@@ -1236,7 +1236,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="body col">
     <div class="figblock" style="flex:1;">
       <div class="figlab">武俠版動畫 · 第一條試片<span class="fs">白髮果農把刀疤橙交到少年手上，開場一句就立好世界觀</span></div>
-      <div class="vidframe" style="margin-top:10px;"><video src="video/wuxia.mp4" poster="video/wuxia.jpg" width="754" height="424" muted controls preload="metadata" playsinline title="江湖錄 · 武俠版動態試片"></video></div>
+      <div class="vidframe" style="margin-top:10px;"><video src="video/wuxia.mp4" poster="video/wuxia.jpg" width="754" height="424" controls preload="metadata" playsinline title="江湖錄 · 武俠版動態試片"></video></div>
     </div>
     <div class="stage" style="flex:0 0 196px;gap:10px;">
       <div class="figblock"><div class="figlab">①② 傳聞與初遇</div><div class="tile fit"><img src="proposal/s2_1.jpg" alt="江湖錄一二"></div></div>
@@ -1445,8 +1445,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     });
   })();
 
-  // 影片預設音量 45%。武俠版試片在標記上帶 muted，設定音量不會解除靜音，
-  // 所以觀眾按下解除靜音之後，聽到的仍然是同一個 45%。
+  // 影片預設音量 45%
   function setVolumes(){ document.querySelectorAll('video').forEach(v=>{ v.volume = 0.45; }); }
   setVolumes();
 
