@@ -135,6 +135,10 @@ separate spreadsheet tool, ran a formula-evaluation library against it
 independent of the Python, and checked all nine cells above against the
 pipeline's own output. They matched to the rounding digit.
 
+The full report this run produced — DCF explorer, six-quarter forecast
+tabs, event replay, complete source list — is live: [the rendered SK Hynix
+report](/downloads/equity-research-skill/sk-hynix-report.html).
+
 ## Packaging it as a skill
 
 The pipeline was never the hard part. Deterministic finance math is a
@@ -302,6 +306,10 @@ value，回傳每股 ₩1,940,801。換成 bear 或 bull 的輸入，同一個 f
 重新做了一次同一個 DCF，再用一個 formula-evaluation library 執行，跟
 Python 完全分開運算，把上面九格逐一對照 pipeline 自己的輸出，全部吻合到
 小數點最後一位。
+
+這次 run 產出的完整報告已經公開，包含 DCF explorer、六季預測分頁、event
+replay 和完整來源列表，可以直接打開看效果：[SK hynix
+報告](/downloads/equity-research-skill/sk-hynix-report.html)。
 
 ## 包裝成一個 skill
 
