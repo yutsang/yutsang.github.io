@@ -112,18 +112,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- Slide header ---------- */
 .slide-head{flex:0 0 auto;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px;}
 .kicker{
-  font-size:15.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  font-size:16px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
   color:var(--pc-light);
 }
 [data-theme="dark"] .kicker{color:var(--c-bear);}
 .title{
-  font-size:39px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
+  font-size:42px;line-height:1.28;font-weight:700;letter-spacing:-.005em;
   color:var(--pc-deep);margin-top:9px;max-width:1500px;
 }
 [data-theme="dark"] .title{color:#ffffff;}
 .title .hi{color:var(--pc-light);}
 [data-theme="dark"] .title .hi{color:var(--c-bear);}
-.subtitle{font-size:20.5px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
+.subtitle{font-size:22px;color:var(--text-secondary);margin-top:9px;line-height:1.5;max-width:1400px;}
 
 /* ---------- Slide footer ---------- */
 .slide-foot{
@@ -151,21 +151,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* ---------- Text ---------- */
 .bullets{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
-.bullets li{position:relative;padding-left:20px;font-size:20px;line-height:1.5;color:var(--text-primary);}
+.bullets li{position:relative;padding-left:20px;font-size:21px;line-height:1.5;color:var(--text-primary);}
 .bullets li::before{
   content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--pc-light);
 }
 .bullets.compact{gap:8px;}
 .bullets.spread{flex:1;justify-content:space-evenly;}
-.bullets.compact li{font-size:18px;line-height:1.45;padding-left:18px;}
+.bullets.compact li{font-size:19px;line-height:1.45;padding-left:18px;}
 .bullets.compact li::before{width:6px;height:6px;top:8px;}
 .bullets b{font-weight:700;color:var(--pc-deep);}
 [data-theme="dark"] .bullets b{color:var(--c-bear);}
 .bullets li.warn::before{background:var(--pc-pink);}
 .bullets li.warn{color:var(--pc-pink);font-weight:600;}
 
-.note{font-size:17px;color:var(--text-muted);line-height:1.5;}
-.src{font-size:14.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
+.note{font-size:18px;color:var(--text-muted);line-height:1.5;}
+.src{font-size:15.5px;color:var(--text-muted);line-height:1.45;margin-top:6px;}
 
 .callout{
   background:var(--tint);border-left:4px solid var(--pc-deep);
@@ -186,7 +186,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 [data-theme="dark"] .flag.todo b{color:var(--s-warning);}
 
 /* ---------- Tables ---------- */
-.tbl{width:100%;border-collapse:collapse;font-size:17px;}
+.tbl{width:100%;border-collapse:collapse;font-size:18px;}
 .tbl th{
   background:var(--pc-deep);color:#fff;text-align:left;
   padding:9px 11px;font-size:15.5px;font-weight:600;letter-spacing:.03em;
@@ -203,7 +203,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
 .stat{background:var(--tint);border-left:4px solid var(--pc-light);padding:10px 15px;}
 .stat .lbl{font-size:15px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-.stat .val{font-size:34px;font-weight:700;color:var(--pc-deep);margin-top:2px;letter-spacing:-.02em;}
+.stat .val{font-size:36px;font-weight:700;color:var(--pc-deep);margin-top:2px;letter-spacing:-.02em;}
 [data-theme="dark"] .stat .val{color:#fff;}
 .stat .sub{font-size:16px;color:var(--text-secondary);margin-top:4px;line-height:1.4;}
 
@@ -228,7 +228,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 }
 .panel.tinted{background:var(--tint);border-color:transparent;}
 .panel-title{
-  font-size:15.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
+  font-size:16.5px;font-weight:700;color:var(--pc-deep);text-transform:uppercase;letter-spacing:.05em;
   padding-bottom:7px;border-bottom:1px solid var(--grid);
 }
 [data-theme="dark"] .panel-title{color:var(--c-bear);}
@@ -310,7 +310,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* ---------- 頁底一句總結 ---------- */
 .takeaway{
   flex:0 0 auto;border-top:2px solid var(--pc-deep);padding-top:10px;margin-top:2px;
-  font-size:20px;font-weight:700;color:var(--pc-deep);line-height:1.45;
+  font-size:21px;font-weight:700;color:var(--pc-deep);line-height:1.45;
 }
 [data-theme="dark"] .takeaway{color:var(--c-bear);border-top-color:var(--c-bear);}
 
@@ -318,18 +318,18 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .evgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;min-height:0;}
 .ev{position:relative;overflow:hidden;background:var(--tint);border:1px solid var(--border);display:flex;flex-direction:column-reverse;}
 .ev img{width:100%;flex:1;min-height:0;object-fit:cover;display:block;}
-.ev .lb{padding:8px 10px;font-size:16.5px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
+.ev .lb{padding:9px 12px;font-size:18px;font-weight:700;color:#fff;background:var(--pc-deep);line-height:1.35;}
 
 
 
 /* ---------- 貼文引用卡 ---------- */
 .post{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--pc-deep);padding:12px 14px;display:flex;flex-direction:column;gap:7px;}
 .post .ph{font-size:14px;color:var(--text-muted);font-weight:600;letter-spacing:.02em;}
-.post .pb{font-size:19px;line-height:1.55;color:var(--text-primary);}
+.post .pb{font-size:20px;line-height:1.55;color:var(--text-primary);}
 .post .pb.big{font-size:30px;font-weight:700;color:var(--pc-deep);}
 .post .pstat{font-size:15.5px;color:var(--pc-light);font-weight:600;font-variant-numeric:tabular-nums;}
 .post .plink{font-size:11px;color:var(--text-muted);word-break:break-all;}
-.msg{padding:8px 11px;font-size:17.5px;line-height:1.5;}
+.msg{padding:8px 11px;font-size:18.5px;line-height:1.5;}
 .msg.u{background:var(--grid);color:var(--text-primary);}
 .msg.b{background:var(--tint-2);border-left:3px solid var(--pc-light);color:var(--text-primary);}
 .msg span{display:block;font-size:11.5px;color:var(--text-muted);font-weight:600;margin-bottom:3px;}
@@ -342,7 +342,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .divider h2{font-size:46px;font-weight:700;line-height:1.2;margin-top:16px;color:#fff;}
 .divider .desc{font-size:18px;line-height:1.65;color:rgba(255,255,255,.86);margin-top:18px;max-width:1000px;}
 .divider .items{display:flex;margin-top:44px;border-top:1px solid rgba(255,255,255,.28);max-width:1300px;}
-.divider .items div{flex:1;padding:16px 20px 0 0;font-size:17.5px;color:rgba(255,255,255,.78);line-height:1.5;}
+.divider .items div{flex:1;padding:16px 20px 0 0;font-size:18.5px;color:rgba(255,255,255,.78);line-height:1.5;}
 .divider .items div b{display:block;color:#fff;font-weight:600;margin-bottom:3px;}
 .divider .slide-foot{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.6);}
 .divider .slide-foot .pg{color:#fff;}
@@ -386,9 +386,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 /* 參考影片嵌入（Facebook video plugin iframe） */
 .vidframe{align-self:center;line-height:0;background:#0f1822;border:1px solid var(--border);}
 .vidframe iframe,.vidframe video{display:block;border:0;background:#0f1822;}
-.vidname{font-size:17px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
+.vidname{font-size:18px;font-weight:700;color:var(--pc-deep);line-height:1.35;}
 .vidstat{font-size:14px;color:var(--text-muted);margin-top:2px;}
-.vidnote{font-size:15.5px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
+.vidnote{font-size:16px;line-height:1.5;color:var(--text-secondary);margin-top:5px;}
 [data-theme="dark"] .vidname{color:var(--c-bear);}
 .vidlink{color:var(--pc-medium);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap;}
 [data-theme="dark"] .vidlink{color:var(--c-bear);}
@@ -401,8 +401,8 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .topstrip.t2{grid-template-columns:repeat(2,1fr);}
 .topstrip.t3{grid-template-columns:repeat(3,1fr);}
 .topstrip.t4{grid-template-columns:repeat(4,1fr);}
-.topstrip .ts{font-size:16.5px;line-height:1.6;color:var(--text-secondary);}
-.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:4px;font-size:16px;}
+.topstrip .ts{font-size:18px;line-height:1.6;color:var(--text-secondary);}
+.topstrip .ts b{color:var(--pc-deep);display:block;margin-bottom:4px;font-size:17.5px;}
 [data-theme="dark"] .topstrip .ts b{color:var(--c-bear);}
 .stage{flex:1;min-height:0;display:flex;gap:12px;}
 .stage.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
@@ -413,8 +413,9 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 /* 標籤置於圖片上方（先讀標題再看圖） */
 .figblock{display:flex;flex-direction:column;flex:1;min-height:0;gap:0;}
-.figlab{flex:0 0 auto;padding:7px 12px;font-size:16.5px;font-weight:700;color:#fff;
+.figlab{flex:0 0 auto;padding:8px 13px;font-size:18px;font-weight:700;color:#fff;
   background:var(--pc-deep);line-height:1.35;}
+.figlab .fs{display:block;font-weight:400;font-size:14.5px;color:rgba(255,255,255,.82);margin-top:3px;line-height:1.4;}
 .figblock .tile{flex:1;min-height:0;}
 .figblock.ar{flex:1;justify-content:center;}
 .figblock.ar .tile{flex:0 0 auto;width:100%;aspect-ratio:var(--ar,1.76);}
@@ -518,7 +519,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .stage.duo .figblock{min-height:0;}
 .stage.duo .tile img{object-fit:contain;background:var(--tint);}
 .topstrip.tall{padding:18px 22px;gap:22px;}
-.topstrip.tall .ts{font-size:17.5px;line-height:1.62;}
+.topstrip.tall .ts{font-size:19px;line-height:1.62;}
 .topstrip.tall .ts b{font-size:17px;margin-bottom:4px;}
 
 /* ---------- 頁首章節進度條：六節全列，當前深色、其餘灰 ---------- */
@@ -581,6 +582,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
 .knmap .r{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--pc-light);}
 .knmap .t{font-size:16px;font-weight:700;color:var(--pc-deep);margin-top:4px;}
 .knmap .x{font-size:14px;line-height:1.5;color:var(--text-secondary);margin-top:4px;}
+.knnot{margin-top:20px;border-top:1px solid var(--grid);padding-top:14px;}
+.knnot .h{font-size:16px;font-weight:700;color:var(--text-muted);letter-spacing:.03em;}
+.knnot .h em{font-style:normal;color:var(--s-serious);}
+.knnot .g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px;}
+.knnot .g div{font-size:14.5px;line-height:1.5;color:var(--text-secondary);}
+.knnot .g b{display:block;color:var(--pc-deep);font-size:15px;margin-bottom:2px;}
+[data-theme="dark"] .knnot .g b{color:#fff;}
 [data-theme="dark"] .knmap .t{color:#fff;}
 [data-theme="dark"] .slide.keynote{background:var(--surface-1);}
 [data-theme="dark"] .kn h2,[data-theme="dark"] .knrow .n,[data-theme="dark"] .knnext .h,
@@ -592,7 +600,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
 
 <div id="nav">
   <button id="prevBtn" title="上一頁 (←)">&#8592;</button>
-  <span class="cnt" id="slideCnt">1 / 39</span>
+  <span class="cnt" id="slideCnt">1 / 38</span>
   <button id="nextBtn" title="下一頁 (→)">&#8594;</button>
   <span class="sep"></span>
   <button id="themeToggle" title="切換淺色/深色">&#9788;</button>
@@ -622,24 +630,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">和橙的產品與認證已具備條件，樽頸在於認知度與成交渠道。貫穿全份建議書的三項判斷：<b>樽頸不在產品，在被看見</b>；<b>爆紅靠語氣，不靠產品</b>——近期已查證的爆文沒有一則靠產品本身爆；<b>香港仍是空白市場</b>，台灣的品牌小編人格化已有多個成功案例，香港近 30 天一個都沒有。</div>
   </div>
   <div class="body col">
-    <table class="tbl" style="font-size:12.5px;flex:0 0 auto;line-height:1.3;">
-      <thead><tr><th style="width:96px;">SECTION</th><th style="width:170px;">主題</th><th>內容</th><th style="width:80px;">頁</th></tr></thead>
-      <tbody>
-        <tr><td><b>I</b></td><td><b>現況與定價</b></td><td>先確立和橙在香港貨架上的實際位置與價格區間</td><td>4–5</td></tr>
-        <tr><td><b>II</b></td><td><b>品牌重塑</b></td><td>行銷的本質、Logo 重新設計、刀疤橙三個故事、品牌實體統一</td><td>7–20</td></tr>
-        <tr><td><b>III</b></td><td><b>內容策略</b></td><td>拍攝佈光、AI 內容的問題、爆紅內容的結構拆解</td><td>22–24</td></tr>
-        <tr><td><b>IV</b></td><td><b>渠道與活動</b></td><td>B2C 三層鋪貨、品牌聯乘、單一品類節、B2B 採購、Pop-up、學校巡迴、社企資格</td><td>26–32</td></tr>
-        <tr><td><b>V</b></td><td><b>產品體驗</b></td><td>禮盒包裝、貨架陳列參考，以及可延伸曝光的周邊商品</td><td>34–36</td></tr>
-        <tr><td><b>VI</b></td><td><b>生態旅遊</b></td><td>以花期編排全年行程，令農場收入不再受產季限制</td><td>38</td></tr>
-      </tbody>
-    </table>
     <div class="stage g3x2">
-      <div class="figblock"><div class="figlab">I · 現況與定價</div><div class="tile"><img src="proposal/s02_5_sq.jpg" alt="現況與定價"></div></div>
-      <div class="figblock"><div class="figlab">II · 品牌重塑</div><div class="tile"><img src="fb/WOrange-Story_ev.jpg" alt="品牌重塑"></div></div>
-      <div class="figblock"><div class="figlab">III · 內容策略</div><div class="tile"><img src="fb/WOrange-TRUE_ev.jpg" alt="內容策略"></div></div>
-      <div class="figblock"><div class="figlab">IV · 渠道與活動</div><div class="tile"><img src="fb/WOrange-Bus_ev.jpg" alt="渠道與活動"></div></div>
-      <div class="figblock"><div class="figlab">V · 產品體驗</div><div class="tile"><img src="fb/WOrange-CNY_ev.jpg" alt="產品體驗"></div></div>
-      <div class="figblock"><div class="figlab">VI · 生態旅遊</div><div class="tile"><img src="fb/WOrange-Farming_ev.jpg" alt="生態旅遊"></div></div>
+      <div class="figblock"><div class="figlab">I · 現況與定價<span class="fs">產品與認證已到位，樽頸在認知度與成交渠道　·　P4–5</span></div><div class="tile"><img src="proposal/s02_5_sq.jpg" alt="現況與定價"></div></div>
+      <div class="figblock"><div class="figlab">II · 品牌重塑<span class="fs">刀疤橙三個故事、一枚圓章、四個名收攏成一個　·　P7–20</span></div><div class="tile"><img src="fb/WOrange-Story_ev.jpg" alt="品牌重塑"></div></div>
+      <div class="figblock"><div class="figlab">III · 內容策略<span class="fs">拍攝規格、AI 圖的問題、爆紅內容的結構　·　P22–24</span></div><div class="tile"><img src="fb/WOrange-TRUE_ev.jpg" alt="內容策略"></div></div>
+      <div class="figblock"><div class="figlab">IV · 渠道與活動<span class="fs">B2C 三層、IP 聯乘與品類節、B2B 經 HR、Pop-up　·　P26–31</span></div><div class="tile"><img src="fb/WOrange-Bus_ev.jpg" alt="渠道與活動"></div></div>
+      <div class="figblock"><div class="figlab">V · 產品體驗<span class="fs">禮盒包裝、貨架陳列，以及可延伸曝光的周邊　·　P33–35</span></div><div class="tile"><img src="fb/WOrange-CNY_ev.jpg" alt="產品體驗"></div></div>
+      <div class="figblock"><div class="figlab">VI · 生態旅遊<span class="fs">以花期編排全年行程，收入脫離產季　·　P37</span></div><div class="tile"><img src="fb/WOrange-Farming_ev.jpg" alt="生態旅遊"></div></div>
     </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">2</span></div>
@@ -672,7 +669,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="topstrip" style="grid-template-columns:1fr;">
       <div class="ts"><b>社群基數：Facebook 6,738　·　Instagram 873　·　Threads 232</b>Threads 四個月只發 5 帖、每帖 0–1 讚，等同尚未起步——而台灣近月的品牌爆文幾乎全部出自 Threads。IG 873 的基數亦過低，短片與投放的主場正在那裡。活動辦得不少，但每一場都沒有接回社群與訂單。</div>
     </div>
-    <div class="evgrid ovl">
+    <div class="evgrid">
       <div class="ev"><img src="fb/WOrange-Bus_ev.jpg" alt=""><div class="lb">巴士車身廣告</div></div>
       <div class="ev"><img src="fb/WOrange-Exhibition2_ev.jpg" alt=""><div class="lb">科學園 Pop-up</div></div>
       <div class="ev"><img src="fb/WOrange-Exhibition_ev.jpg" alt=""><div class="lb">亞洲素食展</div></div>
@@ -939,19 +936,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">四格短篇，用來解釋「和橙」兩個字的由來——雞同蚯蚓打交，橙走出來做和事佬。食字位：和事佬 → 和事橙 → 和橙。</div>
   </div>
   <div class="body col">
-    <div class="topstrip t4">
-      <div class="ts"><b>① 開場：雞想食蚯蚓</b>果園泥土上，一隻大公雞盯住一條蚯蚓。雞：「你成日鑽嚟鑽去，唔知幾好味。」蚯蚓 John：「冇我鬆土，你企緊嗰塊地早就硬過石頭啦！」</div>
-      <div class="ts"><b>② 打到不相伯仲</b>兩個扭作一團，塵土飛揚，旁邊的橙樹被搖到落葉。園裡其他橙探頭出來睇熱鬧。</div>
-      <div class="ts"><b>③ 橙衝出來做和事佬</b>一顆滿身疤的橙「咚」一聲跌落兩者中間：「停手！冇雞屎冇肥料，冇蚯蚓冇鬆土——我先係食你哋兩個大㗎！」</div>
-      <div class="ts"><b>④ 收結：食字</b>雞同蚯蚓一齊笑。旁白：「講和之後，佢就叫做——和事橙。」最後一格招牌寫住「和橙 WOrange」。</div>
-    </div>
-    <div class="flag todo" style="flex:1;align-items:center;justify-content:center;text-align:center;font-size:19px;border:2px dashed var(--s-warning);border-left-width:2px;background:transparent;">
-      <div><b style="display:block;font-size:23px;margin-bottom:8px;">四格漫畫待補</b>生成用的 prompt 已寫好：<a class="vidlink" href="prompt_gag_story.md" download>prompt_gag_story.md ↓</a>　用 Gemini 出圖後存成 <code>proposal/s3_1.jpg</code> 即可換上。<br><span style="color:var(--text-muted);font-size:16px;">建議 prompt 內叫模型畫<b style="display:inline">空白對白框</b>，中文後期加，避免再出現亂碼。</span></div>
-    </div>
-    <div class="topstrip t2">
-      <div class="ts"><b>為甚麼值得加這一段</b>刀疤橙講的是「疤」，這一段講的是「和」——把品牌名字本身變成一個記得住的笑話。三十秒、四格、零成本，適合開場破冰或社交平台單獨發。</div>
-      <div class="ts"><b>同時解釋了生態閉環</b>雞屎作肥、蚯蚓鬆土、橙才好食——這正是「不用農藥」的底層邏輯，用一個爭執講出來，比列三項認證好記。</div>
-    </div>
+    <div class="sbstage"><img src="proposal/s3_1.jpg" alt="和事橙 四格漫畫"></div>
   </div>
   <div class="takeaway">刀疤橙解釋了為甚麼有疤；和事橙解釋了為甚麼叫和橙。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">19</span></div>
@@ -1018,13 +1003,13 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-head">
     <div class="kicker">III · 內容策略　<span class="sec">01</span></div>
     <div class="title">拍攝參考：三條片示範<span class="hi">同一個原理</span>——先壓暗，再給輪廓</div>
-    <div class="subtitle">橙是球體，<b>全打亮會變成一團平的黃色</b>。三條片示範同一個做法：先壓暗、控反光，再用一支輔燈把邊緣勾出輪廓。器材與逐步佈光見 <a class="vidlink" href="skills.md" download>skills.md ↓</a></div>
+    <div class="subtitle">橙是球體，<b>全打亮會變成一團平的黃色</b>。三條片示範同一個做法：先壓暗、控反光，再用輔燈勾輪廓。器材見 <a class="vidlink" href="skills.md" download>skills.md ↓</a></div>
   </div>
   <div class="body">
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">01 · 暗調水果 · 壓暗與倒影</div>
-        <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="338" height="580" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
+        <div class="vidframe"><video src="video/lychee.mp4" poster="video/lychee.jpg" width="320" height="548" controls preload="metadata" playsinline title="甜胚子 · 20 秒拍出荔枝高級感"></video></div>
         <div>
           <div class="vidname">甜胚子 · 20 秒拍出荔枝高級感</div>
           <div class="vidstat">13 萬觀看 · 1,568 心情　<a class="vidlink" href="https://www.facebook.com/reel/1571333827913056" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
@@ -1035,22 +1020,22 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">02 · 佈光設定 · 主燈＋輪廓光</div>
-        <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="338" height="580" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
+        <div class="vidframe"><video src="video/lighting.mp4" poster="video/lighting.jpg" width="320" height="548" controls preload="metadata" playsinline title="Mykyta Vasyliev · 一組可照抄的佈光"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · 一組可照抄的佈光</div>
           <div class="vidstat">134 萬觀看 · 5.1 萬心情　<a class="vidlink" href="https://www.facebook.com/reel/1022251727088426" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
-          <div class="vidnote">器材：X-H2s、Viltrox 75mm F1.2、Godox AD200＋AD100。三條中傳播力最高。</div>
+          <div class="vidnote">器材：X-H2s、Viltrox 75mm F1.2、Godox AD200＋AD100。傳播力最高的一條。</div>
         </div>
       </div>
     </div>
     <div class="col c4">
       <div class="panel" style="flex:1;">
         <div class="panel-title bar">03 · 入門器材 · 一套可照抄的組合</div>
-        <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="338" height="580" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
+        <div class="vidframe"><video src="video/tarion.mp4" poster="video/tarion.jpg" width="320" height="548" controls preload="metadata" playsinline title="Mykyta Vasyliev · TARION 套裝示範"></video></div>
         <div>
           <div class="vidname">Mykyta Vasyliev · TARION 套裝示範</div>
           <div class="vidstat">2 萬觀看 · 287 心情　<a class="vidlink" href="https://www.facebook.com/reel/1544045607760175" target="_blank" rel="noopener">在 Facebook 開啟 ↗</a></div>
-          <div class="vidnote">同一位攝影師的入門器材組合。原帖是廠商抽獎，器材可參考。</div>
+          <div class="vidnote">同一位攝影師的入門器材組合。原帖是廠商抽獎。</div>
         </div>
       </div>
     </div>
@@ -1068,11 +1053,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="subtitle">和橙已經在用 AI 生圖。問題不在用不用，而在用法——以下數據全部來自品牌自己的 IG 與 Facebook 帖文。</div>
   </div>
   <div class="body col">
-    <div class="topstrip t2 tall">
+    <div class="topstrip t2 tall" style="flex:1;align-content:center;">
       <div class="ts"><b>實拍贏 AI 接近一倍</b>互動中位數：實拍 <b style="display:inline">32 讚</b>／AI 生成 17.5 讚。最好的四帖全部是實拍（打假 163 讚、開摘 85、科大教授 54、回應質疑 47），最差一帖是 AI 賀年產品渲染，只有 7 讚。</div>
       <div class="ts"><b>細節經不起放大</b>縮圖看得過去，放大即見破綻：包裝上的字糊掉、產品規格與實物不符；IG 可判定的 11 格之中 6 格是 AI 生成，彼此畫風不一。<b style="display:inline">而和橙賣的正是「可追溯」</b>——這不只是美術問題，是信任問題。</div>
     </div>
-    <div class="stage duo">
+    <div class="stage duo" style="flex:1;">
       <div class="figblock" style="flex:1.026;"><div class="figlab">實拍 · 打假帖：163 讚／39 留言／27 分享</div><div class="tile fit"><img src="fb/WOrange-TRUE_ev.jpg" alt="實拍打假帖"></div></div>
       <div class="figblock" style="flex:1.188;"><div class="figlab">AI 渲染 · 節慶產品圖：7 讚（同期最低）</div><div class="tile fit"><img src="fb/WOrange-CNY_ev.jpg" alt="AI 渲染節慶產品圖"></div></div>
     </div>
@@ -1140,12 +1125,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     <div class="desc">內容負責帶來認知，渠道負責接住成交。本節按 B2C、B2B、線下活動三條線鋪排，並就社企資格提出申請路徑。</div>
     <div class="items">
       <div><b>01　銷售渠道 B2C</b>三層鋪貨與上架條款</div>
-      <div><b>02　品牌聯乘</b>本地 IP × 食品的空位</div>
-      <div><b>03　單一品類節</b>麵包節、電腦節，照搬去橙節</div>
-      <div><b>04　銷售渠道 B2B</b>協會、企業 ESG 與員工福利</div>
-      <div><b>05　Pop-up Booth</b>以橙換取社群追蹤</div>
-      <div><b>06　學校巡迴</b>經學生接觸家長</div>
-      <div><b>07　社企路徑</b>認證、名錄與合作對象</div>
+      <div><b>02　借人流</b>本地 IP 聯乘與單一品類節</div>
+      <div><b>03　銷售渠道 B2B</b>協會、企業 ESG 與員工福利</div>
+      <div><b>04　Pop-up Booth</b>以橙換取社群追蹤</div>
+      <div><b>05　學校巡迴</b>經學生接觸家長</div>
+      <div><b>06　社企路徑</b>認證、名錄與合作對象</div>
     </div>
   </div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">25</span></div>
@@ -1183,101 +1167,60 @@ h1,h2,h3,p,ul,ol{margin:0;}
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">26</span></div>
 </section>
 
-<!-- 23b · 品牌聯乘 -->
+<!-- 27 · 借人流 -->
 <section class="slide" data-slide="27" id="s27">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">02</span></div>
-    <div class="title">品牌聯乘：本地 IP × 食品，<span class="hi">在香港仍是未飽和的空位</span></div>
-    <div class="subtitle">本地 IP × 食品已經有人做，而且做得成：9GAG 自家 IP「Potatoz」的 Golden P 尋寶聯乘咗逾 20 個食肆品牌、約 40 間門市；奇華餅家 × 麥東記出過「香港心」禮盒。<b>未有人做的是「本地 IP × 生鮮農產」</b>——貨架上仍然只有日韓 IP（7-Eleven × Sanrio、周大福 × Chiikawa）。這正是刀疤橙可以切入的位置。</div>
+    <div class="title">借人流：本地 IP 聯乘，與<span class="hi">「一種嘢開個節」</span></div>
+    <div class="subtitle">和橙自己拉人流很貴。兩條捷徑——借一個本地 IP 的受眾，或者借一個已經有人排隊的節。兩者都不用從零建立認知。</div>
   </div>
   <div class="body col">
-    <div class="topstrip t2">
-      <div class="ts"><b>為何值得做</b>和橙已有自己的角色（刀疤橙、蚯蚓 John），聯乘不必從零建立形象，只需借對方的受眾；對方要的是「食物實體」，這正是我們手上有的。可照抄 7-Eleven × Sanrio 的模式：買滿指定金額送角色贈品。</div>
-      <div class="ts"><b>兩個入場點</b><b style="display:inline">香港插畫及文創展 11</b>：2026-05-23 至 25，灣仔會展 Hall 3DE，約 500 個文創品牌。<b style="display:inline">香港國際授權展</b>：2026-04-27 至 29，會展，逾 600 個品牌及 IP。另有《ILLUSMONTAGE 2026》插畫年鑑收錄 124 位插畫師，可當名冊用。</div>
-    </div>
     <div class="stage">
-      <div class="panel" style="flex:1;">
-        <div class="panel-title bar">四個值得接觸的對象（按契合度排序）</div>
-        <table class="tbl" style="font-size:13.5px;line-height:1.28;">
-          <thead><tr><th style="width:196px;">對象</th><th style="width:112px;">類型</th><th>為何合適 / 已有的聯乘紀錄</th></tr></thead>
+      <div class="panel" style="flex:1.15;">
+        <div class="panel-title bar">A · 本地 IP 聯乘 · 四個值得接觸的對象</div>
+        <table class="tbl" style="font-size:14px;line-height:1.28;">
+          <thead><tr><th style="width:168px;">對象</th><th>為何合適</th></tr></thead>
           <tbody>
-            <tr>
-              <td><b>大大與小妹</b><br><span class="note">@lenus_ig</span><br><img src="proposal/ip_daidai.jpg" alt="大大與小妹 角色" style="width:70px;height:70px;object-fit:contain;margin-top:4px;border:1px solid var(--border);"></td>
-              <td>本地插畫 IP</td>
-              <td><b>受眾最大。</b>2016 年起以情侶日常圖文起家，Facebook <b>293,765</b> 個讚好；2020 年旺角開主題店、半年回本；有 TOYZEROPLUS 聯乘公仔與實體書。題材是「兩個人的生活」，與「一個自用、一個轉贈」的兩個橙機制天然吻合。</td>
-            </tr>
-            <tr>
-              <td><b>Potatoz</b><br><span class="note">9GAG 原創</span><br><img src="proposal/ip_potatoz.jpg" alt="9GAG 標誌" style="width:70px;height:70px;object-fit:contain;margin-top:4px;border:1px solid var(--border);"></td>
-              <td>本地數碼 IP</td>
-              <td><b>唯一有食品聯乘往績的本地 IP。</b>2025-12 Golden P 全城尋寶：聯乘逾 20 個食肆品牌、約 40 間門市，買滿 HK$200 換免費炸薯，另與海洋公園聯乘。</td>
-            </tr>
-            <tr>
-              <td><b>oh…little sweet</b><br><span class="note">插畫家波比</span></td>
-              <td>本地插畫 IP</td>
-              <td><b>題材最貼。</b>角色本身就是食物擬人——小湯圓、咸蛋黃、抹茶圓。2026-01 至 03 與尖沙咀 iSQUARE 做過春日甜蜜樂園。橙加進這組角色毫無違和。</td>
-            </tr>
-            <tr>
-              <td><b>癲噹 / Plastic Thing / 麥嘜麥兜</b></td>
-              <td>本地經典 IP</td>
-              <td>認知度高、港味重，適合節慶禮盒；麥兜的本土聯想最強，但授權成本與周期須先問清楚。</td>
-            </tr>
-          </tbody>
+            <tr><td><b>大大與小妹</b><br><span class="note">@lenus_ig　本地插畫 IP</span><br><img src="proposal/ip_daidai.jpg" alt="大大與小妹" style="width:64px;height:64px;object-fit:contain;margin-top:4px;border:1px solid var(--border);"></td>
+                <td><b>受眾最大。</b>Facebook <b>293,765</b> 個讚好；2020 年旺角開主題店、半年回本，有 TOYZEROPLUS 聯乘公仔與實體書。題材是「兩個人的生活」，與「一個自用、一個轉贈」的兩個橙機制天然吻合。</td></tr>
+            <tr><td><b>Potatoz</b><br><span class="note">9GAG 原創　本地數碼 IP</span><br><img src="proposal/ip_potatoz.jpg" alt="9GAG" style="width:64px;height:64px;object-fit:contain;margin-top:4px;border:1px solid var(--border);"></td>
+                <td><b>唯一有食品聯乘往績的本地 IP。</b>2025-12 Golden P 全城尋寶：聯乘逾 20 個食肆品牌、約 40 間門市，買滿 HK$200 換免費炸薯，另與海洋公園聯乘。</td></tr>
+            <tr><td><b>oh…little sweet</b><br><span class="note">插畫家波比　本地插畫 IP</span></td>
+                <td><b>題材最貼。</b>角色本身就是食物擬人——小湯圓、咸蛋黃、抹茶圓。2026-01 至 03 與尖沙咀 iSQUARE 做過春日甜蜜樂園。</td></tr>
+            </tbody>
         </table>
-        <div class="src"><b>談授權要寫死四項：</b>一次性授權費加銷售分成、檔期與同類目獨家（建議綁主產季 11 月底至 3 月）、素材使用範圍（尤其能否用於電商主圖）、聯乘款與日常線的分界。最省事的分工是對方出角色、和橙出實物與拍攝。　對象與數字為 2026-08 實測可查；大大與小妹為角色頭像、Potatoz 一列為 9GAG 官方標誌（其角色圖未能從公開帳號取得），只作識別用途，正式使用須先取得授權；oh…little sweet 與麥嘜麥兜暫未有可取用的公開圖。已移除：大麻成、Lady M（後者為紐約品牌，母公司 2023 年破產保護）。</div>
+        <div class="src">入場點：插畫及文創展 11（2026-05-23 至 25，約 500 個品牌）、國際授權展（2026-04-27 至 29，逾 600 個 IP）。另可考慮癲噹／麥嘜麥兜（港味重、適合節慶禮盒，但授權成本與周期須先問清楚）。談授權要寫死四項：授權費與分成、檔期與同類目獨家、素材使用範圍、聯乘款與日常線的分界。</div>
+      </div>
+      <div class="panel tinted" style="flex:1;">
+        <div class="panel-title bar">B · 單一品類節 · 香港人肯為一種嘢專登入場</div>
+        <div class="stage" style="flex:0 0 auto;height:188px;gap:10px;">
+          <div class="figblock"><div class="figlab">排隊八分鐘先入到<span class="fs">CHILL 歎麵包節 · 沙田新城市廣場</span></div><div class="tile"><img src="proposal/bread_queue.jpg" alt="麵包節人龍"></div></div>
+          <div class="figblock"><div class="figlab">三層中庭逼滿人<span class="fs">2026-08-28 至 30 · 30 個品牌 · 300 款麵包</span></div><div class="tile"><img src="proposal/bread_atrium.jpg" alt="麵包節現場"></div></div>
+        </div>
+        <ul class="bullets compact" style="font-size:14.5px;gap:6px;margin-top:9px;">
+          <li><b>入場門檻極低：</b>電腦節門票 $30–35，旅客／長者／小童免費；麵包節「碳水通行證」$98–108 已包 $120 券。先把人拉進場，才談成交。</li>
+          <li><b>用「著數」與「限定」做誘因：</b>入場必中 300 萬消費券、$1 限量快閃、市集限定口味。坊間笑電腦節係「水魚節」——<b>明知未必最平都照去</b>，去的理由是氣氛與撿寶。</li>
+          <li><b>把展覽變成周末節目：</b>啦啦隊、偶像、巨型貝果打卡位、毛孩專區；打卡分享加消費滿額換限量鎖匙扣。</li>
+          <li><b>規模參考：</b>香港國際試食節 2026 五日錄得逾 <b>27 萬人次</b>、營業額破 <b>7,000 萬</b>，按年 +15%。</li>
+        </ul>
       </div>
     </div>
-      <div class="takeaway">日韓 IP 已經很貴很擠；本地 IP 便宜、談得動，而且沒有人做過食品聯乘。</div>
+    <div class="topstrip t2">
+      <div class="ts"><b>照搬去「橙節」：第一年不要自己辦</b>先入已有的場——美食博覽（8 月 13–17 日）、試食節（4 月）——拿一個攤位，用別人的人流測自己的轉化。要辦就學麵包節用商場模式：三日、一個商場、聯合幾間果商與甜品店，成本遠低於會展。</div>
+      <div class="ts"><b>四個可以直接照抄的機制</b>限定口味（血橙千層、橙皮糖）、每日 $20 限量快閃金裝、刀疤橙打卡立牌與分享換禮、買滿送 IP 聯乘貼紙。與 Pop-up 共用同一套數字：新增追蹤、掃碼、當場落單。</div>
+    </div>
+    <div class="src">麵包節現場截圖取自 YouTube 現場直擊影片（2026-08-29），只作內部說明用途。日期、面積、人次與票價為 2026-08 可查資料；「水魚節」為坊間戲稱，並無正式統計。</div>
+  </div>
+  <div class="takeaway">日韓 IP 很貴很擠，本地 IP 談得動；香港人肯為一種食物專登入場——缺的不是題材，是一個入場理由。</div>
   <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">27</span></div>
 </section>
 
-<!-- 27 · 單一品類節 -->
+<!-- 28 · 銷售渠道 B2B -->
 <section class="slide" data-slide="28" id="s28">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">IV · 渠道與活動　<span class="sec">03</span></div>
-    <div class="title">單一品類節：香港人<span class="hi">肯為一種嘢專登入場</span></div>
-    <div class="subtitle">為一種食物、一類電器開一個「節」，聽落好反智，但香港年年都做，而且年年都有人排隊。拆開睇，它們用的其實是同一套機制——而那套機制可以照搬去橙。</div>
-  </div>
-  <div class="body col">
-    <div class="topstrip t3">
-      <div class="ts"><b>麵包節</b>CHILL 歎麵包節 2026：新城市廣場，8 月 28–30 日三日，橫跨兩層近 6,000 呎三個場地，30 多個烘焙品牌、300 多款麵包，設<b style="display:inline">市集限定口味</b>，並請來台灣三位烘焙師到場。</div>
-      <div class="ts"><b>電腦節</b>香港電腦通訊節 2026：8 月 21–24 日灣仔會展，面積破紀錄逾 14 萬呎、600 多個展位。門票 $30–35，入場<b style="display:inline">必中</b>合共 300 萬元消費券，另有 $1／$20 限量快閃、啦啦隊應援與偶像物販區。</div>
-      <div class="ts"><b>食品類的規模參考</b>香港國際試食節暨優質食品博覽 2026：4 月舉行，五日錄得逾 <b style="display:inline">27 萬人次</b>，現場營業額突破 7,000 萬港元，按年增長逾一成半，兩項均創歷屆新高。</div>
-    </div>
-    <div class="stage">
-      <div class="panel" style="flex:1.05;">
-        <div class="panel-title bar">好反智，但點解 work</div>
-        <table class="tbl plain">
-          <tbody>
-            <tr><td style="width:150px;"><b>入場門檻極低</b></td><td>$30–35，旅客、長者、小童免費。先把人拉進場，才談成交。</td></tr>
-            <tr><td><b>「著數」做誘因</b></td><td>入場必中消費券、$1 限量快閃。大家不是來買，是來執平嘢——坊間戲稱電腦節做「水魚節」，正正說明<b>明知未必最平都照去</b>，去的理由是氣氛與撿寶。</td></tr>
-            <tr><td><b>娛樂化引流</b></td><td>啦啦隊、偶像、打卡位，把一個展覽變成周末節目，帶埋唔買嘢的人一齊來。</td></tr>
-            <tr><td><b>集中比較＋限定</b></td><td>幾十個品牌擺同一個場，加「限定口味」製造稀缺感，行一次就買齊。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="panel tinted" style="flex:1;">
-        <div class="panel-title bar">照搬去「橙節」怎麼做</div>
-        <ul class="bullets compact">
-          <li><b>第一年不要自己辦節。</b>先進駐已有的場——美食博覽（8 月 13–17 日）與試食節（4 月）——拿一個攤位，用別人的人流測自己的轉化。</li>
-          <li><b>要辦就用商場模式。</b>學麵包節：三日、一個商場、聯合幾間果商與甜品店，成本遠低於會展。</li>
-          <li><b>四個可直接照抄的機制：</b>限定口味（血橙千層、橙皮糖）、每日 $20 限量快閃金裝、刀疤橙打卡立牌、買滿送聯乘貼紙。</li>
-          <li><b>與 Pop-up 共用同一套數字：</b>新增追蹤、掃碼、當場落單——場地變大，歸因方式不變。</li>
-        </ul>
-      </div>
-    </div>
-    <div class="src">日期、面積、人次與票價為 2026-08 實測可查；CHILL 歎麵包節的入場人次主辦方未公布。「水魚節」為坊間戲稱，並無正式統計，此處只作行為描述。</div>
-  </div>
-  <div class="takeaway">香港人肯為一種食物專登入場——缺的不是題材，是一個夠平、夠好玩的入場理由。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">28</span></div>
-</section>
-
-<!-- 28 · 銷售渠道 B2B -->
-<section class="slide" data-slide="29" id="s29">
-  <div class="wordmark">WOrange <span>和橙</span></div>
-  <div class="slide-head">
-    <div class="kicker">IV · 渠道與活動　<span class="sec">04</span></div>
     <div class="title">銷售渠道 B2B：先經協會接觸 HR，再談<span class="hi">企業 ESG 與員工福利採購</span></div>
     <div class="subtitle">B2B 的入口不是企業本身，是它們的 HR——先經專業協會取得接觸點，再談採購。</div>
   </div>
@@ -1286,7 +1229,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>入口不是企業，是它們的 HR</b>先經 HKIHRM、HKPMA、HKMA 三個協會取得接觸點——贊助會員活動果籃、年會攤位、HR 電子報專欄，再談採購。</div>
       <div class="ts"><b>HR 要的是可以寫進報告的憑證</b>備妥 BSI 碳足跡與有機／Global G.A.P. 證書（附 QR）、企業果籃報價表、認養方案一頁紙。優先接觸中電、港燈、煤氣、港鐵、滙豐、賽馬會、新地、太古。</div>
     </div>
-    <div class="stage g4 ovl">
+    <div class="stage g4">
       <div class="figblock"><div class="figlab">展會與協會活動 · 一次接觸大量 HR</div><div class="tile"><img src="fb/WOrange-Exhibition_ev.jpg" alt="展會與協會活動"></div></div>
       <div class="figblock"><div class="figlab">雙重認證 · 企業客最需要的憑證</div><div class="tile"><img src="fb/WOrange-Certificate_ev.jpg" alt="認證證書"></div></div>
       <div class="figblock"><div class="figlab">節慶禮盒 · 企業果籃的現成規格</div><div class="tile"><img src="fb/WOrange-CNY3_ev.jpg" alt="節慶禮盒"></div></div>
@@ -1294,14 +1237,14 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">B2B 的入口不是企業，是它們的 HR；而 HR 要的是能寫進報告的憑證。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">29</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">28</span></div>
 </section>
 
 <!-- 29 · Pop-up Booth -->
-<section class="slide" data-slide="30" id="s30">
+<section class="slide" data-slide="29" id="s29">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
-    <div class="kicker">IV · 渠道與活動　<span class="sec">05</span></div>
+    <div class="kicker">IV · 渠道與活動　<span class="sec">04</span></div>
     <div class="title">Pop-up Booth：以<span class="hi">兩個橙</span>換取一次社群追蹤</div>
   </div>
   <div class="body col">
@@ -1309,7 +1252,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>兩個橙換一次追蹤</b>一個自用、一個轉贈——單一個橙不會產生分享行為，兩個才會出現「俾人食」這一步。建議一大一細（85mm＋70mm），當場示範尺寸分級與定價邏輯。三個平台全追蹤，加送金裝一個。</div>
       <div class="ts"><b>每場必記三個數字</b>新增追蹤數、掃碼數、當場落單數。<b style="display:inline">否則仍舊只有曝光，沒有歸因</b>——這是現時所有活動的共同缺口。</div>
     </div>
-    <div class="stage g4 ovl">
+    <div class="stage g4">
       <div class="figblock"><div class="figlab">果園實景 · 現場派發用的素材</div><div class="tile"><img src="fb/WOrange-Exhibition2_ev.jpg" alt="科學園 Pop-up"></div></div>
       <div class="figblock"><div class="figlab">亞洲素食展 · 攤位形式</div><div class="tile"><img src="fb/WOrange-Exhibition_ev.jpg" alt="亞洲素食展"></div></div>
       <div class="figblock"><div class="figlab">農曆新年禮盒 · 節慶檔期</div><div class="tile"><img src="fb/WOrange-CNY3_ev.jpg" alt="農曆新年禮盒"></div></div>
@@ -1317,14 +1260,14 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">兩個橙的成本，換一次追蹤加一次轉贈——比單純派發划算。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">30</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">29</span></div>
 </section>
 
 <!-- 30 · 學校巡迴 -->
-<section class="slide" data-slide="31" id="s31">
+<section class="slide" data-slide="30" id="s30">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
-    <div class="kicker">IV · 渠道與活動　<span class="sec">06</span></div>
+    <div class="kicker">IV · 渠道與活動　<span class="sec">05</span></div>
     <div class="title">學校巡迴：全港約 <span class="hi">138 間</span>國際、私立及直資學校</div>
   </div>
   <div class="body col">
@@ -1334,7 +1277,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>一條龍體驗</b>校園派橙可接親子工作坊與農場導賞，一次接觸延伸成三次。</div>
       <div class="ts"><b>每場必留家長入口</b>訂購連結、班級團購、節慶禮盒單張——否則接觸到的只有學生，訂單不會發生。</div>
     </div>
-    <div class="stage g4 ovl">
+    <div class="stage g4">
       <div class="figblock"><div class="figlab">送橙到校園 2026</div><div class="tile"><img src="fb/WOrange-School_ev.jpg" alt="送橙到校園"></div></div>
       <div class="figblock"><div class="figlab">校園互動</div><div class="tile"><img src="fb/WOrange-School2_ev.jpg" alt="校園互動"></div></div>
       <div class="figblock"><div class="figlab">學生反應本身就是素材</div><div class="tile"><img src="fb/WOrange-School3_ev.jpg" alt="學生反應"></div></div>
@@ -1342,21 +1285,21 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">接觸的是學生，落單的是家長；每一場都要留下家長入口。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">31</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">30</span></div>
 </section>
 
 <!-- 31 · 社企路徑 -->
-<section class="slide" data-slide="32" id="s32">
+<section class="slide" data-slide="31" id="s31">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
-    <div class="kicker">IV · 渠道與活動　<span class="sec">07</span></div>
+    <div class="kicker">IV · 渠道與活動　<span class="sec">06</span></div>
     <div class="title">社企路徑可行性：<span class="hi">兩條路門檻差很遠</span>，建議只走成本低的那條</div>
     <div class="subtitle">社企身份對 B2B 有直接作用——企業採購與 ESG 部門需要可載入報告的第三方憑證，而非品牌自述。但「社企」在香港<b>並無法律定義</b>，各計劃是自願性認證，門檻與代價差異極大。</div>
   </div>
   <div class="body col">
     <div class="stage" style="flex-direction:column;gap:13px;">
-      <div class="panel" style="flex:1;">
-        <div class="panel-title">可行性對照</div>
+      <div class="panel" style="flex:0 0 auto;">
+        <div class="panel-title bar">可行性對照</div>
         <table class="tbl" style="font-size:13.5px;line-height:1.3;">
           <thead><tr><th style="width:112px;">計劃</th><th style="width:300px;">實質門檻</th><th style="width:86px;">成本</th><th style="width:132px;">時間窗</th><th>對和橙的判斷</th></tr></thead>
           <tbody>
@@ -1385,7 +1328,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
         </table>
         <div class="src">資料為 2026-08 查證；各計劃的費用、級別要求與截止日期按年度調整，落實前須向主辦機構確認最新版指引。SEE Mark 級別門檻曾由四級調整為三級。</div>
       </div>
-      <div class="stage" style="flex:0 0 198px;gap:12px;">
+      <div class="stage" style="flex:1;gap:14px;">
         <div class="figblock">
           <div class="figlab">次級果轉贈 · 分級線就是分岔點</div>
           <div class="tile"><img src="fb/WOrange-QC2_ev.jpg" alt="分級線"></div>
@@ -1405,11 +1348,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">先花 600 蚊拿商界展關懷，不要為了 SEE Mark 創越級去承諾 65% 利潤再投資。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">31</span></div>
 </section>
 
 <!-- 32 · 產品體驗 -->
-<section class="slide divider" data-slide="33" id="s33">
+<section class="slide divider" data-slide="32" id="s32">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="body col" style="justify-content:center;">
     <div class="num">SECTION V</div>
@@ -1421,11 +1364,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div><b>03　紀念品</b>可攜帶的品牌角色</div>
     </div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">33</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">32</span></div>
 </section>
 
 <!-- 33 · 包裝參考 -->
-<section class="slide" data-slide="34" id="s34">
+<section class="slide" data-slide="33" id="s33">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">01</span></div>
@@ -1445,11 +1388,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">透明蓋、祝福語、產地標示，三者都是在替消費者省下判斷成本。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">34</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">33</span></div>
 </section>
 
 <!-- 34 · 包裝參考 -->
-<section class="slide" data-slide="35" id="s35">
+<section class="slide" data-slide="34" id="s34">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">02</span></div>
@@ -1469,11 +1412,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">卡通角色不是裝飾，是讓貨架上的和橙一眼認得出。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">35</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">34</span></div>
 </section>
 
 <!-- 35 · 紀念品 -->
-<section class="slide" data-slide="36" id="s36">
+<section class="slide" data-slide="35" id="s35">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">V · 產品體驗　<span class="sec">03</span></div>
@@ -1487,7 +1430,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="ts"><b>開橙器</b>實用小物，直接對應產品使用場景（圖為日本 ムッキーちゃん）。</div>
       <div class="ts"><b>微型巴士</b>承接已投放的巴士車身廣告，製成可收藏模型。</div>
     </div>
-    <div class="stage g4 ovl">
+    <div class="stage g4">
       <div class="figblock"><div class="figlab">利是封 · 橙形圖案，每年一款</div><div class="tile"><img src="proposal/s17_1.jpg" alt="橙形圖案利是封"></div></div>
       <div class="figblock"><div class="figlab">環保袋 · 企業客與工作坊</div><div class="tile"><img src="proposal/s17_2_w.jpg" alt="麻布環保袋配角色掛飾"></div></div>
       <div class="figblock"><div class="figlab">毛絨公仔鎖匙扣 · 食物造型參考（$60／件）</div><div class="tile"><img src="proposal/s17_3.jpg" alt="蛋撻菠蘿油造型毛絨鎖匙扣"></div></div>
@@ -1495,11 +1438,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">周邊的作用不是賺錢，是讓品牌離開農場後仍然被看見。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">36</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">35</span></div>
 </section>
 
 <!-- 36 · 生態旅遊 -->
-<section class="slide divider" data-slide="37" id="s37">
+<section class="slide divider" data-slide="36" id="s36">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="body col" style="justify-content:center;">
     <div class="num">SECTION VI</div>
@@ -1511,11 +1454,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div></div>
     </div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">37</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">36</span></div>
 </section>
 
 <!-- 37 · 以花期把農場撐成全年營運 -->
-<section class="slide" data-slide="38" id="s38">
+<section class="slide" data-slide="37" id="s37">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="slide-head">
     <div class="kicker">VI · 生態旅遊　<span class="sec">01</span></div>
@@ -1531,7 +1474,7 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div class="step" style="border-top-color:var(--pc-medium);"><b>7–8月</b>向日葵 · 學接枝 · 餵動物</div>
       <div class="step" style="border-top-color:var(--pc-teal);"><b>9–10月</b>桂花</div>
     </div>
-    <div class="stage g4 ovl">
+    <div class="stage g4">
       <div class="figblock"><div class="figlab">花田景觀 · 北海道富田農場</div><div class="tile"><img src="proposal/s18_2.jpg" alt="北海道花田"></div></div>
       <div class="figblock"><div class="figlab">薰衣草花田 · FARM TOMITA</div><div class="tile"><img src="proposal/s18_1.jpg" alt="富田農場薰衣草"></div></div>
       <div class="figblock"><div class="figlab">四季花期 · 日本花卉公園</div><div class="tile"><img src="proposal/s18_3.jpg" alt="日本花卉公園四季"></div></div>
@@ -1539,11 +1482,11 @@ h1,h2,h3,p,ul,ol{margin:0;}
     </div>
   </div>
   <div class="takeaway">把農場本身變成產品，收入就不再跟著橙的檔期走。</div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">38</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">37</span></div>
 </section>
 
 <!-- 38 · 收結 -->
-<section class="slide keynote" data-slide="39" id="s39">
+<section class="slide keynote" data-slide="38" id="s38">
   <div class="wordmark">WOrange <span>和橙</span></div>
   <div class="kn">
     <div class="eyebrow">One more thing</div>
@@ -1596,9 +1539,17 @@ h1,h2,h3,p,ul,ol{margin:0;}
       <div><div class="r">V</div><div class="t">產品體驗</div><div class="x">透明蓋＋祝福語＋產地標示；周邊把角色帶離農場。</div></div>
       <div><div class="r">VI</div><div class="t">生態旅遊</div><div class="x">以花期把農場撐成全年營運，收入脫離產季。</div></div>
     </div>
+    <div class="knnot">
+      <div class="h">同樣重要：三件<em>不要</em>做的事</div>
+      <div class="g">
+        <div><b>不要再靠規格說服人</b>有機認證、碳足跡、五日到家——這些是入場券，不是記憶點。</div>
+        <div><b>不要用 AI 圖打假</b>賣「可追溯」卻用經不起放大的圖，是信任問題，不只是美術問題。</div>
+        <div><b>不要為 SEE Mark 創越級承諾 65% 利潤再投資</b>與股東結構直接衝突；$600 的商界展關懷已足夠。</div>
+      </div>
+    </div>
     <div class="sign">天然敢留疤，健康才好吃。</div>
   </div>
-  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">39</span></div>
+  <div class="slide-foot"><span>WOrange · Marketing Proposal</span><span class="pg">38</span></div>
 </section>
 
 </main>
