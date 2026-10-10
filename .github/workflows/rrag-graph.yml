@@ -1,0 +1,38 @@
+name: Rebuild rrag wiki graph
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"   # Mondays 01:00 UTC (09:00 HKT)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v4
+
+      - name: Checkout rrag wiki
+        uses: actions/checkout@v4
+        with:
+          repository: yutsang/rrag
+          path: .rrag-src
+
+      - name: Build graph JSON
+        run: python3 scripts/build_rrag_graph.py .rrag-src
+
+      - name: Commit if changed
+        run: |
+          rm -rf .rrag-src
+          if git diff --quiet data/rrag-graph.json; then
+            echo "Graph unchanged — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/rrag-graph.json
+          git commit -m "Refresh rrag wiki graph data"
+          git push

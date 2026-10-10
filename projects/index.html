@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <title data-title-en="Projects - Yuu" data-title-zh="專案 - Yuu">Projects - Yuu</title>
+    <meta name="description" content="Projects — data science, optimization, web, research, and competitions.">
+    <link rel="canonical" href="https://ytsang.com/projects/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/projects/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="Projects - Yuu">
+    <meta property="og:description" content="Projects — data science, optimization, web, research, and competitions.">
+    <meta property="og:image" content="https://ytsang.com/images/avatar-photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects - Yuu">
+    <meta name="twitter:description" content="Projects — data science, optimization, web, research, and competitions.">
+    <meta name="twitter:image" content="https://ytsang.com/images/avatar-photo.jpg">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/recommendations/"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-title"><span data-lang="en">Projects</span><span data-lang="zh">專案作品集</span></div>
+        <p class="hero-subtitle">
+            <span data-lang="en">Applied data science, optimization, and engineering — built on real data, for real decisions</span>
+            <span data-lang="zh">應用數據科學、優化與工程實作——以真實數據解決真實問題</span>
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="section-head">
+            <div class="section-head__lead">
+                <div class="section-kicker">§ 01 / <span data-lang="en">Selected work</span><span data-lang="zh">精選作品</span></div>
+                <h2 class="section-title"><span data-lang="en">Featured projects.</span><span data-lang="zh">精選專案</span></h2>
+            </div>
+        </header>
+
+        <!-- Project Categories -->
+        <div class="project-categories">
+            <button class="category-btn active" data-category="all"><span data-lang="en">All Projects</span><span data-lang="zh">全部專案</span></button>
+            <button class="category-btn" data-category="data"><span data-lang="en">Data Science</span><span data-lang="zh">數據科學</span></button>
+            <button class="category-btn" data-category="dataviz"><span data-lang="en">Data Viz</span><span data-lang="zh">數據視覺化</span></button>
+            <button class="category-btn" data-category="web"><span data-lang="en">Web Development</span><span data-lang="zh">網頁開發</span></button>
+            <button class="category-btn" data-category="research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></button>
+            <button class="category-btn" data-category="competition"><span data-lang="en">Competitions</span><span data-lang="zh">比賽</span></button>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Traffic — HK Public Transport Explorer (internal: yuutraffic) -->
+            <a class="project-card" data-category="web" href="/projects/traffic/" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">Open</span><span data-lang="zh">開啟</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">HK Transport Explorer</span><span data-lang="zh">香港交通探索</span></h3>
+                    <p>
+                        <span data-lang="en">Live arrival times, route maps, nearest-stop search, and a Dijkstra-based trip planner across KMB, Citybus, GMB, MTR Bus, and the MTR rail network. A pure-static site calling HK government open-data APIs directly from the browser — no backend.</span>
+                        <span data-lang="zh">即時到站時間、路線地圖、就近站點搜尋，以及以 Dijkstra 演算法規劃的行程功能，涵蓋九巴、城巴、專線小巴、港鐵巴士及港鐵。完全靜態網站，由瀏覽器直接呼叫政府開放數據 API，無需後端。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Vanilla JS</span>
+                        <span class="tag">Leaflet</span>
+                        <span class="tag">Static site</span>
+                        <span class="tag">HK Open Data</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">2026 · weekly refresh</span><span data-lang="zh">2026 · 每週更新</span></span>
+                        <span class="project-type"><span data-lang="en">Live demo</span><span data-lang="zh">即時示範</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- LF Logistics Project -->
+            <a class="project-card" data-category="data" href="/projects/eta-prediction/" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">Read the write-up</span><span data-lang="zh">查看詳情</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
+                    <p>
+                        <span data-lang="en">Final-year project with LF Logistics: an XGBoost model that predicts delivery <em>delay ratio</em> (actual vs planned time) instead of raw duration, trained on 65,330 real HK delivery segments. Key finding: vehicle type and origin depot beat distance as predictors. Ships with a Streamlit analytics dashboard.</span>
+                        <span data-lang="zh">與 LF Logistics 合作的畢業專題：以 XGBoost 預測配送的 <em>delay ratio</em>（實際 vs 計劃時間）而非原始時長，用 65,330 條真實香港配送紀錄訓練。核心發現：車型與出發倉庫比距離更有預測力。附 Streamlit 分析 dashboard。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Logistics</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">Jun 2023</span><span data-lang="zh">2023 年 6 月</span></span>
+                        <span class="project-type"><span data-lang="en">Final Year Project · Open source</span><span data-lang="zh">畢業專題 · 開源</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- rrag — LLM-maintained knowledge wiki -->
+            <a class="project-card" data-category="data" href="/projects/rrag/" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://opengraph.githubassets.com/1/yutsang/rrag" alt="rrag — GitHub repository card" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">Explore the graph</span><span data-lang="zh">探索知識網絡</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">rrag — LLM-Maintained Knowledge Wiki</span><span data-lang="zh">rrag——LLM 自主維護的知識 Wiki</span></h3>
+                    <p>
+                        <span data-lang="en">An Obsidian vault run by a Claude agent, implementing Karpathy's LLM Wiki pattern: raw sources go in, a structured, cross-referenced wiki comes out — 17 agent workflows, slash commands, confidence ratings, and bilingual summaries on every page.</span>
+                        <span data-lang="zh">由 Claude agent 營運的 Obsidian vault，實作 Karpathy 的 LLM Wiki pattern：raw sources 放入，輸出結構化、互相連結的 wiki——17 個 agent workflows、slash commands、每頁附 confidence 評級與繁中概述。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Claude Code</span>
+                        <span class="tag">RAG</span>
+                        <span class="tag">Obsidian</span>
+                        <span class="tag">Knowledge Base</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">2026 · active</span><span data-lang="zh">2026 · 持續更新</span></span>
+                        <span class="project-type"><span data-lang="en">Open source</span><span data-lang="zh">開源</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Antimicrobial Resistance Research -->
+            <a class="project-card" data-category="research" href="/projects/amr-genome/" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">Read the write-up</span><span data-lang="zh">查看詳情</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">Antimicrobial Resistance Analysis</span><span data-lang="zh">抗生素抗藥性分析</span></h3>
+                    <p>
+                        <span data-lang="en">Research applying BERT-family language models to bacterial genomic data to predict antibiotic resistance — model design, training, and evaluation in PyTorch.</span>
+                        <span data-lang="zh">以 BERT 系列語言模型分析細菌基因組數據、預測抗生素抗藥性的研究——涵蓋模型設計、訓練與評估，以 PyTorch 實作。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">BERT</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Genomics</span>
+                        <span class="tag">Research</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">May 2024 - Present</span><span data-lang="zh">2024 年 5 月至今</span></span>
+                        <span class="project-type"><span data-lang="en">Research Project · Open source</span><span data-lang="zh">研究專案 · 開源</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Case Competition -->
+            <div class="project-card" data-category="competition">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">Hong Kong Logistics Association Case Contest</span><span data-lang="zh">香港物流協會案例比賽</span></h3>
+                    <p>
+                        <span data-lang="en">Led a team to 2nd Runner-Up and the Best Cost-Effective Solution award — designed the logistics solution, built the cost model, and presented to a panel of industry professionals.</span>
+                        <span data-lang="zh">帶領團隊奪得季軍及「最佳成本效益方案」獎——負責設計物流方案、建立成本模型，並向業界專業評審發表。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Case Study</span>
+                        <span class="tag">Logistics</span>
+                        <span class="tag">Strategy</span>
+                        <span class="tag">Leadership</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">Jun 2022</span><span data-lang="zh">2022 年 6 月</span></span>
+                        <span class="project-type"><span data-lang="en">Competition</span><span data-lang="zh">比賽</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Website -->
+            <a class="project-card" data-category="web" href="https://github.com/yutsang/yutsang.github.io" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://opengraph.githubassets.com/1/yutsang/yutsang.github.io" alt="" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">View on GitHub</span><span data-lang="zh">GitHub 查看</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">This Website</span><span data-lang="zh">本網站</span></h3>
+                    <p>
+                        <span data-lang="en">A hand-built, fully bilingual (English / 中文) static portfolio: client-side language switching with no URL routing, a Jekyll-powered writing section, and no frontend frameworks.</span>
+                        <span data-lang="zh">親手打造、完整雙語（英文／中文）的靜態作品集網站：無需 URL 路由的前端語言切換、以 Jekyll 驅動的文章區，全程不依賴前端框架。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Jekyll</span>
+                        <span class="tag">i18n</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">2022 - Present</span><span data-lang="zh">2022 年至今</span></span>
+                        <span class="project-type"><span data-lang="en">Personal Project · Open source</span><span data-lang="zh">個人專案 · 開源</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- HKEX Market Data (combined: CBBC / Stock Connect / Short-Selling) -->
+            <a class="project-card" data-category="dataviz" href="/projects/hkex-data/" style="text-decoration:none;color:inherit">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">Open the dashboards</span><span data-lang="zh">開啟 dashboard</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">HKEX Market Data — 4 dashboards</span><span data-lang="zh">港交所市場數據——四合一 Dashboard</span></h3>
+                    <p>
+                        <span data-lang="en">CBBC street distribution, Stock Connect (北水) net flow, market-wide short-selling ratio, and market breadth with gainers/losers — four tabbed views on one page, all computed independently from HKEX's public files and rebuilt once daily by a scheduled pipeline.</span>
+                        <span data-lang="zh">牛熊證街貨分佈、港股通（北水）淨流入、全市場沽空比率，以及市場廣度與升跌幅榜——一頁四個分頁，全部由 HKEX 公開檔案獨立計算，每日由自動 pipeline 重建一次。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">GitHub Actions</span>
+                        <span class="tag">HK Open Data</span>
+                        <span class="tag">Finance</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">2026 · daily refresh</span><span data-lang="zh">2026 · 每日更新</span></span>
+                        <span class="project-type"><span data-lang="en">Live data</span><span data-lang="zh">即時數據</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Electric Fence Dashboard -->
+            <div class="project-card" data-category="dataviz" id="electric-fence" onclick="toggleDashboard('electric-fence')" style="cursor:pointer;">
+                <div class="project-image">
+                    <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="Electric Fence Dashboard" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
+                    <p>
+                        <span data-lang="en">Comprehensive analysis of electric fence performance metrics, including efficiency rates, maintenance schedules, and operational insights — embedded live from Tableau Public.</span>
+                        <span data-lang="zh">針對電子圍欄績效指標的完整分析，涵蓋效率、維護排程與營運洞察——直接嵌入 Tableau Public 即時 dashboard。</span>
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Performance Analysis</span>
+                        <span class="tag">Electric Fence</span>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-date"><span data-lang="en">Sep 2023</span><span data-lang="zh">2023 年 9 月</span></span>
+                        <span class="project-type"><span data-lang="en">Interactive Dashboard</span><span data-lang="zh">互動式 dashboard</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Embedded Tableau Dashboard -->
+        <div id="electric-fence-dashboard" class="embedded-dashboard" style="display: none;">
+            <div class="dashboard-header">
+                <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
+                <button class="close-dashboard" onclick="toggleDashboard('electric-fence')">×</button>
+            </div>
+            <div class="dashboard-embed">
+                <iframe
+                    title="Electric Fence Tableau dashboard"
+                    src="https://public.tableau.com/views/Electricfence/Dashboard?:embed=y&:display_count=no&:showVizHome=no&:toolbar=no"
+                    width="100%"
+                    scrolling="no"
+                    style="border:0;display:block;overflow:hidden;"
+                    loading="lazy"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/recommendations/"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+                <a href="https://linkedin.com/in/tsangyu" rel="noopener noreferrer">LinkedIn →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script>
+        function toggleDashboard(dashboardType) {
+            var el = document.getElementById(dashboardType + "-dashboard");
+            if (!el) return;
+            var visible = el.style.display !== "none" && el.style.display !== "";
+            if (visible) {
+                el.style.display = "none";
+            } else {
+                el.style.display = "block";
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        // Deep link: /projects/#electric-fence opens the embedded dashboard
+        if (window.location.hash === "#electric-fence") {
+            toggleDashboard("electric-fence");
+        }
+
+        document.querySelectorAll(".category-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                document.querySelectorAll(".category-btn").forEach(function (b) {
+                    b.classList.remove("active");
+                });
+                this.classList.add("active");
+                var category = this.getAttribute("data-category");
+                document.querySelectorAll(".project-card").forEach(function (project) {
+                    if (category === "all" || project.getAttribute("data-category") === category) {
+                        project.style.display = "block";
+                    } else {
+                        project.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
