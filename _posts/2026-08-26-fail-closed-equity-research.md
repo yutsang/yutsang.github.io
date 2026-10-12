@@ -166,7 +166,7 @@ off to the code. The skill encodes that as a sequence.
    data source or another quarter of history would actually add.
 
 The instructions above, as an actual `SKILL.md` you can drop into
-`.claude/skills/equity-research/`: **[download it](/downloads/equity-research-skill/SKILL.md)**.
+`.claude/skills/equity-research/`: **[github.com/yutsang/public-skills](https://github.com/yutsang/public-skills)**.
 It's the methodology, without the calculation engine — step 5 still needs
 wiring to a deterministic pipeline of your own, shaped like the one
 described above.
@@ -334,7 +334,7 @@ filing、判斷該信哪個來源、把 assumptions 寫在人看得見的地方�
 
 以上這些步驟寫成了一份真正的 `SKILL.md`，放進
 `.claude/skills/equity-research/` 就能用：
-**[下載](/downloads/equity-research-skill/SKILL.md)**。這份文件是方法
+**[github.com/yutsang/public-skills](https://github.com/yutsang/public-skills)**。這份文件是方法
 論，沒有附帶計算引擎，第五步仍然要接上自己的 deterministic pipeline，形
 狀跟上面講的差不多。
 
