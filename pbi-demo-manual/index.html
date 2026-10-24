@@ -1,0 +1,849 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Sales Design Lab：從 CSV、Power Query、AI 與 TMDL，到互動 Power BI 報表的操作手冊。"><meta name="robots" content="noindex"><title>PBI Demo Manual</title><style>
+:root{color-scheme:light;--ink:#172b3a;--muted:#596a77;--accent:#245c78;--line:#dce4e8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#f5f7f9;font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}header{height:66px;background:#172b3a;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}header strong{letter-spacing:.04em;font-size:17px}header span{color:#bdd1dd;font-size:13px}#menu{display:none}aside{position:fixed;top:66px;bottom:0;width:286px;padding:24px 18px;overflow:auto;background:#edf2f5;border-right:1px solid var(--line)}aside .label{font-size:11px;letter-spacing:.18em;color:var(--muted);margin:0 12px 16px}nav a{display:block;text-decoration:none;color:#405566;line-height:1.5;padding:6px 12px;border-radius:6px;font-size:12px}nav a:hover,nav a.active{background:#dce8ee;color:#153e55}nav .level-h2{font-weight:700;margin-top:12px}nav .level-h3{padding-left:23px}main{margin-left:286px;padding:42px 5vw 100px;max-width:1500px}article{max-width:1000px;margin:auto}h1{font-size:44px;line-height:1.2;margin:12px 0 24px;letter-spacing:-.04em}h2{font-size:26px;margin:64px 0 22px;padding-top:24px;border-top:1px solid var(--line);line-height:1.45}h3{font-size:21px;margin-top:38px;line-height:1.5}h4{font-size:15px;margin:26px 0 12px;color:var(--accent)}p{margin:14px 0}a{color:#1c638a}li{margin:7px 0}strong{font-weight:650}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#e6edf1;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:22px 0 30px;border:1px solid #c9d7df;border-radius:10px;overflow:hidden;background:#fff}.codebar{display:flex;align-items:center;justify-content:space-between;background:#e8eef2;padding:8px 16px;font-size:11px;letter-spacing:.1em;color:#4b6272}button{cursor:pointer;border:1px solid #c2d0da;background:white;border-radius:5px;padding:7px 15px;color:#245c78;font-weight:600}button:hover{background:#dbe8f0}pre{margin:0;padding:20px;max-height:560px;overflow:auto;tab-size:4;line-height:1.65;white-space:pre}pre code{white-space:pre}table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}th{text-align:left;background:#eaf0f4}th,td{padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}.table-scroll{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:8px}.checkitem{list-style:none;margin-left:-24px;padding:8px 12px;background:#edf3f6;border-radius:6px}.checkitem input{margin-right:12px;width:17px;height:17px;accent-color:#245c78;vertical-align:middle}.checkitem:has(input:checked){color:#617581;background:#e4ede9}.notice{border-left:3px solid #c05a28;padding:10px 18px;background:#fff9f2;font-size:14px;margin-bottom:32px}.toplink{position:fixed;right:20px;bottom:20px;background:#172b3a;color:white;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:12px}@media(max-width:950px){aside{width:230px}main{margin-left:230px;padding:30px 28px}h1{font-size:35px}}@media(max-width:700px){header{padding:0 16px}header span{display:none}#menu{display:block}aside{display:none;width:285px;z-index:9;box-shadow:8px 0 24px #172b3a22}body.open aside{display:block}main{margin-left:0;padding:28px 18px 80px}h1{font-size:34px}h2{font-size:24px}pre{padding:15px}table{min-width:580px}}@media print{header,aside,.codebar button,.toplink{display:none}main{margin:0;padding:0}pre{max-height:none;white-space:pre-wrap}pre code{white-space:pre-wrap}h2{break-before:page}}
+</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" href="#step-0">文件使用方式</a><a class="level-h2" href="#step-1">完成後應該有甚麼</a><a class="level-h2" href="#step-2">A · 開始與匯入</a><a class="level-h3" href="#step-3">1. 建立空白報表</a><a class="level-h3" href="#step-4">2. 匯入八張來源</a><a class="level-h3" href="#step-5">3. 只做必要清洗</a><a class="level-h3" href="#step-6">全表行數怎樣核對</a><a class="level-h2" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" href="#step-8">4. 建立DimProduct</a><a class="level-h3" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" href="#step-10">C · 讓AI按確認過的規則補其餘模型</a><a class="level-h3" href="#step-11">6. Prompt＋完整預期輸出</a><a class="level-h3" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" href="#step-22">F · 用AI＋TMDL加入新的分析角度</a><a class="level-h3" href="#step-23">11. 請AI只新增measures</a><a class="level-h3" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" href="#step-30">16. 每張圖實際放甚麼</a><a class="level-h3" href="#step-31">17. 設定互動並核對</a><a class="level-h3" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" href="#step-37">K · 排練順序與完成條件</a><a class="level-h3" href="#step-38">21. 一次完整講解的流程</a><a class="level-h3" href="#step-39">22. 最後驗收與保存</a><a class="level-h2" href="#step-40">基線控制值與資料口徑</a><a class="level-h2" href="#step-41">官方操作依據</a></nav></aside><main><article><div class="notice">按順序操作。每批 Prompt、TMDL、DAX 都可獨立複製；驗收通過後再進下一步。</div><h1>PBI Demo Manual</h1>
+<p>從空白報表到 AI＋TMDL，再完成互動報表。</p>
+<p>這次走完一條完整demo：raw tables → 一個手動清洗／merge例子 → AI協助建立模型 → 數字驗收 → Sales報表 → AI新增指標 → 同一張圖切換閱讀角度。</p>
+<p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已確認的資料控制值列在文末；Windows Desktop 的逐步實跑仍在進行。</p>
+<h2 id="step-0">文件使用方式</h2>
+<p>本文件是排練和slides整合的唯一工作稿，檔名為 <code>pbi-demo-manual.md</code>。Prompt、預期輸出及驗收code均直接放在本文件；不需要切換其他本地文件。</p>
+<p>目前已完成DimProduct504行、209個Unclassified，以及查看table script；下一步從第6.1批開始。</p>
+<h2 id="step-1">完成後應該有甚麼</h2>
+<ul>
+<li>八張raw staging queries；模型只載入DimProduct、DimTerritory、DimDate、FactSales。</li>
+<li>三條active、一對多、single-direction relationships。</li>
+<li>一頁報表，有年份／渠道／地區群組篩選、基本cards和territory bar。</li>
+<li>AI用TMDL新增Average Order Value、Gross Margin等measures。</li>
+<li>同一張bar可以切Sales／Orders／Average Order Value／Gross Margin，讓你比較不同指標的讀法。</li>
+<li>Saved Before和After，能核對數字並還原。</li>
+</ul>
+<h2 id="step-2">A · 開始與匯入</h2>
+<h3 id="step-3">1. 建立空白報表</h3>
+<p>在Power BI Desktop開Blank report，存 <code>Sales Design Lab - Working.pbix</code>，記錄Desktop完整版本。這一輪使用已完成資料核對的那套CSV。</p>
+<h3 id="step-4">2. 匯入八張來源</h3>
+<p>Home → Get data → Text/CSV。第一張選Transform Data；其餘在Power Query內Home → New Source → Text/CSV。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>原始檔案</th>
+<th>Query改名</th>
+<th style="text-align: right;">全表行數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales.SalesOrderHeader.csv</td>
+<td>RawHeader</td>
+<td style="text-align: right;">31,465</td>
+</tr>
+<tr>
+<td>Sales.SalesOrderDetail.csv</td>
+<td>RawDetail</td>
+<td style="text-align: right;">121,317</td>
+</tr>
+<tr>
+<td>Production.Product.csv</td>
+<td>RawProduct</td>
+<td style="text-align: right;">504</td>
+</tr>
+<tr>
+<td>Production.ProductSubcategory.csv</td>
+<td>RawSubcategory</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>Production.ProductCategory.csv</td>
+<td>RawCategory</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>Sales.SalesTerritory.csv</td>
+<td>RawTerritory</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Production.ProductCostHistory.csv</td>
+<td>RawCostHistory</td>
+<td style="text-align: right;">522</td>
+</tr>
+<tr>
+<td>Sales.SpecialOffer.csv</td>
+<td>RawOffer</td>
+<td style="text-align: right;">16</td>
+</tr>
+</tbody>
+</table></div>
+<p>Encoding UTF-8／65001，delimiter逗號。確認第一行是欄名，沒有重複Promote Headers。這八張是staging，右鍵取消Enable load；之後的Reference／模型query仍會使用它們。</p>
+<h3 id="step-5">3. 只做必要清洗</h3>
+<ul>
+<li>IDs、OrderQty確認非空值都沒有小數部分，再轉Whole number。文字 <code>771.0</code> 不代表可以忽略實際小數檢查。</li>
+<li>金額、單價、折扣轉Decimal number；不在來源步驟逐行Round到兩位。</li>
+<li>日期轉Date。若報錯，按實際字串選Using locale；不要Remove Errors。</li>
+<li>CostHistory.EndDate空字串轉null，代表開放區間。</li>
+<li>Product.ProductSubcategoryID有209筆空白，保留，不能刪掉對應產品。</li>
+<li>不額外平移日期、不填虛構0、不留下臨時預覽filter。</li>
+</ul>
+<h3 id="step-6">全表行數怎樣核對</h3>
+<p>Power Query新增Blank Query，命名QC_Imports，在Advanced Editor貼以下內容。這是檢查query，不取代八張raw。看完後關閉它的Enable load。</p>
+<div class="codebox"><div class="codebar"><span>POWERQUERY</span><button aria-label="複製程式碼 1" data-copy="code-0" type="button">Copy</button></div><pre id="code-0"><code class="language-powerquery">let
+    Sources = {
+        {"RawHeader", RawHeader, 31465},
+        {"RawDetail", RawDetail, 121317},
+        {"RawProduct", RawProduct, 504},
+        {"RawSubcategory", RawSubcategory, 37},
+        {"RawCategory", RawCategory, 4},
+        {"RawTerritory", RawTerritory, 10},
+        {"RawCostHistory", RawCostHistory, 522},
+        {"RawOffer", RawOffer, 16}
+    },
+    Checks = Table.FromRecords(List.Transform(Sources, each [
+        Query = _{0},
+        ActualRows = Table.RowCount(_{1}),
+        ExpectedRows = _{2},
+        ErrorRows = Table.RowCount(Table.SelectRowsWithErrors(_{1}))
+    ]))
+in
+    Checks
+</code></pre></div>
+<p>ActualRows應逐項等於ExpectedRows，ErrorRows應全0。這個檢查不能代替key唯一／小數部分檢查，但能避免只看前1,000行preview就當完成。</p>
+<p><strong>停點A</strong>：八張query都存在，型別和row counts正確；任何key／日期error先處理，暫時不靠AI繼續堆模型。Preview只顯示前幾行不算完成全表驗收。</p>
+<h2 id="step-7">B · 親手做一個 Power Query merge</h2>
+<h3 id="step-8">4. 建立DimProduct</h3>
+<p>右鍵RawProduct → <strong>Reference</strong>，改名DimProduct。保留ProductID、Name、ProductSubcategoryID。</p>
+<ol>
+<li>Home → Merge Queries，右表選RawSubcategory，兩邊點ProductSubcategoryID，Join kind選 <strong>Left Outer</strong>。</li>
+<li>展開nested欄，只取Name和ProductCategoryID。將展開的Name改Subcategory，原Product的Name改ProductName。</li>
+<li>再Merge RawCategory，以ProductCategoryID連接，Left Outer。只展開Name，改名Category。</li>
+<li>Category／Subcategory的null以Unclassified標示。</li>
+<li>最後保留ProductID、ProductName、Category、Subcategory，確認Enable load有開。</li>
+</ol>
+<p><strong>驗收</strong>：504行，ProductID唯一。209個無分類產品仍保留。</p>
+<p>可以這樣講：「剛才的選欄、merge和展開，背後是一段M。先看懂這個例子，其他重複工作再讓AI協助。」</p>
+<h4>Merge與分類欄位的操作補充</h4>
+<ul>
+<li>Merge前，DimProduct和RawSubcategory的ProductSubcategoryID都設Whole Number；再確認RawSubcategory與RawCategory的ProductCategoryID型別相同。兩邊各點對應欄名，Left Outer，不開fuzzy matching。</li>
+<li>只保留欄位：Ctrl多選所需欄名，右鍵Remove Other Columns。兩次join完成後，ProductSubcategoryID和ProductCategoryID可以移除，保留最終四欄。</li>
+<li>未分類：在Category／Subcategory的Replace Values，以真正的null取代成Unclassified；若使用M，null不帶引號，不能把它當文字"null"。</li>
+<li>Enable load：Power Query左邊右鍵query，看Enable load前有沒有勾。DimProduct要有勾；raw及QC不要有勾。</li>
+</ul>
+<h3 id="step-9">5. 看自己的M及TMDL</h3>
+<p>Advanced Editor看完整DimProduct M，保存文字。Close &amp; Apply後，進TMDL view，在Data pane右鍵DimProduct → <strong>Script TMDL to → New tab／Clipboard</strong>（依版本名稱）。</p>
+<p>只找三個位置：column、dataType、partition下面的M。先不要重新Apply整張DimProduct，因為它已經建立。</p>
+<p>若script開頭是relationship而非table DimProduct，是選到了關聯。右側Data pane上方切Tables，右鍵整張DimProduct表名再script；也可把表名拖入編輯區。</p>
+<p>這不是把同一個merge再做一次，而是看同一個物件的文字定義。</p>
+<h2 id="step-10">C · 讓AI按確認過的規則補其餘模型</h2>
+<h3 id="step-11">6. Prompt＋完整預期輸出</h3>
+<p>本節直接放齊四批prompt、完整TMDL及驗收查詢，後續不另開文件。HTML deck可將每批的Prompt、預期輸出和驗收分成可複製的code panels。這些是按已知schema準備的預期輸出，實際Desktop結果逐批記錄，不宣稱已執行成功。</p>
+<h4>目前位置</h4>
+<p>已完成DimProduct的Power Query merge，並看過它的table script。接下來不再手動建立同樣的新tables，直接套下列TMDL。</p>
+<p>先在Power Query確認RawHeader、RawDetail、RawProduct、RawSubcategory、RawCategory、RawTerritory、RawCostHistory、RawOffer及QC_Imports的Enable load關閉；DimProduct開啟，再Close &amp; Apply。圖上若仍有raw模型表及自動關聯，這步會把未需載入的來源表移出模型，並保留staging queries供M引用。</p>
+<h4>每批相同操作</h4>
+<ol>
+<li>在TMDL view按底部＋開新tab。</li>
+<li>貼入該批「預期輸出」完整內容。不要貼入上一個仍有DimProduct script的tab而串成兩個command。</li>
+<li>Preview確認只有該批物件改動，然後Apply。</li>
+<li>有新table／M時回Home→Refresh；只Apply不代表已讀入資料。</li>
+<li>用該批驗收查詢核對，再到下一批。</li>
+</ol>
+<p>如果目前同名table已存在，先不要再套完整table的createOrReplace，保留當前版本確認再處理；否則可能替換table的children。</p>
+<h3 id="step-12">第6.1批 · DimTerritory＋DimDate</h3>
+<h4>Prompt</h4>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 2" data-copy="code-1" type="button">Copy</button></div><pre id="code-1"><code class="language-text">請為Sales Design Lab新增DimTerritory及DimDate，回傳一段完整可直接貼入Power BI TMDL view的createOrReplace腳本，不包含省略號。
+現有DimProduct和raw staging queries保持不變。RawTerritory已存在，欄位TerritoryID、Name、Group；可在M直接引用。
+DimTerritory：選這三欄，TerritoryID為整數，Name改Territory，Group為文字。
+DimDate：用M產生2023-01-01至2026-12-31的完整日曆，Date為日期，Year及MonthNumber為整數，MonthLabel為英文月份簡寫，YearMonth為yyyy-MM；MonthLabel按MonthNumber排序。
+兩張表使用import模式M partitions。不要新增relationships或measures，不重建DimProduct，不改raw。
+</code></pre></div>
+<h4>預期輸出</h4>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 3" data-copy="code-2" type="button">Copy</button></div><pre id="code-2"><code class="language-tmdl">createOrReplace
+
+	table DimTerritory
+		column TerritoryID
+			dataType: int64
+			sourceColumn: TerritoryID
+			summarizeBy: none
+		column Territory
+			dataType: string
+			sourceColumn: Territory
+			summarizeBy: none
+		column Group
+			dataType: string
+			sourceColumn: Group
+			summarizeBy: none
+		partition DimTerritory = m
+			mode: import
+			source =
+				let
+				    Source = Table.SelectColumns(#"RawTerritory", {"TerritoryID", "Name", "Group"}),
+				    Typed = Table.TransformColumnTypes(Source, {{"TerritoryID", Int64.Type}, {"Name", type text}, {"Group", type text}}),
+				    Final = Table.RenameColumns(Typed, {{"Name", "Territory"}})
+				in
+				    Final
+
+	table DimDate
+		column Date
+			dataType: dateTime
+			sourceColumn: Date
+			summarizeBy: none
+			formatString: yyyy-MM-dd
+		column Year
+			dataType: int64
+			sourceColumn: Year
+			summarizeBy: none
+		column MonthNumber
+			dataType: int64
+			sourceColumn: MonthNumber
+			summarizeBy: none
+		column MonthLabel
+			dataType: string
+			sourceColumn: MonthLabel
+			summarizeBy: none
+			sortByColumn: MonthNumber
+		column YearMonth
+			dataType: string
+			sourceColumn: YearMonth
+			summarizeBy: none
+		partition DimDate = m
+			mode: import
+			source =
+				let
+				    StartDate = #date(2023, 1, 1),
+				    EndDate = #date(2026, 12, 31),
+				    Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    Source = Table.FromColumns({Dates}, {"Date"}),
+				    Typed = Table.TransformColumnTypes(Source, {{"Date", type date}}),
+				    AddYear = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+				    AddMonth = Table.AddColumn(AddYear, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    AddLabel = Table.AddColumn(AddMonth, "MonthLabel", each Date.ToText([Date], [Format="MMM", Culture="en-US"]), type text),
+				    Final = Table.AddColumn(AddLabel, "YearMonth", each Date.ToText([Date], [Format="yyyy-MM", Culture="en-US"]), type text)
+				in
+				    Final
+</code></pre></div>
+<h4>驗收</h4>
+<p>Territories及Territory keys都是10；Dates及Date keys都是1,461；日期2023-01-01至2026-12-31。</p>
+<p>在DAX query view執行，不貼在TMDL view：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 4" data-copy="code-3" type="button">Copy</button></div><pre id="code-3"><code class="language-dax">EVALUATE
+ROW(
+    "Territories", COUNTROWS(DimTerritory),
+    "Territory keys", DISTINCTCOUNT(DimTerritory[TerritoryID]),
+    "Dates", COUNTROWS(DimDate),
+    "Date keys", DISTINCTCOUNT(DimDate[Date]),
+    "First date", MIN(DimDate[Date]),
+    "Last date", MAX(DimDate[Date])
+)
+</code></pre></div>
+<h3 id="step-13">第6.2批 · FactSales</h3>
+<h4>Prompt</h4>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 5" data-copy="code-4" type="button">Copy</button></div><pre id="code-4"><code class="language-text">請只新增FactSales，回傳完整可直接貼入TMDL view的createOrReplace腳本，包含所有columns及完整M partition，不包含省略號。
+現有RawDetail、RawHeader、RawCostHistory、RawOffer為staging M queries，可直接引用。其他已建tables不變。
+一行一個SalesOrderDetailID。RawDetail選SalesOrderID、SalesOrderDetailID、ProductID、SpecialOfferID、OrderQty、LineTotal。
+按SalesOrderID Left Outer join RawHeader，只帶OrderDate、ShipDate、CustomerID、TerritoryID、OnlineOrderFlag。日期轉Date，保留全部明細；不帶Header金額。
+Channel由OnlineOrderFlag=1轉Online，否則Reseller。
+CostMatchDate優先ShipDate，空白fallback OrderDate。RawCostHistory欄ProductID、StartDate、EndDate、StandardCost，空字串EndDate先轉null，再視開放區間。
+按ProductID nested join成本表，在nested table用StartDate&lt;=CostMatchDate&lt;=EndDate配對，保留CostMatchCount；只在唯一匹配時HistoricalCost=OrderQty*StandardCost，其餘null。CostMatchStatus區分OK、Missing cost、Multiple matches，不展開所有成本版本。
+Left Outer join RawOffer，按SpecialOfferID取得DiscountPct，以&gt;0建立IsDiscounted，不再次扣交易折扣。
+最終欄位LineID、OrderID、CustomerID、ProductID、TerritoryID、OrderDate、Channel、Quantity、NetSales、HistoricalCost、CostMatchCount、CostMatchStatus、IsDiscounted。
+LineID來自SalesOrderDetailID，OrderID來自SalesOrderID，Quantity來自OrderQty，NetSales來自LineTotal。ID/Quantity/count/flag整數，金額小數，日期dateTime，文字string。
+不要新增relationships、measures或visuals。
+</code></pre></div>
+<h4>預期輸出</h4>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 6" data-copy="code-5" type="button">Copy</button></div><pre id="code-5"><code class="language-tmdl">createOrReplace
+
+	table FactSales
+		column LineID
+			dataType: int64
+			sourceColumn: LineID
+			summarizeBy: none
+		column OrderID
+			dataType: int64
+			sourceColumn: OrderID
+			summarizeBy: none
+		column CustomerID
+			dataType: int64
+			sourceColumn: CustomerID
+			summarizeBy: none
+		column ProductID
+			dataType: int64
+			sourceColumn: ProductID
+			summarizeBy: none
+		column TerritoryID
+			dataType: int64
+			sourceColumn: TerritoryID
+			summarizeBy: none
+		column OrderDate
+			dataType: dateTime
+			sourceColumn: OrderDate
+			summarizeBy: none
+			formatString: yyyy-MM-dd
+		column Channel
+			dataType: string
+			sourceColumn: Channel
+			summarizeBy: none
+		column Quantity
+			dataType: int64
+			sourceColumn: Quantity
+			summarizeBy: none
+		column NetSales
+			dataType: double
+			sourceColumn: NetSales
+			summarizeBy: none
+		column HistoricalCost
+			dataType: double
+			sourceColumn: HistoricalCost
+			summarizeBy: none
+		column CostMatchCount
+			dataType: int64
+			sourceColumn: CostMatchCount
+			summarizeBy: none
+		column CostMatchStatus
+			dataType: string
+			sourceColumn: CostMatchStatus
+			summarizeBy: none
+		column IsDiscounted
+			dataType: int64
+			sourceColumn: IsDiscounted
+			summarizeBy: none
+		partition FactSales = m
+			mode: import
+			source =
+				let
+				    D = Table.TransformColumnTypes(Table.SelectColumns(RawDetail,{"SalesOrderID","SalesOrderDetailID","ProductID","SpecialOfferID","OrderQty","LineTotal"}),{{"SalesOrderID",Int64.Type},{"SalesOrderDetailID",Int64.Type},{"ProductID",Int64.Type},{"SpecialOfferID",Int64.Type},{"OrderQty",Int64.Type},{"LineTotal",type number}}),
+				    H0 = Table.SelectColumns(RawHeader,{"SalesOrderID","OrderDate","ShipDate","CustomerID","TerritoryID","OnlineOrderFlag"}),
+				    H1 = Table.TransformColumnTypes(H0,{{"SalesOrderID",Int64.Type},{"CustomerID",Int64.Type},{"TerritoryID",Int64.Type},{"OnlineOrderFlag",Int64.Type}}),
+				    H = Table.TransformColumns(H1,{{"OrderDate",each Date.From(_, "en-US"),type date},{"ShipDate",each if _ = null or _ = "" then null else Date.From(_, "en-US"),type nullable date}}),
+				    J = Table.NestedJoin(D,{"SalesOrderID"},H,{"SalesOrderID"},"Header",JoinKind.LeftOuter),
+				    EH = Table.ExpandTableColumn(J,"Header",{"OrderDate","ShipDate","CustomerID","TerritoryID","OnlineOrderFlag"}),
+				    Channel = Table.AddColumn(EH,"Channel",each if [OnlineOrderFlag] = 1 then "Online" else "Reseller",type text),
+				    MatchDate = Table.AddColumn(Channel,"CostMatchDate",each if [ShipDate] = null then [OrderDate] else [ShipDate],type date),
+				    C0 = Table.TransformColumnTypes(Table.SelectColumns(RawCostHistory,{"ProductID","StartDate","EndDate","StandardCost"}),{{"ProductID",Int64.Type},{"StandardCost",type number}}),
+				    C = Table.Buffer(Table.TransformColumns(C0,{{"StartDate",each Date.From(_, "en-US"),type date},{"EndDate",each if _ = null or _ = "" then #date(9999,12,31) else Date.From(_, "en-US"),type date}})),
+				    JC = Table.NestedJoin(MatchDate,{"ProductID"},C,{"ProductID"},"History",JoinKind.LeftOuter),
+				    Matches = Table.AddColumn(JC,"Matches",each let d=[CostMatchDate] in Table.SelectRows([History],(row)=&gt;row[StartDate]&lt;=d and d&lt;=row[EndDate]),type table),
+				    Count = Table.AddColumn(Matches,"CostMatchCount",each Table.RowCount([Matches]),Int64.Type),
+				    Cost = Table.AddColumn(Count,"HistoricalCost",each if [CostMatchCount]=1 then [OrderQty]*[Matches]{0}[StandardCost] else null,type nullable number),
+				    Status = Table.AddColumn(Cost,"CostMatchStatus",each if [CostMatchCount]=1 then "OK" else if [CostMatchCount]=0 then "Missing cost" else "Multiple matches",type text),
+				    O = Table.TransformColumnTypes(Table.SelectColumns(RawOffer,{"SpecialOfferID","DiscountPct"}),{{"SpecialOfferID",Int64.Type},{"DiscountPct",type number}}),
+				    JO = Table.NestedJoin(Status,{"SpecialOfferID"},O,{"SpecialOfferID"},"Offer",JoinKind.LeftOuter),
+				    EO = Table.ExpandTableColumn(JO,"Offer",{"DiscountPct"}),
+				    Discount = Table.AddColumn(EO,"IsDiscounted",each if [DiscountPct]=null then null else if [DiscountPct]&gt;0 then 1 else 0,Int64.Type),
+				    Rename = Table.RenameColumns(Discount,{{"SalesOrderID","OrderID"},{"SalesOrderDetailID","LineID"},{"OrderQty","Quantity"},{"LineTotal","NetSales"}}),
+				    Final = Table.SelectColumns(Rename,{"LineID","OrderID","CustomerID","ProductID","TerritoryID","OrderDate","Channel","Quantity","NetSales","HistoricalCost","CostMatchCount","CostMatchStatus","IsDiscounted"})
+				in
+				    Final
+</code></pre></div>
+<h4>驗收</h4>
+<p>Fact rows及Line keys都是121,317；Net sales約109,846,381.400030；Historical cost約97,297,383.440；Non-unique costs=0。</p>
+<p>在DAX query view執行，不貼在TMDL view：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 7" data-copy="code-6" type="button">Copy</button></div><pre id="code-6"><code class="language-dax">EVALUATE
+ROW(
+    "Fact rows", COUNTROWS(FactSales),
+    "Line keys", DISTINCTCOUNT(FactSales[LineID]),
+    "Net sales", SUM(FactSales[NetSales]),
+    "Historical cost", SUM(FactSales[HistoricalCost]),
+    "Non-unique costs", COALESCE(COUNTROWS(FILTER(FactSales, FactSales[CostMatchCount] &lt;&gt; 1)), 0)
+)
+</code></pre></div>
+<h3 id="step-14">第6.3批 · Relationships</h3>
+<h4>Prompt</h4>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 8" data-copy="code-7" type="button">Copy</button></div><pre id="code-7"><code class="language-text">請只建立三條模型relationships，回傳完整可直接貼入TMDL view的createOrReplace腳本：
+FactSales.ProductID多 → DimProduct.ProductID一
+FactSales.TerritoryID多 → DimTerritory.TerritoryID一
+FactSales.OrderDate多 → DimDate.Date一
+全部active、single direction由dimension篩選fact。名稱分別Sales_Product、Sales_Territory、Sales_Date。
+不改table、M、column或measure。不建立raw tables間的模型關聯。
+本次練習檔若已自動偵測相同連接，先在Model view核對並移除重複連接，再套用這段；不要建立同端點重複關聯。
+</code></pre></div>
+<h4>預期輸出</h4>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 9" data-copy="code-8" type="button">Copy</button></div><pre id="code-8"><code class="language-tmdl">createOrReplace
+
+	relationship Sales_Product
+		fromColumn: FactSales.ProductID
+		toColumn: DimProduct.ProductID
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship Sales_Territory
+		fromColumn: FactSales.TerritoryID
+		toColumn: DimTerritory.TerritoryID
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship Sales_Date
+		fromColumn: FactSales.OrderDate
+		toColumn: DimDate.Date
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+</code></pre></div>
+<h4>驗收</h4>
+<p>Model view只有指定三條關聯；dimension一、fact多、single方向。DimDate在Table tools標記Date table，欄位選Date。</p>
+<h3 id="step-15">第6.4批 · 基本 measures</h3>
+<h4>Prompt</h4>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 10" data-copy="code-9" type="button">Copy</button></div><pre id="code-9"><code class="language-text">請只在既有FactSales新增三個measures，回傳可直接貼入TMDL view的createOrReplace + ref table FactSales，不重建table或partition。
+Sales=SUM(FactSales[NetSales])，formatString #,0.00。
+Orders=DISTINCTCOUNT(FactSales[OrderID])，formatString #,0。
+Customers=DISTINCTCOUNT(FactSales[CustomerID])，formatString #,0。
+不要改已有columns、M、relationships或其他measures。
+</code></pre></div>
+<h4>預期輸出</h4>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 11" data-copy="code-10" type="button">Copy</button></div><pre id="code-10"><code class="language-tmdl">createOrReplace
+
+	ref table FactSales
+		measure Sales = SUM(FactSales[NetSales])
+			formatString: #,0.00
+		measure Orders = DISTINCTCOUNT(FactSales[OrderID])
+			formatString: #,0
+		measure Customers = DISTINCTCOUNT(FactSales[CustomerID])
+			formatString: #,0
+</code></pre></div>
+<h4>驗收</h4>
+<p>Sales約109,846,381.400030；Orders31,465；Customers19,119。</p>
+<p>在DAX query view執行，不貼在TMDL view：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 12" data-copy="code-11" type="button">Copy</button></div><pre id="code-11"><code class="language-dax">EVALUATE
+ROW("Sales", [Sales], "Orders", [Orders], "Customers", [Customers])
+</code></pre></div>
+<h3 id="step-16">7. 逐批Review、Apply、Refresh</h3>
+<p>每批在TMDL view新tab檢查。用Preview看改動範圍，確認沒有意外刪掉現有物件，再Apply。</p>
+<p>新table／M需要Refresh，不能只看到Apply成功就認為資料已載入。若遇「找不到RawHeader」等query依賴問題，以該error和實際query M定位，只修該層；不要把八張raw再匯入一遍或改成假資料。</p>
+<p>每批檢查：</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>批次</th>
+<th>預期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DimTerritory10行；DimDate1,461行、Date唯一</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FactSales121,317行；LineID唯一；cost missing0／multiple0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>只有指定三條active、一對多、single關聯</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sales／Orders／Customers出現在FactSales；不是重建FactSales</td>
+</tr>
+</tbody>
+</table></div>
+<p>DimDate載入後在Table tools → Mark as date table選Date。若自動偵測了其他relationships，與指定三條逐一核對，避免多條active路徑。</p>
+<h2 id="step-17">D · 先驗收數字，不急著看圖</h2>
+<h3 id="step-18">8. DAX query view執行全範圍檢查</h3>
+<p>以下整段是一個查詢：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 13" data-copy="code-12" type="button">Copy</button></div><pre id="code-12"><code class="language-dax">EVALUATE
+ROW(
+    "Fact rows", COUNTROWS(FactSales),
+    "Distinct lines", DISTINCTCOUNT(FactSales[LineID]),
+    "Products", COUNTROWS(DimProduct),
+    "Territories", COUNTROWS(DimTerritory),
+    "Dates", COUNTROWS(DimDate),
+    "Sales", [Sales],
+    "Orders", [Orders],
+    "Customers", [Customers],
+    "Historical cost", SUM(FactSales[HistoricalCost]),
+    "Non-unique cost rows", COALESCE(COUNTROWS(FILTER(FactSales, FactSales[CostMatchCount] &lt;&gt; 1)), 0)
+)
+</code></pre></div>
+<p>預期Fact rows和Distinct lines皆121,317；Products504；Territories10；Dates1,461；Sales約109,846,381.400030；Orders31,465；Customers19,119；Historical cost約97,297,383.440；Non-unique cost rows0。金額按分位容差核對，不要求binary decimal逐字相同。</p>
+<h3 id="step-19">9. 驗證relationships的篩選</h3>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 14" data-copy="code-13" type="button">Copy</button></div><pre id="code-13"><code class="language-dax">EVALUATE
+CALCULATETABLE(
+    ROW("Sales", [Sales], "Orders", [Orders], "Customers", [Customers]),
+    DimDate[Year] = 2024,
+    DimTerritory[Group] = "North America",
+    FactSales[Channel] = "Online"
+)
+</code></pre></div>
+<p>目前資料預期Sales2,594,302.4561、Orders1,078、Customers1,078。這個scope只有Bikes，不用它示範產品類別多樣性。</p>
+<p><strong>停點B</strong>：前兩個query通過，另存 <code>Sales Design Lab - Model Ready.pbix</code>。沒有通過先定位M／關聯／DAX，不能靠修改圖表掩蓋問題。</p>
+<h2 id="step-20">E · 建第一個可以閱讀的報表</h2>
+<h3 id="step-21">10. 做一頁Sales Overview</h3>
+<ol>
+<li>頁面改名Sales Overview。</li>
+<li>加三個slicers：DimDate.Year、FactSales.Channel、DimTerritory.Group。</li>
+<li>加三張cards：Sales、Orders、Customers。</li>
+<li>加Clustered bar：Y-axis=DimTerritory.Territory；X-axis=Sales。排序Sales descending。</li>
+<li>先用2024／Online／North America，確認cards與第9步一致。</li>
+<li>再切2025看完整年度。沒有事先已驗證的2025數字，就以DAX查詢得到實際值，不猜expected。</li>
+</ol>
+<p>先不調所有美化，只讓讀者清楚知道範圍和單位。保留截圖，另存 <code>Sales Design Lab - Before AI.pbix</code>。</p>
+<p>可以這樣講：「目前回答的是哪個地區賣得多。但訂單量、每張訂單金額和毛利率，是不同的比較角度。」</p>
+<h2 id="step-22">F · 用AI＋TMDL加入新的分析角度</h2>
+<h3 id="step-23">11. 請AI只新增measures</h3>
+<p>提供剛才實際script出的Sales及Orders TMDL，然後使用：</p>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 15" data-copy="code-14" type="button">Copy</button></div><pre id="code-14"><code class="language-text">現有模型FactSales，已有Sales、Orders、Customers，以下是Desktop產生的原文。
+我需要在同一份報表比較地區的Sales、Orders、Average Order Value和Gross Margin。
+請只新增以下measures，回傳createOrReplace + ref table FactSales的完整TMDL；不要replace整張table、改M、關聯、欄位或report。
+
+Average Order Value = DIVIDE([Sales], [Orders])，金額格式。
+Costed Sales = CALCULATE([Sales], FILTER(FactSales, NOT ISBLANK(FactSales[HistoricalCost])))
+Historical Standard Cost = SUM(FactSales[HistoricalCost])
+Gross Profit = [Costed Sales] - [Historical Standard Cost]
+Gross Margin = DIVIDE([Gross Profit], [Costed Sales])，百分比格式。
+Cost Coverage = DIVIDE([Costed Sales], [Sales])，百分比格式。
+
+毛利率使用歷史標準成本估計，不直接稱會計COGS。缺失成本不能當0。
+若上述名稱已存在，先列出衝突並保留原定義，不能直接覆寫。
+列出驗收查詢及新增物件清單，不生成visual或聲稱已執行。
+</code></pre></div>
+<h4>預期輸出 · 新增分析指標</h4>
+<p>確認下面六個measure名稱尚未存在後，整段貼到新的TMDL tab。沒有更改資料、既有三個measures或visual binding。</p>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 16" data-copy="code-15" type="button">Copy</button></div><pre id="code-15"><code class="language-tmdl">createOrReplace
+
+	ref table FactSales
+		measure 'Average Order Value' = DIVIDE([Sales], [Orders])
+			formatString: #,0.00
+
+		measure 'Costed Sales' =
+			CALCULATE([Sales], FILTER(FactSales, NOT ISBLANK(FactSales[HistoricalCost])))
+			formatString: #,0.00
+
+		measure 'Historical Standard Cost' = SUM(FactSales[HistoricalCost])
+			formatString: #,0.00
+
+		measure 'Gross Profit' = [Costed Sales] - [Historical Standard Cost]
+			formatString: #,0.00
+
+		measure 'Gross Margin' = DIVIDE([Gross Profit], [Costed Sales])
+			formatString: 0.0%
+
+		measure 'Cost Coverage' = DIVIDE([Costed Sales], [Sales])
+			formatString: 0.0%
+</code></pre></div>
+<h3 id="step-24">12. Review、Apply並核對</h3>
+<p>確認diff只有新增指定measures，沒有動原tables／partition／relationships。Apply後先執行：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 17" data-copy="code-16" type="button">Copy</button></div><pre id="code-16"><code class="language-dax">EVALUATE
+ROW(
+    "Sales", [Sales],
+    "Orders", [Orders],
+    "AOV", [Average Order Value],
+    "Costed Sales", [Costed Sales],
+    "Historical Cost", [Historical Standard Cost],
+    "Gross Profit", [Gross Profit],
+    "Gross Margin", [Gross Margin],
+    "Cost Coverage", [Cost Coverage]
+)
+</code></pre></div>
+<p>全範圍Gross Profit約12,548,997.960030；Gross Margin約11.42413414%；Cost Coverage100%。Sales和Orders仍與修改前相同，AOV應等於兩者相除。</p>
+<h2 id="step-25">G · 讓觀眾真的看到差別</h2>
+<h3 id="step-26">13. 加一張比較表先驗證</h3>
+<p>加Table：DimTerritory.Territory、Sales、Orders、Average Order Value、Gross Margin、Cost Coverage。切換slicer，確認所有欄跟同一scope變。</p>
+<p>讀法：Sales看規模；Orders看訂單量；AOV看平均每單金額；Gross Margin看有成本資料下的利潤比例。不要預先承諾換指標一定換冠軍，先看實際結果。</p>
+<h3 id="step-27">14. 用field parameter切換同一張bar</h3>
+<ol>
+<li>Modeling → New parameter → <strong>Fields</strong>，命名Metric。</li>
+<li>選Sales、Orders、Average Order Value、Gross Margin，按這個順序排列；勾Add slicer to this page。</li>
+<li>把原territory bar的X-axis Sales移除，放新建Metric parameter；Y-axis仍是Territory。</li>
+<li>Metric slicer設Single select，一次只選一個，逐一切換四個指標。</li>
+<li>每次核對bar與第13步Table同欄的值，並檢查金額／整數／百分比單位是否跟著正確顯示。</li>
+<li>確認bar按當前指標descending，避免切指標後仍沿用舊排序而誤讀。</li>
+</ol>
+<p>Field parameter是你在report UI建立的綁定，不是AI新增measure後自動出現。第一次先用原生field parameter，避免再加動態format-string的SWITCH measure增加難度。</p>
+<p>可以這樣講：「AI幫我們補上模型的計算定義；我們再選擇如何呈現。切換指標後，同一批資料回答的是不同問題。」</p>
+<p><strong>停點C</strong>：四個指標可切、Table對數、格式正確；另存 <code>Sales Design Lab - After AI.pbix</code>。重開Before AI副本，確認能回到沒有新增指標的狀態。</p>
+<h2 id="step-28">H · 完成 Sales Overview</h2>
+<h3 id="step-29">15. 設定畫布與排版</h3>
+<p>回Report view，點畫布空白處，Format page → Canvas settings，Type選Custom，Width 1280、Height 720。View → Page view選Fit to page。若找不到Visualizations pane，先開View → Panes；不同版本也可在選中圖表後用Build a visual面板放欄位。</p>
+<p>選取物件後，在Format visual → General → Properties設定X、Y、Width、Height。以下座標是這次練習的排版規格，可以直接照做。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>物件</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">Height</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>標題文字 Sales Overview</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr>
+<td>Year slicer</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>Channel slicer</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>Group slicer</td>
+<td style="text-align: right;">454</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>Metric slicer</td>
+<td style="text-align: right;">720</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">528</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td>Sales card</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Orders card</td>
+<td style="text-align: right;">278</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Customers card</td>
+<td style="text-align: right;">524</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Average Order Value card</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Gross Margin card</td>
+<td style="text-align: right;">1016</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">232</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Territory bar</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">592</td>
+<td style="text-align: right;">410</td>
+</tr>
+<tr>
+<td>Monthly sales line</td>
+<td style="text-align: right;">648</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">244</td>
+</tr>
+<tr>
+<td>Category sales bar</td>
+<td style="text-align: right;">648</td>
+<td style="text-align: right;">528</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">142</td>
+</tr>
+</tbody>
+</table></div>
+<p>將第13步驗證Table剪下，新增頁命名Checks，貼在該頁保存，避免擠在主報表。Checks只作核對，沒有主頁slicer時，須在該頁設相同filter才可比較。</p>
+<h3 id="step-30">16. 每張圖實際放甚麼</h3>
+<p>先點畫布空白處，再選visual類型，避免把已選的圖轉成另一種類型。新建Card，每張只放一個measure；可複製既有card再替換欄位。若Card版本支援多個值，本次仍維持一張一個值，方便排版。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Visual</th>
+<th>欄位綁定</th>
+<th>格式與排序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Year slicer</td>
+<td>DimDate[Year]</td>
+<td>Dropdown、Single select，選2025</td>
+</tr>
+<tr>
+<td>Channel slicer</td>
+<td>FactSales[Channel]</td>
+<td>Dropdown，保留All作預設</td>
+</tr>
+<tr>
+<td>Group slicer</td>
+<td>DimTerritory[Group]</td>
+<td>Dropdown，保留All作預設</td>
+</tr>
+<tr>
+<td>Metric slicer</td>
+<td>第14步自動建立的Metric欄</td>
+<td>Dropdown、Single select，選Sales</td>
+</tr>
+<tr>
+<td>五張Card</td>
+<td>[Sales]、[Orders]、[Customers]、[Average Order Value]、[Gross Margin]</td>
+<td>Sales顯示Millions兩位；Orders／Customers顯示None零位；AOV顯示None兩位；GM保留百分比一位</td>
+</tr>
+<tr>
+<td>Clustered bar</td>
+<td>Y-axis DimTerritory[Territory]；X-axis Metric parameter</td>
+<td>無Legend；當前指標降序；開Data labels，核對各指標單位</td>
+</tr>
+<tr>
+<td>Line chart</td>
+<td>X-axis DimDate[YearMonth]；Y-axis [Sales]</td>
+<td>X軸Categorical，YearMonth升序，標題Monthly sales</td>
+</tr>
+<tr>
+<td>Clustered bar</td>
+<td>Y-axis DimProduct[Category]；X-axis [Sales]</td>
+<td>Sales降序，標題Sales by category</td>
+</tr>
+</tbody>
+</table></div>
+<p>月份圖使用YearMonth，避免多選年份時把不同年的同一月份加在一起。不要把Date Hierarchy誤放到軸。Metric只控制territory bar；其他圖固定看Sales，標題也保持清楚。</p>
+<p>新增bar的Tooltips放[Orders]、[Average Order Value]、[Gross Margin]、[Cost Coverage]。滑鼠移到bar上，確認看到的是該territory的值。</p>
+<h3 id="step-31">17. 設定互動並核對</h3>
+<ol>
+<li>選Year slicer → Format ribbon → Edit interactions，確認五張cards和三張圖都顯示Filter圖示。Channel、Group也各檢查一次。</li>
+<li>選territory bar，將cards、monthly line、category bar的互動設Filter，避免只顯示highlight。不要讓territory bar反向縮窄三個範圍slicer，對這些slicer選None。</li>
+<li>對category bar設定同樣的cards／line／territory bar Filter互動。Metric slicer只需作用在使用parameter的territory bar。</li>
+<li>再按Edit interactions退出。點一個territory，cards、月份和類別圖應一起變；Ctrl多選可比較，點該圖空白處取消選取。</li>
+<li>清除圖表選取，選2024、Online、North America。Sales應顯示約2.59M，Orders和Customers各1,078。要看完整Sales小數，用Checks頁或DAX query核對。</li>
+<li>切2025、Channel All、Group All作展示起點。不要為沒有交易的組合填假資料；清除filter後再看。</li>
+</ol>
+<p>需要核對2025任意範圍時，可在DAX query view執行以下查詢。此處是全渠道、全地區的2025，並不會繼承Report頁slicer或圖表選取。</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 18" data-copy="code-17" type="button">Copy</button></div><pre id="code-17"><code class="language-dax">EVALUATE
+CALCULATETABLE(
+    ROW("Sales", [Sales], "Orders", [Orders], "Customers", [Customers],
+        "AOV", [Average Order Value], "Gross Margin", [Gross Margin]),
+    DimDate[Year] = 2025
+)
+</code></pre></div>
+<h3 id="step-32">18. 配色與閱讀順序</h3>
+<p>Format page → Canvas background設#F4F6F8，Transparency 0%。各visual背景白色，取消陰影與多餘border。標題用#172B3A，字體Segoe UI；頁標題24、圖表標題14、軸與資料標籤11至12。</p>
+<p>主要bars和line用#245C78。先保存一張整頁截圖，再把其中一個要講的territory設#C05A28，其他bars改#B9C4CC，保存第二張截圖。原生bar若有Show all／Categories個別顏色控制，可逐項設定；不要用選取一根bar產生的互動highlight代替配色，因為那會改變其他圖的資料範圍。配色示範先切回固定[Sales]，以免parameter切換重設顏色。</p>
+<p>講解時先讓觀眾說第一眼看哪裡，再比較兩張截圖。60／30／10可當作背景、主要結構與重點色的分配起點，不要求逐像素量度。橙色只保留給這次要講的重點，也不要同時用橙色代表「差」。</p>
+<h2 id="step-33">I · 延伸頁面：Product View</h2>
+<h3 id="step-34">19. 用Matrix做月份heatmap</h3>
+<p>此頁可作第二個visual練習。新增頁命名Product View，畫布仍1280×720。新增Year slicer並選2025；新增Channel與Group slicers。這次不開Sync slicers，各頁自己設定，便於排錯。</p>
+<ol>
+<li>新增Matrix。Rows放DimProduct[Category]，Columns放DimDate[MonthLabel]，Values放[Sales]。</li>
+<li>月份應Jan到Dec；如果按字母排，回Data view選MonthLabel → Column tools → Sort by column → MonthNumber。不要按Sales排序月份。</li>
+<li>選Matrix，在Values中[Sales]的選單 → Conditional formatting → Background color；或Format visual → Cell elements，選Sales後開Background color的fx。</li>
+<li>Format style選Gradient，Based on field選Sales，最低值設#EDF3F6、最高值設#245C78。只套Values，文字用深色；若深色格讀不清，將最高色改淡一些，例如#8EB3C6。</li>
+<li>Values顯示Thousands、零位小數；標題Sales by category and month。保留總計，讀者可核對合計；空白保持空白。</li>
+<li>旁邊加Clustered bar，Y-axis DimProduct[Subcategory]，X-axis[Sales]，Sales降序。</li>
+<li>點Matrix一個category，觀察subcategory bar，再清除選取。講解先找高值集中在哪幾個月份，再看是哪個子類別。</li>
+</ol>
+<p>驗收時先清除選取、保持2025及All範圍。Matrix總計應等於同範圍[Sales] card；每個category的12個月可相加，不能把不同類別的GM直接相加。</p>
+<h2 id="step-35">J · 延伸頁面：Territory Detail</h2>
+<h3 id="step-36">20. 從總覽鑽到單一地區</h3>
+<ol>
+<li>新增頁命名Territory Detail。點畫布空白處，在Build／Visualizations的Drillthrough區，把DimTerritory[Territory]放入Add drill-through fields here。</li>
+<li>保留Keep all filters開啟。Power BI會加入Back按鈕，保留它。</li>
+<li>加Table，放DimTerritory[Territory]作目前地區標示；加Sales、Orders、AOV、GM四張Card。</li>
+<li>加line，X-axis DimDate[YearMonth]、Y-axis[Sales]；加產品bar，Y-axis DimProduct[Subcategory]、X-axis[Sales]，Sales降序。</li>
+<li>回Sales Overview，清除其他圖表選取，右鍵一個territory bar → Drill through → Territory Detail。必須點資料bar，且來源與目標都用同一個DimTerritory[Territory]欄位。</li>
+<li>確認地區、年份、渠道、Group與來源一致。用Back返回；在Desktop編輯模式可能需要Ctrl＋Click。</li>
+</ol>
+<p>若選單沒有目標頁，先查欄位是否相同、目標Drillthrough欄位是否存在，再查來源是否點到實際資料。不要以手動切頁後仍有舊filter當成鑽取成功。</p>
+<h2 id="step-37">K · 排練順序與完成條件</h2>
+<h3 id="step-38">21. 一次完整講解的流程</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>想回答的問題</th>
+<th>AI的用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>匯入並做QC</td>
+<td>每張來源是一行代表甚麼，key有沒有問題？</td>
+<td>按schema建議型別與檢查查詢，保留實際錯誤</td>
+</tr>
+<tr>
+<td>手動完成DimProduct</td>
+<td>join為甚麼用Left Outer，未分類產品怎樣保留？</td>
+<td>讀自己產生的M，解釋每個步驟</td>
+</tr>
+<tr>
+<td>看DimProduct TMDL</td>
+<td>UI操作如何存成模型定義？</td>
+<td>對照column、dataType、partition，避免把TMDL當layout</td>
+</tr>
+<tr>
+<td>分四批建立模型</td>
+<td>其他dimensions、fact及relationships怎樣接起來？</td>
+<td>提供完整輸出，逐批Preview和驗收</td>
+</tr>
+<tr>
+<td>建Before AI報表</td>
+<td>單看Sales能回答甚麼？</td>
+<td>先由人決定問題和閱讀順序</td>
+</tr>
+<tr>
+<td>新增分析measures</td>
+<td>地區的規模、訂單與利潤率有甚麼差異？</td>
+<td>只修改明確範圍的TMDL，核對公式及口徑</td>
+</tr>
+<tr>
+<td>UI綁定field parameter</td>
+<td>新指標怎樣變成觀眾能操作的圖？</td>
+<td>提供操作指引，由Desktop實際綁定</td>
+</tr>
+<tr>
+<td>完成三頁及配色</td>
+<td>總覽、產品模式、單一地區如何連貫？</td>
+<td>用實際畫面檢查可讀性和提出修正</td>
+</tr>
+</tbody>
+</table></div>
+<p>TMDL這次處理semantic model；畫布、圖表欄位、顏色與互動在Report UI設定。Power Query執行partition內的M，並不是被TMDL取代。遇到錯誤，記錄完整訊息、物件和剛才改動，先修該層。</p>
+<h3 id="step-39">22. 最後驗收與保存</h3>
+<ul>
+<li class="checkitem"><input aria-label="DimProduct 504行、209個Unclassified，ProductID唯一。" data-check="check-57" type="checkbox"/>DimProduct 504行、209個Unclassified，ProductID唯一。</li>
+<li class="checkitem"><input aria-label="DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。" data-check="check-58" type="checkbox"/>DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。</li>
+<li class="checkitem"><input aria-label="八張Raw及QC不載入模型，仍保留作M來源。" data-check="check-59" type="checkbox"/>八張Raw及QC不載入模型，仍保留作M來源。</li>
+<li class="checkitem"><input aria-label="三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。" data-check="check-60" type="checkbox"/>三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。</li>
+<li class="checkitem"><input aria-label="第8、9、12步數值通過，Cost Coverage100%。" data-check="check-61" type="checkbox"/>第8、9、12步數值通過，Cost Coverage100%。</li>
+<li class="checkitem"><input aria-label="Sales Overview四指標能切，單位正確，bar與Table一致。" data-check="check-62" type="checkbox"/>Sales Overview四指標能切，單位正確，bar與Table一致。</li>
+<li class="checkitem"><input aria-label="三個範圍slicer與圖表互動正確，圖表選取清除後回到起始值。" data-check="check-63" type="checkbox"/>三個範圍slicer與圖表互動正確，圖表選取清除後回到起始值。</li>
+<li class="checkitem"><input aria-label="Product View月份順序、heatmap總計正確。" data-check="check-64" type="checkbox"/>Product View月份順序、heatmap總計正確。</li>
+<li class="checkitem"><input aria-label="Territory Detail能從bar進入，帶入相同範圍並能返回。" data-check="check-65" type="checkbox"/>Territory Detail能從bar進入，帶入相同範圍並能返回。</li>
+<li class="checkitem"><input aria-label="Before AI副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。" data-check="check-66" type="checkbox"/>Before AI副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。</li>
+<li class="checkitem"><input aria-label="重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。" data-check="check-67" type="checkbox"/>重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。</li>
+</ul>
+<p>目前已確認DimProduct的手動操作；其餘項目要在Windows完成後逐項勾選。網頁進度只存在目前瀏覽器，不會同步到另一台電腦。</p>
+<h2 id="step-40">基線控制值與資料口徑</h2>
+<p>下列基線來自已提供的資料核對結果，不代表本次Desktop實跑已通過：Header31,465、Detail121,317、Product504、Subcategory37、Category4、Territory10、CostHistory522、Offer16。</p>
+<p>Fact一行一明細；全範圍Sales109,846,381.400030、Orders31,465、Customers19,119、Historical Standard Cost97,297,383.440、Gross Profit12,548,997.960030、Gross Margin約11.42413414%、Cost Coverage100%；missing／multiple cost matches皆0。</p>
+<p>LineTotal已包含交易折扣；Historical Standard Cost是歷史標準成本估計，不能直接叫實際會計COGS。不分發預製骨架，從raw開始；原始dataset名稱不放在展示標題。</p>
+<h2 id="step-41">官方操作依據</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-tmdl-view">TMDL view與Preview／Apply</a></li>
+<li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/power-bi-field-parameters">Field parameters</a></li>
+<li><a href="https://learn.microsoft.com/en-us/power-query/merge-queries-overview">Power Query merge</a></li>
+<li><a href="https://learn.microsoft.com/en-us/power-bi/desktop-conditional-table-formatting">Matrix條件格式</a></li>
+<li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-drillthrough">Drillthrough</a></li>
+</ul>
+<p>這份筆記有明確規格與控制值，AI產出的具體M／TMDL仍須在Desktop逐批驗收；本文不宣稱已執行那些輸出。</p></article></main><a class="toplink" href="#top">↑ 頂部</a><script>
+document.querySelector('#menu').onclick=()=>document.body.classList.toggle('open');
+document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>document.body.classList.remove('open'));
+document.querySelectorAll('[data-copy]').forEach(btn=>btn.onclick=async()=>{
+const value=document.querySelector('#'+btn.dataset.copy+' code').textContent;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value)}else{const t=document.createElement('textarea');t.value=value;document.body.append(t);t.select();if(!document.execCommand('copy'))throw Error('copy');t.remove()}btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1800)}catch(e){btn.textContent='請選取複製';const r=document.createRange();r.selectNodeContents(document.querySelector('#'+btn.dataset.copy+' code'));const s=window.getSelection();s.removeAllRanges();s.addRange(r)}});
+document.querySelectorAll('[data-check]').forEach(cb=>{try{cb.checked=localStorage.getItem('pbi-manual-v1-'+cb.dataset.check)==='1'}catch(e){}cb.onchange=()=>{try{localStorage.setItem('pbi-manual-v1-'+cb.dataset.check,cb.checked?'1':'0')}catch(e){}}});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id))}})},{rootMargin:'-80px 0px -65% 0px'});document.querySelectorAll('h2,h3').forEach(h=>observer.observe(h));
+</script></body></html>
