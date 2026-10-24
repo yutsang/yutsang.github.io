@@ -1,6 +1,6 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Sales Design Lab：從 CSV、Power Query、AI 與 TMDL，到互動 Power BI 報表的操作手冊。"><meta name="robots" content="noindex"><title>PBI Demo Manual</title><style>
 :root{color-scheme:light;--ink:#172b3a;--muted:#596a77;--accent:#245c78;--line:#dce4e8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#f5f7f9;font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}header{height:66px;background:#172b3a;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}header strong{letter-spacing:.04em;font-size:17px}header span{color:#bdd1dd;font-size:13px}#menu{display:none}aside{position:fixed;top:66px;bottom:0;width:286px;padding:24px 18px;overflow:auto;background:#edf2f5;border-right:1px solid var(--line)}aside .label{font-size:11px;letter-spacing:.18em;color:var(--muted);margin:0 12px 16px}nav a{display:block;text-decoration:none;color:#405566;line-height:1.5;padding:6px 12px;border-radius:6px;font-size:12px}nav a:hover,nav a.active{background:#dce8ee;color:#153e55}nav .level-h2{font-weight:700;margin-top:12px}nav .level-h3{padding-left:23px}main{margin-left:286px;padding:42px 5vw 100px;max-width:1500px}article{max-width:1000px;margin:auto}h1{font-size:44px;line-height:1.2;margin:12px 0 24px;letter-spacing:-.04em}h2{font-size:26px;margin:64px 0 22px;padding-top:24px;border-top:1px solid var(--line);line-height:1.45}h3{font-size:21px;margin-top:38px;line-height:1.5}h4{font-size:15px;margin:26px 0 12px;color:var(--accent)}p{margin:14px 0}a{color:#1c638a}li{margin:7px 0}strong{font-weight:650}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#e6edf1;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:22px 0 30px;border:1px solid #c9d7df;border-radius:10px;overflow:hidden;background:#fff}.codebar{display:flex;align-items:center;justify-content:space-between;background:#e8eef2;padding:8px 16px;font-size:11px;letter-spacing:.1em;color:#4b6272}button{cursor:pointer;border:1px solid #c2d0da;background:white;border-radius:5px;padding:7px 15px;color:#245c78;font-weight:600}button:hover{background:#dbe8f0}pre{margin:0;padding:20px;max-height:560px;overflow:auto;tab-size:4;line-height:1.65;white-space:pre}pre code{white-space:pre}table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}th{text-align:left;background:#eaf0f4}th,td{padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}.table-scroll{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:8px}.checkitem{list-style:none;margin-left:-24px;padding:8px 12px;background:#edf3f6;border-radius:6px}.checkitem input{margin-right:12px;width:17px;height:17px;accent-color:#245c78;vertical-align:middle}.checkitem:has(input:checked){color:#617581;background:#e4ede9}.notice{border-left:3px solid #c05a28;padding:10px 18px;background:#fff9f2;font-size:14px;margin-bottom:32px}.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{position:fixed;right:20px;bottom:20px;background:#172b3a;color:white;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:12px}@media(max-width:950px){aside{width:230px}main{margin-left:230px;padding:30px 28px}h1{font-size:35px}}@media(max-width:700px){header{padding:0 16px}header span{display:none}#menu{display:block}aside{display:none;width:285px;z-index:9;box-shadow:8px 0 24px #172b3a22}body.open aside{display:block}main{margin-left:0;padding:28px 18px 80px}h1{font-size:34px}h2{font-size:24px}pre{padding:15px}table{min-width:580px}}@media print{header,aside,.codebar button,.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{display:none}main{margin:0;padding:0}pre{max-height:none;white-space:pre-wrap}pre code{white-space:pre-wrap}h2{break-before:page}}
-</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" href="#step-0">文件使用方式</a><a class="level-h2" href="#step-1">完成後應該有甚麼</a><a class="level-h2" href="#step-2">A · 開始與匯入</a><a class="level-h3" href="#step-3">1. 建立空白報表</a><a class="level-h3" href="#step-4">2. 匯入八張來源</a><a class="level-h3" href="#step-5">3. 只做必要清洗</a><a class="level-h3" href="#step-6">全表行數怎樣核對</a><a class="level-h2" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" href="#step-8">4. 建立DimProduct</a><a class="level-h3" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" href="#step-10">C · 建立其餘模型</a><a class="level-h3" href="#step-11">6. 分批建立模型</a><a class="level-h3" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" href="#step-22">F · 加入分析指標</a><a class="level-h3" href="#step-23">11. 新增六個measures</a><a class="level-h3" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" href="#step-30">16. 每張圖實際放甚麼</a><a class="level-h3" href="#step-31">17. 設定互動並核對</a><a class="level-h3" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" href="#step-37">K · 排練順序與完成條件</a><a class="level-h3" href="#step-38">21. 一次完整講解的流程</a><a class="level-h3" href="#step-39">22. 最後驗收與保存</a><a class="level-h2" href="#step-40">基線控制值與資料口徑</a><a class="level-h2" href="#step-41">官方操作依據</a></nav></aside><main><article><div class="notice">按順序操作。每批 Prompt、TMDL、DAX 都可獨立複製；驗收通過後再進下一步。</div><h1>PBI Demo Manual</h1>
+</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" href="#step-0">文件使用方式</a><a class="level-h2" href="#step-1">完成後應該有甚麼</a><a class="level-h2" href="#step-2">A · 開始與匯入</a><a class="level-h3" href="#step-3">1. 建立空白報表</a><a class="level-h3" href="#step-4">2. 匯入八張來源</a><a class="level-h3" href="#step-5">3. 只做必要清洗</a><a class="level-h3" href="#step-6">全表行數怎樣核對</a><a class="level-h2" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" href="#step-8">4. 建立DimProduct</a><a class="level-h3" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" href="#step-10">C · 建立其餘模型</a><a class="level-h3" href="#step-11">6. 分批建立模型</a><a class="level-h3" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" href="#step-22">F · 加入分析指標</a><a class="level-h3" href="#step-23">11. 新增六個measures</a><a class="level-h3" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" href="#step-31">17. 設定互動並核對</a><a class="level-h3" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" href="#step-37">K · 排練順序與完成條件</a><a class="level-h3" href="#step-38">21. 一次完整講解的流程</a><a class="level-h3" href="#step-39">22. 最後驗收與保存</a><a class="level-h2" href="#step-40">基線控制值與資料口徑</a><a class="level-h2" href="#step-41">官方操作依據</a></nav></aside><main><article><div class="notice">按順序操作。每批 Prompt、TMDL、DAX 都可獨立複製；驗收通過後再進下一步。</div><h1>PBI Demo Manual</h1>
 <p>從CSV匯入、Power Query與TMDL，到互動報表。</p>
 <p>操作順序為匯入來源、合併產品分類、建立模型、核對數字、建立報表，再加入分析指標與互動。</p>
 <p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已確認的資料控制值列在文末；Windows Desktop 的逐步實跑仍在進行。</p>
@@ -556,114 +556,138 @@ ROW(
 <h2 id="step-28">H · 完成 Sales Overview</h2>
 <h3 id="step-29">15. 設定畫布與排版</h3>
 <p>回Report view，點畫布空白處，Format page → Canvas settings，Type選Custom，Width 1280、Height 720。View → Page view選Fit to page。若找不到Visualizations pane，先開View → Panes；不同版本也可在選中圖表後用Build a visual面板放欄位。</p>
-<p>選取物件後，在Format visual → General → Properties設定X、Y、Width、Height。以下座標是這次練習的排版規格，可以直接照做。</p>
+<p>先完成下面兩張新圖，再按尺寸表排版。它們都是原生visual，不需要新增measure或TMDL。</p>
+<h4>15.1 建立 Monthly sales line（月度銷售折線圖）</h4>
+<ol>
+<li>點畫布空白處，避免修改已選的territory bar。</li>
+<li>在Visualizations找<span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>圖示（折線形狀），滑鼠停留確認名稱為<span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>，再點選。</li>
+<li>右側切Build visual（油漆刷左邊的圖示），展開DimDate，把YearMonth拖入X-axis。</li>
+<li>展開FactSales，把計算機圖示的Sales measure拖入Y-axis。不要用NetSales原始欄位，也不要放Metric參數。</li>
+<li>Legend保持空白。圖右上角⋯ → Sort axis／Sort by → YearMonth → Ascending。</li>
+<li>Format visual → General → Title，開啟，標題輸入Monthly sales。</li>
+<li>本圖回答「各月份賣了多少」。選2025時應按2025-01、2025-02等順序顯示有交易的月份；不是地區排名。</li>
+</ol>
+<h4>15.2 建立 Category sales bar（產品類別銷售橫條圖）</h4>
+<ol>
+<li>再點畫布空白處。</li>
+<li>在Visualizations選<span class="visual-name"><svg aria-label="Clustered bar圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Clustered bar</title><path d="M5 3v23h23"></path><path d="M7 5h17v3H7zm0 6h10v3H7zm0 6h14v3H7z" fill="currentColor" stroke="none"></path></svg>Clustered bar chart</span>，確認是水平橫條，別選垂直的column chart。</li>
+<li>Build visual → Y-axis放DimProduct[Category]，X-axis放FactSales內的Sales measure。</li>
+<li>Legend保持空白。右上角⋯ → Sort axis／Sort by → Sales → Descending。</li>
+<li>Format visual → General → Title，開啟，標題輸入Sales by category。</li>
+<li>本圖比較Bikes、Accessories、Clothing、Components的銷售。有交易的類別才會出現，不手動補0。</li>
+</ol>
+<h4>15.3 先將四個slicers改為Dropdown</h4>
+<p>下表的56高度是給Dropdown使用；Vertical list或年份Between滑桿放進去會裁切選項。先逐一選Year、Channel、Group、Metric <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span> → Format visual → Visual → <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>Slicer</span> settings → Options → Style選Dropdown，再設定位置。</p>
+<p>Year開Single select並選2025；Metric開Single select並先選Sales。Channel和Group清除選取，保留All。縮小後仍應看到目前選取值及下拉箭頭。</p>
+<h4>15.4 輸入尺寸與位置</h4>
+<p>選取物件後，在Format visual → General → Properties，先展開Size輸入Height、Width，再展開Position輸入X、Y。以下依Height、Width、X、Y排列，不必交叉找欄位。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
 <th>物件</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
 <th style="text-align: right;">X</th>
 <th style="text-align: right;">Y</th>
-<th style="text-align: right;">Width</th>
-<th style="text-align: right;">Height</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>標題文字 Sales Overview</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">600</td>
 <td style="text-align: right;">32</td>
 <td style="text-align: right;">16</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">40</td>
 </tr>
 <tr>
 <td>Year <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">180</td>
 <td style="text-align: right;">32</td>
 <td style="text-align: right;">64</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">56</td>
 </tr>
 <tr>
 <td>Channel <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">210</td>
 <td style="text-align: right;">228</td>
 <td style="text-align: right;">64</td>
-<td style="text-align: right;">210</td>
-<td style="text-align: right;">56</td>
 </tr>
 <tr>
 <td>Group <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">250</td>
 <td style="text-align: right;">454</td>
 <td style="text-align: right;">64</td>
-<td style="text-align: right;">250</td>
-<td style="text-align: right;">56</td>
 </tr>
 <tr>
 <td>Metric <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">528</td>
 <td style="text-align: right;">720</td>
 <td style="text-align: right;">64</td>
-<td style="text-align: right;">528</td>
-<td style="text-align: right;">56</td>
 </tr>
 <tr>
 <td>Sales <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">230</td>
 <td style="text-align: right;">32</td>
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">96</td>
 </tr>
 <tr>
 <td>Orders <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">230</td>
 <td style="text-align: right;">278</td>
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">96</td>
 </tr>
 <tr>
 <td>Customers <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">230</td>
 <td style="text-align: right;">524</td>
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">96</td>
 </tr>
 <tr>
 <td>Average Order Value <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">230</td>
 <td style="text-align: right;">770</td>
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">96</td>
 </tr>
 <tr>
 <td>Gross Margin <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">232</td>
 <td style="text-align: right;">1016</td>
 <td style="text-align: right;">140</td>
-<td style="text-align: right;">232</td>
-<td style="text-align: right;">96</td>
 </tr>
 <tr>
 <td>Territory bar</td>
+<td style="text-align: right;">410</td>
+<td style="text-align: right;">592</td>
 <td style="text-align: right;">32</td>
 <td style="text-align: right;">260</td>
-<td style="text-align: right;">592</td>
-<td style="text-align: right;">410</td>
 </tr>
 <tr>
 <td>Monthly sales line</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">600</td>
 <td style="text-align: right;">648</td>
 <td style="text-align: right;">260</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">244</td>
 </tr>
 <tr>
 <td>Category sales bar</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">600</td>
 <td style="text-align: right;">648</td>
 <td style="text-align: right;">528</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">142</td>
 </tr>
 </tbody>
 </table></div>
 <p>將第13步驗證Table剪下，新增頁命名Checks，貼在該頁保存，避免擠在主報表。Checks只作核對，沒有主頁<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>時，須在該頁設相同filter才可比較。</p>
-<h3 id="step-30">16. 每張圖實際放甚麼</h3>
-<p>先點畫布空白處，再選visual類型，避免把已選的圖轉成另一種類型。新建<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>，每張只放一個measure；可複製既有<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>再替換欄位。若<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>版本支援多個值，本次仍維持一張一個值，方便排版。</p>
+<h3 id="step-30">16. 核對所有圖表欄位</h3>
+<p>第15步已建立兩張新圖，本步只核對欄位，不再新增相同圖表。五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>若尚未齊全，可複製既有<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>再替換measure；每張只放一個值。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -818,17 +842,17 @@ CALCULATETABLE(
 <p>TMDL這次處理semantic model；畫布、圖表欄位、顏色與互動在Report UI設定。Power Query執行partition內的M，並不是被TMDL取代。遇到錯誤，記錄完整訊息、物件和剛才改動，先修該層。</p>
 <h3 id="step-39">22. 最後驗收與保存</h3>
 <ul>
-<li class="checkitem"><input aria-label="DimProduct 504行、209個Unclassified，ProductID唯一。" data-check="check-59" type="checkbox"/>DimProduct 504行、209個Unclassified，ProductID唯一。</li>
-<li class="checkitem"><input aria-label="DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。" data-check="check-60" type="checkbox"/>DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。</li>
-<li class="checkitem"><input aria-label="八張Raw及QC不載入模型，仍保留作M來源。" data-check="check-61" type="checkbox"/>八張Raw及QC不載入模型，仍保留作M來源。</li>
-<li class="checkitem"><input aria-label="三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。" data-check="check-62" type="checkbox"/>三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。</li>
-<li class="checkitem"><input aria-label="第8、9、12步數值通過，Cost Coverage100%。" data-check="check-63" type="checkbox"/>第8、9、12步數值通過，Cost Coverage100%。</li>
-<li class="checkitem"><input aria-label="Sales Overview四指標能切，單位正確，bar與Table一致。" data-check="check-64" type="checkbox"/>Sales Overview四指標能切，單位正確，bar與Table一致。</li>
-<li class="checkitem"><input aria-label="三個範圍slicer與圖表互動正確，圖表選取清除後回到起始值。" data-check="check-65" type="checkbox"/>三個範圍<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>與圖表互動正確，圖表選取清除後回到起始值。</li>
-<li class="checkitem"><input aria-label="Product View月份順序、heatmap總計正確。" data-check="check-66" type="checkbox"/>Product View月份順序、heatmap總計正確。</li>
-<li class="checkitem"><input aria-label="Territory Detail能從bar進入，帶入相同範圍並能返回。" data-check="check-67" type="checkbox"/>Territory Detail能從bar進入，帶入相同範圍並能返回。</li>
-<li class="checkitem"><input aria-label="Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。" data-check="check-68" type="checkbox"/>Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。</li>
-<li class="checkitem"><input aria-label="重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。" data-check="check-69" type="checkbox"/>重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。</li>
+<li class="checkitem"><input aria-label="DimProduct 504行、209個Unclassified，ProductID唯一。" data-check="check-72" type="checkbox"/>DimProduct 504行、209個Unclassified，ProductID唯一。</li>
+<li class="checkitem"><input aria-label="DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。" data-check="check-73" type="checkbox"/>DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。</li>
+<li class="checkitem"><input aria-label="八張Raw及QC不載入模型，仍保留作M來源。" data-check="check-74" type="checkbox"/>八張Raw及QC不載入模型，仍保留作M來源。</li>
+<li class="checkitem"><input aria-label="三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。" data-check="check-75" type="checkbox"/>三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。</li>
+<li class="checkitem"><input aria-label="第8、9、12步數值通過，Cost Coverage100%。" data-check="check-76" type="checkbox"/>第8、9、12步數值通過，Cost Coverage100%。</li>
+<li class="checkitem"><input aria-label="Sales Overview四指標能切，單位正確，bar與Table一致。" data-check="check-77" type="checkbox"/>Sales Overview四指標能切，單位正確，bar與Table一致。</li>
+<li class="checkitem"><input aria-label="三個範圍slicer與圖表互動正確，圖表選取清除後回到起始值。" data-check="check-78" type="checkbox"/>三個範圍<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>與圖表互動正確，圖表選取清除後回到起始值。</li>
+<li class="checkitem"><input aria-label="Product View月份順序、heatmap總計正確。" data-check="check-79" type="checkbox"/>Product View月份順序、heatmap總計正確。</li>
+<li class="checkitem"><input aria-label="Territory Detail能從bar進入，帶入相同範圍並能返回。" data-check="check-80" type="checkbox"/>Territory Detail能從bar進入，帶入相同範圍並能返回。</li>
+<li class="checkitem"><input aria-label="Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。" data-check="check-81" type="checkbox"/>Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。</li>
+<li class="checkitem"><input aria-label="重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。" data-check="check-82" type="checkbox"/>重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。</li>
 </ul>
 <p>目前已確認DimProduct的手動操作；其餘項目要在Windows完成後逐項勾選。網頁進度只存在目前瀏覽器，不會同步到另一台電腦。</p>
 <h2 id="step-40">基線控制值與資料口徑</h2>
