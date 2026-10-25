@@ -1,8 +1,8 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Sales Design Lab：從 CSV、Power Query、AI 與 TMDL，到互動 Power BI 報表的操作手冊。"><meta name="robots" content="noindex"><title>PBI Demo Manual</title><style>
 :root{color-scheme:light;--ink:#172b3a;--muted:#596a77;--accent:#245c78;--line:#dce4e8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#f5f7f9;font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}header{height:66px;background:#172b3a;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}header strong{letter-spacing:.04em;font-size:17px}header span{color:#bdd1dd;font-size:13px}#menu{display:none}aside{position:fixed;top:66px;bottom:0;width:286px;padding:24px 18px;overflow:auto;background:#edf2f5;border-right:1px solid var(--line)}aside .label{font-size:11px;letter-spacing:.18em;color:var(--muted);margin:0 12px 16px}nav a{display:block;text-decoration:none;color:#405566;line-height:1.5;padding:6px 12px;border-radius:6px;font-size:12px}nav a:hover,nav a.active{background:#dce8ee;color:#153e55}nav .level-h2{font-weight:700;margin-top:12px}nav .level-h3{padding-left:23px}main{margin-left:286px;padding:42px 5vw 100px;max-width:1500px}article{max-width:1000px;margin:auto}h1{font-size:44px;line-height:1.2;margin:12px 0 24px;letter-spacing:-.04em}h2{font-size:26px;margin:64px 0 22px;padding-top:24px;border-top:1px solid var(--line);line-height:1.45}h3{font-size:21px;margin-top:38px;line-height:1.5}h4{font-size:15px;margin:26px 0 12px;color:var(--accent)}p{margin:14px 0}a{color:#1c638a}li{margin:7px 0}strong{font-weight:650}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#e6edf1;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:22px 0 30px;border:1px solid #c9d7df;border-radius:10px;overflow:hidden;background:#fff}.codebar{display:flex;align-items:center;justify-content:space-between;background:#e8eef2;padding:8px 16px;font-size:11px;letter-spacing:.1em;color:#4b6272}button{cursor:pointer;border:1px solid #c2d0da;background:white;border-radius:5px;padding:7px 15px;color:#245c78;font-weight:600}button:hover{background:#dbe8f0}pre{margin:0;padding:20px;max-height:560px;overflow:auto;tab-size:4;line-height:1.65;white-space:pre}pre code{white-space:pre}table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}th{text-align:left;background:#eaf0f4}th,td{padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}.table-scroll{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:8px}.checkitem{list-style:none;margin-left:-24px;padding:8px 12px;background:#edf3f6;border-radius:6px}.checkitem input{margin-right:12px;width:17px;height:17px;accent-color:#245c78;vertical-align:middle}.checkitem:has(input:checked){color:#617581;background:#e4ede9}.notice{border-left:3px solid #c05a28;padding:10px 18px;background:#fff9f2;font-size:14px;margin-bottom:32px}.color-ref{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.color-swatch{display:inline-block;width:24px;height:20px;border:1px solid #9caab3;border-radius:4px;vertical-align:middle}.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{position:fixed;right:20px;bottom:20px;background:#172b3a;color:white;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:12px}@media(max-width:950px){aside{width:230px}main{margin-left:230px;padding:30px 28px}h1{font-size:35px}}@media(max-width:700px){header{padding:0 16px}header span{display:none}#menu{display:block}aside{display:none;width:285px;z-index:9;box-shadow:8px 0 24px #172b3a22}body.open aside{display:block}main{margin-left:0;padding:28px 18px 80px}h1{font-size:34px}h2{font-size:24px}pre{padding:15px}table{min-width:580px}}@media print{header,aside,.codebar button,.toplink,.manual-tabs{display:none}main{margin:0;padding:0}pre{max-height:none;white-space:pre-wrap}pre code{white-space:pre-wrap}h2{break-before:page}}
-.manual-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px;padding-bottom:15px;border-bottom:1px solid var(--line)}.manual-tabs button{padding:12px 20px;font-size:15px}.manual-tabs button[aria-selected="true"]{color:white;background:#172b3a;border-color:#172b3a}.manual-tabs button[data-tab="green"][aria-selected="true"]{background:#225d50;border-color:#225d50}[hidden]{display:none!important}.green-preview-frame{margin:24px 0;border:1px solid #d8dfd8;border-radius:16px;overflow:hidden}.green-preview-frame svg{display:block;width:100%;height:auto}.green-preview-frame svg text,.green-preview-frame svg path,.green-preview-frame svg>rect{pointer-events:none}.green-preview-frame svg>a>rect{pointer-events:all}.green-preview-frame a rect{transition:stroke-width .15s}.green-preview-frame a:hover rect{stroke:#225d50;stroke-width:3}.green-intro{border-left:3px solid #225d50;background:#edf2ed;padding:14px 18px;font-size:14px}#green-panel>h2:first-child{margin-top:0;border-top:0;padding-top:0}
+.manual-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px;padding-bottom:15px;border-bottom:1px solid var(--line)}.manual-tabs button{padding:12px 20px;font-size:15px}.manual-tabs button[aria-selected="true"]{color:white;background:#172b3a;border-color:#172b3a}.manual-tabs button[data-tab="green"][aria-selected="true"]{background:#225d50;border-color:#225d50}[hidden]{display:none!important}.green-preview-frame{margin:24px 0;border:1px solid #d8dfd8;border-radius:16px;overflow:hidden}.green-preview-frame svg{display:block;width:100%;height:auto}.green-preview-frame svg text,.green-preview-frame svg path,.green-preview-frame svg>rect{pointer-events:none}.green-preview-frame svg>a>rect{pointer-events:all}.green-preview-frame a rect{transition:stroke-width .15s}.green-preview-frame a:hover rect{stroke:#225d50;stroke-width:3}.reference-controls{display:flex;gap:6px;flex-wrap:wrap;padding:14px;background:#fff}.reference-controls button{font-size:12px;padding:8px 12px}.reference-controls button[aria-pressed="true"]{background:#142320;color:#fafaf7}.reference-caption{padding:12px 18px;font-size:13px;margin:0;background:#fff}.green-intro{border-left:3px solid #225d50;background:#edf2ed;padding:14px 18px;font-size:14px}#green-panel>h2:first-child{margin-top:0;border-top:0;padding-top:0}
 
-</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" data-section="manual" href="#step-0">文件使用方式</a><a class="level-h2" data-section="manual" href="#step-1">完成後應該有甚麼</a><a class="level-h2" data-section="manual" href="#step-2">A · 開始與匯入</a><a class="level-h3" data-section="manual" href="#step-3">1. 建立空白報表</a><a class="level-h3" data-section="manual" href="#step-4">2. 匯入八張來源</a><a class="level-h3" data-section="manual" href="#step-5">3. 只做必要清洗</a><a class="level-h3" data-section="manual" href="#step-6">全表行數怎樣核對</a><a class="level-h2" data-section="manual" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" data-section="manual" href="#step-8">4. 建立DimProduct</a><a class="level-h3" data-section="manual" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" data-section="manual" href="#step-10">C · 建立其餘模型</a><a class="level-h3" data-section="manual" href="#step-11">6. 分批建立模型</a><a class="level-h3" data-section="manual" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" data-section="manual" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" data-section="manual" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" data-section="manual" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" data-section="manual" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" data-section="manual" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" data-section="manual" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" data-section="manual" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" data-section="manual" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" data-section="manual" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" data-section="manual" href="#step-22">F · 加入分析指標</a><a class="level-h3" data-section="manual" href="#step-23">11. 新增六個measures</a><a class="level-h3" data-section="manual" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" data-section="manual" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" data-section="manual" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" data-section="manual" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" data-section="manual" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" data-section="manual" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" data-section="manual" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" data-section="manual" href="#step-31">17. 設定互動並核對</a><a class="level-h3" data-section="manual" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" data-section="manual" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" data-section="manual" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" data-section="manual" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" data-section="manual" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" data-section="manual" href="#step-37">官方操作依據</a><a class="level-h2" data-section="green" href="#green-workshop">綠色設計工作坊</a><a class="level-h3" data-section="green" href="#green-1">G1. 保留原版，建立工作頁</a><a class="level-h3" data-section="green" href="#green-2">G2. 對照要完成的版面</a><a class="level-h3" data-section="green" href="#green-3">G3. 先建立後方的圓角底板</a><a class="level-h3" data-section="green" href="#green-4">G4. 放置標題、篩選器與cards</a><a class="level-h3" data-section="green" href="#green-5">G5. 將三張圖放進底板，去除重複框線</a><a class="level-h3" data-section="green" href="#green-6">G6. 整理圖表，讓它接近綠色版本</a><a class="level-h3" data-section="green" href="#green-7">G7. 可選：最高Sales地區自動用重點色</a><a class="level-h3" data-section="green" href="#green-8">G8. 課堂怎樣用這份起點</a></nav></aside><main><article><div class="manual-tabs" role="tablist" aria-label="操作手冊章節"><button id="tab-manual" role="tab" data-tab="manual" aria-controls="manual-panel" aria-selected="true">建模與 Sales Overview</button><button id="tab-green" role="tab" data-tab="green" aria-controls="green-panel" aria-selected="false">綠色設計工作坊</button></div><section aria-labelledby="tab-manual" id="manual-panel" role="tabpanel"><h1>PBI Demo Manual</h1>
+</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" data-section="manual" href="#step-0">文件使用方式</a><a class="level-h2" data-section="manual" href="#step-1">完成後應該有甚麼</a><a class="level-h2" data-section="manual" href="#step-2">A · 開始與匯入</a><a class="level-h3" data-section="manual" href="#step-3">1. 建立空白報表</a><a class="level-h3" data-section="manual" href="#step-4">2. 匯入八張來源</a><a class="level-h3" data-section="manual" href="#step-5">3. 只做必要清洗</a><a class="level-h3" data-section="manual" href="#step-6">全表行數怎樣核對</a><a class="level-h2" data-section="manual" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" data-section="manual" href="#step-8">4. 建立DimProduct</a><a class="level-h3" data-section="manual" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" data-section="manual" href="#step-10">C · 建立其餘模型</a><a class="level-h3" data-section="manual" href="#step-11">6. 分批建立模型</a><a class="level-h3" data-section="manual" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" data-section="manual" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" data-section="manual" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" data-section="manual" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" data-section="manual" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" data-section="manual" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" data-section="manual" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" data-section="manual" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" data-section="manual" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" data-section="manual" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" data-section="manual" href="#step-22">F · 加入分析指標</a><a class="level-h3" data-section="manual" href="#step-23">11. 新增六個measures</a><a class="level-h3" data-section="manual" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" data-section="manual" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" data-section="manual" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" data-section="manual" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" data-section="manual" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" data-section="manual" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" data-section="manual" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" data-section="manual" href="#step-31">17. 設定互動並核對</a><a class="level-h3" data-section="manual" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" data-section="manual" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" data-section="manual" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" data-section="manual" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" data-section="manual" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" data-section="manual" href="#step-37">官方操作依據</a><a class="level-h2" data-section="green" href="#design-workshop">設計工作坊</a><a class="level-h3" data-section="green" href="#design-1">W1. 先另存，建立五頁</a><a class="level-h3" data-section="green" href="#design-2">W2. 共同框架與五頁導覽</a><a class="level-h3" data-section="green" href="#design-3">W3. 補充模型與資料</a><a class="level-h3" data-section="green" href="#design-4">W4. 建立兩個選擇器與分析measures</a><a class="level-h3" data-section="green" href="#design-5">W5. Opening：封面、照片與入口</a><a class="level-h3" data-section="green" href="#design-6">W6. Diagnosis：三個分析區塊</a><a class="level-h3" data-section="green" href="#design-7">W7. Portfolio：指標切換、basket、產品氣泡</a><a class="level-h3" data-section="green" href="#design-8">W8. Territory：定位氣泡、州份與客群</a><a class="level-h3" data-section="green" href="#design-9">W9. Implications：Seasonality與資料摘要</a><a class="level-h3" data-section="green" href="#design-10">W10. Implications：四種主題與bookmark按鈕</a><a class="level-h3" data-section="green" href="#design-11">W11. 先做哪一段</a></nav></aside><main><article><div class="manual-tabs" role="tablist" aria-label="操作手冊章節"><button id="tab-manual" role="tab" data-tab="manual" aria-controls="manual-panel" aria-selected="true">建模與 Sales Overview</button><button id="tab-green" role="tab" data-tab="green" aria-controls="green-panel" aria-selected="false">設計工作坊</button></div><section aria-labelledby="tab-manual" id="manual-panel" role="tabpanel"><h1>PBI Demo Manual</h1>
 <p>從CSV匯入、Power Query與TMDL，到互動報表。</p>
 <p>操作順序為匯入來源、合併產品分類、建立模型、核對數字、建立報表，再加入分析指標與互動。</p>
 <p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已確認的資料控制值列在文末；Windows Desktop 的逐步實跑仍在進行。</p>
@@ -842,127 +842,62 @@ CALCULATETABLE(
 <li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-drillthrough">Drillthrough</a></li>
 </ul>
 <p>M與TMDL按每批驗收查詢核對後，再繼續下一步。</p>
-</section><section aria-labelledby="tab-green" hidden="" id="green-panel" role="tabpanel"><h2 id="green-workshop">綠色設計工作坊</h2><div class="green-intro">參加者由現成 Sales Overview 開始。先完成 G1–G6，G7 是可選的動態配色示範。</div>
-<p>由已完成的Sales Overview開始。課堂提供這份已有資料、measures、<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>和圖表的PBIX；匯入與建模由講者示範，參加者直接做以下設計操作。</p>
-<p>本輪先完成一頁Green Overview，沿用綠色版本的圓角面板、細框、墨綠文字和留白。原版Diagnosis、Portfolio、Territory等頁面有不同分析內容；這頁先還原設計語言，不把缺少的購買原因、收入分層資料塞進模型。</p>
-<h3 id="green-1">G1. 保留原版，建立工作頁</h3>
+</section><section aria-labelledby="tab-green" hidden="" id="green-panel" role="tabpanel"><h2 id="design-workshop">設計工作坊</h2><div class="green-intro">五頁重建：Opening → Diagnosis → Portfolio → Territory → Implications。由現成 Sales Overview 開始，另存 Sales Design Lab - Dashboard.pbix。</div>
+<p>從已完成的Sales Overview開始，重建Opening、Diagnosis、Portfolio、Territory、Implications五個畫面。另存檔名統一為 <code>Sales Design Lab - Dashboard.pbix</code>。課堂先提供現有PBIX；前面匯入和建模由講者示範，參加者可從這裡開始。</p>
+<p>五張照片是版面參考，圖表數值由目前模型重新計算。這版使用五個實際report pages，保留頂部五個導覽、Previous／Next；Implications內部再用bookmarks切換內容。</p>
+<h3 id="design-1">W1. 先另存，建立五頁</h3>
 <ol>
-<li>File → Save as，另存Sales Design Lab - Green Working.pbix。</li>
-<li>右鍵底部Sales Overview頁籤 → Duplicate page，將副本改名Green Overview。原Sales Overview保留作比較。</li>
-<li>新頁選2025、Channel All、Group All、Metric Sales，並取消所有bar上的選取。記下五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>的值；設計操作後應不變。</li>
-<li>保留原有Year、Channel、Group、Metric四個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>、五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>、territory bar、monthly line、category bar。沒有Monthly sales或Sales by category圖時，先回原手冊第15.1／15.2步建立。</li>
-<li>點畫布空白處，Format page → Canvas settings確認Height 720、Width 1280；View → Page view選Fit to page。</li>
+<li>File → Save as，輸入Sales Design Lab - Dashboard.pbix。現有Sales Overview保留。</li>
+<li>新增五頁，依序改名Opening、Diagnosis、Portfolio、Territory、Implications。先不刪舊頁，將Sales Overview、Checks和先前練習頁右鍵Hide page，之後仍可開啟核對。</li>
+<li>五頁都設定Format page → Canvas settings → Custom，Height 1080、Width 1920。舊Sales Overview維持原本1280×720，不用重排。</li>
+<li>先在Diagnosis建立W2的共同框架，再複製這些物件到其他四頁。所有尺寸表都依Height、Width、X、Y排列。</li>
+<li>本輪先做Opening和Diagnosis；Portfolio、Territory、Implications會在同一檔案逐步加入。</li>
 </ol>
-<p>先做到這裡就可以停下來確認，不必重新執行第1–18步，也不必重建model或TMDL。</p>
-<h3 id="green-2">G2. 對照要完成的版面</h3>
-<div class="green-preview-frame" id="green-preview"><svg aria-label="綠色報表版面示意，點區域跳到相應步驟" role="img" viewbox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg"><rect fill="#efefea" height="720" width="1280"></rect><style>text{font-family:Segoe UI,Arial,sans-serif;fill:#142320}a{cursor:pointer}</style><text font-size="12" font-weight="700" x="32" y="30">SALES DESIGN LAB</text><text font-size="32" font-weight="700" x="32" y="75">Sales overview</text><a href="#green-3"><title>G3 圓角底板</title><rect fill="#fafaf7" height="592" rx="28" stroke="none" width="1232" x="24" y="104"></rect></a><a href="#green-4"><title>G4 篩選列</title><rect fill="#fafaf7" height="56" rx="12" stroke="#d8dfd8" width="176" x="56" y="128"></rect><text font-size="11" x="68" y="148">Year</text><text font-size="14" x="68" y="171">2025</text><path d="M210 158l5 5 5-5" fill="none" stroke="#225d50"></path></a><a href="#green-4"><title>G4 篩選列</title><rect fill="#fafaf7" height="56" rx="12" stroke="#d8dfd8" width="176" x="248" y="128"></rect><text font-size="11" x="260" y="148">Channel</text><text font-size="14" x="260" y="171">All</text><path d="M402 158l5 5 5-5" fill="none" stroke="#225d50"></path></a><a href="#green-4"><title>G4 篩選列</title><rect fill="#fafaf7" height="56" rx="12" stroke="#d8dfd8" width="216" x="440" y="128"></rect><text font-size="11" x="452" y="148">Group</text><text font-size="14" x="452" y="171">All</text><path d="M634 158l5 5 5-5" fill="none" stroke="#225d50"></path></a><a href="#green-4"><title>G4 篩選列</title><rect fill="#fafaf7" height="56" rx="12" stroke="#d8dfd8" width="552" x="672" y="128"></rect><text font-size="11" x="684" y="148">Metric</text><text font-size="14" x="684" y="171">Sales</text><path d="M1202 158l5 5 5-5" fill="none" stroke="#225d50"></path></a><a href="#green-4"><title>G4 數值列</title><rect fill="#fafaf7" height="88" rx="14" stroke="#d8dfd8" width="220" x="56" y="208"></rect><text font-size="12" x="72" y="237">Sales</text><text font-size="25" font-weight="700" x="72" y="274">—</text></a><a href="#green-4"><title>G4 數值列</title><rect fill="#fafaf7" height="88" rx="14" stroke="#d8dfd8" width="220" x="292" y="208"></rect><text font-size="12" x="308" y="237">Orders</text><text font-size="25" font-weight="700" x="308" y="274">—</text></a><a href="#green-4"><title>G4 數值列</title><rect fill="#fafaf7" height="88" rx="14" stroke="#d8dfd8" width="220" x="528" y="208"></rect><text font-size="12" x="544" y="237">Customers</text><text font-size="25" font-weight="700" x="544" y="274">—</text></a><a href="#green-4"><title>G4 數值列</title><rect fill="#fafaf7" height="88" rx="14" stroke="#d8dfd8" width="220" x="764" y="208"></rect><text font-size="12" x="780" y="237">Average order value</text><text font-size="25" font-weight="700" x="780" y="274">—</text></a><a href="#green-4"><title>G4 數值列</title><rect fill="#fafaf7" height="88" rx="14" stroke="#d8dfd8" width="224" x="1000" y="208"></rect><text font-size="12" x="1016" y="237">Gross margin</text><text font-size="25" font-weight="700" x="1016" y="274">—</text></a><a href="#green-5"><title>G5 主圖</title><rect fill="#fafaf7" height="344" rx="20" stroke="#d8dfd8" width="560" x="56" y="320"></rect><text font-size="17" font-weight="700" x="76" y="357">Territory comparison</text></a><text font-size="12" x="76" y="408">Southwest</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="397"></rect><rect fill="#225d50" height="10" rx="5" width="360" x="180" y="397"></rect><text font-size="12" x="76" y="446">Northwest</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="435"></rect><rect fill="#225d50" height="10" rx="5" width="270" x="180" y="435"></rect><text font-size="12" x="76" y="484">Canada</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="473"></rect><rect fill="#225d50" height="10" rx="5" width="180" x="180" y="473"></rect><text font-size="12" x="76" y="522">Southeast</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="511"></rect><rect fill="#225d50" height="10" rx="5" width="70" x="180" y="511"></rect><text font-size="12" x="76" y="560">Northeast</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="549"></rect><rect fill="#225d50" height="10" rx="5" width="45" x="180" y="549"></rect><text font-size="12" x="76" y="598">Central</text><rect fill="#d8dfd8" height="10" rx="5" width="400" x="180" y="587"></rect><rect fill="#225d50" height="10" rx="5" width="30" x="180" y="587"></rect><text fill="#728a80" font-size="11" x="76" y="649">保留目前指標的實際數值與排序</text><a href="#green-5"><title>G5 月份圖</title><rect fill="#fafaf7" height="194" rx="20" stroke="#d8dfd8" width="584" x="640" y="320"></rect><text font-size="17" font-weight="700" x="660" y="357">Monthly sales</text></a><path d="M678 388v100h516" fill="none" stroke="#d8dfd8"></path><text font-size="15" x="850" y="447">保留現有月份曲線</text><a href="#green-5"><title>G5 類別圖</title><rect fill="#fafaf7" height="142" rx="20" stroke="#d8dfd8" width="584" x="640" y="530"></rect><text font-size="17" font-weight="700" x="660" y="561">Sales by category</text></a><text font-size="11" x="660" y="585">Bikes</text><rect fill="#d8dfd8" height="7" rx="3" width="420" x="770" y="577"></rect><rect fill="#225d50" height="7" rx="3" width="350" x="770" y="577"></rect><text font-size="11" x="660" y="606">Accessories</text><rect fill="#d8dfd8" height="7" rx="3" width="420" x="770" y="598"></rect><rect fill="#225d50" height="7" rx="3" width="200" x="770" y="598"></rect><text font-size="11" x="660" y="627">Clothing</text><rect fill="#d8dfd8" height="7" rx="3" width="420" x="770" y="619"></rect><rect fill="#225d50" height="7" rx="3" width="120" x="770" y="619"></rect><text font-size="11" x="660" y="648">Components</text><rect fill="#d8dfd8" height="7" rx="3" width="420" x="770" y="640"></rect><rect fill="#225d50" height="7" rx="3" width="70" x="770" y="640"></rect></svg></div>
-<p>上方篩選、中央五個數字，左下主圖，右下兩張輔圖。深綠是資料主色；淡綠細框區分區域，外層淺灰綠留白。預覽是版面示意，圖表內容沿用自己的PBIX。</p>
+<h3 id="design-2">W2. 共同框架與五頁導覽</h3>
+<div class="green-preview-frame" id="green-preview"><div aria-label="五頁版面參考" class="reference-controls"><button aria-pressed="true" data-previewpage="opening" type="button">Opening</button><button aria-pressed="false" data-previewpage="diagnosis" type="button">Diagnosis</button><button aria-pressed="false" data-previewpage="portfolio" type="button">Portfolio</button><button aria-pressed="false" data-previewpage="territory" type="button">Territory</button><button aria-pressed="false" data-previewpage="implications" type="button">Implications</button></div><svg aria-label="五頁dashboard版面示意" role="img" viewbox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"><style>text{font-family:Segoe UI,Arial,sans-serif}</style><g data-previewscene="opening"><rect fill="#EFEFEA" height="1080" rx="0" stroke="none" width="1920" x="0" y="0"></rect><text fill="#142320" font-size="17" font-weight="700" x="64" y="38">SALES DESIGN LAB</text><text fill="#142320" font-size="28" font-weight="700" x="64" y="84">Sales performance and planning</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1156" y="30"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1174" y="60">Opening</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1296" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1314" y="60">Diagnosis</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1436" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1454" y="60">Portfolio</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1576" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1594" y="60">Territory</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1716" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1734" y="60">Implications</text><rect fill="#FAFAF7" height="870" rx="24" stroke="none" width="1792" x="64" y="120"></rect><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1724" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1742" y="1042">Next</text><text fill="#142320" font-size="16" font-weight="700" x="112" y="272">PAGE 1 OF 5</text><text fill="#142320" font-size="68" font-weight="700" x="112" y="360">Focused growth,</text><text fill="#142320" font-size="68" font-weight="700" x="112" y="440">not equal</text><text fill="#142320" font-size="68" font-weight="700" x="112" y="520">coverage</text><text fill="#142320" font-size="23" font-weight="400" x="112" y="578">Explore revenue, product mix and territory patterns.</text><text fill="#142320" font-size="23" font-weight="400" x="112" y="615">Then compare seasonal plans.</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="195" x="112" y="650"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="130" y="680">Methodology</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="195" x="322" y="650"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="340" y="680">Scenarios</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="195" x="532" y="650"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="550" y="680">Overview</text><rect fill="#FAFAF7" height="82" rx="16" stroke="#D8DFD8" width="183" x="112" y="734"></rect><text fill="#142320" font-size="17" font-weight="700" x="126" y="781">Diagnosis</text><rect fill="#FAFAF7" height="82" rx="16" stroke="#D8DFD8" width="183" x="307" y="734"></rect><text fill="#142320" font-size="17" font-weight="700" x="321" y="781">Portfolio</text><rect fill="#FAFAF7" height="82" rx="16" stroke="#D8DFD8" width="183" x="502" y="734"></rect><text fill="#142320" font-size="17" font-weight="700" x="516" y="781">Territory</text><rect fill="#FAFAF7" height="82" rx="16" stroke="#D8DFD8" width="183" x="697" y="734"></rect><text fill="#142320" font-size="17" font-weight="700" x="711" y="781">Implications</text><defs><clippath id="photo-placeholder"><rect height="710" rx="34" width="860" x="932" y="208"></rect></clippath></defs><g clip-path="url(#photo-placeholder)"><rect fill="#D7DFDA" height="710" rx="0" stroke="none" width="860" x="932" y="208"></rect><circle cx="1560" cy="360" fill="#EFE3C8" r="86"></circle><path d="M932 670L1100 385 1320 635 1585 360 1792 610V918H932Z" fill="#A3B3A7"></path><path d="M932 780L1170 580 1430 760 1670 560 1792 640V918H932Z" fill="#668273"></path><path d="M932 860L1280 715 1490 870 1792 730V918H932Z" fill="#294E43"></path><text fill="#FAFAF7" font-size="18" font-weight="700" x="1135" y="886">IMAGE AREA</text></g></g><g data-previewscene="diagnosis" hidden=""><rect fill="#EFEFEA" height="1080" rx="0" stroke="none" width="1920" x="0" y="0"></rect><text fill="#142320" font-size="17" font-weight="700" x="64" y="38">SALES DESIGN LAB</text><text fill="#142320" font-size="28" font-weight="700" x="64" y="84">Sales performance and planning</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1156" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1174" y="60">Opening</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1296" y="30"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1314" y="60">Diagnosis</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1436" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1454" y="60">Portfolio</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1576" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1594" y="60">Territory</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1716" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1734" y="60">Implications</text><rect fill="#FAFAF7" height="870" rx="24" stroke="none" width="1792" x="64" y="120"></rect><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1312" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1326" y="181">Year</text><text fill="#142320" font-size="17" font-weight="400" x="1326" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1480" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1494" y="181">Channel</text><text fill="#142320" font-size="17" font-weight="400" x="1494" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="184" x="1648" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1662" y="181">Group</text><text fill="#142320" font-size="17" font-weight="400" x="1662" y="207">All  ⌄</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="64" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="82" y="1042">Previous</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1724" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1742" y="1042">Next</text><text fill="#142320" font-size="16" font-weight="700" x="112" y="166">PAGE 2 OF 5</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="228">Quality growth, growth driver,</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="278">discount exposure</text><rect fill="#FAFAF7" height="630" rx="24" stroke="#D8DFD8" width="1000" x="112" y="304"></rect><text fill="#142320" font-size="15" font-weight="700" x="140" y="340">ANNUAL QUALITY TREND</text><text fill="#142320" font-size="22" font-weight="700" x="140" y="376">Sales, gross profit and margin by year</text><rect fill="#FAFAF7" height="290" rx="24" stroke="#D8DFD8" width="664" x="1144" y="304"></rect><text fill="#142320" font-size="15" font-weight="700" x="1172" y="340">GROWTH DRIVER</text><text fill="#142320" font-size="22" font-weight="700" x="1172" y="376">Channel mix and comparable growth</text><rect fill="#FAFAF7" height="316" rx="24" stroke="#D8DFD8" width="664" x="1144" y="618"></rect><text fill="#142320" font-size="15" font-weight="700" x="1172" y="654">DISCOUNT EXPOSURE</text><text fill="#142320" font-size="22" font-weight="700" x="1172" y="690">Special offer share in 2025</text><rect fill="#FAFAF7" height="86" rx="18" stroke="#D8DFD8" width="292" x="144" y="410"></rect><text fill="#142320" font-size="15" font-weight="400" x="164" y="440">Sales growth</text><text fill="#142320" font-size="30" font-weight="700" x="164" y="478">—</text><rect fill="#FAFAF7" height="86" rx="18" stroke="#D8DFD8" width="292" x="468" y="410"></rect><text fill="#142320" font-size="15" font-weight="400" x="488" y="440">Gross profit growth</text><text fill="#142320" font-size="30" font-weight="700" x="488" y="478">—</text><rect fill="#FAFAF7" height="86" rx="18" stroke="#D8DFD8" width="292" x="792" y="410"></rect><text fill="#142320" font-size="15" font-weight="400" x="812" y="440">GM change</text><text fill="#142320" font-size="30" font-weight="700" x="812" y="478">—</text><rect fill="#D8DFD8" height="140" rx="0" stroke="none" width="90" x="235" y="730"></rect><rect fill="#225D50" height="30" rx="0" stroke="none" width="45" x="330" y="840"></rect><text fill="#142320" font-size="17" font-weight="400" x="235" y="903">2023*</text><rect fill="#D8DFD8" height="240" rx="0" stroke="none" width="90" x="425" y="630"></rect><rect fill="#225D50" height="45" rx="0" stroke="none" width="45" x="520" y="825"></rect><text fill="#142320" font-size="17" font-weight="400" x="425" y="903">2024</text><rect fill="#D8DFD8" height="325" rx="0" stroke="none" width="90" x="615" y="545"></rect><rect fill="#225D50" height="70" rx="0" stroke="none" width="45" x="710" y="800"></rect><text fill="#142320" font-size="17" font-weight="400" x="615" y="903">2025</text><rect fill="#D8DFD8" height="200" rx="0" stroke="none" width="90" x="805" y="670"></rect><rect fill="#225D50" height="45" rx="0" stroke="none" width="45" x="900" y="825"></rect><text fill="#142320" font-size="17" font-weight="400" x="805" y="903">2026 H1</text><path d="M280 590L470 810 660 795 850 560" fill="none" stroke="#225D50" stroke-width="4"></path><rect fill="#D8DFD8" height="120" rx="0" stroke="none" width="42" x="1195" y="440"></rect><rect fill="#225D50" height="40" rx="0" stroke="none" width="42" x="1195" y="520"></rect><rect fill="#D8DFD8" height="120" rx="0" stroke="none" width="42" x="1255" y="440"></rect><rect fill="#225D50" height="49" rx="0" stroke="none" width="42" x="1255" y="511"></rect><rect fill="#D8DFD8" height="120" rx="0" stroke="none" width="42" x="1315" y="440"></rect><rect fill="#225D50" height="58" rx="0" stroke="none" width="42" x="1315" y="502"></rect><rect fill="#D8DFD8" height="120" rx="0" stroke="none" width="42" x="1375" y="440"></rect><rect fill="#225D50" height="67" rx="0" stroke="none" width="42" x="1375" y="493"></rect><path d="M1490 470L1590 520 1740 450" fill="none" stroke="#225D50" stroke-width="4"></path><rect fill="#FAFAF7" height="76" rx="18" stroke="#D8DFD8" width="192" x="1168" y="704"></rect><text fill="#142320" font-size="15" font-weight="400" x="1188" y="734">Overall GM</text><text fill="#142320" font-size="30" font-weight="700" x="1188" y="772">—</text><rect fill="#FAFAF7" height="76" rx="18" stroke="#D8DFD8" width="192" x="1384" y="704"></rect><text fill="#142320" font-size="15" font-weight="400" x="1404" y="734">Special offer GM</text><text fill="#142320" font-size="30" font-weight="700" x="1404" y="772">—</text><rect fill="#FAFAF7" height="76" rx="18" stroke="#D8DFD8" width="192" x="1600" y="704"></rect><text fill="#142320" font-size="15" font-weight="400" x="1620" y="734">No discount GM</text><text fill="#142320" font-size="30" font-weight="700" x="1620" y="772">—</text><rect fill="#D8DFD8" height="22" rx="11" stroke="none" width="590" x="1176" y="810"></rect><rect fill="#225D50" height="22" rx="11" stroke="none" width="480" x="1176" y="810"></rect><text fill="#142320" font-size="17" font-weight="400" x="1176" y="878">No-discount sales share</text><text fill="#142320" font-size="17" font-weight="400" x="1176" y="912">Special offer sales share</text></g><g data-previewscene="portfolio" hidden=""><rect fill="#EFEFEA" height="1080" rx="0" stroke="none" width="1920" x="0" y="0"></rect><text fill="#142320" font-size="17" font-weight="700" x="64" y="38">SALES DESIGN LAB</text><text fill="#142320" font-size="28" font-weight="700" x="64" y="84">Sales performance and planning</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1156" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1174" y="60">Opening</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1296" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1314" y="60">Diagnosis</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1436" y="30"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1454" y="60">Portfolio</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1576" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1594" y="60">Territory</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1716" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1734" y="60">Implications</text><rect fill="#FAFAF7" height="870" rx="24" stroke="none" width="1792" x="64" y="120"></rect><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1312" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1326" y="181">Year</text><text fill="#142320" font-size="17" font-weight="400" x="1326" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1480" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1494" y="181">Channel</text><text fill="#142320" font-size="17" font-weight="400" x="1494" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="184" x="1648" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1662" y="181">Group</text><text fill="#142320" font-size="17" font-weight="400" x="1662" y="207">All  ⌄</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="64" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="82" y="1042">Previous</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1724" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1742" y="1042">Next</text><text fill="#142320" font-size="16" font-weight="700" x="112" y="166">PAGE 3 OF 5</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="230">Product mix and</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="280">growth patterns</text><rect fill="#FAFAF7" height="594" rx="24" stroke="#D8DFD8" width="1080" x="112" y="340"></rect><text fill="#142320" font-size="15" font-weight="700" x="140" y="376">CHART 1 / MOMENTUM</text><text fill="#142320" font-size="22" font-weight="700" x="140" y="412">Compare categories within each metric</text><rect fill="#FAFAF7" height="280" rx="24" stroke="#D8DFD8" width="584" x="1224" y="340"></rect><text fill="#142320" font-size="15" font-weight="700" x="1252" y="376">CHART 2 / BUNDLE AVAILABILITY</text><text fill="#142320" font-size="22" font-weight="700" x="1252" y="412">Revenue and margin by basket</text><rect fill="#FAFAF7" height="290" rx="24" stroke="#D8DFD8" width="584" x="1224" y="644"></rect><text fill="#142320" font-size="15" font-weight="700" x="1252" y="680">CHART 3 / PRODUCT POTENTIAL</text><text fill="#142320" font-size="22" font-weight="700" x="1252" y="716">Sales, margin and quantity</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="225" x="144" y="424"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="162" y="454">Customers</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="225" x="389" y="424"></rect><text fill="#142320" font-size="18" font-weight="700" x="407" y="454">Orders</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="225" x="634" y="424"></rect><text fill="#142320" font-size="18" font-weight="700" x="652" y="454">Quantity</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="225" x="879" y="424"></rect><text fill="#142320" font-size="18" font-weight="700" x="897" y="454">Sales</text><polyline fill="none" points="170,815 300,755 430,785 560,690 690,720 820,625 950,670 1090,590" stroke="#225D50" stroke-width="4"></polyline><polyline fill="none" points="170,815 300,780 430,800 560,745 690,755 820,710 950,680 1090,700" stroke="#A77B38" stroke-width="4"></polyline><polyline fill="none" points="170,815 300,760 430,780 560,650 690,705 820,590 950,620 1090,535" stroke="#142320" stroke-width="4"></polyline><text fill="#142320" font-size="16" font-weight="400" x="160" y="900">Jul 2025 = 100</text><rect fill="#225D50" height="105" rx="0" stroke="none" width="56" x="1265" y="469"></rect><rect fill="#D8DFD8" height="62" rx="0" stroke="none" width="56" x="1360" y="512"></rect><rect fill="#A77B38" height="45" rx="0" stroke="none" width="56" x="1455" y="529"></rect><rect fill="#D8DFD8" height="38" rx="0" stroke="none" width="56" x="1550" y="536"></rect><rect fill="#225D50" height="25" rx="0" stroke="none" width="56" x="1645" y="549"></rect><path d="M1290 505L1385 520 1480 460 1575 480 1670 450" fill="none" stroke="#142320" stroke-width="3"></path><circle cx="1290" cy="780" fill="#D8DFD8" r="18"></circle><circle cx="1330" cy="820" fill="#D8DFD8" r="26"></circle><circle cx="1380" cy="770" fill="#D8DFD8" r="13"></circle><circle cx="1400" cy="865" fill="#D8DFD8" r="22"></circle><circle cx="1500" cy="835" fill="#225D50" r="32"></circle><circle cx="1620" cy="780" fill="#D8DFD8" r="20"></circle><circle cx="1715" cy="747" fill="#D8DFD8" r="16"></circle></g><g data-previewscene="territory" hidden=""><rect fill="#EFEFEA" height="1080" rx="0" stroke="none" width="1920" x="0" y="0"></rect><text fill="#142320" font-size="17" font-weight="700" x="64" y="38">SALES DESIGN LAB</text><text fill="#142320" font-size="28" font-weight="700" x="64" y="84">Sales performance and planning</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1156" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1174" y="60">Opening</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1296" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1314" y="60">Diagnosis</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1436" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1454" y="60">Portfolio</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1576" y="30"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1594" y="60">Territory</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1716" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1734" y="60">Implications</text><rect fill="#FAFAF7" height="870" rx="24" stroke="none" width="1792" x="64" y="120"></rect><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1312" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1326" y="181">Year</text><text fill="#142320" font-size="17" font-weight="400" x="1326" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1480" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1494" y="181">Channel</text><text fill="#142320" font-size="17" font-weight="400" x="1494" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="184" x="1648" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1662" y="181">Group</text><text fill="#142320" font-size="17" font-weight="400" x="1662" y="207">All  ⌄</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="64" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="82" y="1042">Previous</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1724" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1742" y="1042">Next</text><text fill="#142320" font-size="16" font-weight="700" x="112" y="166">PAGE 4 OF 5</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="230">Where to focus</text><text fill="#142320" font-size="43" font-weight="700" x="112" y="280">and who to activate</text><rect fill="#FAFAF7" height="630" rx="24" stroke="#D8DFD8" width="1000" x="112" y="304"></rect><text fill="#142320" font-size="15" font-weight="700" x="140" y="340">CHART 1 / TERRITORY CONCENTRATION</text><text fill="#142320" font-size="22" font-weight="700" x="140" y="376">Compare the scale of each territory</text><rect fill="#FAFAF7" height="290" rx="24" stroke="#D8DFD8" width="664" x="1144" y="304"></rect><text fill="#142320" font-size="15" font-weight="700" x="1172" y="340">CHART 2 / WHY CUSTOMERS BUY</text><text fill="#142320" font-size="22" font-weight="700" x="1172" y="376">Reasons recorded on selected orders</text><rect fill="#FAFAF7" height="316" rx="24" stroke="#D8DFD8" width="664" x="1144" y="618"></rect><text fill="#142320" font-size="15" font-weight="700" x="1172" y="654">CHART 3 / CUSTOMER PROFILE</text><text fill="#142320" font-size="22" font-weight="700" x="1172" y="690">Income mix among known-income customers</text><circle cx="260" cy="520" fill="#225D50" r="61"></circle><text fill="#FAFAF7" font-size="13" font-weight="700" x="207" y="520">Northwest</text><circle cx="350" cy="650" fill="#225D50" r="80"></circle><text fill="#FAFAF7" font-size="13" font-weight="700" x="278" y="650">Southwest</text><circle cx="360" cy="425" fill="#225D50" r="60"></circle><text fill="#FAFAF7" font-size="13" font-weight="700" x="308" y="425">Canada</text><circle cx="520" cy="505" fill="#D8DFD8" r="44"></circle><text fill="#142320" font-size="13" font-weight="700" x="484" y="505">Central</text><circle cx="690" cy="455" fill="#D8DFD8" r="50"></circle><text fill="#142320" font-size="13" font-weight="700" x="648" y="455">Northeast</text><circle cx="700" cy="650" fill="#D8DFD8" r="47"></circle><text fill="#142320" font-size="13" font-weight="700" x="661" y="650">Southeast</text><circle cx="550" cy="405" fill="#D8DFD8" r="44"></circle><text fill="#142320" font-size="13" font-weight="700" x="514" y="405">Australia</text><circle cx="750" cy="540" fill="#D8DFD8" r="45"></circle><text fill="#142320" font-size="13" font-weight="700" x="713" y="540">France</text><circle cx="885" cy="600" fill="#D8DFD8" r="42"></circle><text fill="#142320" font-size="13" font-weight="700" x="851" y="600">Germany</text><circle cx="980" cy="650" fill="#D8DFD8" r="46"></circle><text fill="#142320" font-size="13" font-weight="700" x="942" y="650">UK</text><text fill="#142320" font-size="16" font-weight="400" x="150" y="790">State 1</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="650" x="350" y="776"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="320" x="350" y="776"></rect><text fill="#142320" font-size="16" font-weight="400" x="150" y="821">State 2</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="650" x="350" y="807"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="255" x="350" y="807"></rect><text fill="#142320" font-size="16" font-weight="400" x="150" y="852">State 3</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="650" x="350" y="838"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="190" x="350" y="838"></rect><text fill="#142320" font-size="16" font-weight="400" x="150" y="883">State 4</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="650" x="350" y="869"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="125" x="350" y="869"></rect><text fill="#142320" font-size="12" font-weight="700" x="1320" y="415">PRICE</text><text fill="#142320" font-size="12" font-weight="700" x="1473" y="415">ON PROMOTION</text><text fill="#142320" font-size="12" font-weight="700" x="1626" y="415">MANUFACTURER</text><text fill="#142320" font-size="17" font-weight="700" x="1168" y="466">Southwest</text><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1320" y="450"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="90" x="1320" y="450"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1473" y="450"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="58" x="1473" y="450"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1626" y="450"></rect><rect fill="#A77B38" height="12" rx="6" stroke="none" width="26" x="1626" y="450"></rect><text fill="#142320" font-size="17" font-weight="700" x="1168" y="514">Northwest</text><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1320" y="498"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="90" x="1320" y="498"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1473" y="498"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="58" x="1473" y="498"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1626" y="498"></rect><rect fill="#A77B38" height="12" rx="6" stroke="none" width="26" x="1626" y="498"></rect><text fill="#142320" font-size="17" font-weight="700" x="1168" y="562">Canada</text><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1320" y="546"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="90" x="1320" y="546"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1473" y="546"></rect><rect fill="#225D50" height="12" rx="6" stroke="none" width="58" x="1473" y="546"></rect><rect fill="#D8DFD8" height="12" rx="6" stroke="none" width="120" x="1626" y="546"></rect><rect fill="#A77B38" height="12" rx="6" stroke="none" width="26" x="1626" y="546"></rect><text fill="#142320" font-size="17" font-weight="700" x="1176" y="748">50k–75k</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="390" x="1360" y="734"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="210" x="1360" y="734"></rect><text fill="#142320" font-size="17" font-weight="700" x="1176" y="783">25k–50k</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="390" x="1360" y="769"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="176" x="1360" y="769"></rect><text fill="#142320" font-size="17" font-weight="700" x="1176" y="818">75k–100k</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="390" x="1360" y="804"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="142" x="1360" y="804"></rect><text fill="#142320" font-size="17" font-weight="700" x="1176" y="853">&gt;100k</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="390" x="1360" y="839"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="108" x="1360" y="839"></rect><text fill="#142320" font-size="17" font-weight="700" x="1176" y="888">≤25k</text><rect fill="#D8DFD8" height="14" rx="7" stroke="none" width="390" x="1360" y="874"></rect><rect fill="#225D50" height="14" rx="7" stroke="none" width="74" x="1360" y="874"></rect></g><g data-previewscene="implications" hidden=""><rect fill="#EFEFEA" height="1080" rx="0" stroke="none" width="1920" x="0" y="0"></rect><text fill="#142320" font-size="17" font-weight="700" x="64" y="38">SALES DESIGN LAB</text><text fill="#142320" font-size="28" font-weight="700" x="64" y="84">Sales performance and planning</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1156" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1174" y="60">Opening</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1296" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1314" y="60">Diagnosis</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1436" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1454" y="60">Portfolio</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="132" x="1576" y="30"></rect><text fill="#142320" font-size="18" font-weight="700" x="1594" y="60">Territory</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="1716" y="30"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="1734" y="60">Implications</text><rect fill="#FAFAF7" height="870" rx="24" stroke="none" width="1792" x="64" y="120"></rect><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1312" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1326" y="181">Year</text><text fill="#142320" font-size="17" font-weight="400" x="1326" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="152" x="1480" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1494" y="181">Channel</text><text fill="#142320" font-size="17" font-weight="400" x="1494" y="207">All  ⌄</text><rect fill="#FAFAF7" height="68" rx="16" stroke="#D8DFD8" width="184" x="1648" y="156"></rect><text fill="#142320" font-size="14" font-weight="700" x="1662" y="181">Group</text><text fill="#142320" font-size="17" font-weight="400" x="1662" y="207">All  ⌄</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="132" x="64" y="1012"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="82" y="1042">Previous</text><text fill="#142320" font-size="16" font-weight="700" x="112" y="150">PAGE 5 OF 5</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="210" x="112" y="170"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="130" y="200">Seasonality</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="210" x="338" y="170"></rect><text fill="#142320" font-size="18" font-weight="700" x="356" y="200">Hero Product</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="210" x="564" y="170"></rect><text fill="#142320" font-size="18" font-weight="700" x="582" y="200">Bundle Timing</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="210" x="790" y="170"></rect><text fill="#142320" font-size="18" font-weight="700" x="808" y="200">Alternative Bike</text><rect fill="#142320" height="46" rx="23" stroke="#D8DFD8" width="210" x="112" y="234"></rect><text fill="#FAFAF7" font-size="18" font-weight="700" x="130" y="264">2025 Index</text><rect fill="#FAFAF7" height="46" rx="23" stroke="#D8DFD8" width="210" x="338" y="234"></rect><text fill="#142320" font-size="18" font-weight="700" x="356" y="264">2026 Sales Plan</text><rect fill="#FAFAF7" height="590" rx="24" stroke="#D8DFD8" width="1000" x="112" y="330"></rect><text fill="#142320" font-size="15" font-weight="700" x="140" y="366">2025 INDEX</text><text fill="#142320" font-size="22" font-weight="700" x="140" y="402">Annual monthly average = 100</text><rect fill="#FAFAF7" height="590" rx="24" stroke="#D8DFD8" width="664" x="1144" y="330"></rect><text fill="#142320" font-size="15" font-weight="700" x="1172" y="366">MONTHLY PATTERN SUMMARY</text><text fill="#142320" font-size="22" font-weight="700" x="1172" y="402">Computed from the selected sales scope</text><polyline fill="none" points="150,700 240,750 330,770 420,610 510,680 600,740 690,615 780,650 870,810 960,640 1050,660" stroke="#142320" stroke-width="4"></polyline><polyline fill="none" points="150,655 240,690 330,645 420,570 510,760 600,810 690,795 780,810 870,740 960,670 1050,610" stroke="#225D50" stroke-width="4"></polyline><polyline fill="none" points="150,675 240,660 330,550 420,690 510,805 600,745 690,850 780,825 870,650 960,730 1050,520" stroke="#A77B38" stroke-width="4"></polyline><path d="M144 720H1080" stroke="#728a80" stroke-dasharray="7 7"></path><rect fill="#FAFAF7" height="104" rx="18" stroke="#D8DFD8" width="276" x="1176" y="440"></rect><text fill="#142320" font-size="15" font-weight="400" x="1196" y="470">Highest-sales month</text><text fill="#142320" font-size="30" font-weight="700" x="1196" y="508">—</text><rect fill="#FAFAF7" height="104" rx="18" stroke="#D8DFD8" width="276" x="1484" y="440"></rect><text fill="#142320" font-size="15" font-weight="400" x="1504" y="470">Lowest-sales month</text><text fill="#142320" font-size="30" font-weight="700" x="1504" y="508">—</text><rect fill="#FAFAF7" height="104" rx="18" stroke="#D8DFD8" width="276" x="1176" y="564"></rect><text fill="#142320" font-size="15" font-weight="400" x="1196" y="594">Top 3 months share</text><text fill="#142320" font-size="30" font-weight="700" x="1196" y="632">—</text><rect fill="#FAFAF7" height="104" rx="18" stroke="#D8DFD8" width="276" x="1484" y="564"></rect><text fill="#142320" font-size="15" font-weight="400" x="1504" y="594">Annual GM</text><text fill="#142320" font-size="30" font-weight="700" x="1504" y="632">—</text><text fill="#142320" font-size="17" font-weight="700" x="1176" y="740">Month         Sales         Gross margin</text><text fill="#142320" font-size="17" font-weight="400" x="1176" y="782">Jan              —                    —</text><text fill="#142320" font-size="17" font-weight="400" x="1176" y="812">Feb              —                    —</text><text fill="#142320" font-size="17" font-weight="400" x="1176" y="842">Mar              —                    —</text><text fill="#142320" font-size="17" font-weight="400" x="1176" y="872">Apr              —                    —</text></g></svg><p class="reference-caption">版面示意；實際數值與曲線由目前模型計算。<a href="#design-5" id="preview-step">前往這頁的重建步驟 →</a></p></div>
 <div class="table-scroll"><table>
 <thead>
 <tr>
 <th>用途</th>
 <th>色碼</th>
-<th>設定</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>畫布</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#EFEFEA"></span>#EFEFEA</span></td>
-<td>Canvas background；Transparency 0%</td>
 </tr>
 <tr>
-<td>大圓角底板與圖表底板</td>
+<td>大底板／小面板</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span></td>
-<td>Shape Fill；Transparency 0%</td>
 </tr>
 <tr>
-<td>文字</td>
+<td>主文字</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span></td>
-<td>標題、軸標籤、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span></td>
 </tr>
 <tr>
-<td>主要資料</td>
+<td>主資料</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span></td>
-<td>bars、line</td>
 </tr>
 <tr>
-<td>次要資料與細邊框</td>
+<td>次要資料／邊框</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span></td>
-<td>Border、非重點bars</td>
 </tr>
 <tr>
-<td>輔助文字</td>
+<td>次要文字</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span></td>
-<td>小標與說明</td>
 </tr>
 <tr>
-<td>少量重點</td>
+<td>重點／第三條線</td>
 <td><span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#A77B38"></span>#A77B38</span></td>
-<td>可選，只標示要討論的地區</td>
 </tr>
 </tbody>
 </table></div>
-<p>字體統一Segoe UI。頁標題28、小標10至11、圖表標題14、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>數值24、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>名稱11、軸與data labels 10至11。先統一字級，不將每個標題都加大。</p>
-<h3 id="green-3">G3. 先建立後方的圓角底板</h3>
-<p>先點畫布空白處 → Format page → Canvas background，設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#EFEFEA"></span>#EFEFEA</span>、Transparency 0%。</p>
-<ol>
-<li>Insert → Shapes → Rounded rectangle。如果選單只顯示Rectangle，選它後檢查Shape／Style有沒有圓角設定。</li>
-<li>建立大底板：Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>、Transparency 0%，Border與Shadow關閉。</li>
-<li>Format shape → General → Properties，依下表輸入Height、Width、X、Y。若Rounded corners可輸入數值，大底板用28左右；版本只有調整控制點時，以預覽外觀為準。</li>
-<li>開View → Selection pane，將物件改名BG_Board。在頂部Format／Arrange使用Send to back，確保它位於所有圖表後方。</li>
-<li>再新增三個Rounded rectangle作主圖和輔圖底板，Fill仍為<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>、Border用#D8DFD8細線、Shadow關閉，圓角約20。分別改名BG_Territory、BG_Monthly、BG_Category。</li>
-<li>三個小底板要在圖表後面、大底板前面。在Selection pane由前到後的層次應是「圖表／<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>／<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>／文字 → 三個小底板 → BG_Board」。</li>
-</ol>
+<p>畫布Canvas background設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#EFEFEA"></span>#EFEFEA</span>、Transparency 0%。插入Rounded rectangle，Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；將大底板Send to back。小面板同色、細框<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>、Shadow Off。文字統一Segoe UI。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
-<th>底板</th>
-<th style="text-align: right;">Height</th>
-<th style="text-align: right;">Width</th>
-<th style="text-align: right;">X</th>
-<th style="text-align: right;">Y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BG_Board</td>
-<td style="text-align: right;">592</td>
-<td style="text-align: right;">1232</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">104</td>
-</tr>
-<tr>
-<td>BG_Territory</td>
-<td style="text-align: right;">344</td>
-<td style="text-align: right;">560</td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">320</td>
-</tr>
-<tr>
-<td>BG_Monthly</td>
-<td style="text-align: right;">194</td>
-<td style="text-align: right;">584</td>
-<td style="text-align: right;">640</td>
-<td style="text-align: right;">320</td>
-</tr>
-<tr>
-<td>BG_Category</td>
-<td style="text-align: right;">142</td>
-<td style="text-align: right;">584</td>
-<td style="text-align: right;">640</td>
-<td style="text-align: right;">530</td>
-</tr>
-</tbody>
-</table></div>
-<p>若新增底板後圖表消失或不能點，先在Selection pane選底板並往後移，不要刪掉圖表。Shapes本身不會接資料或自動產生圖表。</p>
-<h3 id="green-4">G4. 放置標題、篩選器與cards</h3>
-<p>已有的Sales Overview標題改成Sales overview；上方另加小字SALES DESIGN LAB。用Insert → Text box建立文字，關閉文字框背景與邊框，文字設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。</p>
-<p>四個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>全部先設Dropdown，再輸入尺寸。因為清單放進56高度會裁切選項，不能只縮小而不改Style。Year與Metric開Single select；Channel和Group保留All。</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>物件</th>
+<th>共用物件</th>
 <th style="text-align: right;">Height</th>
 <th style="text-align: right;">Width</th>
 <th style="text-align: right;">X</th>
@@ -972,88 +907,648 @@ CALCULATETABLE(
 <tbody>
 <tr>
 <td>小字 SALES DESIGN LAB</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">360</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">650</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">18</td>
 </tr>
 <tr>
-<td>頁標題 Sales overview</td>
-<td style="text-align: right;">42</td>
-<td style="text-align: right;">620</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">38</td>
+<td>報表標題 Sales performance and planning</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">1030</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr>
+<td>Page navigator</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">700</td>
+<td style="text-align: right;">1156</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr>
+<td>大圓角底板</td>
+<td style="text-align: right;">870</td>
+<td style="text-align: right;">1792</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">120</td>
+</tr>
+<tr>
+<td>Previous按鈕</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">1012</td>
+</tr>
+<tr>
+<td>Next按鈕</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">1724</td>
+<td style="text-align: right;">1012</td>
 </tr>
 <tr>
 <td>Year <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">176</td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">128</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">152</td>
+<td style="text-align: right;">1312</td>
+<td style="text-align: right;">156</td>
 </tr>
 <tr>
 <td>Channel <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">176</td>
-<td style="text-align: right;">248</td>
-<td style="text-align: right;">128</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">152</td>
+<td style="text-align: right;">1480</td>
+<td style="text-align: right;">156</td>
 </tr>
 <tr>
 <td>Group <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">216</td>
-<td style="text-align: right;">440</td>
-<td style="text-align: right;">128</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">184</td>
+<td style="text-align: right;">1648</td>
+<td style="text-align: right;">156</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>頂部導覽</strong>：Insert → Buttons → Navigator → Page navigator。Format navigator的Pages設定不顯示Hidden pages，應只有上述五頁。Default狀態填淡色、文字<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>；Selected狀態填<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、文字<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>。按鈕用圓角／pill外形。若只能調整整組形狀，先用Rounded rectangle，不為精確圓角停住。Desktop編輯模式用Ctrl＋Click測試。</p>
+<p><strong>Previous／Next</strong>：Insert → Buttons → Blank，Text輸入Previous或Next。開Action，Type選Page navigation，Destination按順序指定上一頁／下一頁。Opening不放Previous；Implications不放Next。每頁貼上後要重新核對Destination。</p>
+<p><strong>篩選器</strong>：Year用DimDate[Year]、Channel用FactSales[Channel]、Group用DimTerritory[Group]，Style全選Dropdown。View → Sync <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>，在Diagnosis、Portfolio、Territory、Implications勾Sync與Visible；Opening不顯示。起始設All／All／All。不同視覺若固定讀2025或2026，標題明確寫年份。</p>
+<p>小字11至12、報表標題22、內容頁標題36、圖表標題20、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>數值28、資料標籤12至14。圖表背景Transparency 100%，讓小面板透出；畫布仍為0%。用Selection pane將圖表／文字放前面，底板放最後面。</p>
+<h3 id="design-3">W3. 補充模型與資料</h3>
+<p>Opening、Diagnosis、Portfolio和Seasonality主要使用現有八張來源。Territory另外需要州份、收入分類與購買原因，以下三個檔案只含ID與分類，不含姓名、地址文字或聯絡資料。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>資料</th>
+<th>用途</th>
+<th>下載</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CustomerProfile</td>
+<td>CustomerID → IncomeBand</td>
+<td><a href="data/customer-profile.json">customer-profile.json</a></td>
 </tr>
 <tr>
-<td>Metric <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">552</td>
-<td style="text-align: right;">672</td>
-<td style="text-align: right;">128</td>
+<td>OrderContext</td>
+<td>OrderID → shipping StateProvince</td>
+<td><a href="data/order-context.json">order-context.json</a></td>
 </tr>
 <tr>
-<td>Sales <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">220</td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">208</td>
+<td>OrderReasons</td>
+<td>OrderID → Reason，多值</td>
+<td><a href="data/order-reasons.json">order-reasons.json</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>這三份補充資料按公開樣本的ID整理；只在下方關聯鍵檢查通過後使用。若對不上，改從你的同套來源補表，不以行序或日期猜測配對。OrderBasket則直接使用你現在的RawDetail與DimProduct，在刷新時計算完整訂單分類。</p>
+<p>先確認八張Raw及QC的Enable load已關閉，核心四表保留載入；這只移除staging的模型表，不刪除其Power Query queries，避免自動偵測多條關聯。</p>
+<p>在TMDL view新tab貼以下整段，Preview確認只新增CustomerProfile、OrderContext、OrderReasons、OrderBasket、三條關聯，以及少量新calculated columns。不要替換已有的四張核心表。Apply後Home → Refresh。Web來源若要求認證，對https://ytsang.com選Anonymous；本機與Web來源若要求Privacy level，按環境設定，不關閉公司的保護設定。</p>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 19" data-copy="code-18" type="button">Copy</button></div><pre id="code-18"><code class="language-tmdl">createOrReplace
+
+	table CustomerProfile
+		column CustomerID
+			dataType: int64
+			sourceColumn: CustomerID
+			summarizeBy: none
+		column IncomeBand
+			dataType: string
+			sourceColumn: IncomeBand
+			summarizeBy: none
+		column IncomeSort
+			dataType: int64
+			sourceColumn: IncomeSort
+			summarizeBy: none
+		partition CustomerProfile = m
+			mode: import
+			source =
+				let
+				    Source = Json.Document(Web.Contents("https://ytsang.com", [RelativePath="pbi-demo-manual/data/customer-profile.json"])),
+				    Rows = Table.FromRecords(Source),
+				    Final = Table.TransformColumnTypes(Rows, {{"CustomerID",Int64.Type},{"IncomeBand",type text},{"IncomeSort",Int64.Type}})
+				in
+				    Final
+
+	table OrderContext
+		column OrderID
+			dataType: int64
+			sourceColumn: OrderID
+			summarizeBy: none
+		column StateProvince
+			dataType: string
+			sourceColumn: StateProvince
+			summarizeBy: none
+		partition OrderContext = m
+			mode: import
+			source =
+				let
+				    Source = Json.Document(Web.Contents("https://ytsang.com", [RelativePath="pbi-demo-manual/data/order-context.json"])),
+				    Rows = Table.FromRecords(Source),
+				    Final = Table.TransformColumnTypes(Rows, {{"OrderID",Int64.Type},{"StateProvince",type text}})
+				in
+				    Final
+
+	table OrderReasons
+		column OrderID
+			dataType: int64
+			sourceColumn: OrderID
+			summarizeBy: none
+		column Reason
+			dataType: string
+			sourceColumn: Reason
+			summarizeBy: none
+		partition OrderReasons = m
+			mode: import
+			source =
+				let
+				    Source = Json.Document(Web.Contents("https://ytsang.com", [RelativePath="pbi-demo-manual/data/order-reasons.json"])),
+				    Rows = Table.FromRecords(Source),
+				    Final = Table.TransformColumnTypes(Rows, {{"OrderID",Int64.Type},{"Reason",type text}})
+				in
+				    Final
+
+	table OrderBasket
+		column OrderID
+			dataType: int64
+			sourceColumn: OrderID
+			summarizeBy: none
+		column BasketType
+			dataType: string
+			sourceColumn: BasketType
+			summarizeBy: none
+		column BasketDisplay
+			dataType: string
+			sourceColumn: BasketDisplay
+			summarizeBy: none
+		partition OrderBasket = m
+			mode: import
+			source =
+				let
+				    D = Table.TransformColumnTypes(Table.SelectColumns(RawDetail,{"SalesOrderID","ProductID"}),{{"SalesOrderID",Int64.Type},{"ProductID",Int64.Type}}),
+				    J = Table.NestedJoin(D,{"ProductID"},DimProduct,{"ProductID"},"Product",JoinKind.LeftOuter),
+				    E = Table.ExpandTableColumn(J,"Product",{"Category"}),
+				    G = Table.Group(E,{"SalesOrderID"},{{"Categories", each List.Distinct([Category]), type list}}),
+				    B = Table.AddColumn(G,"BasketType",each
+				        let c=[Categories], extras=List.RemoveNulls({if List.Contains(c,"Accessories") then "Acc." else null,if List.Contains(c,"Clothing") then "Cloth." else null,if List.Contains(c,"Components") then "Comp." else null})
+				        in if not List.Contains(c,"Bikes") then "Non-bike" else if List.Count(extras)=0 then "Bike only" else "Bike + " &amp; Text.Combine(extras," + "),type text),
+				    Display = Table.AddColumn(B,"BasketDisplay",each if List.Contains({"Bike + Acc. + Cloth. + Comp.","Bike + Cloth. + Comp.","Bike only","Bike + Acc. + Cloth.","Bike + Comp."},[BasketType]) then [BasketType] else "Other basket types",type text),
+				    Rename = Table.RenameColumns(Display,{{"SalesOrderID","OrderID"}}),
+				    Final = Table.SelectColumns(Rename,{"OrderID","BasketType","BasketDisplay"})
+				in
+				    Final
+
+	relationship W_Customer
+		fromColumn: FactSales.CustomerID
+		toColumn: CustomerProfile.CustomerID
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship W_OrderContext
+		fromColumn: FactSales.OrderID
+		toColumn: OrderContext.OrderID
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	relationship W_OrderBasket
+		fromColumn: FactSales.OrderID
+		toColumn: OrderBasket.OrderID
+		fromCardinality: many
+		toCardinality: one
+		crossFilteringBehavior: oneDirection
+
+	ref table DimDate
+		column 'W Year Label' = SWITCH(DimDate[Year],2023,"2023*",2026,"2026 H1",FORMAT(DimDate[Year],"0"))
+			dataType: string
+			sortByColumn: Year
+		column 'W Window Sort' = SWITCH(TRUE(),DimDate[MonthNumber]&lt;=5,1,DimDate[MonthNumber]&lt;=8,2,DimDate[MonthNumber]&lt;=10,3,DimDate[MonthNumber]=11,4,5)
+			dataType: int64
+			summarizeBy: none
+		column 'W Timing Window' = SWITCH(DimDate[W Window Sort],1,"JAN-MAY",2,"JUN-AUG",3,"SEP-OCT",4,"NOV",5,"DEC")
+			dataType: string
+			sortByColumn: 'W Window Sort'
+	ref table DimTerritory
+		column 'Map X' = SWITCH(DimTerritory[Territory],"Northwest",16,"Southwest",25,"Canada",25,"Central",48,"Northeast",67,"Southeast",65,"Australia",43,"France",65,"Germany",80,"United Kingdom",88,50)
+			dataType: int64
+			summarizeBy: none
+		column 'Map Y' = SWITCH(DimTerritory[Territory],"Northwest",55,"Southwest",23,"Canada",80,"Central",52,"Northeast",69,"Southeast",28,"Australia",80,"France",53,"Germany",42,"United Kingdom",23,50)
+			dataType: int64
+			summarizeBy: none
+
+</code></pre></div>
+<p>OrderReasons保持disconnected，後面的measure會用目前範圍的OrderID篩選它，不建立雙向關聯。CustomerProfile與OrderContext分別一對多到FactSales，OrderBasket也是一對多到FactSales。</p>
+<p>DAX query view執行：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 20" data-copy="code-19" type="button">Copy</button></div><pre id="code-19"><code class="language-dax">EVALUATE
+ROW(
+    "Basket rows",COUNTROWS(OrderBasket),
+    "Basket keys",DISTINCTCOUNT(OrderBasket[OrderID]),
+    "Missing order profiles",COALESCE(COUNTROWS(EXCEPT(VALUES(FactSales[OrderID]),VALUES(OrderContext[OrderID]))),0),
+    "Missing customer profiles",COALESCE(COUNTROWS(EXCEPT(VALUES(FactSales[CustomerID]),VALUES(CustomerProfile[CustomerID]))),0),
+    "Orphan reason orders",COALESCE(COUNTROWS(EXCEPT(VALUES(OrderReasons[OrderID]),VALUES(FactSales[OrderID]))),0),
+    "Sales",[Sales],"Orders",[Orders]
+)
+</code></pre></div>
+<p>Basket rows及keys應各31,465；三個Missing／Orphan項目應為0。Sales與Orders要和補充前相同。IncomeBand有Unknown屬未填來源資料，不能改成任一收入層。</p>
+<h3 id="design-4">W4. 建立兩個選擇器與分析measures</h3>
+<p>Modeling → New table，先逐段各建立一張disconnected calculated table。不要放進TMDL view。</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 21" data-copy="code-20" type="button">Copy</button></div><pre id="code-20"><code class="language-dax">PortfolioChoice =
+DATATABLE("Metric",STRING,"Sort",INTEGER,
+    {{"Customers",0},{"Orders",1},{"Quantity",2},{"Sales",3}})
+</code></pre></div>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 22" data-copy="code-21" type="button">Copy</button></div><pre id="code-21"><code class="language-dax">PlanScenario =
+DATATABLE("Scenario",STRING,"Sort",INTEGER,
+    {{"Base",0},{"Standard",1},{"Upside",2}})
+</code></pre></div>
+<p>選PortfolioChoice[Metric] → Sort by column → Sort。PlanScenario[Scenario]同樣按Sort排序。兩表不建立relationship。</p>
+<p>以下measures全部用W前綴，保留你已驗收的Sales、Orders、Gross Margin等定義。貼到新的TMDL tab，Preview／Apply；多行DAX比formatString深一層縮排，不手動拉齊。</p>
+<div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 23" data-copy="code-22" type="button">Copy</button></div><pre id="code-22"><code class="language-tmdl">createOrReplace
+
+	ref table FactSales
+		measure 'W Quantity' = SUM(FactSales[Quantity])
+			formatString: #,0
+
+		measure 'W Sales2025' = CALCULATE([Sales], REMOVEFILTERS(DimDate), DimDate[Year]=2025)
+			formatString: #,0.00
+
+		measure 'W GP2025' = CALCULATE([Gross Profit], REMOVEFILTERS(DimDate), DimDate[Year]=2025)
+			formatString: #,0.00
+
+		measure 'W GM2025' = DIVIDE([W GP2025], CALCULATE([Costed Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025))
+			formatString: 0.0%
+
+		measure 'W Sales2024' = CALCULATE([Sales], REMOVEFILTERS(DimDate), DimDate[Year]=2024)
+			formatString: #,0.00
+
+		measure 'W Sales YoY' =
+				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
+				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR CurrentValue = CALCULATE([Sales],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
+				VAR PriorValue = CALCULATE([Sales],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
+				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),DIVIDE(CurrentValue-PriorValue,PriorValue))
+			formatString: +0.0%;-0.0%;0.0%
+
+		measure 'W GP YoY' =
+				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
+				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR CurrentValue = CALCULATE([Gross Profit],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
+				VAR PriorValue = CALCULATE([Gross Profit],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
+				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),DIVIDE(CurrentValue-PriorValue,PriorValue))
+			formatString: +0.0%;-0.0%;0.0%
+
+		measure 'W GM Change' =
+				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
+				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR CurrentValue = CALCULATE([Gross Margin],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
+				VAR PriorValue = CALCULATE([Gross Margin],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
+				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),100*(CurrentValue-PriorValue))
+			formatString: +0.0 "pts";-0.0 "pts";0.0 "pts"
+
+		measure 'W Discount Sales' = CALCULATE([W Sales2025],FactSales[IsDiscounted]=1)
+			formatString: #,0.00
+
+		measure 'W No Discount Sales' = CALCULATE([W Sales2025],FactSales[IsDiscounted]=0)
+			formatString: #,0.00
+
+		measure 'W Discount Share' = DIVIDE([W Discount Sales],[W Sales2025])
+			formatString: 0.0%
+
+		measure 'W No Discount Share' = DIVIDE([W No Discount Sales],[W Sales2025])
+			formatString: 0.0%
+
+		measure 'W Discount GM' = CALCULATE([W GM2025],FactSales[IsDiscounted]=1)
+			formatString: 0.0%
+
+		measure 'W No Discount GM' = CALCULATE([W GM2025],FactSales[IsDiscounted]=0)
+			formatString: 0.0%
+
+		measure 'W Portfolio Value' = SWITCH(SELECTEDVALUE(PortfolioChoice[Metric],"Customers"),"Customers",[Customers],"Orders",[Orders],"Quantity",[W Quantity],"Sales",[Sales])
+			formatString: #,0.0
+
+		measure 'W Portfolio Index' =
+				VAR BaseValue = CALCULATE([W Portfolio Value],REMOVEFILTERS(DimDate),DimDate[YearMonth]="2025-07")
+				RETURN DIVIDE([W Portfolio Value],BaseValue)*100
+			formatString: 0.0
+
+		measure 'W Reason Share' =
+				VAR SelectedOrders = VALUES(FactSales[OrderID])
+				VAR WithReason = CALCULATE(DISTINCTCOUNT(OrderReasons[OrderID]),TREATAS(SelectedOrders,OrderReasons[OrderID]))
+				RETURN DIVIDE(WithReason,[Orders])
+			formatString: 0.0%
+
+		measure 'W State Share' = DIVIDE([Sales],CALCULATE([Sales],REMOVEFILTERS(OrderContext[StateProvince])))
+			formatString: 0.0%
+
+		measure 'W Known Income Customers' = CALCULATE([Customers],FILTER(ALL(CustomerProfile[IncomeBand],CustomerProfile[IncomeSort]),CustomerProfile[IncomeBand]&lt;&gt;"Unknown"))
+			formatString: #,0
+
+		measure 'W Income Share' = DIVIDE([Customers],[W Known Income Customers])
+			formatString: 0.0%
+
+		measure 'W Sales2025 Month' =
+				VAR MonthsInView = VALUES(DimDate[MonthNumber])
+				RETURN CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025,TREATAS(MonthsInView,DimDate[MonthNumber]))
+			formatString: #,0.00
+
+		measure 'W GP2025 Month' =
+				VAR MonthsInView = VALUES(DimDate[MonthNumber])
+				RETURN CALCULATE([Gross Profit],REMOVEFILTERS(DimDate),DimDate[Year]=2025,TREATAS(MonthsInView,DimDate[MonthNumber]))
+			formatString: #,0.00
+
+		measure 'W GM2025 Month' =
+				VAR MonthsInView = VALUES(DimDate[MonthNumber])
+				RETURN CALCULATE([Gross Margin],REMOVEFILTERS(DimDate),DimDate[Year]=2025,TREATAS(MonthsInView,DimDate[MonthNumber]))
+			formatString: 0.0%
+
+		measure 'W Sales Index' = DIVIDE([W Sales2025 Month],[W Sales2025]/12)*100
+			formatString: 0.0
+
+		measure 'W GP Index' = DIVIDE([W GP2025 Month],[W GP2025]/12)*100
+			formatString: 0.0
+
+		measure 'W GM Index' = DIVIDE([W GM2025 Month],[W GM2025])*100
+			formatString: 0.0
+
+		measure 'W Peak Month' =
+				VAR T = ADDCOLUMNS(GENERATESERIES(1,12),"@Sales",VAR M=[Value] RETURN CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025,DimDate[MonthNumber]=M))
+				VAR Best = TOPN(1,FILTER(T,NOT ISBLANK([@Sales])),[@Sales],DESC,[Value],ASC)
+				RETURN IF(COUNTROWS(Best)=0,"—",FORMAT(DATE(2025,MAXX(Best,[Value]),1),"MMM","en-US"))
+
+		measure 'W Lowest Month' =
+				VAR T = ADDCOLUMNS(GENERATESERIES(1,12),"@Sales",VAR M=[Value] RETURN CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025,DimDate[MonthNumber]=M))
+				VAR Best = TOPN(1,FILTER(T,NOT ISBLANK([@Sales])),[@Sales],ASC,[Value],ASC)
+				RETURN IF(COUNTROWS(Best)=0,"—",FORMAT(DATE(2025,MAXX(Best,[Value]),1),"MMM","en-US"))
+
+		measure 'W Top3 Month Share' =
+				VAR T = ADDCOLUMNS(GENERATESERIES(1,12),"@Sales",VAR M=[Value] RETURN CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025,DimDate[MonthNumber]=M))
+				RETURN DIVIDE(SUMX(TOPN(3,T,[@Sales],DESC,[Value],ASC),[@Sales]),[W Sales2025])
+			formatString: 0.0%
+
+		measure 'W Actual Lock Month' = 6
+			formatString: 0
+
+		measure 'W Growth Factor' = DIVIDE([W Sales2025],[W Sales2024])
+			formatString: 0.00x
+
+		measure 'W Actual26' =
+				VAR M = SELECTEDVALUE(DimDate[MonthNumber])
+				RETURN IF(NOT ISBLANK(M) &amp;&amp; M&lt;=[W Actual Lock Month],CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2026,DimDate[MonthNumber]=M))
+			formatString: #,0.00
+
+		measure 'W Base26' =
+				VAR M = SELECTEDVALUE(DimDate[MonthNumber])
+				RETURN IF(NOT ISBLANK(M) &amp;&amp; M&gt;[W Actual Lock Month],[W Sales2025 Month]*[W Growth Factor])
+			formatString: #,0.00
+
+		measure 'W Plan Rate' =
+				VAR M = SELECTEDVALUE(DimDate[MonthNumber])
+				VAR Scenario = SELECTEDVALUE(PlanScenario[Scenario],"Standard")
+				RETURN SWITCH(TRUE(),ISBLANK(M),BLANK(),M&lt;=[W Actual Lock Month],0,Scenario="Base",0,Scenario="Upside",SWITCH(TRUE(),M&lt;=8,0.30,M&lt;=10,0.22,M=11,0.12,0.08),SWITCH(TRUE(),M&lt;=8,0.15,M&lt;=10,0.10,M=11,0.05,0.03))
+			formatString: 0.0%
+
+		measure 'W Uplift26' = [W Base26]*[W Plan Rate]
+			formatString: #,0.00
+
+		measure 'W Plan Value' = IF(NOT ISBLANK([W Actual26]),[W Actual26],[W Base26]+[W Uplift26])
+			formatString: #,0.00
+
+		measure 'W Plan Annual' = SUMX(GENERATESERIES(1,12),VAR M=[Value] RETURN CALCULATE([W Plan Value],REMOVEFILTERS(DimDate),TREATAS({M},DimDate[MonthNumber])))
+			formatString: #,0.00
+
+		measure 'W Sales2025 Window' =
+				VAR WindowsInView = VALUES(DimDate[W Window Sort])
+				RETURN CALCULATE([Sales],REMOVEFILTERS(DimDate),DimDate[Year]=2025,TREATAS(WindowsInView,DimDate[W Window Sort]))
+			formatString: #,0.00
+</code></pre></div>
+<p>驗收時先用2025／All／All。在DAX query view執行：</p>
+<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 24" data-copy="code-23" type="button">Copy</button></div><pre id="code-23"><code class="language-dax">EVALUATE
+ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
+    "GM2025",[W GM2025],"Sales YoY",[W Sales YoY],
+    "Discount + No discount",[W Discount Share]+[W No Discount Share],
+    "Peak month",[W Peak Month],"Lowest month",[W Lowest Month],
+    "Top3 month share",[W Top3 Month Share])
+</code></pre></div>
+<p>兩種折扣share合計應為1；Top3 share應介於0和1。YoY只在2025及之後回傳，避免把2023部分年度當完整基期；2026按資料最後日期截取同長度的上年同期。全年度2025的Sales應等於原模型加Year=2025的結果。不要照照片抄數字。</p>
+<h3 id="design-5">W5. Opening：封面、照片與入口</h3>
+<p>此頁不放Year／Channel／Group <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>。共用大底板保留，左邊大標題，右邊單車照片。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Opening物件</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAGE 1 OF 5文字</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">244</td>
 </tr>
 <tr>
-<td>Orders <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">220</td>
+<td>大標題</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">112</td>
 <td style="text-align: right;">292</td>
-<td style="text-align: right;">208</td>
 </tr>
 <tr>
-<td>Customers <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">220</td>
-<td style="text-align: right;">528</td>
-<td style="text-align: right;">208</td>
+<td>簡介文字</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">530</td>
 </tr>
 <tr>
-<td>Average Order Value <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">220</td>
-<td style="text-align: right;">764</td>
-<td style="text-align: right;">208</td>
+<td>Methodology／Scenarios／Overview按鈕列</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">632</td>
 </tr>
 <tr>
-<td>Gross Margin <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">224</td>
-<td style="text-align: right;">1000</td>
+<td>四個章節入口區</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">710</td>
+</tr>
+<tr>
+<td>單車圖片</td>
+<td style="text-align: right;">710</td>
+<td style="text-align: right;">860</td>
+<td style="text-align: right;">932</td>
 <td style="text-align: right;">208</td>
 </tr>
 </tbody>
 </table></div>
-<p>每個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>的General → Effects，Background設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>、Transparency 0%；Border若開啟就用#D8DFD8細線，Shadow關閉。欄名與選取值用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。</p>
-<p><span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Cards</span>的數字用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>，名稱用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>，背景使用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，取消Shadow。先讓五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>的數字基線對齊；若格式版本不同，不必為了找到圓角選項而卡住，整齊和可讀優先。</p>
-<h3 id="green-5">G5. 將三張圖放進底板，去除重複框線</h3>
-<p>選各圖表 → General → Effects → Background，將Transparency設100%，讓後面的圓角底板透出；這裡的100%是圖表背景，G3畫布仍維持0%。Border與Shadow關閉。</p>
-<p>各圖表內建Title先關閉，改用下表的獨立Text box標題。這樣更容易精確對齊底板內距。文字框背景透明，字色<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、字級14。</p>
+<p>大標題可用Focused growth,／not equal coverage，字級58至64、粗體，分三行。簡介改為「Explore revenue, product mix and territory patterns, then compare seasonal plans.」，不複製照片上未經資料驗證的分析結論。</p>
+<p><strong>圖片</strong>：Insert → Image，使用你可分享的單車照片；也可從你自己的原報表複製該image visual到新檔。圖片縮放用Fill／Fit按實際設定調整，不拉扁人物。若Image沒有圓角控制，放入與圖片同色的Rounded rectangle底板，再使用已裁成圓角的圖片；不要用白色矩形遮住照片主體。沒有原圖時先保留圖片位置，稍後補素材。</p>
+<p><strong>按鈕</strong>：Overview → Page navigation到Diagnosis。四個入口分別到Diagnosis、Portfolio、Territory、Implications。Scenarios在W10書籤建立後指定到2026 Sales Plan；目前不要做沒有Action的假按鈕。</p>
+<p>Methodology用一個小overlay：Rounded rectangle（Height 300、Width 920、X 500、Y 360）、文字（Height 170、Width 820、X 550、Y 410）、Close按鈕（Height 44、Width 110、X 1260、Y 600）群組成Opening_Methodology。文字寫「Sales uses line revenue; margin uses matched historical standard cost; order counts are distinct.」。建立Open／Closed兩個bookmarks，Data Off、Display On、Selected visuals只選這個群組；開啟與Close按鈕各指向對應bookmark。</p>
+<h3 id="design-6">W6. Diagnosis：三個分析區塊</h3>
+<p>內容頁標題Quality growth, growth driver, discount exposure，位置Height 110、Width 1050、X 112、Y 164；小字PAGE 2 OF 5放上方。三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>保留在右上。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>面板</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annual quality trend</td>
+<td style="text-align: right;">630</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">304</td>
+</tr>
+<tr>
+<td>Growth driver</td>
+<td style="text-align: right;">290</td>
+<td style="text-align: right;">664</td>
+<td style="text-align: right;">1144</td>
+<td style="text-align: right;">304</td>
+</tr>
+<tr>
+<td>Discount exposure</td>
+<td style="text-align: right;">316</td>
+<td style="text-align: right;">664</td>
+<td style="text-align: right;">1144</td>
+<td style="text-align: right;">618</td>
+</tr>
+</tbody>
+</table></div>
+<p>先插入三個圓角底板，設定同W2。各圖表本身透明，內距24至32。面板小標字級12、面板主標題20。</p>
+<p><strong>左邊Annual quality trend</strong></p>
+<ol>
+<li>頂部放三張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>，值依序[W Sales YoY]、[W GP YoY]、[W GM Change]，名稱Sales growth、Gross profit growth、GM change。每張Height 86、Width 292，X為144／468／792，Y 410。</li>
+<li>新增Line and clustered column chart。X-axis放DimDate[W Year Label]；Column y-axis放[Sales]和[Gross Profit]；Line y-axis放[Gross Margin]。</li>
+<li>圖表Height 362、Width 936、X 144、Y 526。年份升序，Line y-axis開Secondary axis並設百分比。左軸金額用Millions，右軸百分比，不把GM當金額。</li>
+<li>Sales columns用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>、GP columns與GM line用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>；Legend放上方，Title和Axis title關閉。</li>
+<li>左下放小字「2023* and 2026 H1 are partial periods; 2025 is the full-year comparison.」。2026截點由實際OrderDate決定，不能照圖填完整半年。</li>
+</ol>
+<p><strong>右上Growth driver</strong></p>
+<ol>
+<li>面板標題用Channel mix and comparable growth，先不要寫死Online一定是增長引擎。</li>
+<li>左半新增100% stacked column chart：X-axis DimDate[W Year Label]，Legend FactSales[Channel]，Y-axis [Sales]。Height 170、Width 282、X 1168、Y 398。</li>
+<li>右半新增<span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>：X-axis DimDate[Year]、Y-axis [W Sales YoY]、Legend FactSales[Channel]。Height 170、Width 282、X 1498、Y 398。開Markers，資料標籤用百分比。</li>
+<li>Online用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>、Reseller用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>，兩張圖保持相同對應。前期不具可比完整期間的YoY保留空白，不連虛構0。</li>
+</ol>
+<p><strong>右下Discount exposure</strong></p>
+<ol>
+<li>標題Discount exposure in 2025。三張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>放[W GM2025]、[W Discount GM]、[W No Discount GM]，名稱Overall GM、Special offer GM、No discount GM。</li>
+<li>每張Height 76、Width 192；X 1168／1384／1600，Y 704。</li>
+<li>新增100% stacked bar chart，X-axis放[W No Discount Sales]及[W Discount Sales]，Y-axis不放欄位，形成一條組成bar。Height 48、Width 600、X 1168、Y 798。Legend關閉，No discount深綠、Special offer淡綠。</li>
+<li>下方再放兩張小<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>：[W No Discount Share]、[W Discount Share]，名稱No-discount sales share、Special offer sales share。Height 58、Width 288，X 1168／1480、Y 860。</li>
+<li>這個面板固定2025，Channel和Group仍跟隨選取。其他圖可以看多年度，避免使用不清楚年份的比例。</li>
+</ol>
+<p><strong>核對</strong>：Year All時左圖有2023*、2024、2025、2026 H1；頂部<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>按2025比較。Year選2025時，三個區塊的渠道／地區scope一致；折扣share合計100%。</p>
+<h3 id="design-7">W7. Portfolio：指標切換、basket、產品氣泡</h3>
+<p>頁標題Bike-led revenue, accessory-heavy units可先改為Product mix and growth patterns；驗證資料後再決定是否使用原結論。PAGE 3 OF 5與右上<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>沿用共同位置。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>面板</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Category momentum</td>
+<td style="text-align: right;">594</td>
+<td style="text-align: right;">1080</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">340</td>
+</tr>
+<tr>
+<td>Bundle availability</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">584</td>
+<td style="text-align: right;">1224</td>
+<td style="text-align: right;">340</td>
+</tr>
+<tr>
+<td>Product potential</td>
+<td style="text-align: right;">290</td>
+<td style="text-align: right;">584</td>
+<td style="text-align: right;">1224</td>
+<td style="text-align: right;">644</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>左邊Category momentum</strong></p>
+<ol>
+<li>新增<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>Slicer</span>，Field放PortfolioChoice[Metric]，Style Tile，Single select On，橫向排四個按鈕。Height 48、Width 1000、X 144、Y 424。</li>
+<li>新增<span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>：X-axis DimDate[YearMonth]、Y-axis [W Portfolio Index]、Legend DimProduct[Category]。Height 390、Width 1000、X 144、Y 494。</li>
+<li>Filters on this visual，YearMonth設2025-07至2026-06範圍；Category只選Bikes、Accessories、Clothing。Year <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>保持All時可看到完整窗口。</li>
+<li>X-axis升序、Y-axis標題Index / Jul 2025 = 100。Bikes用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、Accessories用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>、Clothing用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#A77B38"></span>#A77B38</span>。開Markers；有資料的基準月份各線應等於100。</li>
+<li>逐一選Customers、Orders、Quantity、Sales，確認曲線改變。沒有基準交易的類別顯示空白，不補假起點。</li>
+</ol>
+<p><strong>右上Bundle availability</strong></p>
+<ol>
+<li>新增Line and clustered column chart：X-axis OrderBasket[BasketDisplay]、Column y-axis [Sales]、Line y-axis [Gross Margin]。</li>
+<li>Height 190、Width 536、X 1248、Y 412。按Sales降序，右軸百分比，左軸Millions。Bar用深綠／淡綠／金棕配色，線用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。</li>
+<li>太多label時將類別名稱換行，圖表用W3的BasketDisplay六組，不改OrderBasket[BasketType]原始分類。</li>
+<li>把同欄位放Table核對：六組Sales加總應等於目前範圍Sales；GM不能相加。分類來自完整訂單，選產品類別後不重新定義該訂單的basket。</li>
+</ol>
+<p><strong>右下Product potential</strong></p>
+<ol>
+<li>新增Scatter chart：X-axis [Sales]、Y-axis [Gross Margin]、Size [W Quantity]，Values／Details放DimProduct[ProductName]。</li>
+<li>Height 190、Width 536、X 1248、Y 716。視覺篩選ProductName → Top N → Top 15 → By value [Sales] → Apply filter。</li>
+<li>點的顏色先用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>、Transparency約35%，Legend關閉；Tooltip放ProductName、Sales、Gross Margin、W Quantity。</li>
+<li>點一個要討論的產品可觀察其他圖的互動；若要長期指定一個產品的深色標記，另做條件色，不把互動選取當固定配色。原圖的產品label可用Data labels顯示；版本不能控制只顯示一個label時，先使用tooltip。</li>
+</ol>
+<h3 id="design-8">W8. Territory：定位氣泡、州份與客群</h3>
+<p>頁標題Where to focus and who to activate，PAGE 4 OF 5，框架與Diagnosis相同。左右三塊面板位置沿用W6。</p>
+<p><strong>左上Territory concentration氣泡</strong></p>
+<p>原圖是有固定擺位的地區氣泡，不需要地圖經緯度。Map X／Map Y只用來排版，不代表真實位置；圓大小仍按目前[Sales]計算。</p>
+<ol>
+<li>Insert → More visuals → From AppSource，搜尋Deneb並新增。若環境不能安裝，使用下方原生Scatter替代，不必為這一張圖停下整個重建。</li>
+<li>Deneb的Values放DimTerritory[Territory]、[Map X]、[Map Y]和[Sales]。Map X、Map Y使用Don't summarize或Minimum，確保每個Territory只有一行。</li>
+<li>圖表Height 326、Width 936、X 144、Y 400。</li>
+<li>開Deneb的Edit，新建Vega-Lite規格，使用<a href="data/territory-bubbles.json">territory-bubbles.json</a>完整內容取代editor。它讀取dataset，不內嵌金額。</li>
+<li>Deneb資料欄名必須是Territory、Map X、Map Y、Sales；如果Power BI產生Min of Map X等名稱，在此visual將欄位Rename for this visual為Map X／Map Y。</li>
+<li>圓內顯示地區和金額，Northwest、Southwest、Canada為深綠，其他淡綠。改Year、Channel、Group後尺寸與金額應更新。</li>
+<li>此規格先用<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>控制，暫不依賴Deneb點選來篩選其他圖；若要那個互動，需再設定Deneb的cross-filtering。原生替代用Scatter：X Map X、Y Map Y、Size Sales、Details Territory，兩軸關閉、開category labels。</li>
+</ol>
+<p><strong>左下州份bar</strong></p>
+<ol>
+<li>新增<span class="visual-name"><svg aria-label="Clustered bar圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Clustered bar</title><path d="M5 3v23h23"></path><path d="M7 5h17v3H7zm0 6h10v3H7zm0 6h14v3H7z" fill="currentColor" stroke="none"></path></svg>Clustered bar chart</span>：Y-axis OrderContext[StateProvince]，X-axis [Sales]，Tooltip放[W State Share]。</li>
+<li>Height 160、Width 936、X 144、Y 746。視覺篩選StateProvince → Top N → Top 4 by Sales。</li>
+<li>Data labels開啟，按Sales降序。若想同時看到share和金額，改用Table放StateProvince、W State Share、Sales，對Sales套Data bars；不在文字框抄固定數字。</li>
+</ol>
+<p><strong>右上Why customers buy</strong></p>
+<ol>
+<li>新增<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>。Rows放DimTerritory[Territory]，Columns放OrderReasons[Reason]，Values放[W Reason Share]。</li>
+<li>視覺篩選Territory只選Southwest、Northwest、Canada；Reason只選Price、On Promotion、Manufacturer。Height 180、Width 600、X 1168、Y 402。</li>
+<li>Values百分比一位，Subtotals與Grand totals關閉。對Values套Conditional formatting → Data bars，Min 0、Max 1，保留數字，不選Show bar only。</li>
+<li>Rows、Columns字體粗體；格線關閉，bar深綠。這保留原圖「三地區×三原因」的閱讀方式。</li>
+<li>分母是目前銷售範圍的distinct orders，分子是其中記錄該原因的distinct orders；同單可能多原因，三欄不用合計100%。</li>
+</ol>
+<p><strong>右下Core customer segment</strong></p>
+<ol>
+<li>CustomerProfile[IncomeBand]先按IncomeSort排序。</li>
+<li>新增<span class="visual-name"><svg aria-label="Table圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Table</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 10h24M3 15h24M3 20h24M11 4v22M19 4v22"></path></svg>Table</span>：IncomeBand、[W Income Share]，套Data bars、Min 0、Max 1、保留百分比。Height 208、Width 600、X 1168、Y 704。</li>
+<li>視覺篩選IncomeBand不含Unknown。標題Income mix among known-income customers，避免把未填收入的人塞到低收入。</li>
+<li>若要與照片一樣按share降序，在Table點W Income Share降序。比例按distinct customers計算，五個已知收入層合計應約100%。</li>
+</ol>
+<h3 id="design-9">W9. Implications：Seasonality與資料摘要</h3>
+<p>此頁保留頂部五頁導覽和右上三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>，不再放大頁標題。以下位置固定，內部五種內容狀態在W10切換。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -1066,113 +1561,269 @@ CALCULATETABLE(
 </thead>
 <tbody>
 <tr>
-<td>標題 Territory comparison</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">520</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">336</td>
+<td>四個主tabs各一個</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">112／338／564／790</td>
+<td style="text-align: right;">160</td>
 </tr>
 <tr>
-<td>Territory bar</td>
-<td style="text-align: right;">268</td>
-<td style="text-align: right;">520</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">372</td>
+<td>2025 Index／2026 Sales Plan各一個</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">210</td>
+<td style="text-align: right;">112／338</td>
+<td style="text-align: right;">224</td>
 </tr>
 <tr>
-<td>標題 Monthly sales</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">544</td>
-<td style="text-align: right;">660</td>
-<td style="text-align: right;">336</td>
+<td>左圖面板</td>
+<td style="text-align: right;">590</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">112</td>
+<td style="text-align: right;">330</td>
 </tr>
 <tr>
-<td>Monthly sales line</td>
-<td style="text-align: right;">126</td>
-<td style="text-align: right;">544</td>
-<td style="text-align: right;">660</td>
-<td style="text-align: right;">372</td>
-</tr>
-<tr>
-<td>標題 Sales by category</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">544</td>
-<td style="text-align: right;">660</td>
-<td style="text-align: right;">542</td>
-</tr>
-<tr>
-<td>Category sales bar</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">544</td>
-<td style="text-align: right;">660</td>
-<td style="text-align: right;">570</td>
+<td>右資料面板</td>
+<td style="text-align: right;">590</td>
+<td style="text-align: right;">664</td>
+<td style="text-align: right;">1144</td>
+<td style="text-align: right;">330</td>
 </tr>
 </tbody>
 </table></div>
-<p>Territory bar繼續使用DimTerritory[Territory]作Y-axis，X-axis用Metric parameter；先選Sales檢查。Monthly line仍用DimDate[YearMonth]與[Sales]；Category bar仍用DimProduct[Category]與[Sales]。</p>
-<p>目前只調外觀，不把Sales、Orders、AOV、GM同時放回同一張bar。</p>
-<h3 id="green-6">G6. 整理圖表，讓它接近綠色版本</h3>
-<p><strong>Territory bar</strong></p>
+<p>主tabs文字Seasonality、Hero Product、Bundle Timing、Alternative Bike。先用Blank buttons，Action在W10指定bookmarks。</p>
+<p><strong>2025 Index左圖</strong></p>
 <ol>
-<li>Visual → Bars／Colors設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，先移除上一輪橙／灰個別配色；每個地區應同色。</li>
-<li>Y-axis保留地區名稱、字級10至11；Axis title關閉。X-axis的Axis title也關閉。</li>
-<li>Legend關閉，Data labels開啟。Sales顯示Millions兩位；若Display units在目前版本找不到，先保留現有數值格式，不改measure公式。</li>
-<li>按目前指標降序排序。網格線關閉或改為淡色，避免比bars更搶眼。</li>
-<li>切四個Metric，確認仍能讀到各地區及相應單位。標題Territory comparison適用於四個指標。</li>
+<li>標題2025 Index，旁邊小字Annual monthly average = 100。</li>
+<li><span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>的X-axis放DimDate[MonthLabel]，Y-axis放[W Sales Index]、[W GP Index]、[W GM Index]。Height 460、Width 936、X 144、Y 410。</li>
+<li>MonthLabel按MonthNumber排序；Sales線<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、GP線<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>、GM線<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#A77B38"></span>#A77B38</span>；Markers開啟。</li>
+<li>Analytics → Y-axis constant line加100，改為淡灰虛線。若面板沒有Analytics，先保留三條線，不用畫固定shape假裝隨座標縮放的100基準線。</li>
+<li>指標固定讀2025，Channel／Group和產品／地區篩選保留。不要用Year <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>選2026來解讀這張圖，標題已標2025。</li>
 </ol>
-<p><strong>Monthly line</strong></p>
+<p><strong>右側不再抄Key Findings</strong></p>
+<p>改標題Monthly pattern summary，放四張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>，再放一張月份明細<span class="visual-name"><svg aria-label="Table圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Table</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 10h24M3 15h24M3 20h24M11 4v22M19 4v22"></path></svg>Table</span>。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th><span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span></th>
+<th>Value</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Highest-sales month</td>
+<td>W Peak Month</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">414</td>
+</tr>
+<tr>
+<td>Lowest-sales month</td>
+<td>W Lowest Month</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">1484</td>
+<td style="text-align: right;">414</td>
+</tr>
+<tr>
+<td>Top 3 months sales share</td>
+<td>W Top3 Month Share</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">538</td>
+</tr>
+<tr>
+<td>Annual gross margin</td>
+<td>W GM2025</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">1484</td>
+<td style="text-align: right;">538</td>
+</tr>
+</tbody>
+</table></div>
+<p>下方Table放DimDate[MonthLabel]、W Sales2025 Month、W GM2025 Month，Height 220、Width 600、X 1176、Y 670。按月份排序，Sales可套Data bars。沒有資料時保留空白／破折號，不繼續顯示原圖的November peak等固定結論。</p>
+<h3 id="design-10">W10. Implications：四種主題與bookmark按鈕</h3>
+<p>本次已看到Seasonality畫面；Hero Product、Bundle Timing、Alternative Bike、2026 Sales Plan切換後的原畫面尚未提供。下面先建立可操作的同類分析與相同容器，待補照片後對齊細節，不宣稱是那些隱藏畫面的原始定義。</p>
+<p>除W9的Seasonality外，其餘狀態沿用相同左右面板位置，先依下表放內容，再建立群組。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>狀態內物件</th>
+<th style="text-align: right;">Height</th>
+<th style="text-align: right;">Width</th>
+<th style="text-align: right;">X</th>
+<th style="text-align: right;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左側<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>／Scatter／Plan chart</td>
+<td style="text-align: right;">446</td>
+<td style="text-align: right;">936</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">410</td>
+</tr>
+<tr>
+<td>右側Scenario／Product／Basket／Subcategory <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span></td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">410</td>
+</tr>
+<tr>
+<td>Plan annual <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">494</td>
+</tr>
+<tr>
+<td>Plan table</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">630</td>
+</tr>
+<tr>
+<td>Hero Sales <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">494</td>
+</tr>
+<tr>
+<td>Hero GM <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span></td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">1492</td>
+<td style="text-align: right;">494</td>
+</tr>
+<tr>
+<td>Hero monthly line</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">630</td>
+</tr>
+<tr>
+<td>Bundle comparison table</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">494</td>
+</tr>
+<tr>
+<td>Bundle monthly line</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">710</td>
+</tr>
+<tr>
+<td>Alternative product table</td>
+<td style="text-align: right;">388</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">1176</td>
+<td style="text-align: right;">494</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>先做五個狀態群組</strong></p>
+<p>在Selection pane用Ctrl多選各狀態的內容圖表、底板、標題和主題buttons，右鍵Group。頁面共用的三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>、頂部Page navigator、Previous不放入狀態群組。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>群組</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I_Seasonality</td>
+<td>W9的Index、摘要、四主tabs與兩個次tabs</td>
+</tr>
+<tr>
+<td>I_Plan</td>
+<td>以下2026計劃視覺與同位置tabs</td>
+</tr>
+<tr>
+<td>I_Hero</td>
+<td>以下Hero Product視覺與四主tabs</td>
+</tr>
+<tr>
+<td>I_Bundle</td>
+<td>以下Bundle Timing視覺與四主tabs</td>
+</tr>
+<tr>
+<td>I_Alternative</td>
+<td>以下Alternative Bike視覺與四主tabs</td>
+</tr>
+</tbody>
+</table></div>
+<p>各群組包含自己的tabs複本；目前所在主題的按鈕深綠、其餘淡填。I_Seasonality與I_Plan都把Seasonality主tab設深綠，再分別強調Index／Sales Plan次tab。可先完成內容與切換，再補這些狀態顏色。</p>
+<p><strong>2026 Sales Plan</strong></p>
 <ol>
-<li>Visual → Lines → Color設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，線寬約2至3，Legend關閉。</li>
-<li>X-axis按YearMonth升序，兩軸Axis title關閉，Y-axis網格線用淡色。</li>
-<li>Data labels先關閉，保留hover tooltip；密集的數字不用全印在曲線上。</li>
-<li>126高度只放一條Sales線，不疊多個measures。如果日期標籤擠在一起，降低label density；不要改成將數年同月相加。</li>
+<li>左面板新增Stacked column chart，X-axis DimDate[MonthLabel]，Y-axis放[W Actual26]、[W Base26]、[W Uplift26]。按月份排序；Actual深綠、Base淡綠、Uplift金棕。</li>
+<li>右面板放PlanScenario[Scenario]的Single select <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>，選Standard；放W Plan Annual <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>，以及<span class="visual-name"><svg aria-label="Table圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Table</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 10h24M3 15h24M3 20h24M11 4v22M19 4v22"></path></svg>Table</span>：MonthLabel、W Plan Value、W Plan Rate。</li>
+<li>W Actual Lock Month=6是這次示範的鎖定窗口，Jan–Jun直接讀2026實際交易；不代表六月資料已完整。Jul–Dec讀2025月份分布×2025／2024全年增長倍數，再套場景uplift。</li>
+<li>Base為0%；Standard Jul–Aug 15%、Sep–Oct 10%、Nov 5%、Dec 3%；Upside為30%、22%、12%、8%。這些是規劃假設，不是模型推算的預測。頁面標題寫2026 Sales Plan，保留Actual／Plan不同顏色。</li>
+<li>切三種scenario，Jan–Jun必須不變，Jul–Dec才變；年度<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>應等於12個月合計。若與原圖計劃頁不同，取得照片後再改，不先用未知公式填入。</li>
 </ol>
-<p><strong>Category bar</strong></p>
+<p><strong>Hero Product</strong></p>
 <ol>
-<li>Bars用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，Legend關閉、兩軸Axis title關閉。</li>
-<li>按Sales降序，保留Y-axis類別名稱與data labels。X-axis的labels可關閉，避免在較矮的圖重複顯示一排金額刻度。</li>
-<li>若四類別擠不下，先減少圖內padding及label字級到10。仍擠時可將Category底板／圖表加高，向下延伸最多至Y=680；不要刪除類別來配合版面。</li>
+<li>左面板用<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>：Rows DimProduct[ProductName]、Columns DimDate[W Timing Window]、Values [W Sales2025 Window]。W Timing Window按W Window Sort排序。</li>
+<li>Rows用Top N 10 by W Sales2025；Values套淡綠至深綠的Background gradient。</li>
+<li>右面板放ProductName下拉<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>，可搜尋Mountain-200等產品；加Sales、GM <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>與月份line。要讀2025時在這些visual設Year=2025，或使用W Sales2025／W GM2025固定年度measures。</li>
+<li>切ProductName後檢查Table／line同時更新。原畫面若使用Product Model而非SKU，補圖後再加入對應model mapping。</li>
 </ol>
-<p>完成後先保存一張截圖，和原Sales Overview比較。確認五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>數值不變，再繼續動態重點色。</p>
-<h3 id="green-7">G7. 可選：最高Sales地區自動用重點色</h3>
-<p>本步先做固定Sales的版本，讓篩選改變後最高Sales地區自動換色。先選territory bar，將X-axis的Metric參數暫時換成[Sales]。Metric <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>保留，但此時不控制這張圖；完成後若要回到四指標切換，再放回原參數。</p>
-<p>Modeling → New measure，貼以下整段。這是DAX公式，貼在measure公式列，不貼TMDL view或DAX query view。</p>
-<div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 19" data-copy="code-18" type="button">Copy</button></div><pre id="code-18"><code class="language-dax">Green Territory Colour =
-VAR CurrentSales = [Sales]
-VAR TopSales =
-    MAXX(
-        ALLSELECTED(DimTerritory[Territory]),
-        CALCULATE([Sales])
-    )
-RETURN
-    IF(
-        NOT ISBLANK(CurrentSales) &amp;&amp; CurrentSales = TopSales,
-        "#A77B38",
-        "#D8DFD8"
-    )
-</code></pre></div>
+<p><strong>Bundle Timing</strong></p>
 <ol>
-<li>選territory bar → Format visual → Visual → Bars／Colors，在整體預設Color旁找fx。Legend保持空白。</li>
-<li>fx → Format style選Field value，Based on field選[Green Territory Colour]，按OK。不要用單一地區手動色覆蓋這個設定。</li>
-<li>改Year或Channel。每次目前範圍Sales最高的地區應為金棕色，其餘淡綠灰；若最高值並列，並列地區都會上色。</li>
-<li>如fx沒有出現，先確認X-axis只有[Sales]且沒有Legend，截圖目前Bars／Colors面板再定位，不用另裝custom visual。</li>
+<li>左面板<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>：Rows OrderBasket[BasketDisplay]、Columns DimDate[MonthLabel]、Values [W Sales2025 Month]，套同一套綠色heatmap。</li>
+<li>右面板放BasketDisplay <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>；Table放BasketDisplay、Sales、Orders、Gross Margin，並設Year=2025。</li>
+<li>下方可用<span class="visual-name"><svg aria-label="Line chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Line chart</title><path d="M4 4v22h23M7 21l6-9 5 4 8-11"></path></svg>Line chart</span>看所選basket的2025月份Sales。只選單一basket時，<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>該列總計與右邊Sales應一致。</li>
 </ol>
-<p>這個公式按Sales挑選最高地區，不按GM或AOV。要回到G6的全綠四指標版本，清除fx、把X-axis改回Metric parameter，顏色改#225D50即可。</p>
-<h3 id="green-8">G8. 課堂怎樣用這份起點</h3>
-<p>參加者打開已準備的Sales Overview檔，做G1至G6即可完成一頁有設計層次的報表。G7可由講者示範，展示規則如何控制顏色，省去逐地區手動設定。</p>
-<p>確認三個範圍<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>仍作用於<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>和三張圖。若點不到<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>，先查底板層次。另存Sales Design Lab - Green Overview.pbix，保留原Sales Overview作前後比較。</p>
-<p>本輪完成Green Overview之後，才逐頁擴展原綠色版本的Diagnosis／Portfolio／Territory內容。現有模型可支援Sales、GP、GM、日期、產品分類、地區與渠道；購買原因、收入分層需要另外確認來源，尚未納入本工作坊。</p>
-<p>參考：<a href="https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-customize-title-background-and-legend">圖表標題與透明背景</a>、<a href="https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-conditional-formatting">顏色measure與Field value</a>。</p></section></article></main><a class="toplink" href="#top">↑ 頂部</a><script>
+<p><strong>Alternative Bike</strong></p>
+<ol>
+<li>此狀態的各分析visual在filter pane限定Category=Bikes、Year=2025，避免影響其他狀態群組。</li>
+<li>左面板放ProductName Top 15 by Sales的Scatter chart：X Sales、Y Gross Margin、Size W Quantity、Details ProductName。</li>
+<li>右面板放Subcategory <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>和產品比較<span class="visual-name"><svg aria-label="Table圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Table</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 10h24M3 15h24M3 20h24M11 4v22M19 4v22"></path></svg>Table</span>：ProductName、Sales、Orders、Gross Margin、W Quantity。</li>
+<li>可選Mountain Bikes／Road Bikes／Touring Bikes比較，但不自動聲稱其中一個是更好的替代品；先看同範圍Sales與GM。更接近原圖的推薦規則需要補原畫面。</li>
+</ol>
+<p><strong>建立五個bookmarks</strong></p>
+<ol>
+<li>View → Selection和Bookmarks都打開。在Selection讓I_Seasonality顯示，其餘四個群組隱藏。</li>
+<li>Ctrl多選五個群組，Bookmarks → Add，改名Seasonality。選書籤⋯，Data取消、Display勾選、Current page勾選、改Selected visuals。再確認選取的確是五個群組，按Update。</li>
+<li>依序只顯示I_Plan／I_Hero／I_Bundle／I_Alternative，各建立2026 Sales Plan、Hero Product、Bundle Timing、Alternative Bike書籤。每次都套用同樣五個群組及相同設定。</li>
+<li>各主題button的Action選Bookmark，Destination指向對應書籤；Seasonality指向Seasonality。次tabs Index／Sales Plan分別指向Seasonality／2026 Sales Plan。</li>
+<li>Opening的Scenarios按鈕此時可指向2026 Sales Plan書籤；Current page On會先進入Implications。</li>
+<li>逐一Ctrl＋Click測試。每次只見一個群組，Year／Channel／Group不應跳回建立書籤時的舊值。若篩選被重設，檢查Data是否仍勾選。</li>
+</ol>
+<p>照片中的五個主畫面由此可逐頁重建。尚未拍到的Implications切換畫面，拿到後只改相應群組，不必推倒前面模型或整份檔案。</p>
+<h3 id="design-11">W11. 先做哪一段</h3>
+<p>現在先完成W1、W2、W5，做出Opening和能用的五頁導覽；再做W3、W4、W6，完成Diagnosis。每完成一頁保存一次。Portfolio和Territory接著做，最後才疊Implications的五個狀態。</p>
+<p>所有金額都從現有FactSales計算。這份手冊與補充檔已做靜態／關聯鍵檢查；實際TMDL Apply、visual版本設定和bookmarks互動，仍由本次Windows排練逐步確認。</p>
+<p>參考：<a href="https://learn.microsoft.com/en-us/power-bi/create-reports/button-navigators">Page navigator</a>、<a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-bookmarks">Bookmarks與Selected visuals</a>、<a href="https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-combo-chart">Combo chart</a>、<a href="https://deneb.guide/docs/dataset">Deneb dataset</a>。</p></section></article></main><a class="toplink" href="#top">↑ 頂部</a><script>
 function showTab(name,updateHash=false){
 const green=name==='green';document.querySelector('#manual-panel').hidden=green;document.querySelector('#green-panel').hidden=!green;
 document.querySelectorAll('[data-tab]').forEach(b=>{const selected=b.dataset.tab===name;b.setAttribute('aria-selected',String(selected));b.tabIndex=selected?0:-1});
 document.querySelectorAll('nav a').forEach(a=>a.hidden=a.dataset.section!==name);
-if(updateHash){location.hash=green?'green-workshop':'top'}
+if(updateHash){location.hash=green?'design-workshop':'top'}
 }
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab,true));
 document.querySelector('.manual-tabs').onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const next=document.querySelector('[aria-selected="true"][data-tab]').dataset.tab==='green'?'manual':'green';showTab(next,true);document.querySelector('[data-tab="'+next+'"]').focus()}};
-function syncTab(){showTab(location.hash.startsWith('#green')?'green':'manual');if(location.hash.startsWith('#green'))requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView())}
+function syncTab(){if(location.hash.startsWith('#green')){location.hash='design-workshop';return}const design=location.hash.startsWith('#design');showTab(design?'green':'manual');if(design)requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView())}
 syncTab();window.addEventListener('hashchange',syncTab);
+document.querySelectorAll('[data-previewpage]').forEach(btn=>btn.onclick=()=>{
+const page=btn.dataset.previewpage;document.querySelectorAll('[data-previewscene]').forEach(g=>g.toggleAttribute('hidden',g.dataset.previewscene!==page));
+document.querySelectorAll('[data-previewpage]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+document.querySelector('#preview-step').href='#design-'+({opening:5,diagnosis:6,portfolio:7,territory:8,implications:9}[page]);
+});
 document.querySelector('#menu').onclick=()=>document.body.classList.toggle('open');
 document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>document.body.classList.remove('open'));
 document.querySelectorAll('[data-copy]').forEach(btn=>btn.onclick=async()=>{

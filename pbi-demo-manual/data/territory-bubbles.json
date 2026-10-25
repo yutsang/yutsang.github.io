@@ -1,0 +1,133 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "name": "dataset"
+  },
+  "width": "container",
+  "height": "container",
+  "padding": 12,
+  "transform": [
+    {
+      "filter": "isValid(datum['Sales']) && datum['Sales'] > 0"
+    },
+    {
+      "calculate": "indexof(['Southwest','Northwest','Canada'], datum['Territory']) >= 0",
+      "as": "Core"
+    },
+    {
+      "calculate": "format(datum['Sales'], '$,.3s')",
+      "as": "SalesLabel"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Map X",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": null
+    },
+    "y": {
+      "field": "Map Y",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 1,
+        "stroke": "#FAFAF7",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "size": {
+          "field": "Sales",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              1000,
+              16000
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#225D50"
+          },
+          "value": "#D8DFD8"
+        },
+        "tooltip": [
+          {
+            "field": "Territory",
+            "type": "nominal"
+          },
+          {
+            "field": "Sales",
+            "type": "quantitative",
+            "format": ",.2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "Territory"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#FAFAF7"
+          },
+          "value": "#142320"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 10,
+        "fontSize": 15,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "SalesLabel"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#FAFAF7"
+          },
+          "value": "#142320"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent"
+  }
+}
