@@ -1360,7 +1360,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <ol>
 <li>保持矩形選取，在Format shape的Visual頁籤找Shape／Style，展開Fill。開啟Fill，Color → More colors，在Hex欄輸入<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，Transparency設0%。</li>
 <li>關閉Border／Outline；若General → Effects內還有Visual border，也關閉。Shadow設Off。</li>
-<li>Rounded rectangle本身已帶圓角。若你的版本有Corner radius，可先設32；沒有這格就保留形狀原有圓角，不必換圖形。</li>
+<li>Rounded rectangle本身已帶圓角。Corner radius若以百分比顯示，設8%；這裡使用百分比，不輸入32。沒有這格就保留形狀原有圓角。</li>
 <li>大底板只需shape的Fill。不要把General → Effects → Background再開成另一層底色。</li>
 </ol>
 <p><strong>大底板：放到最底層</strong></p>
@@ -1376,7 +1376,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <ol>
 <li>切到Diagnosis，Insert → Shapes → Rounded rectangle，再插入一個新矩形。</li>
 <li>General → Properties填Height <strong>630</strong>、Width <strong>1000</strong>、X <strong>112</strong>、Y <strong>304</strong>。</li>
-<li>Visual → Shape／Style → Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，Transparency 0%。Border／Outline開啟，Color設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>；若有Width，設1。Shadow Off。若有Corner radius，先設24。</li>
+<li>Visual → Shape／Style → Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，Transparency 0%。Border／Outline開啟，Color設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>；若有Width，設1。Shadow Off。Corner radius若以百分比顯示，先設8%。</li>
 <li>在Selection將它改名BG_D_Annual，排在BG_Board上方。之後左側年度圖、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>及文字都要排在BG_D_Annual上方。</li>
 <li>這塊面板暫時沒有內容是正常的，下一步先補齊另外兩塊。</li>
 </ol>
@@ -1420,6 +1420,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </tr>
 </tbody>
 </table></div>
+<p>核對邊界：Annual與Growth頂邊都是Y=304；Annual底邊304+630=934，Discount底邊618+316=934；Growth底邊304+290=594，與Discount頂邊618相距24。右側兩塊高度不同，但合起來與左側頂底對齊。若畫面未對齊，先在Selection逐一選對shape，再重新輸入表內Height、Width、X、Y；不要用拖曳修正。Corner radius的百分比會令不同尺寸面板的弧度看起來不同，對齊時看直邊，不看圓角起點。</p>
 <p><strong>放入面板標題</strong></p>
 <p>Insert → Text box，輸入下列標題。文字用Segoe UI、20、粗體、<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。點文字框外框後設定尺寸與位置；文字框Background關閉。</p>
 <div class="table-scroll"><table>
