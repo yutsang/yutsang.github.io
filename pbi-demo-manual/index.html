@@ -2495,14 +2495,17 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </ol>
 <p><strong>4. 建立購買原因<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span></strong></p>
 <ol>
-<li>新增<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>，命名M_T_Reasons。Rows放DimTerritory[Territory]，Columns放OrderReasons[Reason]，Values放[W Reason Share]。</li>
+<li>新增<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>，命名M_T_Reasons。依序加入欄位：先在Rows放DimTerritory[Territory]，再在Values放[W Reason Share]，最後在Columns放OrderReasons[Reason]。注意加入順序；尚未加入measure時可能出現無法偵測relationships的提示。OrderReasons維持disconnected，不新增relationship。若已先放Columns，補入Values的measure後再查看結果。</li>
 <li>Height 180、Width 600、X 1168、Y 402。</li>
 <li>Filters on this visual → Territory只選Southwest、Northwest、Canada；Reason只選Price、On Promotion、Manufacturer。</li>
-<li>Format visual → Row headers及Column headers，字級11、粗體。Values字級11。Subtotals及Grand total設Off；Gridlines設Off。</li>
+<li>Format visual → Visual → Row headers及Column headers，字級12、粗體。Values字級12。Subtotals及Grand total設Off；Gridlines設Off。</li>
+<li>Column headers → Options，Auto-size column width設Off；若介面提供Fit to content／Grow to fit等模式，改用可手動固定欄寬的設定。回到<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>，拖曳欄標題右側邊界，把Territory欄加寬至約130，其餘三欄各約145，讓內容展開至視覺右側，百分比完整顯示。若有Column width數值輸入，可直接輸入相同寬度。</li>
+<li>Visual → Grid → Options → Row padding設10，增加三列的間距。若產生垂直捲軸，稍微降低Row padding，保留三列完整顯示。</li>
+<li>General → Effects → Background設Transparency 100%。Visual → Values檢查Background color與Alternate background color，兩者均設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；若有Banded rows，設Off。Row headers與Column headers的Background color也設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；有透明度選項時可改Transparency 100%。這些儲存格底色與整個視覺的背景分開設定。</li>
 <li>在Build visual的Values，選W Reason Share旁的選單 → Conditional formatting → Data bars。</li>
 <li>Minimum類型選Number、值0；Maximum類型選Number、值1；Positive bar color設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，Show bar only不勾選，按OK。</li>
-<li>若使用Cell elements介面，先選W Reason Share欄位，開Data bars，再按fx設定相同數值。</li>
-<li>General → Title、Border及Shadow設Off，背景Transparency 100%。</li>
+<li>若使用Cell elements介面，先選W Reason Share欄位，開Data bars，再按fx設定相同數值。保留Data bars；若Background color有不需要的條件格式，關閉該項。綠色資料條用來顯示比例，保留實色。</li>
+<li>General → Title、Border及Shadow設Off。點畫布空白處取消選取<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>，再檢查底色與文字；選取時的藍色框線不屬於儲存格背景。</li>
 </ol>
 <p><strong>5. 建立收入分類Table</strong></p>
 <ol>
