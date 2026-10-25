@@ -2225,9 +2225,11 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </tbody>
 </table></div>
 <ol start="3">
-<li>兩張圖均按年份升序。Online設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，Reseller設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>；Legend放Top、字級10，軸文字10。</li>
-<li>渠道占比圖開Data labels，顯示百分比、小數1位、字級10。</li>
-<li>成長圖開Markers及Data labels，百分比小數1位、字級10。</li>
+<li>兩張圖均按年份升序。選取圖表右上角⋯ → Sort axis，選年份欄位，再選Sort ascending。</li>
+<li>選取渠道占比圖 → Format visual → Visual → Columns，在Series／Apply settings to選Online，顏色設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>；再選Reseller，顏色設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>。成長折線圖的渠道顏色在Visual → Lines設定，使用相同配色。</li>
+<li>兩張圖的Visual → Legend設On，位置Top、字級10。X-axis及Y-axis的Values字級均設10，控制年份及座標軸刻度文字。</li>
+<li>選取渠道占比圖 → Visual → Data labels設On。展開Values，字級設10、小數位設1。Data labels是在柱內直接顯示的數字；此圖顯示各渠道占當年Sales的百分比，例如25.0%。若有數值與百分比的選項，選百分比。</li>
+<li>選取成長折線圖 → Visual → Markers設On，在每個年份的折線資料點顯示圓點。再將Visual → Data labels設On，展開Values，字級設10、小數位設1。此圖的數字來自W Sales YoY，表示渠道銷售額的按年成長率，例如+38.2%。</li>
 <li>兩張圖關閉Title、Axis title、Border及Shadow；背景Transparency 100%。</li>
 </ol>
 <p><strong>5. 建立折扣區塊</strong></p>
