@@ -1749,7 +1749,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </ol>
 <p>Sales uses line revenue. Gross margin uses matched historical standard cost. Orders are counted by distinct order ID.</p>
 <ol start="3">
-<li>插入Blank button，Text設Close、字體14，深色填滿、淺色文字，關閉Border。依下表設定三個物件。</li>
+<li>插入Blank button，Text設Close、字體14，Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、Text color設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，關閉Border。依下表設定三個物件。</li>
 </ol>
 <div class="table-scroll"><table>
 <thead>
@@ -1796,10 +1796,11 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </ol>
 <h3 id="design-6">W6. Diagnosis：建立三個分析區塊</h3>
 <p>操作頁面：Diagnosis。使用W3已完成的三個面板，不再插入副本。保留W4導覽及三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>。</p>
+<p>開始前，在Data pane搜尋W Sales YoY，確認FactSales下已有此measure。若不存在，先完成第一個tab的<a href="#prep-1">P1資料準備</a>與<a href="#prep-2">P2分析measures</a>，再返回本節。P2包含本節使用的W Sales YoY、W GP YoY、W GM Change及折扣measures。</p>
 <p><strong>1. 設定頁面文字</strong></p>
 <ol>
 <li>新增TXT_D_Page，內容PAGE 2 OF 5，Segoe UI、12、粗體。Height 30、Width 600、X 112、Y 138。</li>
-<li>新增TXT_D_Title，分兩行輸入Quality growth, growth driver,及discount exposure。Segoe UI、36、粗體；Height 110、Width 1050、X 112、Y 180。</li>
+<li>新增TXT_D_Title，分兩行輸入Quality growth, growth driver,及discount exposure。Segoe UI、28、粗體；Height 110、Width 1050、X 112、Y 180。</li>
 <li>兩個文字框的文字色設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>、背景Transparency 100%。</li>
 <li>保留TXT_D_Annual、TXT_D_Growth、TXT_D_Discount，確認三個面板標題字級20、粗體。</li>
 </ol>
