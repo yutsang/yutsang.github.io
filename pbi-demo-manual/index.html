@@ -1197,20 +1197,231 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
     "Top3 month share",[W Top3 Month Share])
 </code></pre></div>
 <p>兩種折扣share合計應為1；Top3 share應介於0和1。YoY只在2025及之後回傳，避免把2023部分年度當完整基期；2026按資料最後日期截取同長度的上年同期。全年度2025的Sales應等於原模型加Year=2025的結果。不要照照片抄數字。</p>
-<h3 id="prep-3">P3. 準備Territory氣泡圖</h3>
-<p>新增一頁Design Assets，在這裡先建立地區氣泡圖，完成後將此頁Hide page。工作坊只需要複製這個visual。</p>
-<ol>
-<li>Insert → More visuals → From AppSource，搜尋Deneb並新增。若環境不能安裝，使用下方原生Scatter替代，不必為這一張圖停下整個重建。</li>
-<li>Deneb的Values放DimTerritory[Territory]、[Map X]、[Map Y]和[Sales]。Map X、Map Y使用Don't summarize或Minimum，確保每個Territory只有一行。</li>
-<li>圖表Height 326、Width 936、X 144、Y 400。</li>
-<li>開Deneb的Edit，新建Vega-Lite規格，使用<a href="data/territory-bubbles.json">territory-bubbles.json</a>完整內容取代editor。它讀取dataset，不內嵌金額。</li>
-<li>Deneb資料欄名必須是Territory、Map X、Map Y、Sales；如果Power BI產生Min of Map X等名稱，在此visual將欄位Rename for this visual為Map X／Map Y。</li>
-<li>圓內顯示地區和金額，Northwest、Southwest、Canada為深綠，其他淡綠。改Year、Channel、Group後尺寸與金額應更新。</li>
-<li>此規格先用<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>控制，暫不依賴Deneb點選來篩選其他圖；若要那個互動，需再設定Deneb的cross-filtering。原生替代用Scatter：X Map X、Y Map Y、Size Sales、Details Territory，兩軸關閉、開category labels。</li>
-</ol>
-<p>選取已完成的氣泡圖，在Selection改名Asset_Territory_Bubbles。確認三個篩選欄位能控制圖表後保存檔案。</p>
 <p>2026 Sales Plan使用的假設也在此先確認：W Actual Lock Month=6，Jan–Jun讀2026實際交易；Jul–Dec讀2025月份分布乘2025／2024全年增長倍數，再套場景uplift。Base為0%；Standard的Jul–Aug 15%、Sep–Oct 10%、Nov 5%、Dec 3%；Upside依序為30%、22%、12%、8%。這些是規劃假設。切scenario時Jan–Jun不變，年度<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>須等於12個月合計。</p>
-<p>完成P1至P3後，進入<a href="#design-workshop">設計工作坊</a>。後面的visual只綁定已建立的欄位與measures。</p>
+<h3 id="prep-3">P3. 準備Territory氣泡圖</h3>
+<p>操作頁面：Design Assets。本節建立可複製的地區氣泡圖，W8再放入Territory。開始前須已完成P1及P2。</p>
+<p><strong>1. 建立Design Assets頁面</strong></p>
+<ol>
+<li>回Report view，按底部分頁旁的＋，將新頁命名Design Assets。</li>
+<li>點畫布空白處 → Format page → Canvas settings，Type選Custom；Height設1080、Width設1920。</li>
+<li>暫時保持頁面顯示，完成本節後再Hide page。</li>
+</ol>
+<p><strong>2. 加入Deneb visual</strong></p>
+<ol>
+<li>Visualizations pane → ⋯ → Get more visuals，搜尋Deneb，按Add。已加入Deneb時跳過此步。</li>
+<li>點畫布空白處，再點Visualizations內的Deneb圖示。畫布會顯示Deneb的Add your data／Create your visual起始畫面。</li>
+<li>保持Deneb外框選取，在Build visual的Values依序放下表四個欄位。</li>
+</ol>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Values名稱</th>
+<th>來源</th>
+<th>彙總設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Territory</td>
+<td>DimTerritory[Territory]</td>
+<td>保留地區名稱</td>
+</tr>
+<tr>
+<td>Map X</td>
+<td>DimTerritory[Map X]</td>
+<td>Don’t summarize</td>
+</tr>
+<tr>
+<td>Map Y</td>
+<td>DimTerritory[Map Y]</td>
+<td>Don’t summarize</td>
+</tr>
+<tr>
+<td>Sales</td>
+<td>FactSales的Sales measure</td>
+<td>使用measure</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="4">
+<li>在Values點Map X右側⌄，選Don’t summarize；Map Y同樣設定。若目前介面只允許彙總，可選Minimum。</li>
+<li>若Values顯示Min of Map X或Min of Map Y，從欄位選單選Rename for this visual，分別改為Map X、Map Y。</li>
+<li>最終四個名稱必須為Territory、Map X、Map Y、Sales，包含空格。</li>
+</ol>
+<p><strong>3. 開啟圖表編輯器</strong></p>
+<ol>
+<li>選Deneb框邊緣的⋯，在選單選Edit。此為visual的⋯，不是Visualizations pane內用來安裝visual的⋯。</li>
+<li>在Create or import new specification畫面，Create using選Vega-Lite。</li>
+<li>Select your Vega-Lite template選[empty]，按右下角Create。</li>
+<li>進入編輯器後選Specification。不要把下方JSON貼到TMDL view或Power Query。</li>
+</ol>
+<p><strong>4. 貼入完整Specification</strong></p>
+<ol>
+<li>點下方Copy按鈕，複製完整JSON。也可下載<a href="data/territory-bubbles.json">territory-bubbles.json</a>，以文字編輯器開啟後複製完整內容。</li>
+<li>點Deneb的Specification程式碼區，按Ctrl+A，再按Ctrl+V，取代模板原有內容。</li>
+<li>若Config編輯區仍有模板設定，切至Config，將內容取代為{}，再回Specification。圖表樣式已包含在下方規格中。</li>
+<li>按Apply changes，或按Ctrl+Enter。若Auto-Apply已開啟，貼上後會自動更新預覽。</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>JSON</span><button aria-label="複製程式碼 25" data-copy="code-24" type="button">Copy</button></div><pre id="code-24"><code class="language-json">{
+  "data": {
+    "name": "dataset"
+  },
+  "width": "container",
+  "height": "container",
+  "padding": 12,
+  "transform": [
+    {
+      "filter": "isValid(datum['Sales']) &amp;&amp; datum['Sales'] &gt; 0"
+    },
+    {
+      "calculate": "indexof(['Southwest','Northwest','Canada'], datum['Territory']) &gt;= 0",
+      "as": "Core"
+    },
+    {
+      "calculate": "format(datum['Sales'], '$,.3s')",
+      "as": "SalesLabel"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Map X",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": null
+    },
+    "y": {
+      "field": "Map Y",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 1,
+        "stroke": "#FAFAF7",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "size": {
+          "field": "Sales",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              1000,
+              16000
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#225D50"
+          },
+          "value": "#D8DFD8"
+        },
+        "tooltip": [
+          {
+            "field": "Territory",
+            "type": "nominal"
+          },
+          {
+            "field": "Sales",
+            "type": "quantitative",
+            "format": ",.2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "Territory"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#FAFAF7"
+          },
+          "value": "#142320"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": 10,
+        "fontSize": 15,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "SalesLabel"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Core",
+            "value": "#FAFAF7"
+          },
+          "value": "#142320"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": "transparent"
+  }
+}
+</code></pre></div>
+<p><strong>5. 檢查預覽與資料</strong></p>
+<ol>
+<li>預覽應顯示地區名稱與銷售額。Southwest、Northwest、Canada使用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，其餘地區使用<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>。</li>
+<li>圓面積按Sales變化；Map X／Map Y為固定排版座標，不代表實際地理位置。</li>
+<li>若無圖形，開編輯器的Data／Dataset資料檢視，確認有Territory、Map X、Map Y、Sales四欄，且Sales至少有一筆大於0。</li>
+<li>若欄位名稱不同，回報表的Values使用Rename for this visual修正。不要把Sales改成NetSales原始欄位。</li>
+<li>若JSON出現錯誤，檢查是否由最外層左大括號開始，並包含最後一個右大括號；查看Logs中的第一條錯誤。</li>
+<li>預覽顯示後按Apply changes，再按左上Back to report。</li>
+</ol>
+<p><strong>6. 設定尺寸、背景及名稱</strong></p>
+<ol>
+<li>在報表選Deneb外框，General → Properties設Height 326、Width 936、X 144、Y 400。</li>
+<li>General → Effects → Background設Transparency 100%；Visual border及Shadow設Off。General → Title設Off。</li>
+<li>View → Selection，將visual命名Asset_Territory_Bubbles。</li>
+<li>按Ctrl+S儲存PBIX。</li>
+</ol>
+<p><strong>7. 測試篩選</strong></p>
+<ol>
+<li>從Diagnosis複製SLC_Year、SLC_Channel、SLC_Group至Design Assets，詢問是否同步時選Sync。</li>
+<li>選Year=2025、Channel=Online、Group=North America，確認氣泡及金額隨篩選更新。</li>
+<li>恢復三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>為All，再刪除Design Assets上的三個測試<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>；保留其他頁的<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>。</li>
+<li>右鍵Design Assets分頁 → Hide page。按Ctrl+S。</li>
+<li>回Diagnosis，繼續W6。W8使用Ctrl+C／Ctrl+V複製Asset_Territory_Bubbles，不需重建規格。</li>
+</ol>
+<p><strong>原生Scatter替代方式</strong></p>
+<p>若課堂環境無法使用Deneb，在Design Assets新增<span class="visual-name"><svg aria-label="Scatter chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Scatter chart</title><path d="M4 3v23h23"></path><circle cx="10" cy="18" r="3"></circle><circle cx="17" cy="10" r="4"></circle><circle cx="24" cy="17" r="2"></circle></svg>Scatter chart</span>：X-axis放Map X、Y-axis放Map Y、Size放Sales、Values／Details放Territory。Map X／Map Y用Minimum。關閉兩軸，開Category labels，背景Transparency 100%；沿用相同尺寸與Asset_Territory_Bubbles名稱。</p>
+<p>操作參考：<a href="https://deneb.guide/docs/simple-example">Deneb入門範例</a>、<a href="https://deneb.guide/docs/visual-editor">Visual Editor與Apply changes</a>、<a href="https://deneb.guide/docs/dataset">Dataset欄位</a>。</p>
 <h3 id="prep-4">P4. 準備課堂交付檔案</h3>
 <p>本節由講者完成。課堂使用含已載入資料的PBIX，參加者從設計工作坊開始，不重做P1至P3。</p>
 <p><strong>1. 儲存包含資料的PBIX</strong></p>
