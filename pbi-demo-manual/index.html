@@ -1347,6 +1347,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </table></div>
 <p>文字統一Segoe UI。小字11至12、報表標題22、內容頁標題36、圖表標題20、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>cards</span>數值28、資料標籤12至14。底板與面板的操作見W3，導覽及<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>見W4。</p>
 <h3 id="design-3">W3. 插入大底板與小面板</h3>
+<p>W3先在Diagnosis操作。共用大底板BG_Board會複製到其餘四頁；三個小面板與本節的面板標題只放Diagnosis，不複製到其他頁。其他頁的小面板在W5至W10各自建立。</p>
 <p>先做大底板。你已完成的畫布顏色與左上角文字保留。大底板是一個圓角矩形shape，承托整頁內容；小面板則放在大底板上，把不同圖表分區。</p>
 <p><strong>大底板：插入與尺寸</strong></p>
 <ol>
@@ -1369,7 +1370,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>在清單找目前選中的矩形，雙擊名稱，改成BG_Board。</li>
 <li>將BG_Board拖到清單最下面。清單上方的物件會蓋住下方物件，因此文字與圖表要排在BG_Board上面。</li>
 <li>若文字曾經消失，完成這一步應重新看到。點眼睛圖示只會暫時隱藏底板，再點一次可恢復。</li>
-<li>在Selection選BG_Board，Ctrl+C；切到其他內容頁Ctrl+V。每頁核對Height 870、Width 1792、X 64、Y 120，並把它拖到該頁Selection最下面。</li>
+<li>在Selection選BG_Board，Ctrl+C；依序切到Opening、Portfolio、Territory、Implications，逐頁Ctrl+V。只複製BG_Board，不選三個小面板和面板標題。每頁核對Height 870、Width 1792、X 64、Y 120，並把它拖到該頁Selection最下面。</li>
 </ol>
 <p><strong>Diagnosis：建立第一個小面板</strong></p>
 <p>Opening先保留一塊大底板即可。以下三塊小面板在Diagnosis建立。</p>
@@ -1420,12 +1421,12 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </tr>
 </tbody>
 </table></div>
-<p>核對邊界：Annual與Growth頂邊都是Y=304；Annual底邊304+630=934，Discount底邊618+316=934；Growth底邊304+290=594，與Discount頂邊618相距24。右側兩塊高度不同，但合起來與左側頂底對齊。若畫面未對齊，先在Selection逐一選對shape，再重新輸入表內Height、Width、X、Y；不要用拖曳修正。Corner radius的百分比會令不同尺寸面板的弧度看起來不同，對齊時看直邊，不看圓角起點。</p>
 <p><strong>放入面板標題</strong></p>
 <p>Insert → Text box，輸入下列標題。文字用Segoe UI、20、粗體、<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。點文字框外框後設定尺寸與位置；文字框Background關閉。</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
+<th>Selection名稱</th>
 <th>文字</th>
 <th style="text-align: right;">Height</th>
 <th style="text-align: right;">Width</th>
@@ -1435,6 +1436,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </thead>
 <tbody>
 <tr>
+<td>TXT_D_Annual</td>
 <td>Sales, gross profit and margin by year</td>
 <td style="text-align: right;">40</td>
 <td style="text-align: right;">904</td>
@@ -1442,6 +1444,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <td style="text-align: right;">342</td>
 </tr>
 <tr>
+<td>TXT_D_Growth</td>
 <td>Channel mix and growth</td>
 <td style="text-align: right;">40</td>
 <td style="text-align: right;">600</td>
@@ -1449,6 +1452,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <td style="text-align: right;">342</td>
 </tr>
 <tr>
+<td>TXT_D_Discount</td>
 <td>Discount exposure</td>
 <td style="text-align: right;">40</td>
 <td style="text-align: right;">600</td>
@@ -1457,18 +1461,62 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </tr>
 </tbody>
 </table></div>
+<p>每個文字框建立後，在View → Selection雙擊其名稱，改成上表的Selection名稱；畫面上顯示的文字維持不變。左上品牌文字命名TXT_Brand，報表標題命名TXT_ReportTitle，這兩個共用文字框可複製到全部五頁。</p>
 <p>完成後應看到一塊大底板、三個有細框的小面板，以及各面板標題。圖表會在W6加入。</p>
 <p><strong>圖表放進來後的背景</strong></p>
 <p>選圖表外框 → Format visual → General → Effects → Background，設Off，或Transparency 100%；Visual border、Shadow關閉。這樣圖表會直接融入面板。三種透明度分開設定：畫布0%、shape Fill 0%、圖表背景100%或Off。</p>
 <p>若一貼圖表就看不到，先在Selection將圖表拖到相應小面板上方。不要刪底板來找圖表。完成一個區塊後，可在Selection用Ctrl選該區塊的文字、圖表和小面板，右鍵Group，方便整組移動；BG_Board不放進區塊群組。</p>
 <h3 id="design-4">W4. 建立導覽按鈕與下拉篩選器</h3>
+<p>留在Diagnosis完成W4，再按下表複製。用Selection選取指定物件，Ctrl+C；點目的頁分頁，Ctrl+V。不要複製整個Diagnosis頁面。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>物件</th>
+<th>Selection名稱</th>
+<th>從Diagnosis複製到</th>
+<th>貼上後操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Page navigator</td>
+<td>NAV_Pages</td>
+<td>Opening、Portfolio、Territory、Implications</td>
+<td>保留設定</td>
+</tr>
+<tr>
+<td>Previous／Next</td>
+<td>BTN_Previous／BTN_Next</td>
+<td>Portfolio、Territory</td>
+<td>各自重設Destination</td>
+</tr>
+<tr>
+<td>Next</td>
+<td>BTN_Next</td>
+<td>Opening</td>
+<td>Destination設Diagnosis</td>
+</tr>
+<tr>
+<td>Previous</td>
+<td>BTN_Previous</td>
+<td>Implications</td>
+<td>Destination設Territory</td>
+</tr>
+<tr>
+<td>三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span></td>
+<td>SLC_Year／SLC_Channel／SLC_Group</td>
+<td>Portfolio、Territory、Implications</td>
+<td>詢問同步時選Sync，保留位置</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>頂部五頁導覽</strong></p>
 <ol>
-<li>Insert → Buttons → Navigator → Page navigator。General → Properties填Height 52、Width 700、X 1156、Y 30。</li>
+<li>在Diagnosis，Insert → Buttons → Navigator → Page navigator。在Selection改名NAV_Pages。General → Properties填Height 52、Width 700、X 1156、Y 30。</li>
 <li>Format navigator → Pages，關閉顯示Hidden pages，清單只保留Opening、Diagnosis、Portfolio、Territory、Implications。若看到Sales Overview，先把該頁Hide page。</li>
 <li>在按鈕樣式的State選Default，Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，Text設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>。再選Selected，Fill設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#142320"></span>#142320</span>，Text設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>。</li>
 <li>Shape選Rounded rectangle；有圓角控制再調成pill形。排成單行，字體12至14。</li>
-<li>在Desktop按住Ctrl再點其中一頁測試。複製這組navigator到其他四頁，當前頁的Selected狀態會跟著改。</li>
+<li>在Desktop按住Ctrl再點其中一頁測試，再回Diagnosis。在Selection選NAV_Pages，依上表複製到其他四頁，當前頁的Selected狀態會跟著改。</li>
 </ol>
 <p><strong>Previous／Next</strong></p>
 <ol>
@@ -1476,7 +1524,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>General → Properties填Height 48、Width 132、X 64、Y 1012。</li>
 <li>開Action，Type選Page navigation，Destination選上一頁。例如Diagnosis的Previous指向Opening。</li>
 <li>複製按鈕，文字改Next，X改1724，其他尺寸不變，Destination選下一頁。</li>
-<li>Opening只放Next，Implications只放Previous。每頁貼上後，重新指定Destination。Ctrl+Click逐一測試。</li>
+<li>在Selection將兩個按鈕命名BTN_Previous、BTN_Next，依上表複製。依序設定Previous／Next目的頁：Diagnosis為Opening／Portfolio；Portfolio為Diagnosis／Territory；Territory為Portfolio／Implications。Opening只放Next → Diagnosis，Implications只放Previous → Territory。Ctrl+Click逐一測試，再回Diagnosis。</li>
 </ol>
 <p><strong>Year／Channel／Group下拉選單</strong></p>
 <ol>
@@ -1484,7 +1532,8 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>Format visual → <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>Slicer</span> settings → Options，Style選Dropdown。若選單只顯示年份而沒有標題，開啟<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>Slicer</span> header，或另加Year文字框。</li>
 <li>設定下表尺寸。複製<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>兩次，分別把Field改成FactSales[Channel]、DimTerritory[Group]。</li>
 <li>三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>保持All。此處不需要強制Single select。</li>
-<li>View → Sync <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>，逐一選各<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>，在Diagnosis、Portfolio、Territory、Implications勾Sync與Visible，Opening不勾Visible。其他頁應出現對應篩選器；如沒有，複製到該頁，詢問是否同步時選Sync。</li>
+<li>在Selection將三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>命名SLC_Year、SLC_Channel、SLC_Group。按住Ctrl選這三個物件，複製到Portfolio、Territory、Implications；若詢問是否同步，選Sync。不要貼到Opening。</li>
+<li>View → Sync <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>，逐一選各<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>，在Diagnosis、Portfolio、Territory、Implications勾Sync與Visible，Opening兩項都不勾。</li>
 <li>切一個年份再換頁，確認選取保持一致，最後切回All。</li>
 </ol>
 <div class="table-scroll"><table>
