@@ -2228,14 +2228,14 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>兩張圖均按年份升序。選取圖表右上角⋯ → Sort axis，選年份欄位，再選Sort ascending。</li>
 <li>選取渠道占比圖 → Format visual → Visual → Columns，在Series／Apply settings to選Online，顏色設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>；再選Reseller，顏色設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#728A80"></span>#728A80</span>。成長折線圖的渠道顏色在Visual → Lines設定，使用相同配色。</li>
 <li>兩張圖的Visual → Legend設On，位置Top、字級10。X-axis及Y-axis的Values字級均設10，控制年份及座標軸刻度文字。</li>
-<li>選取渠道占比圖 → Visual → Data labels設On。將Value設Off，再展開Detail並設On，Content選Percent of total；Detail的字級設10、小數位設1。Data labels是在柱內直接顯示的數字；此圖顯示各渠道占當年Sales的百分比，例如25.0%。若沒有Detail／Percent of total選項，先確認圖表類型為<span class="visual-name"><svg aria-label="100% stacked column chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>100% stacked column chart</title><path d="M4 3v23h23M7 5h5v18H7zM17 5h5v18h-5zM7 12h5m5 3h5"></path></svg>100% stacked column chart</span>。不要把Sales measure本身改成百分比格式。</li>
+<li>選取渠道占比圖 → Build visual，將圖表類型設為<span class="visual-name"><svg aria-label="100% stacked column chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>100% stacked column chart</title><path d="M4 3v23h23M7 5h5v18H7zM17 5h5v18h-5zM7 12h5m5 3h5"></path></svg>100% stacked column chart</span>；滑鼠停在圖示上確認完整名稱。Y-axis應為0%至100%，每年的柱總高度相同。若左軸仍是金額，表示尚未選到100%圖表。再進Visual → Data labels設On、Value設On、Detail設Off，展開Value，Font size設10、Value decimal places設1。此圖的標籤顯示各渠道占當年Sales的百分比。Detail中的Data不加入Sales，也不需尋找Content。不要把Sales measure本身改成百分比格式。</li>
 <li>選取成長折線圖 → Visual → Lines，尋找Markers／Show markers並設On，在每個年份的折線資料點顯示圓點；若Markers獨立列在Visual下，直接展開設定。再將Visual → Data labels設On，展開Values，字級設10、小數位設1。此圖的數字來自W Sales YoY，表示渠道銷售額的按年成長率，例如+38.2%。</li>
 <li>兩張圖關閉Title、Axis title、Border及Shadow；背景Transparency 100%。</li>
 </ol>
 <p><strong>5. 建立折扣區塊</strong></p>
 <ol>
-<li>將TXT_D_Discount文字改成Discount exposure in 2025。</li>
-<li>複製已完成的<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>，依下表建立五張。在Format visual → Visual → Callout → Value設定數值字級24；Callout → Label設定標籤字級11，位置Bottom／Below value。下方兩張占比<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>的數值改用20、標籤10，以容納較長文字。General → Effects → Background設Transparency 100%，Visual → Multi-<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span> layout → Background設Off。<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Cards</span> → Layout的Callout size設100%，Padding四邊設4。</li>
+<li>將TXT_D_Discount文字改成Discount exposure in 2025，Height 40、Width 600、X 1176、Y 638。</li>
+<li>複製已完成的<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>，依下表建立五張。在Format visual → Visual → Callout → Value設定數值字級24；Callout → Label設定標籤字級11，位置Bottom／Below value。下方兩張占比<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>的數值改用20、標籤10；五張<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>的Height均設110。General → Effects → Background設Transparency 100%，Visual → Multi-<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span> layout → Background設Off。<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Cards</span> → Layout的Callout size設100%，Padding四邊設4。</li>
 </ol>
 <div class="table-scroll"><table>
 <thead>
@@ -2257,7 +2257,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <td style="text-align: right;">110</td>
 <td style="text-align: right;">192</td>
 <td style="text-align: right;">1168</td>
-<td style="text-align: right;">688</td>
+<td style="text-align: right;">680</td>
 </tr>
 <tr>
 <td>CARD_D_OfferGM</td>
@@ -2266,7 +2266,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <td style="text-align: right;">110</td>
 <td style="text-align: right;">192</td>
 <td style="text-align: right;">1384</td>
-<td style="text-align: right;">688</td>
+<td style="text-align: right;">680</td>
 </tr>
 <tr>
 <td>CARD_D_NoOfferGM</td>
@@ -2275,31 +2275,31 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <td style="text-align: right;">110</td>
 <td style="text-align: right;">192</td>
 <td style="text-align: right;">1600</td>
-<td style="text-align: right;">688</td>
+<td style="text-align: right;">680</td>
 </tr>
 <tr>
 <td>CARD_D_NoOfferShare</td>
 <td>W No Discount Share</td>
 <td>No-discount sales share</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">288</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">304</td>
 <td style="text-align: right;">1168</td>
-<td style="text-align: right;">842</td>
+<td style="text-align: right;">818</td>
 </tr>
 <tr>
 <td>CARD_D_OfferShare</td>
 <td>W Discount Share</td>
 <td>Special offer sales share</td>
-<td style="text-align: right;">86</td>
-<td style="text-align: right;">288</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">304</td>
 <td style="text-align: right;">1480</td>
-<td style="text-align: right;">842</td>
+<td style="text-align: right;">818</td>
 </tr>
 </tbody>
 </table></div>
 <ol start="3">
 <li>新增<span class="visual-name"><svg aria-label="100% stacked bar chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>100% stacked bar chart</title><path d="M4 3v23h23M7 6h20v5H7zM7 16h20v5H7zM16 6v5m4 5v5"></path></svg>100% stacked bar chart</span>，命名CH_D_DiscountShare。X-axis依序放[W No Discount Sales]、[W Discount Sales]，Y-axis留空。</li>
-<li>Height 28、Width 600、X 1168、Y 810。No Discount設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，Discount設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>。</li>
+<li>Height 24、Width 600、X 1168、Y 792。No Discount設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，Discount設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#D8DFD8"></span>#D8DFD8</span>。</li>
 <li>Legend、兩軸、Title、Border及Shadow設Off；背景Transparency 100%。</li>
 <li>將Year、Channel、Group設All並保存檔案。</li>
 </ol>
