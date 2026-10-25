@@ -989,7 +989,7 @@ CALCULATETABLE(
 		column 'W Window Sort' = SWITCH(TRUE(),DimDate[MonthNumber]&lt;=5,1,DimDate[MonthNumber]&lt;=8,2,DimDate[MonthNumber]&lt;=10,3,DimDate[MonthNumber]=11,4,5)
 			dataType: int64
 			summarizeBy: none
-		column 'W Timing Window' = SWITCH(DimDate[W Window Sort],1,"JAN-MAY",2,"JUN-AUG",3,"SEP-OCT",4,"NOV",5,"DEC")
+		column 'W Timing Window' = SWITCH(TRUE(),DimDate[MonthNumber]&lt;=5,"JAN-MAY",DimDate[MonthNumber]&lt;=8,"JUN-AUG",DimDate[MonthNumber]&lt;=10,"SEP-OCT",DimDate[MonthNumber]=11,"NOV","DEC")
 			dataType: string
 			sortByColumn: 'W Window Sort'
 	ref table DimTerritory
