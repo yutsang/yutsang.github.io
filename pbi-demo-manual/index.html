@@ -1,12 +1,12 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Sales Design Lab：從 CSV、Power Query、AI 與 TMDL，到互動 Power BI 報表的操作手冊。"><meta name="robots" content="noindex"><title>PBI Demo Manual</title><style>
 :root{color-scheme:light;--ink:#172b3a;--muted:#596a77;--accent:#245c78;--line:#dce4e8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#f5f7f9;font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}header{height:66px;background:#172b3a;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}header strong{letter-spacing:.04em;font-size:17px}header span{color:#bdd1dd;font-size:13px}#menu{display:none}aside{position:fixed;top:66px;bottom:0;width:286px;padding:24px 18px;overflow:auto;background:#edf2f5;border-right:1px solid var(--line)}aside .label{font-size:11px;letter-spacing:.18em;color:var(--muted);margin:0 12px 16px}nav a{display:block;text-decoration:none;color:#405566;line-height:1.5;padding:6px 12px;border-radius:6px;font-size:12px}nav a:hover,nav a.active{background:#dce8ee;color:#153e55}nav .level-h2{font-weight:700;margin-top:12px}nav .level-h3{padding-left:23px}main{margin-left:286px;padding:42px 5vw 100px;max-width:1500px}article{max-width:1000px;margin:auto}h1{font-size:44px;line-height:1.2;margin:12px 0 24px;letter-spacing:-.04em}h2{font-size:26px;margin:64px 0 22px;padding-top:24px;border-top:1px solid var(--line);line-height:1.45}h3{font-size:21px;margin-top:38px;line-height:1.5}h4{font-size:15px;margin:26px 0 12px;color:var(--accent)}p{margin:14px 0}a{color:#1c638a}li{margin:7px 0}strong{font-weight:650}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#e6edf1;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:22px 0 30px;border:1px solid #c9d7df;border-radius:10px;overflow:hidden;background:#fff}.codebar{display:flex;align-items:center;justify-content:space-between;background:#e8eef2;padding:8px 16px;font-size:11px;letter-spacing:.1em;color:#4b6272}button{cursor:pointer;border:1px solid #c2d0da;background:white;border-radius:5px;padding:7px 15px;color:#245c78;font-weight:600}button:hover{background:#dbe8f0}pre{margin:0;padding:20px;max-height:560px;overflow:auto;tab-size:4;line-height:1.65;white-space:pre}pre code{white-space:pre}table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}th{text-align:left;background:#eaf0f4}th,td{padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}.table-scroll{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:8px}.checkitem{list-style:none;margin-left:-24px;padding:8px 12px;background:#edf3f6;border-radius:6px}.checkitem input{margin-right:12px;width:17px;height:17px;accent-color:#245c78;vertical-align:middle}.checkitem:has(input:checked){color:#617581;background:#e4ede9}.notice{border-left:3px solid #c05a28;padding:10px 18px;background:#fff9f2;font-size:14px;margin-bottom:32px}.color-ref{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.color-swatch{display:inline-block;width:24px;height:20px;border:1px solid #9caab3;border-radius:4px;vertical-align:middle}.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{position:fixed;right:20px;bottom:20px;background:#172b3a;color:white;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:12px}@media(max-width:950px){aside{width:230px}main{margin-left:230px;padding:30px 28px}h1{font-size:35px}}@media(max-width:700px){header{padding:0 16px}header span{display:none}#menu{display:block}aside{display:none;width:285px;z-index:9;box-shadow:8px 0 24px #172b3a22}body.open aside{display:block}main{margin-left:0;padding:28px 18px 80px}h1{font-size:34px}h2{font-size:24px}pre{padding:15px}table{min-width:580px}}@media print{header,aside,.codebar button,.color-ref{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.color-swatch{display:inline-block;width:24px;height:20px;border:1px solid #9caab3;border-radius:4px;vertical-align:middle}.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{display:none}main{margin:0;padding:0}pre{max-height:none;white-space:pre-wrap}pre code{white-space:pre-wrap}h2{break-before:page}}
-</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" href="#step-0">文件使用方式</a><a class="level-h2" href="#step-1">完成後應該有甚麼</a><a class="level-h2" href="#step-2">A · 開始與匯入</a><a class="level-h3" href="#step-3">1. 建立空白報表</a><a class="level-h3" href="#step-4">2. 匯入八張來源</a><a class="level-h3" href="#step-5">3. 只做必要清洗</a><a class="level-h3" href="#step-6">全表行數怎樣核對</a><a class="level-h2" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" href="#step-8">4. 建立DimProduct</a><a class="level-h3" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" href="#step-10">C · 建立其餘模型</a><a class="level-h3" href="#step-11">6. 分批建立模型</a><a class="level-h3" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" href="#step-22">F · 加入分析指標</a><a class="level-h3" href="#step-23">11. 新增六個measures</a><a class="level-h3" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" href="#step-31">17. 設定互動並核對</a><a class="level-h3" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" href="#step-37">K · 排練順序與完成條件</a><a class="level-h3" href="#step-38">21. 一次完整講解的流程</a><a class="level-h3" href="#step-39">22. 最後驗收與保存</a><a class="level-h2" href="#step-40">基線控制值與資料口徑</a><a class="level-h2" href="#step-41">官方操作依據</a></nav></aside><main><article><div class="notice">按順序操作。每批 Prompt、TMDL、DAX 都可獨立複製；驗收通過後再進下一步。</div><h1>PBI Demo Manual</h1>
+</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" href="#step-0">文件使用方式</a><a class="level-h2" href="#step-1">完成後應該有甚麼</a><a class="level-h2" href="#step-2">A · 開始與匯入</a><a class="level-h3" href="#step-3">1. 建立空白報表</a><a class="level-h3" href="#step-4">2. 匯入八張來源</a><a class="level-h3" href="#step-5">3. 只做必要清洗</a><a class="level-h3" href="#step-6">全表行數怎樣核對</a><a class="level-h2" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" href="#step-8">4. 建立DimProduct</a><a class="level-h3" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" href="#step-10">C · 建立其餘模型</a><a class="level-h3" href="#step-11">6. 分批建立模型</a><a class="level-h3" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" href="#step-22">F · 加入分析指標</a><a class="level-h3" href="#step-23">11. 新增六個measures</a><a class="level-h3" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" href="#step-31">17. 設定互動並核對</a><a class="level-h3" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" href="#step-37">官方操作依據</a></nav></aside><main><article><div class="notice">按順序操作。每批 Prompt、TMDL、DAX 都可獨立複製；驗收通過後再進下一步。</div><h1>PBI Demo Manual</h1>
 <p>從CSV匯入、Power Query與TMDL，到互動報表。</p>
 <p>操作順序為匯入來源、合併產品分類、建立模型、核對數字、建立報表，再加入分析指標與互動。</p>
 <p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已確認的資料控制值列在文末；Windows Desktop 的逐步實跑仍在進行。</p>
 <h2 id="step-0">文件使用方式</h2>
 <p>本文件是排練和slides整合的唯一工作稿，檔名為 <code>pbi-demo-manual.md</code>。Prompt、操作程式碼及驗收查詢均直接放在本文件；不需要切換其他本地文件。</p>
-<p>目前已完成DimProduct504行、209個Unclassified，以及查看table script；下一步從第6.1批開始。</p>
+<p>從第1步開始操作；已有完成的部分可直接跳到下一步。</p>
 <h2 id="step-1">完成後應該有甚麼</h2>
 <ul>
 <li>八張raw staging queries；模型只載入DimProduct、DimTerritory、DimDate、FactSales。</li>
@@ -830,80 +830,7 @@ CALCULATETABLE(
 <li>確認地區、年份、渠道、Group與來源一致。用Back返回；在Desktop編輯模式可能需要Ctrl＋Click。</li>
 </ol>
 <p>若選單沒有目標頁，先查欄位是否相同、目標Drillthrough欄位是否存在，再查來源是否點到實際資料。不要以手動切頁後仍有舊filter當成鑽取成功。</p>
-<h2 id="step-37">K · 排練順序與完成條件</h2>
-<h3 id="step-38">21. 一次完整講解的流程</h3>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>操作</th>
-<th>核對重點</th>
-<th>操作方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>匯入並做QC</td>
-<td>每張來源是一行代表甚麼，key有沒有問題？</td>
-<td>按schema建議型別與檢查查詢，保留實際錯誤</td>
-</tr>
-<tr>
-<td>手動完成DimProduct</td>
-<td>join為甚麼用Left Outer，未分類產品怎樣保留？</td>
-<td>讀自己產生的M，解釋每個步驟</td>
-</tr>
-<tr>
-<td>看DimProduct TMDL</td>
-<td>UI操作如何存成模型定義？</td>
-<td>對照column、dataType、partition，避免把TMDL當layout</td>
-</tr>
-<tr>
-<td>分四批建立模型</td>
-<td>其他dimensions、fact及relationships怎樣接起來？</td>
-<td>提供完整輸出，逐批Preview和驗收</td>
-</tr>
-<tr>
-<td>建Before Measures報表</td>
-<td>單看Sales能回答甚麼？</td>
-<td>先由人決定問題和閱讀順序</td>
-</tr>
-<tr>
-<td>新增分析measures</td>
-<td>地區的規模、訂單與利潤率有甚麼差異？</td>
-<td>只修改明確範圍的TMDL，核對公式及口徑</td>
-</tr>
-<tr>
-<td>UI綁定field parameter</td>
-<td>新指標怎樣變成觀眾能操作的圖？</td>
-<td>提供操作指引，由Desktop實際綁定</td>
-</tr>
-<tr>
-<td>完成三頁及配色</td>
-<td>總覽、產品模式、單一地區如何連貫？</td>
-<td>用實際畫面檢查可讀性和提出修正</td>
-</tr>
-</tbody>
-</table></div>
-<p>TMDL這次處理semantic model；畫布、圖表欄位、顏色與互動在Report UI設定。Power Query執行partition內的M，並不是被TMDL取代。遇到錯誤，記錄完整訊息、物件和剛才改動，先修該層。</p>
-<h3 id="step-39">22. 最後驗收與保存</h3>
-<ul>
-<li class="checkitem"><input aria-label="DimProduct 504行、209個Unclassified，ProductID唯一。" data-check="check-72" type="checkbox"/>DimProduct 504行、209個Unclassified，ProductID唯一。</li>
-<li class="checkitem"><input aria-label="DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。" data-check="check-73" type="checkbox"/>DimTerritory10行、DimDate1,461行、FactSales121,317行，LineID唯一。</li>
-<li class="checkitem"><input aria-label="八張Raw及QC不載入模型，仍保留作M來源。" data-check="check-74" type="checkbox"/>八張Raw及QC不載入模型，仍保留作M來源。</li>
-<li class="checkitem"><input aria-label="三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。" data-check="check-75" type="checkbox"/>三條指定關聯active、one-to-many、單向；Metric是disconnected parameter表，不新增關聯。</li>
-<li class="checkitem"><input aria-label="第8、9、12步數值通過，Cost Coverage100%。" data-check="check-76" type="checkbox"/>第8、9、12步數值通過，Cost Coverage100%。</li>
-<li class="checkitem"><input aria-label="Sales Overview四指標能切，單位正確，bar與Table一致。" data-check="check-77" type="checkbox"/>Sales Overview四指標能切，單位正確，bar與Table一致。</li>
-<li class="checkitem"><input aria-label="三個範圍slicer與圖表互動正確，圖表選取清除後回到起始值。" data-check="check-78" type="checkbox"/>三個範圍<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>與圖表互動正確，圖表選取清除後回到起始值。</li>
-<li class="checkitem"><input aria-label="Product View月份順序、heatmap總計正確。" data-check="check-79" type="checkbox"/>Product View月份順序、heatmap總計正確。</li>
-<li class="checkitem"><input aria-label="Territory Detail能從bar進入，帶入相同範圍並能返回。" data-check="check-80" type="checkbox"/>Territory Detail能從bar進入，帶入相同範圍並能返回。</li>
-<li class="checkitem"><input aria-label="Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。" data-check="check-81" type="checkbox"/>Before Measures副本保留；完成檔另存Sales Design Lab - Demo Ready.pbix。</li>
-<li class="checkitem"><input aria-label="重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。" data-check="check-82" type="checkbox"/>重開完成檔，Refresh無error，預設開Sales Overview／2025／All渠道／All地區／Sales。</li>
-</ul>
-<p>目前已確認DimProduct的手動操作；其餘項目要在Windows完成後逐項勾選。網頁進度只存在目前瀏覽器，不會同步到另一台電腦。</p>
-<h2 id="step-40">基線控制值與資料口徑</h2>
-<p>下列基線來自已提供的資料核對結果，不代表本次Desktop實跑已通過：Header31,465、Detail121,317、Product504、Subcategory37、Category4、Territory10、CostHistory522、Offer16。</p>
-<p>Fact一行一明細；全範圍Sales109,846,381.400030、Orders31,465、Customers19,119、Historical Standard Cost97,297,383.440、Gross Profit12,548,997.960030、Gross Margin約11.42413414%、Cost Coverage100%；missing／multiple cost matches皆0。</p>
-<p>LineTotal已包含交易折扣；Historical Standard Cost是歷史標準成本估計，不能直接叫實際會計COGS。不分發預製骨架，從raw開始；原始dataset名稱不放在展示標題。</p>
-<h2 id="step-41">官方操作依據</h2>
+<h2 id="step-37">官方操作依據</h2>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-tmdl-view">TMDL view與Preview／Apply</a></li>
 <li><a href="https://learn.microsoft.com/en-us/analysis-services/tmdl/tmdl-overview">TMDL縮排與多行公式</a></li>
