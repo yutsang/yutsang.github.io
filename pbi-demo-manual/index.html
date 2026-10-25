@@ -2,13 +2,139 @@
 :root{color-scheme:light;--ink:#172b3a;--muted:#596a77;--accent:#245c78;--line:#dce4e8}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;color:var(--ink);background:#f5f7f9;font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}header{height:66px;background:#172b3a;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}header strong{letter-spacing:.04em;font-size:17px}header span{color:#bdd1dd;font-size:13px}#menu{display:none}aside{position:fixed;top:66px;bottom:0;width:286px;padding:24px 18px;overflow:auto;background:#edf2f5;border-right:1px solid var(--line)}aside .label{font-size:11px;letter-spacing:.18em;color:var(--muted);margin:0 12px 16px}nav a{display:block;text-decoration:none;color:#405566;line-height:1.5;padding:6px 12px;border-radius:6px;font-size:12px}nav a:hover,nav a.active{background:#dce8ee;color:#153e55}nav .level-h2{font-weight:700;margin-top:12px}nav .level-h3{padding-left:23px}main{margin-left:286px;padding:42px 5vw 100px;max-width:1500px}article{max-width:1000px;margin:auto}h1{font-size:44px;line-height:1.2;margin:12px 0 24px;letter-spacing:-.04em}h2{font-size:26px;margin:64px 0 22px;padding-top:24px;border-top:1px solid var(--line);line-height:1.45}h3{font-size:21px;margin-top:38px;line-height:1.5}h4{font-size:15px;margin:26px 0 12px;color:var(--accent)}p{margin:14px 0}a{color:#1c638a}li{margin:7px 0}strong{font-weight:650}code{font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:#e6edf1;padding:3px 6px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:22px 0 30px;border:1px solid #c9d7df;border-radius:10px;overflow:hidden;background:#fff}.codebar{display:flex;align-items:center;justify-content:space-between;background:#e8eef2;padding:8px 16px;font-size:11px;letter-spacing:.1em;color:#4b6272}button{cursor:pointer;border:1px solid #c2d0da;background:white;border-radius:5px;padding:7px 15px;color:#245c78;font-weight:600}button:hover{background:#dbe8f0}pre{margin:0;padding:20px;max-height:560px;overflow:auto;tab-size:4;line-height:1.65;white-space:pre}pre code{white-space:pre}table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}th{text-align:left;background:#eaf0f4}th,td{padding:12px 15px;border-bottom:1px solid var(--line);vertical-align:top}.table-scroll{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:8px}.checkitem{list-style:none;margin-left:-24px;padding:8px 12px;background:#edf3f6;border-radius:6px}.checkitem input{margin-right:12px;width:17px;height:17px;accent-color:#245c78;vertical-align:middle}.checkitem:has(input:checked){color:#617581;background:#e4ede9}.notice{border-left:3px solid #c05a28;padding:10px 18px;background:#fff9f2;font-size:14px;margin-bottom:32px}.color-ref{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.color-swatch{display:inline-block;width:24px;height:20px;border:1px solid #9caab3;border-radius:4px;vertical-align:middle}.visual-name{display:inline-flex;align-items:center;gap:5px;vertical-align:middle}.visual-icon{width:24px;height:24px;min-width:24px;color:#245c78;background:#e6eef3;border-radius:4px;padding:2px}.toplink{position:fixed;right:20px;bottom:20px;background:#172b3a;color:white;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:12px}@media(max-width:950px){aside{width:230px}main{margin-left:230px;padding:30px 28px}h1{font-size:35px}}@media(max-width:700px){header{padding:0 16px}header span{display:none}#menu{display:block}aside{display:none;width:285px;z-index:9;box-shadow:8px 0 24px #172b3a22}body.open aside{display:block}main{margin-left:0;padding:28px 18px 80px}h1{font-size:34px}h2{font-size:24px}pre{padding:15px}table{min-width:580px}}@media print{header,aside,.codebar button,.toplink,.manual-tabs{display:none}main{margin:0;padding:0}pre{max-height:none;white-space:pre-wrap}pre code{white-space:pre-wrap}h2{break-before:page}}
 .manual-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 30px;padding-bottom:15px;border-bottom:1px solid var(--line)}.manual-tabs button{padding:12px 20px;font-size:15px}.manual-tabs button[aria-selected="true"]{color:white;background:#172b3a;border-color:#172b3a}.manual-tabs button[data-tab="green"][aria-selected="true"]{background:#225d50;border-color:#225d50}[hidden]{display:none!important}.green-preview-frame{margin:24px 0;border:1px solid #d8dfd8;border-radius:16px;overflow:hidden}.green-preview-frame svg{display:block;width:100%;height:auto}.green-preview-frame svg text,.green-preview-frame svg path,.green-preview-frame svg>rect{pointer-events:none}.green-preview-frame svg>a>rect{pointer-events:all}.green-preview-frame a rect{transition:stroke-width .15s}.green-preview-frame a:hover rect{stroke:#225d50;stroke-width:3}.reference-controls{display:flex;gap:6px;flex-wrap:wrap;padding:14px;background:#fff}.reference-controls button{font-size:12px;padding:8px 12px}.reference-controls button[aria-pressed="true"]{background:#142320;color:#fafaf7}.reference-caption{padding:12px 18px;font-size:13px;margin:0;background:#fff}.green-intro{border-left:3px solid #225d50;background:#edf2ed;padding:14px 18px;font-size:14px}#green-panel>h2:first-child{margin-top:0;border-top:0;padding-top:0}
 
-</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" data-section="manual" href="#step-0">文件使用方式</a><a class="level-h2" data-section="manual" href="#step-1">完成後應該有甚麼</a><a class="level-h2" data-section="manual" href="#step-2">A · 開始與匯入</a><a class="level-h3" data-section="manual" href="#step-3">1. 建立空白報表</a><a class="level-h3" data-section="manual" href="#step-4">2. 匯入八張來源</a><a class="level-h3" data-section="manual" href="#step-5">3. 只做必要清洗</a><a class="level-h3" data-section="manual" href="#step-6">全表行數怎樣核對</a><a class="level-h2" data-section="manual" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" data-section="manual" href="#step-8">4. 建立DimProduct</a><a class="level-h3" data-section="manual" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" data-section="manual" href="#step-10">C · 建立其餘模型</a><a class="level-h3" data-section="manual" href="#step-11">6. 分批建立模型</a><a class="level-h3" data-section="manual" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" data-section="manual" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" data-section="manual" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" data-section="manual" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" data-section="manual" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" data-section="manual" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" data-section="manual" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" data-section="manual" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" data-section="manual" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" data-section="manual" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" data-section="manual" href="#step-22">F · 加入分析指標</a><a class="level-h3" data-section="manual" href="#step-23">11. 新增六個measures</a><a class="level-h3" data-section="manual" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" data-section="manual" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" data-section="manual" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" data-section="manual" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" data-section="manual" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" data-section="manual" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" data-section="manual" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" data-section="manual" href="#step-31">17. 設定互動並核對</a><a class="level-h3" data-section="manual" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" data-section="manual" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" data-section="manual" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" data-section="manual" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" data-section="manual" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" data-section="manual" href="#step-37">官方操作依據</a><a class="level-h2" data-section="manual" href="#prep-dashboard">Dashboard 資料準備（講者先做）</a><a class="level-h3" data-section="manual" href="#prep-1">P1. 下載及匯入補充資料</a><a class="level-h3" data-section="manual" href="#prep-2">P2. 建立兩個選擇器與分析measures</a><a class="level-h3" data-section="manual" href="#prep-3">P3. 課前交付checklist</a><a class="level-h2" data-section="green" href="#design-workshop">設計工作坊</a><a class="level-h3" data-section="green" href="#design-0">W0. 講者示範：Deneb互動氣泡圖</a><a class="level-h3" data-section="green" href="#design-1">W1. 先另存，建立五頁</a><a class="level-h3" data-section="green" href="#design-2">W2. 共用色彩與版面參考</a><a class="level-h3" data-section="green" href="#design-3">W3. 插入大底板與小面板</a><a class="level-h3" data-section="green" href="#design-4">W4. 建立導覽按鈕與下拉篩選器</a><a class="level-h3" data-section="green" href="#design-5">W5. Opening：建立封面</a><a class="level-h3" data-section="green" href="#design-6">W6. Diagnosis：建立三個分析區塊</a><a class="level-h3" data-section="green" href="#design-7">W7. Portfolio：建立產品組合頁</a><a class="level-h3" data-section="green" href="#design-8">W8. Territory：建立地區與客群頁</a><a class="level-h3" data-section="green" href="#design-9">W9. Implications：建立Seasonality頁面（Optional）</a><a class="level-h3" data-section="green" href="#design-10">W10. Implications：建立主題切換（Optional）</a></nav></aside><main><article><div class="manual-tabs" role="tablist" aria-label="操作手冊章節"><button id="tab-manual" role="tab" data-tab="manual" aria-controls="manual-panel" aria-selected="true">建模與 Sales Overview</button><button id="tab-green" role="tab" data-tab="green" aria-controls="green-panel" aria-selected="false">設計工作坊</button></div><section aria-labelledby="tab-manual" id="manual-panel" role="tabpanel"><h1>PBI Demo Manual</h1>
+</style></head><body id="top"><header><strong>PBI / DEMO MANUAL</strong><span>Sales Design Lab · 從空白開始</span><button id="menu" aria-label="切換目錄">目錄</button></header><aside><div class="label">WORKSHOP GUIDE</div><nav><a class="level-h2" data-section="manual" href="#step-0">文件使用方式</a><a class="level-h2" data-section="manual" href="#step-1">完成後應該有甚麼</a><a class="level-h2" data-section="manual" href="#step-2">A · 開始與匯入</a><a class="level-h3" data-section="manual" href="#step-3">1. 建立空白報表</a><a class="level-h3" data-section="manual" href="#step-4">2. 匯入八張來源</a><a class="level-h3" data-section="manual" href="#step-5">3. 只做必要清洗</a><a class="level-h3" data-section="manual" href="#step-6">全表行數怎樣核對</a><a class="level-h2" data-section="manual" href="#step-7">B · 親手做一個 Power Query merge</a><a class="level-h3" data-section="manual" href="#step-8">4. 建立DimProduct</a><a class="level-h3" data-section="manual" href="#step-9">5. 看自己的M及TMDL</a><a class="level-h2" data-section="manual" href="#step-10">C · 建立其餘模型</a><a class="level-h3" data-section="manual" href="#step-11">6. 分批建立模型</a><a class="level-h3" data-section="manual" href="#step-12">第6.1批 · DimTerritory＋DimDate</a><a class="level-h3" data-section="manual" href="#step-13">第6.2批 · FactSales</a><a class="level-h3" data-section="manual" href="#step-14">第6.3批 · Relationships</a><a class="level-h3" data-section="manual" href="#step-15">第6.4批 · 基本 measures</a><a class="level-h3" data-section="manual" href="#step-16">7. 逐批Review、Apply、Refresh</a><a class="level-h2" data-section="manual" href="#step-17">D · 先驗收數字，不急著看圖</a><a class="level-h3" data-section="manual" href="#step-18">8. DAX query view執行全範圍檢查</a><a class="level-h3" data-section="manual" href="#step-19">9. 驗證relationships的篩選</a><a class="level-h2" data-section="manual" href="#step-20">E · 建第一個可以閱讀的報表</a><a class="level-h3" data-section="manual" href="#step-21">10. 做一頁Sales Overview</a><a class="level-h2" data-section="manual" href="#step-22">F · 加入分析指標</a><a class="level-h3" data-section="manual" href="#step-23">11. 新增六個measures</a><a class="level-h3" data-section="manual" href="#step-24">12. Review、Apply並核對</a><a class="level-h2" data-section="manual" href="#step-25">G · 讓觀眾真的看到差別</a><a class="level-h3" data-section="manual" href="#step-26">13. 加一張比較表先驗證</a><a class="level-h3" data-section="manual" href="#step-27">14. 用field parameter切換同一張bar</a><a class="level-h2" data-section="manual" href="#step-28">H · 完成 Sales Overview</a><a class="level-h3" data-section="manual" href="#step-29">15. 設定畫布與排版</a><a class="level-h3" data-section="manual" href="#step-30">16. 核對所有圖表欄位</a><a class="level-h3" data-section="manual" href="#step-31">17. 設定互動並核對</a><a class="level-h3" data-section="manual" href="#step-32">18. 配色與閱讀順序</a><a class="level-h2" data-section="manual" href="#step-33">I · 延伸頁面：Product View</a><a class="level-h3" data-section="manual" href="#step-34">19. 用Matrix做月份heatmap</a><a class="level-h2" data-section="manual" href="#step-35">J · 延伸頁面：Territory Detail</a><a class="level-h3" data-section="manual" href="#step-36">20. 從總覽鑽到單一地區</a><a class="level-h2" data-section="manual" href="#step-37">官方操作依據</a><a class="level-h2" data-section="manual" href="#prep-dashboard">Dashboard 資料準備（講者先做）</a><a class="level-h3" data-section="manual" href="#prep-1">P1. 下載及匯入補充資料</a><a class="level-h3" data-section="manual" href="#prep-2">P2. 建立兩個選擇器與分析measures</a><a class="level-h3" data-section="manual" href="#prep-3">P3. 課前交付checklist</a><a class="level-h2" data-section="green" href="#design-workshop">Dashboard</a><a class="level-h3" data-section="green" href="#design-0">W0. 講者示範：Deneb互動氣泡圖</a><a class="level-h3" data-section="green" href="#design-1">W1. 先另存，建立五頁</a><a class="level-h3" data-section="green" href="#design-2">W2. 共用色彩與版面參考</a><a class="level-h3" data-section="green" href="#design-3">W3. 插入大底板與小面板</a><a class="level-h3" data-section="green" href="#design-4">W4. 建立導覽按鈕與下拉篩選器</a><a class="level-h3" data-section="green" href="#design-5">W5. Opening：建立封面</a><a class="level-h3" data-section="green" href="#design-6">W6. Diagnosis：建立三個分析區塊</a><a class="level-h3" data-section="green" href="#design-7">W7. Portfolio：建立產品組合頁</a><a class="level-h3" data-section="green" href="#design-8">W8. Territory：建立地區與客群頁</a><a class="level-h3" data-section="green" href="#design-9">W9. Implications：建立Seasonality頁面（Optional）</a><a class="level-h3" data-section="green" href="#design-10">W10. Implications：建立主題切換（Optional）</a></nav></aside><main><article><div class="manual-tabs" role="tablist" aria-label="操作手冊章節"><button id="tab-manual" role="tab" data-tab="manual" aria-controls="manual-panel" aria-selected="true">建模</button><button id="tab-green" role="tab" data-tab="green" aria-controls="green-panel" aria-selected="false">Dashboard</button></div><section aria-labelledby="tab-manual" id="manual-panel" role="tabpanel"><h1>PBI Demo Manual</h1>
 <p>從CSV匯入、Power Query與TMDL，到互動報表。</p>
 <p>操作順序為匯入來源、合併產品分類、建立模型、核對數字、建立報表，再加入分析指標與互動。</p>
-<p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已確認的資料控制值列在文末；Windows Desktop 的逐步實跑仍在進行。</p>
+<p>使用現有CSV，展示名稱統一為 Sales Design Lab。由空白檔開始，逐批建立和驗收模型。已按Windows Desktop實跑結果修訂操作步驟；交付PBIX仍須在接收電腦完成開檔測試。</p>
 <h2 id="step-0">文件使用方式</h2>
 <p>本文件是排練和slides整合的唯一工作稿，檔名為 <code>pbi-demo-manual.md</code>。Prompt、操作程式碼及驗收查詢均直接放在本文件；不需要切換其他本地文件。</p>
+<p>頁面分為「建模」與「Dashboard」。建模包含CSV匯入、Power Query、TMDL、Sales Overview及Dashboard資料準備；Dashboard包含Opening、Diagnosis、Portfolio、Territory，Implications的W9／W10標示Optional。現階段以講者示範及交付目前成果為主，完整hands-on另行安排。</p>
 <p>從第1步開始操作；已有完成的部分可直接跳到下一步。</p>
+<p><strong>目前使用的文件與入口</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>資料</th>
+<th>位置</th>
+<th>使用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作manual</td>
+<td><a href="https://ytsang.com/pbi-demo-manual/">PBI Demo Manual</a></td>
+<td>唯一持續更新的操作稿；內含建模與Dashboard兩個分頁</td>
+</tr>
+<tr>
+<td>分享deck</td>
+<td><a href="https://ytsang.com/pbi-design/">Power BI Design</a></td>
+<td>分享投影片及內嵌示範，另由deck維護流程處理</td>
+</tr>
+<tr>
+<td>案例／Visual／教學資料庫</td>
+<td>本地deliverables/pbi-case-candidates/library.html</td>
+<td>案例參考及原始來源；目前未在網站發佈為獨立入口</td>
+</tr>
+<tr>
+<td>舊guide、rehearsal、kit及研究資料</td>
+<td>本地準備資料夾</td>
+<td>準備與參考用途，不另發多個操作manual給參加者</td>
+</tr>
+</tbody>
+</table></div>
+<p>網址維持現有位置。若後續整合網站，建議統一使用/power-bi/為入口、/power-bi/slides/為投影片、/power-bi/manual/為操作manual、/power-bi/examples/為案例。這些是待與網站維護者確認的命名，尚未搬遷或建立。</p>
+<p><strong>講解時保留的重點</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>主題</th>
+<th>講解內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power Query與M</td>
+<td>介面中的選欄、型別、merge會產生M步驟；Advanced Editor顯示同一份查詢的文字定義。這套資料清洗需求不多，示範重點是理解資料處理流程。</td>
+</tr>
+<tr>
+<td>TMDL</td>
+<td>semantic model的文字定義，包含columns、dataType、relationships、DAX measures，以及partition中的M。可以用文字建立或修改模型；報表版面、按鈕及visual格式仍在Report UI處理。</td>
+</tr>
+<tr>
+<td>同一個模型物件</td>
+<td>對已建立的DimProduct執行Script TMDL只是查看它的定義，不是再做一次merge。新物件才使用新的腳本建立；修改前先Preview。</td>
+</tr>
+<tr>
+<td>資料準備與設計</td>
+<td>P1／P2的資料、輔助欄位與measures先由講者準備；Dashboard步驟集中在排版、導覽、圖表及互動。</td>
+</tr>
+<tr>
+<td>頁面篩選與圖表篩選</td>
+<td>Year保持All，圖表仍可保留自己的月份filter。Portfolio折線固定2025-07至2026-06，包含跨年的12個月。</td>
+</tr>
+<tr>
+<td>背景</td>
+<td>畫布、shape、visual外層、<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>內層、<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicer</span>按鈕及table cells各有底色。外層透明100%不會自動清除所有內層底色；必要時將內層設為面板色<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>。</td>
+</tr>
+<tr>
+<td>表格欄寬</td>
+<td><span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>與Table可直接拖曳欄標題分隔線，按文字及百分比是否完整顯示調整；沒有精確欄寬輸入也能完成。</td>
+</tr>
+<tr>
+<td>購買原因<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span></td>
+<td>欄位加入順序為Rows → Values → Columns；OrderReasons保持disconnected，W Reason Share用TREATAS處理篩選。</td>
+</tr>
+<tr>
+<td>發放資料</td>
+<td>已保存的Import PBIX供直接操作；Refresh才需要來源檔及正確路徑。交付前在另一台Windows測試。</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>三種講解稿：開場與交付</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>講解方式</th>
+<th>開場</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文</td>
+<td>今天先看資料如何進入模型，再看同一套資料如何形成Dashboard。Power Query處理欄位、型別與合併；TMDL讓我們查看和修改模型定義。後半段集中在版面、導覽和互動。完整hands-on另行安排，這次先發放目前成果讓大家操作。</td>
+</tr>
+<tr>
+<td>English</td>
+<td>We will first look at how the data enters the model, then use that model to build a dashboard. Power Query handles columns, data types and merges. TMDL lets us inspect and edit the model definition. The dashboard section focuses on layout, navigation and interaction. The full hands-on will take place later; for now, you can explore the current report.</td>
+</tr>
+<tr>
+<td>Bilingual</td>
+<td>今天分為Modeling與Dashboard兩部分。Power Query負責data preparation，TMDL是semantic model的文字定義。模型準備好後，再處理layout、navigation及interaction。Full hands-on會另外安排，這次先操作現有成果。</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>講解方式</th>
+<th>發放PBIX時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文</td>
+<td>請先另存副本。這份PBIX已載入資料，可以直接篩選、切換指標和查看各頁；第一次開啟不用Refresh。日後需要重新整理時，先把DataFolder改成你電腦上的Dataset路徑。</td>
+</tr>
+<tr>
+<td>English</td>
+<td>Save your own copy first. This PBIX already contains the imported data, so you can use the <span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>, switch metrics and explore the pages without refreshing. If you need to refresh later, set DataFolder to the Dataset folder on your computer first.</td>
+</tr>
+<tr>
+<td>Bilingual</td>
+<td>請先Save as成自己的副本。Imported data已在PBIX內，現在可以直接用<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>和metric selector，先不用Refresh。之後要refresh，先更新DataFolder，再重新整理。</td>
+</tr>
+</tbody>
+</table></div>
 <h2 id="step-1">完成後應該有甚麼</h2>
 <ul>
 <li>八張raw staging queries；模型只載入DimProduct、DimTerritory、DimDate、FactSales。</li>
@@ -1199,8 +1325,46 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <p>兩種折扣share合計應為1；Top3 share應介於0和1。YoY只在2025及之後回傳，避免把2023部分年度當完整基期；2026按資料最後日期截取同長度的上年同期。全年度2025的Sales應等於原模型加Year=2025的結果。不要照照片抄數字。</p>
 <p>2026 Sales Plan使用的假設也在此先確認：W Actual Lock Month=6，Jan–Jun讀2026實際交易；Jul–Dec讀2025月份分布乘2025／2024全年增長倍數，再套場景uplift。Base為0%；Standard的Jul–Aug 15%、Sep–Oct 10%、Nov 5%、Dec 3%；Upside依序為30%、22%、12%、8%。這些是規劃假設。切scenario時Jan–Jun不變，年度<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>card</span>須等於12個月合計。</p>
 <h3 id="prep-3">P3. 課前交付checklist</h3>
-<p>本節僅供講者交付前檢查。完成P1、P2與W0示範後，發放含已載入資料及互動氣泡圖的PBIX；參加者從W1開始。</p>
-<p><strong>1. 儲存包含資料的PBIX</strong></p>
+<p>本節供講者交付前檢查。現階段可直接發放目前已完成的Dashboard PBIX，供參加者瀏覽及操作；完整hands-on延後。往後如安排重建練習，再另存課堂起始副本，參加者從W1開始。</p>
+<p><strong>交付原則</strong></p>
+<p>以File → Save as交付完整PBIX，不用截圖、PDF或PBIT代替可操作檔。此模型使用Import資料，已成功載入並保存的資料會隨PBIX交付；參加者開檔後可篩選、切指標及修改排版，先不按Refresh。CSV／JSON來源不是PBIX內的原始檔附件；要重新整理時，才需要在接收電腦接好來源路徑。</p>
+<p>Report pages共用同一個semantic model。隱藏舊頁或未完成頁只改導覽顯示，不會移除模型資料，也不是資料權限控制。交付Opening等完成頁時保留它們使用的tables、measures及relationships。</p>
+<p><strong>先整理目前的成果檔</strong></p>
+<ol>
+<li>另存Sales Design Lab - Dashboard.pbix，保留目前已完成的Opening、Diagnosis、Portfolio、Territory。</li>
+<li>未完成的Implications、Design Assets、舊練習頁可右鍵分頁 → Hide page；暫時不刪除，保留後續練習材料。Page navigator不要開啟Show hidden pages。</li>
+<li>若Implications未完成，隱藏Territory的Next及Opening中指向未完成內容的Scenarios等按鈕，避免導覽到空頁。完成後才重新顯示。</li>
+<li>將Year／Channel／Group恢復All，取消圖表點選狀態，預設停在Opening。Portfolio的Category momentum保留2025-07至2026-06的visual-level filter。</li>
+<li>File → Save，關閉後重新開啟，測試各可見頁、按鈕、<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>、Metric及Deneb。以實際交付的副本完成測試後才發放。</li>
+</ol>
+<p><strong>建議資料夾</strong></p>
+<div class="codebox"><div class="codebar"><span>TEXT</span><button aria-label="複製程式碼 25" data-copy="code-24" type="button">Copy</button></div><pre id="code-24"><code class="language-text">Sales Design Lab/
+  Sales Design Lab - Dashboard.pbix
+  Dataset/
+    （原本8份CSV及3份JSON，保留原檔名）
+  Assets/
+    cover.jpg
+  README.txt
+</code></pre></div>
+<p>外層資料夾可改名，Dataset也不是Power BI規定的保留名稱；固定名稱只是方便溝通。來源檔名須與M query一致。若只瀏覽目前成果，可以先只發PBIX及manual網址；Dataset／Assets供日後Refresh、重新插入封面或hands-on使用，不必先壓成ZIP。</p>
+<p>README可註明「請先另存副本；直接使用已載入資料；第一次開啟不用Refresh；需要Refresh時先設定DataFolder或修改來源路徑」。</p>
+<p><strong>Optional：提前統一DataFolder參數</strong></p>
+<p>PBIX與Dataset放在同一個外層資料夾，不會自動把原有File.Contents絕對路徑變成相對於PBIX的路徑。這次採一個可修改的資料夾參數，換電腦時只改一次；不要依賴目前工作目錄或寫成./Dataset/。</p>
+<ol>
+<li>先另存備份。Transform data → Power Query → Home → Manage Parameters → New Parameter。</li>
+<li>Name設DataFolder，Type選Text、Suggested Values選Any value。Current Value填來源資料夾的完整路徑，例如C:\PBI\Sales Design Lab\Dataset\，末尾保留反斜線，不加雙引號。</li>
+<li>在八張Raw queries及CustomerProfile、OrderContext、OrderReasons的Advanced Editor內，只修改File.Contents的檔案路徑表達式。CSV解析、JSON展開、型別及後續步驟保留。</li>
+<li>例如RawHeader內的來源檔案讀取改成以下表達式。這是原Source步驟的一部分，不是用來取代完整query。</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>POWERQUERY</span><button aria-label="複製程式碼 26" data-copy="code-25" type="button">Copy</button></div><pre id="code-25"><code class="language-powerquery">File.Contents(DataFolder &amp; "Sales.SalesOrderHeader.csv")
+</code></pre></div>
+<ol start="5">
+<li>三份JSON同理，例如<code>File.Contents(DataFolder &amp; "customer-profile.json")</code>；其外層的Json.Document及原有步驟保留。其餘來源使用各自的原檔名。</li>
+<li>Close &amp; Apply → Refresh，確認11個來源均成功，Sales／Orders及設計圖表未變，才保存交付副本。不要修改DimProduct、FactSales、OrderBasket的query引用或重建model tables。</li>
+<li>接收者需要Refresh時，Home → Transform data旁的下拉選單 → Edit parameters，將DataFolder改成自己的Dataset完整路徑，末尾保留反斜線，再Apply／Refresh。若沒有該選單，從Power Query → Manage Parameters修改。</li>
+</ol>
+<p>沒有統一參數前，沿用下方逐一Change Source的方法。兩種方式擇一，不需要同時重做。參數化是交付前準備，不是只為瀏覽PBIX而必須做的步驟。</p>
+<p><strong>日後hands-on：儲存包含資料的課堂起始PBIX</strong></p>
 <ol>
 <li>完成P1、P2及W0後，在自己的電腦執行Home → Refresh，確認沒有來源或計算錯誤。</li>
 <li>將Year／Channel／Group恢復為All。保存課堂起始頁的顯示狀態。</li>
@@ -1208,7 +1372,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>關閉檔案，再重新開啟。先不按Refresh，確認Sales Overview的<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Cards</span>與圖表顯示資料，且<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>與Metric切換正常。</li>
 <li>將此PBIX複製至交付資料夾。課堂起始版本與講者已完成的設計版本分開保存。</li>
 </ol>
-<p><strong>2. 交付資料夾內容</strong></p>
+<p><strong>日後hands-on：交付資料夾內容</strong></p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -1231,12 +1395,12 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 </tr>
 <tr>
 <td>manual網址</td>
-<td>開始位置為設計工作坊W1</td>
+<td>Dashboard分頁的W1</td>
 </tr>
 </tbody>
 </table></div>
 <p>參加者直接開啟PBIX即可使用檔案內已載入的Import資料，進行篩選、建立visual及排版。讀取已載入的資料不需要存取講者電腦上的CSV或JSON。開啟後先Save as至自己的工作資料夾。</p>
-<p><strong>3. 參加者需要Refresh時</strong></p>
+<p><strong>未使用DataFolder時：逐一修改來源</strong></p>
 <p>來源檔的本機路徑不會隨PBIX位置自動改變。只移動Dataset資料夾，並不足以修正原路徑。</p>
 <ol>
 <li>將完整Dataset資料夾存到參加者電腦，保留11份檔案的原檔名。</li>
@@ -1246,16 +1410,16 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>改動八張Raw queries及CustomerProfile、OrderContext、OrderReasons的來源路徑。DimProduct、FactSales及OrderBasket沿用query引用，不新增匯入副本。</li>
 <li>Close &amp; Apply → Home → Refresh。確認來源成功後，再驗收Sales與Orders，最後儲存PBIX。</li>
 </ol>
-<p><strong>4. 交付前測試</strong></p>
+<p><strong>交付前跨電腦測試</strong></p>
 <ol>
 <li>在另一台Windows電腦，以交付的PBIX副本開啟；先不放置來源檔案、不執行Refresh，測試<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Cards</span>、<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>、Metric與設計編輯。</li>
 <li>確認Design Assets的地區氣泡圖可顯示；若該環境限制custom visuals，課堂改用W0的原生Scatter版本。</li>
 <li>若課堂包含Refresh練習，再放入Dataset，依上節更新路徑，執行Refresh。</li>
 <li>使用與課堂相同的Power BI Desktop版本完成測試後，再發放該版本檔案。</li>
 </ol>
-<p>操作參考：<a href="https://learn.microsoft.com/en-us/power-query/connectors/json">JSON匯入</a>、<a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-storage-mode">Import模式</a>、<a href="https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-desktop-file-local-drive">資料重新整理</a>。</p>
-</section><section aria-labelledby="tab-green" hidden="" id="green-panel" role="tabpanel"><h2 id="design-workshop">設計工作坊</h2><div class="green-intro">講者先完成 W0 示範，再發放 PBIX。參加者從 W1 開始，依序建立 Opening、Diagnosis、Portfolio、Territory、Implications。</div>
-<p>從已完成Sales Overview及前面Dashboard資料準備的檔案開始，重建Opening、Diagnosis、Portfolio、Territory、Implications五個畫面。另存檔名統一為 <code>Sales Design Lab - Dashboard.pbix</code>。講者先示範W0，再發放完成資料準備的PBIX。參加者從W1開始。</p>
+<p>操作參考：<a href="https://learn.microsoft.com/en-us/power-query/connectors/json">JSON匯入</a>、<a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-storage-mode">Import模式</a>、<a href="https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-desktop-file-local-drive">資料重新整理</a>、<a href="https://learn.microsoft.com/en-us/power-query/power-query-query-parameters">Power Query參數</a>、<a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-templates">PBIT不包含資料</a>。</p>
+</section><section aria-labelledby="tab-green" hidden="" id="green-panel" role="tabpanel"><h2 id="design-workshop">Dashboard</h2><div class="green-intro">目前以講者示範與成果檔操作為主，完整 hands-on 另行安排。W1–W8 保留 Opening 至 Territory 的操作步驟；W9／W10 Implications 為 Optional。</div>
+<p>從已完成Sales Overview及前面Dashboard資料準備的檔案開始，建立Opening、Diagnosis、Portfolio、Territory；Implications的W9／W10保留為Optional。另存檔名統一為 <code>Sales Design Lab - Dashboard.pbix</code>。講者先示範W0，再發放完成資料準備的PBIX。參加者從W1開始。</p>
 <p>五張照片是版面參考，圖表數值由目前模型重新計算。這版使用五個實際report pages，保留頂部五個導覽、Previous／Next；Implications內部再用bookmarks切換內容。</p>
 <h3 id="design-0">W0. 講者示範：Deneb互動氣泡圖</h3>
 <p>操作角色：講者。操作頁面：Design Assets。開始前完成P1及P2。先示範建立氣泡圖、貼入JSON及點選互動，再儲存含完成圖表的PBIX並交付參加者。參加者直接從W1開始；W8再複製本節的氣泡圖。</p>
@@ -1321,7 +1485,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>若Config編輯區仍有模板設定，切至Config，將內容取代為{}，再回Specification。圖表樣式已包含在下方規格中。</li>
 <li>按Apply changes，或按Ctrl+Enter。若Auto-Apply已開啟，貼上後會自動更新預覽。</li>
 </ol>
-<div class="codebox"><div class="codebar"><span>JSON</span><button aria-label="複製程式碼 25" data-copy="code-24" type="button">Copy</button></div><pre id="code-24"><code class="language-json">{
+<div class="codebox"><div class="codebar"><span>JSON</span><button aria-label="複製程式碼 27" data-copy="code-26" type="button">Copy</button></div><pre id="code-26"><code class="language-json">{
   "data": {
     "name": "dataset"
   },
