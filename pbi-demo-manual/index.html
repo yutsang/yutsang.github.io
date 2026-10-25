@@ -1022,6 +1022,7 @@ ROW(
 </code></pre></div>
 <p>Basket rows及keys應各31,465；三個Missing／Orphan項目應為0。Sales與Orders要和補充前相同。IncomeBand有Unknown屬未填來源資料，不能改成任一收入層。</p>
 <h3 id="prep-2">P2. 建立兩個選擇器與分析measures</h3>
+<p>執行本節前，確認P1已Apply並Refresh。Data pane須已有CustomerProfile、OrderContext、OrderReasons、OrderBasket；DimDate須已有W Year Label、W Window Sort、W Timing Window。缺少上述物件時，先完成<a href="#prep-1">P1資料準備</a>。</p>
 <p>Modeling → New table，先逐段各建立一張disconnected calculated table。不要放進TMDL view。</p>
 <div class="codebox"><div class="codebar"><span>DAX</span><button aria-label="複製程式碼 21" data-copy="code-20" type="button">Copy</button></div><pre id="code-20"><code class="language-dax">PortfolioChoice =
 DATATABLE("Metric",STRING,"Sort",INTEGER,
@@ -1031,7 +1032,7 @@ DATATABLE("Metric",STRING,"Sort",INTEGER,
 DATATABLE("Scenario",STRING,"Sort",INTEGER,
     {{"Base",0},{"Standard",1},{"Upside",2}})
 </code></pre></div>
-<p>選PortfolioChoice[Metric] → Sort by column → Sort。PlanScenario[Scenario]同樣按Sort排序。兩表不建立relationship。</p>
+<p>選PortfolioChoice[Metric] → Sort by column → Sort。PlanScenario[Scenario]同樣按Sort排序。兩表不建立relationship。若兩表已建立並完成排序，直接執行下方measures，不重新建立表。</p>
 <p>以下measures全部用W前綴，保留你已驗收的Sales、Orders、Gross Margin等定義。貼到新的TMDL tab，Preview／Apply；多行DAX比formatString深一層縮排，不手動拉齊。</p>
 <div class="codebox"><div class="codebar"><span>TMDL</span><button aria-label="複製程式碼 23" data-copy="code-22" type="button">Copy</button></div><pre id="code-22"><code class="language-tmdl">createOrReplace
 
@@ -1053,8 +1054,8 @@ DATATABLE("Scenario",STRING,"Sort",INTEGER,
 
 		measure 'W Sales YoY' =
 				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
-				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
-				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR __LatestOrderDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(__LatestOrderDate),__LatestOrderDate,DATE(Y,12,31))
 				VAR CurrentValue = CALCULATE([Sales],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
 				VAR PriorValue = CALCULATE([Sales],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
 				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),DIVIDE(CurrentValue-PriorValue,PriorValue))
@@ -1062,8 +1063,8 @@ DATATABLE("Scenario",STRING,"Sort",INTEGER,
 
 		measure 'W GP YoY' =
 				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
-				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
-				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR __LatestOrderDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(__LatestOrderDate),__LatestOrderDate,DATE(Y,12,31))
 				VAR CurrentValue = CALCULATE([Gross Profit],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
 				VAR PriorValue = CALCULATE([Gross Profit],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
 				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),DIVIDE(CurrentValue-PriorValue,PriorValue))
@@ -1071,8 +1072,8 @@ DATATABLE("Scenario",STRING,"Sort",INTEGER,
 
 		measure 'W GM Change' =
 				VAR Y = SELECTEDVALUE(DimDate[Year],2025)
-				VAR LastDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
-				VAR EndDate = IF(Y=YEAR(LastDate),LastDate,DATE(Y,12,31))
+				VAR __LatestOrderDate = CALCULATE(MAX(FactSales[OrderDate]),REMOVEFILTERS())
+				VAR EndDate = IF(Y=YEAR(__LatestOrderDate),__LatestOrderDate,DATE(Y,12,31))
 				VAR CurrentValue = CALCULATE([Gross Margin],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y,1,1),EndDate))
 				VAR PriorValue = CALCULATE([Gross Margin],REMOVEFILTERS(DimDate),DATESBETWEEN(DimDate[Date],DATE(Y-1,1,1),EDATE(EndDate,-12)))
 				RETURN IF(Y&gt;=2025 &amp;&amp; NOT ISBLANK(PriorValue),100*(CurrentValue-PriorValue))
