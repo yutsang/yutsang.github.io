@@ -2499,7 +2499,7 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>Height 180、Width 600、X 1168、Y 402。</li>
 <li>Filters on this visual → Territory只選Southwest、Northwest、Canada；Reason只選Price、On Promotion、Manufacturer。</li>
 <li>Format visual → Visual → Row headers及Column headers，字級12、粗體。Values字級12。Subtotals及Grand total設Off；Gridlines設Off。</li>
-<li>Column headers → Options，Auto-size column width設Off；若介面提供Fit to content／Grow to fit等模式，改用可手動固定欄寬的設定。回到<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>，拖曳欄標題右側邊界，把Territory欄加寬至約130，其餘三欄各約145，讓內容展開至視覺右側，百分比完整顯示。若有Column width數值輸入，可直接輸入相同寬度。</li>
+<li>在<span class="visual-name"><svg aria-label="Matrix圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Matrix</title><rect height="22" width="24" x="3" y="4"></rect><path d="M3 11h24M3 18h24M11 4v22M19 4v22"></path><path d="M4 5h22v5H4z" fill="currentColor" opacity=".25" stroke="none"></path></svg>Matrix</span>內，將滑鼠移到欄標題右側的分隔線，出現左右箭頭後拖曳加寬。先讓Territory完整顯示，再把三個原因欄調成相近寬度，利用右側空間，讓欄名與百分比完整顯示。此處採目視拖曳，不需輸入精確欄寬。若版本沒有Auto-size column width選項，直接拖曳即可。調整的是表格內部欄位，不是視覺外框；外框仍維持Width 600。</li>
 <li>Visual → Grid → Options → Row padding設10，增加三列的間距。若產生垂直捲軸，稍微降低Row padding，保留三列完整顯示。</li>
 <li>General → Effects → Background設Transparency 100%。Visual → Values檢查Background color與Alternate background color，兩者均設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；若有Banded rows，設Off。Row headers與Column headers的Background color也設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；有透明度選項時可改Transparency 100%。這些儲存格底色與整個視覺的背景分開設定。</li>
 <li>在Build visual的Values，選W Reason Share旁的選單 → Conditional formatting → Data bars。</li>
@@ -2513,7 +2513,11 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>Height 208、Width 600、X 1168、Y 704。Filters on this visual → IncomeBand取消Unknown。</li>
 <li>點W Income Share欄標題，排序設Descending。</li>
 <li>對W Income Share套Conditional formatting → Data bars，Minimum Number 0、Maximum Number 1、色碼<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#225D50"></span>#225D50</span>，保留數字。</li>
-<li>Column headers字級12、粗體；Values字級12。Total、Gridlines、Title、Border及Shadow設Off，背景Transparency 100%。</li>
+<li>Format visual → Visual → Column headers字級12、粗體；Values字級12。Total、Gridlines設Off。</li>
+<li>在Table內拖曳欄標題右側的分隔線調整寬度。IncomeBand欄以收入區間文字完整顯示為準，其餘空間留給W Income Share，讓資料條及百分比完整顯示。不需精確欄寬；版本沒有Auto-size column width選項時，直接拖曳即可。視覺外框維持Width 600。</li>
+<li>Visual → Grid → Options → Row padding先設6；若最下列遭截斷或出現垂直捲軸，降低Row padding，讓所有收入區間完整顯示。</li>
+<li>General → Effects → Background設Transparency 100%。Visual → Values的Background color及Alternate background color均設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>；Column headers的Background color也設<span class="color-ref"><span aria-hidden="true" class="color-swatch" style="background:#FAFAF7"></span>#FAFAF7</span>，有透明度選項時可改Transparency 100%。若有Banded rows，設Off。Cell elements若有額外Background color條件格式，關閉該項，保留Data bars及百分比。</li>
+<li>General → Title、Border及Shadow設Off。點畫布空白處取消選取，檢查底色與文字。</li>
 <li>在Year／Channel／Group選取一個範圍，確認本頁圖表更新。恢復All後保存檔案。</li>
 </ol>
 <h3 id="design-9">W9. Implications：建立Seasonality頁面（Optional）</h3>
