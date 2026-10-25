@@ -1304,15 +1304,25 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
         ]
       },
       "axis": null
+    },
+    "opacity": {
+      "condition": {
+        "test": {
+          "field": "__selected__",
+          "equal": "off"
+        },
+        "value": 0.25
+      },
+      "value": 1
     }
   },
   "layer": [
     {
       "mark": {
         "type": "circle",
-        "opacity": 1,
         "stroke": "#FAFAF7",
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "cursor": "pointer"
       },
       "encoding": {
         "size": {
@@ -1351,7 +1361,8 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
         "type": "text",
         "dy": -8,
         "fontSize": 12,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "cursor": "pointer"
       },
       "encoding": {
         "text": {
@@ -1371,7 +1382,8 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
         "type": "text",
         "dy": 10,
         "fontSize": 15,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "cursor": "pointer"
       },
       "encoding": {
         "text": {
@@ -1411,17 +1423,29 @@ ROW("Sales2025",[W Sales2025],"GP2025",[W GP2025],
 <li>View → Selection，將visual命名Asset_Territory_Bubbles。</li>
 <li>按Ctrl+S儲存PBIX。</li>
 </ol>
-<p><strong>7. 測試篩選</strong></p>
+<p><strong>7. 啟用氣泡點選互動</strong></p>
 <ol>
+<li>Deneb的⋯ → Edit，開啟編輯器的Project setup／Settings（齒輪）面板，展開Cross-filtering。</li>
+<li>開啟Expose cross-filtering values for dataset rows。</li>
+<li>Cross-filtering management選Simple。不要選Advanced。</li>
+<li>按Apply changes，回Back to report。此開關是Deneb物件設定，單靠貼JSON不會開啟。</li>
+<li>下方規格使用__selected__欄位控制透明度。選取氣泡時，其餘氣泡變淡；點Deneb內的空白處清除選取。</li>
+</ol>
+<p><strong>8. 測試點選與<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span></strong></p>
+<ol>
+<li>在Design Assets新增<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>，Values放已有的Sales measure，放在氣泡圖旁邊。</li>
+<li>點Canada氣泡，確認其他氣泡變淡，Sales <span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>改為Canada的Sales；點Deneb內空白處，確認恢復總計。</li>
+<li>若氣泡變淡但<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>不變，先在報表選Deneb → 上方Format → Edit interactions，在<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>上選Filter（漏斗），關閉Edit interactions後再測試。</li>
+<li>按住Ctrl再點Southwest，測試多選；點Deneb內空白處清除。</li>
 <li>從Diagnosis複製SLC_Year、SLC_Channel、SLC_Group至Design Assets，詢問是否同步時選Sync。</li>
 <li>選Year=2025、Channel=Online、Group=North America，確認氣泡及金額隨篩選更新。</li>
-<li>恢復三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>為All，再刪除Design Assets上的三個測試<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>；保留其他頁的<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>。</li>
+<li>恢復三個<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>為All並清除氣泡選取，刪除Design Assets的測試<span class="visual-name"><svg aria-label="Card圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Card</title><rect height="20" rx="2" width="24" x="3" y="5"></rect><text fill="currentColor" font-family="sans-serif" font-size="10" stroke="none" text-anchor="middle" x="15" y="19">123</text></svg>Card</span>及三個測試<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>；保留其他頁的<span class="visual-name"><svg aria-label="Slicer圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Slicer</title><rect height="22" rx="2" width="22" x="4" y="3"></rect><path d="M8 8h14M8 12h14M8 16h7m2-1h7l-3 4v4h-2v-4z"></path></svg>slicers</span>。</li>
 <li>右鍵Design Assets分頁 → Hide page。按Ctrl+S。</li>
-<li>回Diagnosis，繼續W6。W8使用Ctrl+C／Ctrl+V複製Asset_Territory_Bubbles，不需重建規格。</li>
+<li>回Diagnosis，繼續W6。W8複製Asset_Territory_Bubbles時，保留其規格與cross-filtering設定。</li>
 </ol>
 <p><strong>原生Scatter替代方式</strong></p>
 <p>若課堂環境無法使用Deneb，在Design Assets新增<span class="visual-name"><svg aria-label="Scatter chart圖示提示" class="visual-icon" fill="none" role="img" stroke="currentColor" stroke-width="1.5" viewbox="0 0 30 30"><title>Scatter chart</title><path d="M4 3v23h23"></path><circle cx="10" cy="18" r="3"></circle><circle cx="17" cy="10" r="4"></circle><circle cx="24" cy="17" r="2"></circle></svg>Scatter chart</span>：X-axis放Map X、Y-axis放Map Y、Size放Sales、Values／Details放Territory。Map X／Map Y用Minimum。關閉兩軸，開Category labels，背景Transparency 100%；沿用相同尺寸與Asset_Territory_Bubbles名稱。</p>
-<p>操作參考：<a href="https://deneb.guide/docs/simple-example">Deneb入門範例</a>、<a href="https://deneb.guide/docs/visual-editor">Visual Editor與Apply changes</a>、<a href="https://deneb.guide/docs/dataset">Dataset欄位</a>。</p>
+<p>操作參考：<a href="https://deneb.guide/docs/simple-example">Deneb入門範例</a>、<a href="https://deneb.guide/docs/visual-editor">Visual Editor與Apply changes</a>、<a href="https://deneb.guide/docs/dataset">Dataset欄位</a>、<a href="https://deneb.guide/docs/interactivity-selection">Cross-filtering設定</a>。</p>
 <h3 id="prep-4">P4. 準備課堂交付檔案</h3>
 <p>本節由講者完成。課堂使用含已載入資料的PBIX，參加者從設計工作坊開始，不重做P1至P3。</p>
 <p><strong>1. 儲存包含資料的PBIX</strong></p>

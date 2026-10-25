@@ -40,15 +40,25 @@
         ]
       },
       "axis": null
+    },
+    "opacity": {
+      "condition": {
+        "test": {
+          "field": "__selected__",
+          "equal": "off"
+        },
+        "value": 0.25
+      },
+      "value": 1
     }
   },
   "layer": [
     {
       "mark": {
         "type": "circle",
-        "opacity": 1,
         "stroke": "#FAFAF7",
-        "strokeWidth": 2
+        "strokeWidth": 2,
+        "cursor": "pointer"
       },
       "encoding": {
         "size": {
@@ -87,7 +97,8 @@
         "type": "text",
         "dy": -8,
         "fontSize": 12,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "cursor": "pointer"
       },
       "encoding": {
         "text": {
@@ -107,7 +118,8 @@
         "type": "text",
         "dy": 10,
         "fontSize": 15,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "cursor": "pointer"
       },
       "encoding": {
         "text": {
