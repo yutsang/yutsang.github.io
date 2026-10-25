@@ -56,7 +56,7 @@
     {
       "mark": {
         "type": "circle",
-        "stroke": "#FAFAF7",
+        "stroke": "#FFFFFF",
         "strokeWidth": 2,
         "cursor": "pointer"
       },
@@ -75,9 +75,9 @@
         "color": {
           "condition": {
             "test": "datum.Core",
-            "value": "#225D50"
+            "value": "#00338D"
           },
-          "value": "#D8DFD8"
+          "value": "#DCE6F1"
         },
         "tooltip": [
           {
@@ -107,9 +107,9 @@
         "color": {
           "condition": {
             "test": "datum.Core",
-            "value": "#FAFAF7"
+            "value": "#FFFFFF"
           },
-          "value": "#142320"
+          "value": "#0C233C"
         }
       }
     },
@@ -128,9 +128,9 @@
         "color": {
           "condition": {
             "test": "datum.Core",
-            "value": "#FAFAF7"
+            "value": "#FFFFFF"
           },
-          "value": "#142320"
+          "value": "#0C233C"
         }
       }
     }
