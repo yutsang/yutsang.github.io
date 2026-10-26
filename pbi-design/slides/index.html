@@ -307,8 +307,9 @@ body.show-ui #toolbar,#toolbar:focus-within,#toolbar:hover{opacity:1}
 body.touch #toolbar{opacity:.92;top:auto;bottom:max(8px,env(safe-area-inset-bottom));right:max(8px,env(safe-area-inset-right))}
 #toolbar button{background:none;color:#fff;border:1px solid rgba(255,255,255,.28);padding:6px 2px;border-radius:14px;font:600 12.5px var(--sans);cursor:pointer;white-space:nowrap;touch-action:manipulation;min-height:32px;width:70px;overflow:hidden;text-align:center;flex:none}
 /* every slot has a fixed width, so the bar is identical on every slide and in both languages */
-#toolbar .tb-nav{width:34px}#toolbar #bHelp{width:34px}#toolbar #bLang{width:56px}#toolbar #bRecipe{width:116px}#toolbar #bLegal{width:80px}#toolbar #bDownload{width:88px}#toolbar #bAgenda{width:92px}#toolbar #bBack{width:76px}
+#toolbar .tb-nav{width:34px}#toolbar #bHelp{width:34px}#toolbar #bLang{width:56px}#toolbar #bRecipe{width:116px}#toolbar #bLegal{width:80px}#toolbar #bDownload{width:88px}#toolbar #bAgenda{width:92px}#toolbar #bBack{width:76px}#toolbar #bSite{width:80px}
 body:not(.presenter) #toolbar .pres{display:none}
+html.embedded #toolbar #bSite,html.embedded #toolbar #bSite+.tb-sep{display:none}
 #toolbar #bBack:disabled{opacity:.4}
 #toolbar button:hover{background:var(--blue);border-color:var(--blue)}
 #toolbar .tb-main{background:var(--pink);border-color:var(--pink)}
@@ -886,6 +887,8 @@ kbd{background:#1c3252;border:1px solid #4a6a96;border-radius:4px;padding:1px 7p
   </div></div>
 
   <div id="toolbar" role="toolbar" aria-label="Deck controls">
+    <button id="bSite"></button>
+    <span class="tb-sep"></span>
     <button id="bPrev" class="tb-nav" aria-label="Previous slide">&#8249;</button>
     <span id="pos"></span>
     <button id="bNext" class="tb-nav" aria-label="Next slide">&#8250;</button>
@@ -1018,6 +1021,8 @@ const UI = {
   agendaHead: L('跳到任何一部分', 'Jump to any part'),
   agendaHint: L('點部分的標題跳到它的開頭，點下面的小項直接去那一頁。按「返回」回到剛才的頁面。', 'Tap a part to jump to its start, or a point below it to go straight to that page. Use Back to return to where you were.'),
   interactiveNote: L('有這個符號的地方都可以點擊或操作', 'Anything marked with this symbol is interactive: click or try it'),
+  site: L('網站', 'Website'),
+  siteTip: L('回到網站頁面 ytsang.com/pbi-design', 'Back to the website page, ytsang.com/pbi-design'),
   back: L('返回', 'Back'),
   backTip: L('回到上一個看過的頁面', 'Return to the page you were on'),
   pages: L('頁', 'pages'),
@@ -2909,6 +2914,7 @@ function chrome() {
 function uiText() {
   $('#bLang').textContent = lang === 'zh' ? 'EN' : '中文';
   $('#bNotes').textContent = t(UI.notes); $('#bTimer').textContent = t(UI.timer); $('#bOverview').textContent = t(UI.overview);
+  $('#bSite').textContent = '⌂ ' + t(UI.site); $('#bSite').title = t(UI.siteTip);
   $('#bAgenda').textContent = '☰ ' + t(UI.agenda); $('#bBack').textContent = '↩ ' + t(UI.back); $('#bBack').title = t(UI.backTip);
   $('#bDownload').textContent = t(UI.download); $('#bFull').textContent = t(UI.full); $('#bLegal').textContent = 'ⓘ ' + t(UI.legal);
 }
@@ -3056,6 +3062,9 @@ function fit() {
 addEventListener('resize', fit); window.visualViewport && window.visualViewport.addEventListener('resize', fit); addEventListener('orientationchange', () => setTimeout(fit, 120));
 
 /* ---------- input ---------- */
+/* back to the website: same tab when served under /pbi-design/, a new tab from a downloaded copy; hidden when the deck is embedded in the page itself */
+try { if (window.self !== window.top) document.documentElement.classList.add('embedded'); } catch (e) { document.documentElement.classList.add('embedded'); }
+$('#bSite').onclick = () => { if (location.protocol.indexOf('http') === 0 && location.pathname.indexOf('/pbi-design/') === 0) location.href = '/pbi-design/'; else window.open('https://ytsang.com/pbi-design/', '_blank', 'noopener'); };
 $('#bPrev').onclick = prev; $('#bNext').onclick = next; $('#bAgenda').onclick = toggleAgenda; $('#bBack').onclick = back; $('#bLang').onclick = () => setLang(lang === 'zh' ? 'en' : 'zh');
 $('#bNotes').onclick = () => toggleNotes(); $('#bTimer').onclick = toggleTimer; $('#bOverview').onclick = toggleOverview;
 $('#bDownload').onclick = downloadDeck; $('#bLegal').onclick = toggleLegal; $('#bHelp').onclick = toggleHelp; $('#bRecipe').onclick = toggleRecipe;
