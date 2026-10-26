@@ -1064,7 +1064,7 @@ const SECTIONS = [
   { id: 'O', num: '', short: L('開場', 'Opening'), title: L('開場', 'Opening'), start: 0, len: 5, line: L('', ''), points: [] },
   { id: 'A', num: '1', short: L('真實作品', 'Real reports'), title: L('先看真實作品', 'Real reports first'), start: 5, len: 7,
     line: L('專業報表怎樣安排第一眼、主圖和導覽。', 'How professional reports set the first glance, the main chart and the navigation.'),
-    points: [['aurum', L('一致的介面', 'A consistent interface')], ['main-chart', L('把主圖留給主要問題', 'The main chart answers the main question')]] },
+    points: [['read-g02', L('第一眼落在哪裡', 'Where the eye lands first')], ['aurum', L('一致的介面', 'A consistent interface')], ['main-chart', L('把主圖留給主要問題', 'The main chart answers the main question')]] },
   { id: 'B', num: '2', short: L('顏色', 'Colour'), title: L('顏色', 'Colour'), start: 12, len: 18,
     line: L('每種顏色只做一件事；先用理論分角色，再用品牌色。', 'Every colour does one job: roles from theory first, then the brand palette.'),
     points: [['cornell-colour', L('用筆記螢光筆理解：限制顏色數量', 'Highlighters in notes: limit the number of colours')], ['pick', L('好與壞的例子', 'Good and bad examples')], ['ratio', L('60 · 30 · 10', '60 · 30 · 10')], ['wheel', L('相鄰色、互補色，與 KPMG 色票', 'Analogous, complementary, and the KPMG palette')], ['contrast', L('對比度與文字顏色', 'Contrast and text colours')], ['brand-roles', L('品牌色的角色', 'Brand-colour roles')]] },
@@ -2502,6 +2502,15 @@ const SLIDES = [
     'Start with how often. Gartner said in 2011 that 70–80% of corporate BI projects fail; BARC\'s survey puts daily BI use at about 25% of employees; Luzmo\'s 2025 survey (200+ product leaders and data teams) found 43% regularly skip dashboards for their own Excel analysis. Luzmo sells embedded analytics and the survey is industry research, not academic; the Gartner figure is old; BARC measures usage, not failure. So read them as direction.\nThen why. Process: Gartner points to poor communication between IT and the business and not asking the right questions. Design: Stephen Few listed 13 dashboard design pitfalls in 2006 (we checked the original text); #9 arranging the data poorly, #10 not highlighting what matters, #12 misusing colour and #5 the wrong chart type line up with parts 2 to 4 today. Close with: parts 2–4 deal with design, part 5 with process.') },
 
 DIV('A'),
+
+{ id: 'read-g02', sec: 'A', type: 'shot', title: L('這張報表，你先看哪裡？', 'Where do you look first?'), img: 'G02', reveal: 4,
+  pins: [
+    { x: 55, y: 13, step: 1, label: L('四個 KPI：先看方向', 'Four KPIs: direction first') },
+    { x: 30, y: 48, step: 2, label: L('主比較：誰高誰低', 'Main comparison: who leads') },
+    { x: 78, y: 52, step: 3, label: L('追查：哪些點值得點開', 'Drill: which dots to open') },
+    { x: 7, y: 63, step: 4, label: L('導覽與篩選，位置固定', 'Navigation and filters, fixed place') }],
+  notes: L('先不要講。停一停，請大家說第一眼落在哪裡，然後按空白鍵逐點顯示：KPI、主比較、追查入口、導覽。\n用實際作者作品談層次，不用逐張圖解釋所有數字。截圖來源：Sajjad / Dashboard-Design（MIT）。',
+    'Say nothing at first. Ask where their eyes went, then press Space to reveal each point: KPIs, main comparison, drill entry, navigation.\nUse a real author\'s work to talk about hierarchy; do not explain every number. Source: Sajjad / Dashboard-Design (MIT).') },
 
 { id: 'aurum', sub: L('好設計不只是好看，先是一致：同一個導覽、時間範圍永遠在同一個位置、三張大小一樣的 KPI 卡。讀者換頁不用重新學。', 'Good design is consistency before decoration: the same navigation, the time range always in one spot, three KPI cards of equal size. Readers do not relearn the page each time.'), sec: 'A', type: 'shot', title: L('一致的介面，也是一種設計', 'A consistent interface is design too'), img: 'TM03-1', reveal: 4,
   pins: [
