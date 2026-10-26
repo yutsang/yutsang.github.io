@@ -1547,27 +1547,6 @@ function legalHTML() {
 const KIND_COL = { talk: PAL.navy, hands: PAL.cyan, demo: PAL.blue, ai: PAL.purple };
 const kindChip = k => `<em class="kindchip k-${k}${k === 'talk' ? ' lt' : ''}">${esc(t(UI.kinds[k]))}</em>`;
 
-/* ---------- why projects fail: 92% and think slow, act fast ---------- */
-W.whyfail = {
-  html() {
-    const cells = Array.from({ length: 100 }, (_, i) => `<i class="${i < 92 ? 'on' : ''}"></i>`).join('');
-    return `<div class="w wf2"><div class="wf-l"><div class="wf-big"><b>92</b><span>%</span><p>${md(L('的項目超支、超時，或兩者皆有', 'of projects went over budget, over schedule, or both'))}</p></div>
-        <div class="waffle" aria-label="92 of 100 squares filled">${cells}</div>
-        <div class="legend" style="margin-top:8px"><span><i style="background:${PAL.navy}"></i>${esc(t(L('超支或超時', 'Over budget or schedule')))}</span><span><i style="background:#D4DEEC"></i>${esc(t(L('準時、守預算', 'On time and on budget')))}</span></div></div>
-      <div class="wf-r">
-        <div class="card sm"><h3>${esc(t(L('這個數字是甚麼', 'What the number is')))}</h3><ul>
-          <li>${md(L('Flyvbjerg 的資料庫：超過 16,000 個項目，136 個國家，偏重大型項目', 'Flyvbjerg\'s database: more than 16,000 projects in 136 countries, weighted to large ones'))}</li>
-          <li>${md(L('只有 **8.5%** 同時守住預算和時間；三樣（成本、時間、效益）都做到的只有約 **0.5%**', 'Only **8.5%** hit both budget and schedule; about **0.5%** hit cost, time and benefits'))}</li></ul></div>
-        <div class="slowfast" data-step="1"><div><small>${esc(t(L('慢慢想', 'Think slow')))}</small><b>${md(L('誰看？為了甚麼決定？第一眼要看到甚麼？', 'Who reads it? Which decision? What do they see first?'))}</b><span>${esc(t(L('第 1–4 部分', 'Parts 1–4')))}</span></div><em>→</em>
-          <div class="fast"><small>${esc(t(L('快快做', 'Act fast')))}</small><b>${md(L('用已驗證的模式搭建、檢查、交付', 'Build with a proven pattern, check, ship'))}</b><span>${esc(t(L('第 5 部分', 'Part 5')))}</span></div></div>
-        <div class="say" data-step="1"><b>${esc(t(L('怎樣講這一頁', 'How to say it')))}</b><ol>
-          <li>${md(L('先問大家：**你估幾多 % 的項目會超支或超時？** 停一停，讓大家估。', 'Ask first: **what share of projects do you think go over budget or schedule?** Pause and let them guess.'))}</li>
-          <li>${md(L('揭曉 **92%**，並說清楚：這是各類項目的統計，偏重大型項目，**不是**說 dashboard 有 92% 失敗。', 'Reveal **92%** and be clear: it is a statistic about projects of every kind, weighted to large ones, **not** a claim that 92% of dashboards fail.'))}</li>
-          <li>${md(L('重點是「還沒想清楚就開工」很普遍。今天先慢慢想（第 1–4 部分），再快快做（第 5 部分）。', 'The point is that starting before you have thought it through is common. Today we think slow first (parts 1–4), then act fast (part 5).'))}</li>
-          <li>${md(L('下一頁看 dashboard 自己的數字，和它們為甚麼失敗。', 'The next page has dashboards\' own numbers and why they fail.'))}</li></ol></div></div></div>`;
-  },
-};
-
 /* ---------- Cornell notes ↔ layout ---------- */
 W.cornellLayout = {
   zones: [
@@ -2253,22 +2232,6 @@ W.chooser = {
   },
 };
 
-/* ---------- why dashboards fail: how often, why (process), why (design) ---------- */
-W.whyDash = {
-  html() {
-    const few = [[L('排得亂', 'Arranging the data poorly'), '#9', L('第 3 部分 Layout', 'Part 3, Layout')], [L('沒有突出重點', 'Not highlighting what matters'), '#10', L('第 2 部分 顏色', 'Part 2, Colour')], [L('顏色亂用、用太多', 'Misusing or overusing colour'), '#12', L('第 2 部分 顏色', 'Part 2, Colour')], [L('圖表類型不合', 'Inappropriate media of display'), '#5', L('第 4 部分 選圖', 'Part 4, Visuals')], [L('超出一個畫面', 'Exceeding a single screen'), '#1', L('第 3 部分 Layout', 'Part 3, Layout')], [L('缺少脈絡', 'Inadequate context'), '#2', L('第 3 部分 Layout', 'Part 3, Layout')]];
-    return `<div class="w"><div class="wd3"><div class="wd3-c"><h3>${esc(t(L('有多常失敗？', 'How often?')))}</h3>
-        <div class="st"><b>70–80%</b><span>${md(L('企業 BI 項目失敗（Gartner，2011）', 'of corporate BI projects fail (Gartner, 2011)'))}</span></div>
-        <div class="st"><b>25%</b><span>${md(L('員工平均每日使用 BI 軟件（BARC，2025）', 'of employees use BI software daily, on average (BARC, 2025)'))}</span></div>
-        <div class="st"><b>43%</b><span>${md(L('經常跳過 dashboard，自己用 Excel（Luzmo，2025）', 'regularly skip dashboards for their own Excel analysis (Luzmo, 2025)'))}</span></div></div>
-      <div class="wd3-c" data-step="1"><h3>${esc(t(L('為甚麼：流程', 'Why: the process')))}</h3>
-        <ul><li>${md(L('IT 和業務**溝通不足**（Gartner）', 'Poor **communication** between IT and the business (Gartner)'))}</li><li>${md(L('沒有先問**對的問題**，沒有想清業務真正需要甚麼（Gartner）', 'Not asking the **right questions** or thinking about the business\'s real needs (Gartner)'))}</li><li>${md(L('**40%** 說數據不足以支持決策；**51%** 說沒有有意義的方式互動；**28%** 不信任數據質素（Luzmo）', '**40%** say the data does not support decisions enough; **51%** say there is no meaningful way to interact; **28%** do not trust the data quality (Luzmo)'))}</li></ul></div>
-      <div class="wd3-c" data-step="2"><h3>${esc(t(L('為甚麼：設計（Stephen Few 的 13 個陷阱）', 'Why: the design (Stephen Few\'s 13 pitfalls)')))}</h3>
-        <ul class="fw">${few.map(f => `<li><i>${f[1]}</i><span>${md(f[0])}</span><em>${md(f[2])}</em></li>`).join('')}</ul></div></div>
-      <div class="wd3-end" data-step="2"><b>${esc(t(L('今天', 'Today')))}</b><span>${md(L('第 2–4 部分處理**設計**的陷阱；第 5 部分處理**流程**：讀懂數據、用 TMDL 建模、用 AI 安全地改動。', 'Parts 2–4 deal with the **design** pitfalls; part 5 deals with the **process**: understand the data, model it in TMDL, change it safely with AI.'))}</span></div></div>`;
-  },
-};
-
 /* ---------- the 69 CSV files, and the five tables we picked ---------- */
 W.hfiles = {
   info: { Production: L('產品、物料、製造工單、庫存', 'Products, bills of material, work orders, inventory'), Sales: L('訂單、客戶、地區、折扣、匯率', 'Orders, customers, territories, offers, currency'), Person: L('人、地址、聯絡方法', 'People, addresses, contacts'), HumanResources: L('員工、部門、薪酬紀錄', 'Employees, departments, pay history'), Purchasing: L('供應商與採購單', 'Vendors and purchase orders'), dbo: L('版本資訊', 'Build version') },
@@ -2490,17 +2453,6 @@ const SLIDES = [
   notes: L('用一分鐘講完整個流程：六個部分，第 5 部分的完整 dashboard 之後，會有一頁連到跟着做的操作手冊。每一項都可以點。之後隨時可以用工具列的「議程」跳到任何一部分，「返回」會帶你回到剛才的頁面。',
     'Take one minute for the whole route: six parts, and after the finished dashboard in part 5 one page links to the follow-along manual. Every item is clickable. From any page the Agenda button jumps to any part and Back returns you to where you were.') },
 
-{ id: 'why-fail', sec: 'O', type: 'custom', reveal: 1, title: L('多數項目都會超支超時：先想慢，再做快', 'Most projects overrun: think slow, act fast'), sm: true,
-  render: () => W.whyfail.html(),
-  creditExtra: () => `<b>${esc(t(L('來源', 'Sources')))}</b> <a href="https://www.strategy-business.com/article/Why-do-large-projects-go-over-budget" target="_blank" rel="noopener">Flyvbjerg &amp; Gardner, How Big Things Get Done (2023), strategy+business ↗</a><br><a href="https://www.computerweekly.com/news/1280094776/Poor-communication-to-blame-for-business-intelligence-failure-says-Gartner" target="_blank" rel="noopener">Gartner via Computer Weekly, 10 Jan 2011 ↗</a> · <a href="https://barc.com/news/what-1000-users-say-about-their-bi-tools/" target="_blank" rel="noopener">BARC, The BI &amp; Analytics Survey 26, Nov 2025 ↗</a>`,
-  notes: L('這頁右下的「怎樣講這一頁」就是講稿：先問大家估多少 %，停一停，再揭曉 92%。要說清楚，這是各類項目的統計（Flyvbjerg 的資料庫，超過 16,000 個項目，偏重大型項目），不是說 dashboard 有 92% 失敗。重點是 Flyvbjerg 和 Gardner 的 Think slow, act fast：先把計劃想清楚，開工後盡快完成。今天第 1–4 部分是慢慢想，第 5 部分是快快做。下一頁才講 dashboard 自己的數字和原因。', 'The "How to say it" box on the right is the script: ask for a guess in %, pause, then reveal 92%. Be clear it is a statistic about projects of every kind (Flyvbjerg\'s database of more than 16,000 projects, weighted to large ones), not a claim that 92% of dashboards fail. The point is Flyvbjerg and Gardner\'s think slow, act fast: plan carefully, then deliver quickly. Parts 1–4 today are the slow thinking and part 5 the fast building. The next page has the dashboards\' own numbers and reasons.') },
-
-{ id: 'why-dash', sec: 'O', type: 'custom', reveal: 2, title: L('Dashboard 多常失敗？為甚麼？', 'How often do dashboards fail, and why?'), sm: true,
-  render: () => W.whyDash.html(),
-  creditExtra: () => srcLinks([['Gartner via Computer Weekly, 2011', 'https://www.computerweekly.com/news/1280094776/Poor-communication-to-blame-for-business-intelligence-failure-says-Gartner'], ['BARC BI & Analytics Survey 26, 2025', 'https://barc.com/news/what-1000-users-say-about-their-bi-tools/'], ['Luzmo, State of Dashboards 2025', 'https://www.luzmo.com/blog/dashboards-dead-dying-or-evolving'], ['Stephen Few, Common Pitfalls in Dashboard Design', 'https://www.perceptualedge.com/articles/Whitepapers/Common_Pitfalls.pdf']]),
-  notes: L('先說有多常：Gartner 在 2011 年說企業 BI 項目有 70–80% 失敗；BARC 的調查說平均只有約 25% 員工每日用 BI 軟件；Luzmo 2025 年調查（200 多位產品負責人和數據團隊）顯示 43% 經常跳過 dashboard 自己用 Excel。注意：Luzmo 賣嵌入式分析，是業界調查，不是學術研究；Gartner 的數字較舊；BARC 量度的是使用率，不是失敗率。所以只當方向。\n再說為甚麼。流程：Gartner 指出 IT 和業務溝通不足，沒有先問對的問題。設計：Stephen Few 在 2006 年列出 13 個 dashboard 設計陷阱（我們已核對原文），其中 #9 排得亂、#10 沒有突出重點、#12 顏色亂用、#5 圖表類型不合，正好對應今天第 2 至 4 部分。最後一句：今天第 2–4 部分處理設計，第 5 部分處理流程。',
-    'Start with how often. Gartner said in 2011 that 70–80% of corporate BI projects fail; BARC\'s survey puts daily BI use at about 25% of employees; Luzmo\'s 2025 survey (200+ product leaders and data teams) found 43% regularly skip dashboards for their own Excel analysis. Luzmo sells embedded analytics and the survey is industry research, not academic; the Gartner figure is old; BARC measures usage, not failure. So read them as direction.\nThen why. Process: Gartner points to poor communication between IT and the business and not asking the right questions. Design: Stephen Few listed 13 dashboard design pitfalls in 2006 (we checked the original text); #9 arranging the data poorly, #10 not highlighting what matters, #12 misusing colour and #5 the wrong chart type line up with parts 2 to 4 today. Close with: parts 2–4 deal with design, part 5 with process.') },
-
 DIV('A'),
 
 { id: 'read-g02', sec: 'A', type: 'shot', title: L('這張報表，你先看哪裡？', 'Where do you look first?'), img: 'G02', reveal: 4,
@@ -2509,8 +2461,8 @@ DIV('A'),
     { x: 30, y: 48, step: 2, label: L('主比較：誰高誰低', 'Main comparison: who leads') },
     { x: 78, y: 52, step: 3, label: L('追查：哪些點值得點開', 'Drill: which dots to open') },
     { x: 7, y: 63, step: 4, label: L('導覽與篩選，位置固定', 'Navigation and filters, fixed place') }],
-  notes: L('先不要講。停一停，請大家說第一眼落在哪裡，然後按空白鍵逐點顯示：KPI、主比較、追查入口、導覽。\n用實際作者作品談層次，不用逐張圖解釋所有數字。截圖來源：Sajjad / Dashboard-Design（MIT）。',
-    'Say nothing at first. Ask where their eyes went, then press Space to reveal each point: KPIs, main comparison, drill entry, navigation.\nUse a real author\'s work to talk about hierarchy; do not explain every number. Source: Sajjad / Dashboard-Design (MIT).') },
+  notes: L('用實際作者作品談層次，不用逐張圖解釋所有數字。截圖來源：Sajjad / Dashboard-Design（MIT）。',
+    'Use a real author\'s work to talk about hierarchy; do not explain every number. Source: Sajjad / Dashboard-Design (MIT).') },
 
 { id: 'aurum', sub: L('好設計不只是好看，先是一致：同一個導覽、時間範圍永遠在同一個位置、三張大小一樣的 KPI 卡。讀者換頁不用重新學。', 'Good design is consistency before decoration: the same navigation, the time range always in one spot, three KPI cards of equal size. Readers do not relearn the page each time.'), sec: 'A', type: 'shot', title: L('一致的介面，也是一種設計', 'A consistent interface is design too'), img: 'TM03-1', reveal: 4,
   pins: [
