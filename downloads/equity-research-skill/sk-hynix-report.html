@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/images/favicon.ico">
+<title>SK hynix Research Note — worked example</title>
+<meta name="description" content="A worked output of the fail-closed equity research pipeline, run on SK hynix (KRX 000660). Educational example, not investment advice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --surface:        #f3f5f9;
+    --surface-raised: #ffffff;
+    --surface-sunken: #e9edf4;
+    --ink:            #12151c;
+    --ink-secondary:  #565f70;
+    --ink-faint:      #838da1;
+    --rule:           #d7dce6;
+    --rule-strong:    #b9c2d3;
+    --accent:         #2a78d6;
+    --accent-soft:    #e4eefb;
+    --bear:           #e34948;
+    --bear-soft:      #fbe9e8;
+    --warning:        #fab219;
+    --warning-soft:   #fdf1d8;
+    --warning-ink:    #6b4a02;
+    --shadow: 0 1px 2px rgba(18,21,28,0.04), 0 8px 24px -12px rgba(18,21,28,0.12);
+    --font-sans: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --surface:        #10131a;
+      --surface-raised: #1a1e28;
+      --surface-sunken: #0a0c11;
+      --ink:            #f2f4f8;
+      --ink-secondary:  #a7afc0;
+      --ink-faint:      #6b7385;
+      --rule:           #2b3040;
+      --rule-strong:    #3a4054;
+      --accent:         #3987e5;
+      --accent-soft:    #172439;
+      --bear:           #e66767;
+      --bear-soft:      #331c1c;
+      --warning:        #fab219;
+      --warning-soft:   #332504;
+      --warning-ink:    #f4c766;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface:        #10131a;
+    --surface-raised: #1a1e28;
+    --surface-sunken: #0a0c11;
+    --ink:            #f2f4f8;
+    --ink-secondary:  #a7afc0;
+    --ink-faint:      #6b7385;
+    --rule:           #2b3040;
+    --rule-strong:    #3a4054;
+    --accent:         #3987e5;
+    --accent-soft:    #172439;
+    --bear:           #e66767;
+    --bear-soft:      #331c1c;
+    --warning:        #fab219;
+    --warning-soft:   #332504;
+    --warning-ink:    #f4c766;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.6;
+  }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .back-bar { max-width: 84rem; margin: 0 auto; padding: 1.25rem 1.5rem 0; }
+  .back-bar a { font-family: var(--font-mono); font-size: .8rem; color: var(--ink-secondary); text-decoration: none; }
+  .back-bar a:hover { color: var(--accent); }
+  .layout { max-width: 84rem; margin: 0 auto; display: grid; grid-template-columns: 13rem 1fr; gap: 2rem; padding: 1.75rem 1.5rem 5rem; }
+
+  /* --- TOC --- */
+  nav.toc { position: sticky; top: 1.75rem; align-self: start; font-size: .8rem; }
+  nav.toc .brand { font-weight: 600; font-size: .95rem; margin-bottom: .15rem; }
+  nav.toc .brand-sub { font-family: var(--font-mono); font-size: .7rem; color: var(--ink-faint); margin-bottom: 1.1rem; }
+  nav.toc a { display: block; padding: .3rem 0; color: var(--ink-secondary); text-decoration: none; border-left: 2px solid transparent; padding-left: .6rem; margin-left: -.6rem; }
+  nav.toc a:hover { color: var(--ink); }
+  nav.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 500; }
+
+  main { min-width: 0; }
+
+  header.top {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+    gap: .75rem; padding-bottom: 1.25rem; margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .company { display: flex; align-items: baseline; gap: .6rem; }
+  .company h1 { font-size: 1.5rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .ticker { font-family: var(--font-mono); font-size: .8rem; color: var(--ink-secondary); background: var(--surface-sunken); padding: .15rem .5rem; border-radius: 4px; }
+  .asof { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-faint); }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-family: var(--font-mono); font-size: .7rem; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+    padding: .3rem .65rem; border-radius: 999px;
+  }
+  .badge.warn { background: var(--warning-soft); color: var(--warning-ink); }
+  .badge.warn::before { content: "●"; color: var(--warning); font-size: .6rem; }
+
+  .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; margin-bottom: 1.75rem; }
+  .hero-card { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: 12px; padding: 1.5rem 1.75rem; box-shadow: var(--shadow); }
+  .eyebrow { font-family: var(--font-mono); font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 .5rem; }
+  .hero-value { font-family: var(--font-mono); font-size: 2.4rem; font-weight: 600; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+  .hero-sub { font-size: .875rem; color: var(--ink-secondary); margin: .4rem 0 0; }
+  .delta { font-weight: 600; }
+  .delta.up { color: var(--accent); }
+  .delta.down { color: var(--bear); }
+  .price-compare { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .price-compare .label { font-size: .7rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .06em; }
+  .price-compare .value { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; margin-top: .15rem; }
+
+  section.block { margin: 3rem 0; scroll-margin-top: 1.5rem; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap; }
+  .section-head h2 { font-size: 1.15rem; font-weight: 600; margin: 0; }
+  .section-num { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-faint); margin-right: .5rem; }
+  .section-note { font-size: .8rem; color: var(--ink-faint); }
+
+  .prose { font-size: .92rem; color: var(--ink); max-width: 46rem; }
+  .prose p { margin: 0 0 .9rem; }
+  .lede { font-size: 1rem; color: var(--ink); }
+
+  .thesis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+  .thesis-card { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .thesis-card .n { font-family: var(--font-mono); font-size: .72rem; color: var(--accent); font-weight: 600; }
+  .thesis-card h3 { font-size: .92rem; margin: .35rem 0 .45rem; }
+  .thesis-card p { font-size: .82rem; color: var(--ink-secondary); margin: 0; }
+
+  .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .scen-card { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.25rem; position: relative; overflow: hidden; }
+  .scen-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .scen-card.bear::before { background: var(--bear); }
+  .scen-card.base::before { background: var(--ink-faint); }
+  .scen-card.bull::before { background: var(--accent); }
+  .scen-name { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+  .scen-card.bear .scen-name { color: var(--bear); }
+  .scen-card.bull .scen-name { color: var(--accent); }
+  .scen-prob { font-family: var(--font-mono); font-size: .75rem; color: var(--ink-faint); float: right; }
+  .scen-value { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 600; margin: .5rem 0 .2rem; }
+  .scen-delta { font-family: var(--font-mono); font-size: .85rem; }
+
+  .panel { background: var(--surface-raised); border: 1px solid var(--rule); border-radius: 12px; padding: 1.5rem 1.75rem; box-shadow: var(--shadow); }
+
+  table.data-table { border-collapse: collapse; width: 100%; font-size: .82rem; }
+  table.data-table th, table.data-table td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--rule); }
+  table.data-table th { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); font-weight: 500; }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-family: var(--font-mono); }
+  table.data-table tr:last-child td { border-bottom: none; }
+  .overflow-x { overflow-x: auto; }
+  .table-note { font-size: .78rem; color: var(--ink-faint); margin-top: .6rem; }
+
+  .bridge-callout { background: var(--warning-soft); border: 1px solid color-mix(in srgb, var(--warning) 35%, transparent); color: var(--warning-ink); border-radius: 10px; padding: 1rem 1.2rem; font-size: .85rem; margin-top: 1rem; }
+
+  .drivers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem; }
+  .driver-item { padding: 1rem 1.2rem; background: var(--surface-raised); border: 1px solid var(--rule); border-radius: 10px; }
+  .driver-item h4 { margin: 0 0 .35rem; font-size: .88rem; }
+  .driver-item p { margin: 0; font-size: .8rem; color: var(--ink-secondary); }
+
+  .tabs { display: flex; gap: .4rem; margin-bottom: 1rem; }
+  .tab-btn { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; padding: .4rem .9rem; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface-sunken); color: var(--ink-secondary); cursor: pointer; }
+  .tab-btn.active { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+  .tab-btn[data-s="bear"].active { background: var(--bear); border-color: var(--bear); }
+  .tab-btn[data-s="bull"].active { background: var(--accent); border-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-bottom: 1.25rem; }
+  .control label { display: block; font-size: .75rem; color: var(--ink-secondary); margin-bottom: .35rem; }
+  .control input[type="range"] { width: 14rem; accent-color: var(--accent); }
+  .control .readout { font-family: var(--font-mono); font-weight: 600; margin-left: .5rem; }
+  .reset-btn { font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; background: var(--surface-sunken); border: 1px solid var(--rule); color: var(--ink-secondary); padding: .4rem .8rem; border-radius: 6px; cursor: pointer; align-self: flex-end; }
+  .reset-btn:hover { border-color: var(--rule-strong); color: var(--ink); }
+
+  .outputs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .out-tile { background: var(--surface-sunken); border-radius: 8px; padding: .75rem .9rem; }
+  .out-tile .label { font-size: .68rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .04em; }
+  .out-tile .value { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600; margin-top: .25rem; }
+
+  table.grid-table { border-collapse: collapse; width: 100%; }
+  table.grid-table th, table.grid-table td { font-family: var(--font-mono); text-align: center; padding: .7rem .5rem; font-size: .85rem; border: 1px solid var(--rule); }
+  table.grid-table th { font-weight: 600; color: var(--ink-secondary); font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; background: var(--surface-sunken); }
+  table.grid-table td.axis { background: var(--surface-sunken); font-weight: 600; color: var(--ink-secondary); }
+  td.heat { font-weight: 600; }
+  td.heat.center { outline: 2px solid var(--ink); outline-offset: -2px; }
+
+  .fcff-row { display: flex; gap: .5rem; align-items: flex-end; height: 5.5rem; margin-top: .5rem; }
+  .fcff-bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+  .fcff-bar .stick { width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; opacity: .85; }
+  .fcff-bar .amt { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-secondary); }
+  .fcff-bar .yr { font-family: var(--font-mono); font-size: .68rem; color: var(--ink-faint); }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .6rem; }
+  ul.plain li { font-size: .85rem; color: var(--ink-secondary); padding-left: 1.2rem; position: relative; }
+  ul.plain li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
+  ul.plain.risk li::before { content: "▲"; color: var(--bear); font-size: .65rem; top: .2rem; }
+  ul.plain.warn li::before { content: "▲"; color: var(--warning); font-size: .65rem; top: .2rem; }
+  ul.plain code { font-family: var(--font-mono); font-size: .72rem; background: var(--surface-sunken); padding: .05rem .35rem; border-radius: 3px; color: var(--ink); }
+
+  .quality-grid { display: grid; grid-template-columns: 1fr auto; gap: .35rem .75rem; font-size: .82rem; }
+  .quality-grid .bar-track { background: var(--surface-sunken); border-radius: 3px; height: 6px; overflow: hidden; align-self: center; width: 8rem; }
+  .quality-grid .bar-fill { height: 100%; background: var(--accent); }
+
+  .source-item { display: grid; grid-template-columns: 8rem 1fr auto; gap: .75rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px solid var(--rule); font-size: .82rem; }
+  .source-item:last-child { border-bottom: none; }
+  .source-tier { font-family: var(--font-mono); font-size: .68rem; color: var(--ink-faint); }
+  .source-item a { color: var(--ink); }
+  .source-status { font-family: var(--font-mono); font-size: .68rem; color: var(--ink-faint); text-align: right; white-space: nowrap; }
+
+  .foot-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem; }
+  .disclosure { margin-top: 1.75rem; padding: 1rem 1.25rem; background: var(--warning-soft); border-radius: 10px; font-size: .8rem; color: var(--warning-ink); border: 1px solid color-mix(in srgb, var(--warning) 35%, transparent); }
+
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.toc { position: static; display: flex; flex-wrap: wrap; gap: .25rem 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); margin-bottom: 1rem; }
+    nav.toc a { padding-left: 0; margin-left: 0; border-left: none; }
+  }
+  @media (max-width: 760px) {
+    .hero, .thesis-grid, .drivers-grid, .foot-grid { grid-template-columns: 1fr; }
+    .scenarios { grid-template-columns: 1fr; }
+    .outputs { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="back-bar"><a href="/insights/fail-closed-equity-research/">← Back to the write-up</a></div>
+
+<div class="layout">
+  <nav class="toc" id="toc">
+    <div class="brand">SK hynix</div>
+    <div class="brand-sub">KRX 000660</div>
+    <a href="#thesis">投資觀點</a>
+    <a href="#bridge">2Q26 Forensic Bridge</a>
+    <a href="#drivers">Business Drivers</a>
+    <a href="#forecast">六季預測</a>
+    <a href="#nearterm">6–12月估值</a>
+    <a href="#dcf">3–5年 DCF</a>
+    <a href="#events">Event Replay</a>
+    <a href="#catalysts">Catalyst Calendar</a>
+    <a href="#risks">風險</a>
+    <a href="#quality">品質與驗證</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+    <header class="top">
+      <div class="company">
+        <h1>SK hynix</h1>
+        <span class="ticker">KRX 000660</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:.75rem;">
+        <span class="asof">Point-in-time 2026-08-02</span>
+        <span class="badge warn">review required</span>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">Probability-weighted DCF value / share</p>
+        <p class="hero-value num">₩2,373,689</p>
+        <p class="hero-sub">現價 ₩1,718,000 — <span class="delta up">+38.2%</span></p>
+        <div class="price-compare">
+          <div><div class="label">現價</div><div class="value">₩1,718,000</div></div>
+          <div><div class="label">6–12月 probability-weighted</div><div class="value">₩1,727,329</div></div>
+          <div><div class="label">Market cap</div><div class="value">₩1,224.4T</div></div>
+          <div><div class="label">Net cash</div><div class="value">₩69.4T</div></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <p class="eyebrow">Quality self-review</p>
+        <p class="hero-value num">76<span style="font-size:1.1rem; color:var(--ink-faint); font-weight:400;"> / 100</span></p>
+        <p class="hero-sub">100-point professional equity-research rubric，pipeline 自評，非人手評分。這不是正式 target price。</p>
+      </div>
+    </div>
+
+    <section class="block" id="thesis">
+      <div class="section-head"><h2><span class="section-num">01</span>投資觀點</h2></div>
+      <div class="prose">
+        <p class="lede">SK hynix 已由傳統 memory cycle 公司，向具客戶共同開發、advanced packaging、HBM 長約特徵的 AI infrastructure supplier 移動；但目前估值是否合理，取決於這種結構改善能否抵銷下一輪 conventional DRAM／NAND supply response。</p>
+        <p>Base DCF 約 ₩1,940,801（+13.0%）；Probability-weighted value 約 ₩2,373,689（+38.2%）；6–12個月 probability-weighted value 約 ₩1,727,329（+0.5%）。Bear／Bull range 為 ₩847,792 至 ₩4,765,361，range 很闊，反映 peak margin、HBM share 和 capital intensity 比短期 EPS 更重要。現有 enterprise value 對 Base 2027 FCFF 的 implied yield 約 9.1%。</p>
+        <p>這不是正式 target price。2Q26 數字仍屬 preliminary，H1 reviewed filing 尚未完成 cash flow、tax 和 investment-asset gain reconciliation。</p>
+      </div>
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <div class="n">可證偽 · 01</div>
+          <h3>HBM 結構性改善</h3>
+          <p>HBM4 量產、customer qualification 和 LTA 應提高 revenue visibility；若 shipment／yield 未在後續 filing 反映，thesis 失效。</p>
+        </div>
+        <div class="thesis-card">
+          <div class="n">可證偽 · 02</div>
+          <h3>Through-cycle margin 上移</h3>
+          <p>HBM mix 應令 mid-cycle margin 高於歷史 memory cycle；若 Samsung／Micron capacity 令 ASP 和 utilization 同時回落，不能把 2026 margin 外推。</p>
+        </div>
+        <div class="thesis-card">
+          <div class="n">可證偽 · 03</div>
+          <h3>FCF 而非 headline earnings</h3>
+          <p>AI demand 必須在扣除 M15X、Yongin、packaging CapEx 後仍產生高 FCF，才足以支持目前估值。</p>
+        </div>
+      </div>
+      <div class="section-head" style="margin-top:2rem;"><h2 style="font-size:1rem;">三情境估值總覽</h2></div>
+      <div class="scenarios">
+        <div class="scen-card bear"><span class="scen-prob">p = 25%</span><div class="scen-name">Bear</div><div class="scen-value num">₩847,792</div><div class="scen-delta num" style="color:var(--bear)">−50.7%</div></div>
+        <div class="scen-card base"><span class="scen-prob">p = 50%</span><div class="scen-name">Base</div><div class="scen-value num">₩1,940,801</div><div class="scen-delta num" style="color:var(--accent)">+13.0%</div></div>
+        <div class="scen-card bull"><span class="scen-prob">p = 25%</span><div class="scen-name">Bull</div><div class="scen-value num">₩4,765,361</div><div class="scen-delta num" style="color:var(--accent)">+177.4%</div></div>
+      </div>
+    </section>
+
+    <section class="block" id="bridge">
+      <div class="section-head"><h2><span class="section-num">02</span>2Q26 Forensic Bridge</h2></div>
+      <div class="panel overflow-x">
+        <table class="data-table">
+          <thead><tr><th>指標</th><th class="num">2Q26</th><th>判讀</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue</td><td class="num">₩79.319T</td><td>官方 preliminary；QoQ 強勁</td></tr>
+            <tr><td>Operating profit</td><td class="num">₩60.543T</td><td>Margin 76.3%，屬非常高水平</td></tr>
+            <tr><td>Net income</td><td class="num">₩93.923T</td><td>高於 revenue，不能直接 annualize</td></tr>
+            <tr><td>Est. investment-asset gain</td><td class="num">₩63.27T</td><td>非 core operating item，排除 normalized FCF</td></tr>
+            <tr><td>Cash ／ Debt</td><td class="num">₩88.0T ／ ₩18.6T</td><td>Net cash ₩69.4T</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bridge-callout">公司 release 與 <a href="https://www.sec.gov/Archives/edgar/data/2120882/000119312526321989/d115239d6k.htm" style="color:inherit">SEC 6-K</a> 一致，因此問題不是來源虛假，而是 provisional accounting classification 尚待 reviewed filing 核對。系統正確行為是保留 reported fact、發出 anomaly warning，並禁止把 net income 當作 recurring earnings。</div>
+    </section>
+
+    <section class="block" id="drivers">
+      <div class="section-head"><h2><span class="section-num">03</span>Business Drivers</h2></div>
+      <div class="drivers-grid">
+        <div class="driver-item"><h4>HBM</h4><p>主要 driver 是 shipped GB、ASP/GB、yield、advanced packaging capacity、customer qualification 和 GPU platform timing。LTA 已與約十家客戶落實（medium confidence，2Q26 release）。</p></div>
+        <div class="driver-item"><h4>Conventional DRAM</h4><p>server／mobile／PC bit shipment、contract ASP、inventory 和 competitor utilization。</p></div>
+        <div class="driver-item"><h4>NAND ／ Solidigm</h4><p>enterprise SSD mix、321-layer transition（預計年底達本地 NAND capacity 約一半）、QLC adoption 和 cost per bit。</p></div>
+        <div class="driver-item"><h4>資本強度</h4><p>M15X、Yongin、P&amp;T7、M17 的 ramp schedule 決定 CapEx、D&amp;A 和真正 FCF。</p></div>
+      </div>
+      <p class="table-note">公開資料沒有足夠 product-level shipment 和 ASP，segment forecast 全部標為 analyst estimate，不冒充 company-reported segment。多數產品收入與 USD 相關，但 valuation 以 KRW nominal cash flow 及 discount rate 表示。</p>
+    </section>
+
+    <section class="block" id="forecast">
+      <div class="section-head"><h2><span class="section-num">04</span>六季 Segment 預測</h2><span class="section-note">Revenue／HBM／DRAM／NAND／Op margin／FCFF，KRW trillion</span></div>
+      <div class="tabs">
+        <button class="tab-btn" data-s="bear">Bear</button>
+        <button class="tab-btn active" data-s="base">Base</button>
+        <button class="tab-btn" data-s="bull">Bull</button>
+      </div>
+      <div class="panel overflow-x" id="forecastPanels"></div>
+    </section>
+
+    <section class="block" id="nearterm">
+      <div class="section-head"><h2><span class="section-num">05</span>6–12個月 Catalyst 估值</h2></div>
+      <p class="prose" style="margin-bottom:1rem;">以未來四季 FCFF 和 scenario-specific forward FCFF yield 計算，避免用一次性 net income 或長期 terminal value 直接設定 12 個月價格。此版本沒有付費 broker consensus，只能計算自家 scenario。</p>
+      <div class="panel overflow-x">
+        <table class="data-table">
+          <thead><tr><th>Scenario</th><th class="num">Next-12M FCFF</th><th class="num">Forward FCFF yield</th><th class="num">Value / share</th><th class="num">vs 現價</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--bear)">Bear</td><td class="num">₩46.8T</td><td class="num">11.0%</td><td class="num">₩693,902</td><td class="num" style="color:var(--bear)">−59.6%</td></tr>
+            <tr><td>Base</td><td class="num">₩102.0T</td><td class="num">8.5%</td><td class="num">₩1,781,257</td><td class="num" style="color:var(--accent)">+3.7%</td></tr>
+            <tr><td style="color:var(--accent)">Bull</td><td class="num">₩127.5T</td><td class="num">7.0%</td><td class="num">₩2,652,901</td><td class="num" style="color:var(--accent)">+54.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="dcf">
+      <div class="section-head"><h2><span class="section-num">06</span>3–5年 Intrinsic Valuation</h2><span class="section-note">拖動 WACC／terminal growth 唔會改變已發佈記錄——純本地探索</span></div>
+      <div class="panel">
+        <div class="controls">
+          <div class="control"><label for="wacc">WACC <span class="readout num" id="waccOut">9.0%</span></label><input type="range" id="wacc" min="0.06" max="0.12" step="0.001" value="0.09"></div>
+          <div class="control"><label for="g">Terminal growth <span class="readout num" id="gOut">3.0%</span></label><input type="range" id="g" min="0.01" max="0.05" step="0.001" value="0.03"></div>
+          <button class="reset-btn" id="resetBtn">Reset to base case</button>
+        </div>
+        <div class="outputs">
+          <div class="out-tile"><div class="label">PV explicit</div><div class="value num" id="oPvExplicit">₩365.5T</div></div>
+          <div class="out-tile"><div class="label">Terminal value</div><div class="value num" id="oTV">₩1,459.2T</div></div>
+          <div class="out-tile"><div class="label">PV terminal</div><div class="value num" id="oPvTerm">₩948.4T</div></div>
+          <div class="out-tile"><div class="label">Enterprise value</div><div class="value num" id="oEV">₩1,313.8T</div></div>
+          <div class="out-tile"><div class="label">Value / share</div><div class="value num" id="oVPS" style="color:var(--accent)">₩1,940,801</div></div>
+        </div>
+        <div class="section-head" style="margin-bottom:.5rem;"><h2 style="font-size:.9rem;">Sensitivity — value/share vs 現價 ₩1,718,000</h2></div>
+        <div class="overflow-x"><table class="grid-table" id="sensTable"><thead><tr><th></th><th>g = 2%</th><th>g = 3%</th><th>g = 4%</th></tr></thead><tbody id="sensBody"></tbody></table></div>
+        <div class="section-head" style="margin-top:1.5rem; margin-bottom:.25rem;"><h2 style="font-size:.9rem;">Base case explicit FCFF (2027–2031)</h2></div>
+        <div class="fcff-row" id="fcffRow"></div>
+      </div>
+    </section>
+
+    <section class="block" id="events">
+      <div class="section-head"><h2><span class="section-num">07</span>Event-to-Valuation Replay</h2></div>
+      <p class="prose" style="margin-bottom:1rem;">事件值只表示在其他 assumptions 不變時的 model delta，不代表公告當日股價必然如此變動。真正 surprise 必須再減去市場原先已反映的 expectation。</p>
+      <div class="panel overflow-x">
+        <table class="data-table">
+          <thead><tr><th>Event</th><th>類型</th><th class="num">Probability</th><th class="num">Lag</th><th class="num">每股估值 delta</th><th class="num">現價影響</th></tr></thead>
+          <tbody>
+            <tr><td>2Q26 operating beat, excl. investment gain</td><td>fact_plus_inference</td><td class="num">100.0%</td><td class="num">0Q</td><td class="num">₩241,223</td><td class="num" style="color:var(--accent)">+14.0%</td></tr>
+            <tr><td>HBM4 ramp and LTA volume support</td><td>management_claim</td><td class="num">70.0%</td><td class="num">2Q</td><td class="num">₩52,464</td><td class="num" style="color:var(--accent)">+3.1%</td></tr>
+            <tr><td>Conventional-memory supply catches demand</td><td>scenario</td><td class="num">35.0%</td><td class="num">3Q</td><td class="num">−₩280,532</td><td class="num" style="color:var(--bear)">−16.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block" id="catalysts">
+      <div class="section-head"><h2><span class="section-num">08</span>Catalyst Calendar</h2></div>
+      <ul class="plain">
+        <li>H1 2026 reviewed semi-annual filing：核對 investment gain、tax、CFO、CapEx、cash proceeds。</li>
+        <li>2H26 HBM4 ramp：確認 shipment、yield、customer platform 和 capacity utilization。</li>
+        <li>HBM4E sample／qualification：未有客戶或後續 shipment 證據前只調 probability。</li>
+        <li>M15X、Yongin、P&amp;T7、M17 milestones：capacity 不等於即時 output，模型保留 ramp lag。</li>
+        <li>Samsung／Micron product qualification 及新增 capacity：決定 Bear case 概率。</li>
+        <li>DRAM／NAND contract pricing 及 Korea memory exports：只作 sector nowcast，不直接等同 SK hynix revenue。</li>
+      </ul>
+    </section>
+
+    <section class="block" id="risks">
+      <div class="section-head"><h2><span class="section-num">09</span>Risks and Missing Paid Data</h2></div>
+      <ul class="plain risk">
+        <li>AI hyperscaler CapEx 回落、客戶集中及 GPU product delay。</li>
+        <li>HBM yield／packaging bottleneck，或競爭者 qualification 快過預期。</li>
+        <li>Export controls、China fab tool access、KRW 匯率和地緣政治。</li>
+        <li>高 CapEx 抵銷 accounting profit，令 FCF 低於市場假設。</li>
+        <li>第一版沒有 FnGuide consensus revision breadth、TrendForce contract ASP 或 Omdia HBM shipment；因此不能聲稱具備完整 sell-side expectation edge。</li>
+      </ul>
+    </section>
+
+    <section class="block" id="quality">
+      <div class="section-head"><h2><span class="section-num">10</span>品質與驗證</h2></div>
+      <div class="foot-grid">
+        <div class="panel">
+          <div class="section-head"><h2 style="font-size:.9rem;">Validation warnings</h2></div>
+          <ul class="plain warn">
+            <li><code>PRELIMINARY_DATA</code> — FY2025 與 1Q2026 屬 preliminary／unaudited，待 filing 核對。</li>
+            <li><code>NET_INCOME_GT_REVENUE</code> — 2Q2026 net income 高於 revenue；需拆解 non-operating 與 fair-value 項目。</li>
+            <li><code>PRELIMINARY_DATA</code> — 2Q2026 數字屬 preliminary／unaudited。</li>
+            <li><code>QOQ_GT_100_PERCENT</code> — 2Q2026 net income QoQ 變動超過 100%。</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="section-head"><h2 style="font-size:.9rem;">Quality rubric（76/100）</h2></div>
+          <div class="quality-grid">
+            <div>Business &amp; competitive evidence</div><div class="bar-track"><div class="bar-fill" style="width:66.7%"></div></div>
+            <div>Falsifiable thesis</div><div class="bar-track"><div class="bar-fill" style="width:86.7%"></div></div>
+            <div>Financial model &amp; earnings quality</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+            <div>Valuation &amp; internal consistency</div><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+            <div>Catalysts &amp; risks</div><div class="bar-track"><div class="bar-fill" style="width:73.3%"></div></div>
+            <div>Source traceability</div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+            <div>Readability &amp; disclosures</div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+          </div>
+          <p class="table-note">差距不是文字表達，而是仍未有 reviewed H1 cash flow、point-in-time broker consensus、licensed HBM shipment／contract ASP，以及足夠歷史 vintages 驗證 forecast accuracy。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="sources">
+      <div class="section-head"><h2><span class="section-num">11</span>Sources &amp; Evidence</h2><span class="section-note">6 sources · 20 traceable claims</span></div>
+      <div class="panel">
+        <div class="source-item"><span class="source-tier">Tier 0</span><a href="https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/" target="_blank" rel="noopener">SK hynix Announces FY25 Financial Results</a><span class="source-status">preliminary · 2026-01-28</span></div>
+        <div class="source-item"><span class="source-tier">Tier 0</span><a href="https://news.skhynix.com/en/q1-2026-business-results/" target="_blank" rel="noopener">SK hynix Announces 1Q26 Financial Results</a><span class="source-status">preliminary · 2026-04-23</span></div>
+        <div class="source-item"><span class="source-tier">Tier 0</span><a href="https://news.skhynix.com/en/q2-2026-business-results/" target="_blank" rel="noopener">SK hynix Announces 2Q26 Financial Results</a><span class="source-status">preliminary/unaudited · 2026-07-29</span></div>
+        <div class="source-item"><span class="source-tier">Tier 0</span><a href="https://www.sec.gov/Archives/edgar/data/2120882/000119312526321989/d115239d6k.htm" target="_blank" rel="noopener">SK hynix 6-K dated 2026-07-29</a><span class="source-status">filed/preliminary · 2026-07-29</span></div>
+        <div class="source-item"><span class="source-tier">Tier 0</span><a href="https://www.skhynix.com/ir/UI-FR-IR04/" target="_blank" rel="noopener">SK hynix Ownership Structure</a><span class="source-status">company disclosure · 2026-05-06</span></div>
+        <div class="source-item"><span class="source-tier">Tier 0</span><span>Google Finance SK hynix market snapshot</span><span class="source-status">market data · 2026-07-31</span></div>
+      </div>
+      <p class="table-note">每個財務數字保留 source、document status、unit 和 table location（source-ledger.json）。</p>
+    </section>
+
+    <div class="disclosure">Forecast segment splits are analyst estimates — SK hynix does not report the required HBM/DRAM/NAND detail. Paid consensus data is intentionally excluded from this version. <strong>This is educational research output, not investment advice.</strong> 所有 arithmetic 由 deterministic Python 執行，AI 只可草擬解釋；每次 assumption change 寫入 change log，保留舊 valuation，避免 hindsight rewrite。</div>
+  </main>
+</div>
+
+<script>
+(function () {
+  // ---------- DCF explorer (3-5Y) ----------
+  var FCFF = [105.0, 100.0, 90.0, 85.0, 85.0];
+  var YEARS = [2027, 2028, 2029, 2030, 2031];
+  var NET_CASH = 69.4;
+  var SHARES = 712702127;
+  var CURRENT_PRICE = 1718000;
+
+  function fmtWon(x) { return "₩" + Math.round(x).toLocaleString("en-US"); }
+  function fmtT(x) { return "₩" + x.toFixed(1) + "T"; }
+
+  function dcf(wacc, g) {
+    var pvExplicit = 0;
+    for (var i = 0; i < FCFF.length; i++) pvExplicit += FCFF[i] / Math.pow(1 + wacc, i + 1);
+    var tv = FCFF[FCFF.length - 1] * (1 + g) / (wacc - g);
+    var pvTerminal = tv / Math.pow(1 + wacc, 5);
+    var ev = pvExplicit + pvTerminal;
+    var equity = ev + NET_CASH;
+    var perShare = (equity * 1e12) / SHARES;
+    return { pvExplicit: pvExplicit, tv: tv, pvTerminal: pvTerminal, ev: ev, equity: equity, perShare: perShare };
+  }
+
+  var waccInput = document.getElementById("wacc"), gInput = document.getElementById("g");
+  var waccOut = document.getElementById("waccOut"), gOut = document.getElementById("gOut");
+
+  function render() {
+    var wacc = parseFloat(waccInput.value), g = parseFloat(gInput.value);
+    waccOut.textContent = (wacc * 100).toFixed(1) + "%";
+    gOut.textContent = (g * 100).toFixed(1) + "%";
+    var r = dcf(wacc, g);
+    document.getElementById("oPvExplicit").textContent = fmtT(r.pvExplicit);
+    document.getElementById("oTV").textContent = fmtT(r.tv);
+    document.getElementById("oPvTerm").textContent = fmtT(r.pvTerminal);
+    document.getElementById("oEV").textContent = fmtT(r.ev);
+    document.getElementById("oVPS").textContent = fmtWon(r.perShare);
+  }
+  waccInput.addEventListener("input", render);
+  gInput.addEventListener("input", render);
+  document.getElementById("resetBtn").addEventListener("click", function () {
+    waccInput.value = 0.09; gInput.value = 0.03; render();
+  });
+
+  var waccVals = [0.08, 0.09, 0.10], gVals = [0.02, 0.03, 0.04];
+  var tbody = document.getElementById("sensBody");
+  var allVals = [];
+  var grid = waccVals.map(function (w) { return gVals.map(function (gg) { var v = dcf(w, gg).perShare; allVals.push(v); return v; }); });
+  var minV = Math.min.apply(null, allVals), maxV = Math.max.apply(null, allVals);
+  function heatColor(v) {
+    var t;
+    if (v >= CURRENT_PRICE) { t = Math.min(1, (v - CURRENT_PRICE) / (maxV - CURRENT_PRICE)); return "color-mix(in srgb, var(--accent) " + Math.round(12 + t * 38) + "%, var(--surface-raised))"; }
+    t = Math.min(1, (CURRENT_PRICE - v) / (CURRENT_PRICE - minV));
+    return "color-mix(in srgb, var(--bear) " + Math.round(12 + t * 38) + "%, var(--surface-raised))";
+  }
+  waccVals.forEach(function (w, i) {
+    var tr = document.createElement("tr");
+    var th = document.createElement("td"); th.className = "axis"; th.textContent = "WACC " + (w * 100).toFixed(0) + "%"; tr.appendChild(th);
+    gVals.forEach(function (gg, j) {
+      var td = document.createElement("td");
+      td.className = "heat" + (w === 0.09 && gg === 0.03 ? " center" : "");
+      td.style.background = heatColor(grid[i][j]);
+      td.textContent = fmtWon(grid[i][j]);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  var fcffRow = document.getElementById("fcffRow");
+  var maxF = Math.max.apply(null, FCFF);
+  FCFF.forEach(function (v, i) {
+    var bar = document.createElement("div"); bar.className = "fcff-bar";
+    var stick = document.createElement("div"); stick.className = "stick"; stick.style.height = (v / maxF * 3.6) + "rem";
+    var amt = document.createElement("div"); amt.className = "amt"; amt.textContent = v.toFixed(0) + "T";
+    var yr = document.createElement("div"); yr.className = "yr"; yr.textContent = YEARS[i];
+    bar.appendChild(stick); bar.appendChild(amt); bar.appendChild(yr); fcffRow.appendChild(bar);
+  });
+  render();
+
+  // ---------- 6-quarter segment forecast tabs ----------
+  var QUARTERS = ["3Q2026", "4Q2026", "1Q2027", "2Q2027", "3Q2027", "4Q2027"];
+  var FORECASTS = {
+    bear: { margin: [58.0,55.0,49.0,45.0,40.0,37.0],
+      rows: [["Revenue","70.5","72.9","67.9","70.3","68.7","66.2"],
+             ["HBM","28.0","30.4","28.8","30.4","30.4","29.6"],
+             ["DRAM","26.4","26.4","24.6","24.6","23.8","22.9"],
+             ["NAND","16.1","16.1","14.4","15.3","14.4","13.6"],
+             ["FCFF","14.2","13.0","10.3","9.3","8.5","7.4"]] },
+    base: { margin: [73.0,70.0,64.0,60.0,55.0,52.0],
+      rows: [["Revenue","85.0","88.0","82.0","85.0","83.0","80.0"],
+             ["HBM","35.0","38.0","36.0","38.0","38.0","37.0"],
+             ["DRAM","31.0","31.0","29.0","29.0","28.0","27.0"],
+             ["NAND","19.0","19.0","17.0","18.0","17.0","16.0"],
+             ["FCFF","28.5","27.5","23.5","22.6","21.4","19.6"]] },
+    bull: { margin: [78.0,75.0,69.0,65.0,60.0,57.0],
+      rows: [["Revenue","97.0","100.6","93.8","97.3","95.1","91.7"],
+             ["HBM","42.0","45.6","43.2","45.6","45.6","44.4"],
+             ["DRAM","34.1","34.1","31.9","31.9","30.8","29.7"],
+             ["NAND","20.9","20.9","18.7","19.8","18.7","17.6"],
+             ["FCFF","35.2","34.2","29.5","28.6","27.2","25.1"]] }
+  };
+
+  var fp = document.getElementById("forecastPanels");
+  ["bear","base","bull"].forEach(function (s) {
+    var div = document.createElement("div");
+    div.className = "tab-panel" + (s === "base" ? " active" : "");
+    div.id = "fc-" + s;
+    var html = '<table class="data-table"><thead><tr><th>Quarter</th>';
+    QUARTERS.forEach(function (q) { html += "<th class=\"num\">" + q + "</th>"; });
+    html += "</tr></thead><tbody>";
+    FORECASTS[s].rows.forEach(function (row) {
+      html += "<tr><td>" + row[0] + (row[0] === "FCFF" ? " (₩T)" : row[0] === "Revenue" ? " (₩T)" : "") + "</td>";
+      for (var i = 1; i < row.length; i++) html += "<td class=\"num\">" + row[i] + "</td>";
+      html += "</tr>";
+    });
+    html += "<tr><td>Op margin</td>";
+    FORECASTS[s].margin.forEach(function (m) { html += "<td class=\"num\">" + m.toFixed(1) + "%</td>"; });
+    html += "</tr></tbody></table>";
+    div.innerHTML = html;
+    fp.appendChild(div);
+  });
+  document.querySelectorAll(".tab-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".tab-btn").forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
+      document.getElementById("fc-" + btn.dataset.s).classList.add("active");
+    });
+  });
+
+  // ---------- TOC scroll-spy ----------
+  var tocLinks = document.querySelectorAll("#toc a");
+  var sections = Array.prototype.map.call(tocLinks, function (a) { return document.querySelector(a.getAttribute("href")); });
+  function onScroll() {
+    var pos = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function (s) { if (s && s.offsetTop <= pos) current = s; });
+    tocLinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + current.id); });
+  }
+  document.addEventListener("scroll", onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <title data-title-en="Power BI Design - Yuu" data-title-zh="Power BI 設計分享 - Yuu">Power BI Design - Yuu</title>
+    <meta name="description" content="Power BI design session: colour, layout, visuals, then AI + TMDL. Slides in your browser and a follow-along manual that builds the same dashboard. Power BI 設計分享，附簡報和跟着做的操作手冊。">
+    <link rel="canonical" href="https://ytsang.com/pbi-design/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ytsang.com/pbi-design/">
+    <meta property="og:site_name" content="Yuu">
+    <meta property="og:title" content="Power BI Design · 設計分享">
+    <meta property="og:description" content="Colour, layout, visuals and AI + TMDL: slides and a follow-along manual for a Power BI design session.">
+    <meta property="og:image" content="https://ytsang.com/images/pbi-design-card.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css?v=11">
+    <script src="/js/i18n.js?v=2"></script>
+    <style>
+        .pbi-wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+        .deck-panel { background: #0C233C; border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
+        .deck-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #0C233C; }
+        .deck-poster { display: none; position: relative; color: #fff; text-decoration: none; }
+        .deck-poster img { display: block; width: 100%; height: auto; }
+        .deck-poster span { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.1rem 1rem; background: linear-gradient(0deg, rgba(12,35,60,.92), rgba(12,35,60,0)); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+        .deck-bar { display: flex; flex-wrap: wrap; gap: 0.6rem 0.9rem; align-items: center; padding: 0.85rem 0 0; }
+        .deck-bar .btn { padding: 0.6rem 1.05rem; font-size: 0.72rem; cursor: pointer; background: transparent; }
+        .deck-bar .btn-primary { background: var(--color-text); }
+        .deck-hint { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-text-muted); margin-left: auto; }
+        .pbi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+        .pbi-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 1.4rem 1.5rem; }
+        .pbi-card h3 { font-family: var(--font-serif); font-weight: 500; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .pbi-card p { color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1rem; }
+        .pbi-card .row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .pbi-card .btn { padding: 0.6rem 1.05rem; font-size: 0.72rem; }
+        .pbi-parts { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+        .pbi-parts li { border-top: 2px solid var(--color-text); padding-top: 0.7rem; }
+        .pbi-parts b { display: block; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; color: var(--color-accent); margin-bottom: 0.25rem; }
+        .pbi-parts span { font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.45; }
+        .pbi-parts em { display: block; font-style: normal; color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.5; margin-top: 0.2rem; }
+        @media (max-width: 760px) {
+            .pbi-grid { grid-template-columns: 1fr; }
+            .pbi-parts { grid-template-columns: 1fr 1fr; }
+            .deck-frame { display: none; }
+            .deck-poster { display: block; }
+            #deckFull { display: none; }
+            .deck-hint { display: none; }
+            .deck-hint { margin-left: 0; width: 100%; }
+        }
+        @media (max-width: 480px) { .pbi-parts { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="nav" aria-label="Primary">
+        <div class="nav-container">
+            <a class="nav-brand" href="/index.html">Yuu</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+                <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-title">Power BI Design</div>
+        <p class="hero-subtitle">
+            <span data-lang="en">A design session on colour, layout and visuals, then AI + TMDL. Slides below, and a manual that builds the same dashboard from a blank file.</span>
+            <span data-lang="zh">顏色、版面、選圖，再到 AI + TMDL 的設計分享。下方是簡報，另有一份從空白檔做出同一份 dashboard 的操作手冊。</span>
+        </p>
+    </section>
+
+    <section class="section about-section">
+        <div class="pbi-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 01 / <span data-lang="en">Slides</span><span data-lang="zh">簡報</span></div>
+                    <h2 class="section-title"><span data-lang="en">The session.</span><span data-lang="zh">分享內容</span></h2>
+                </div>
+            </header>
+            <div class="deck-panel">
+                <iframe id="deckFrame" class="deck-frame" title="Power BI Design slides" allow="fullscreen" allowfullscreen></iframe>
+                <a class="deck-poster" id="deckPoster" href="/pbi-design/slides/"><img src="/images/pbi-design-card.jpg" alt="Power BI Design"><span><span data-lang="en" style="position:static;padding:0;background:none">Open the slides — landscape works best →</span><span data-lang="zh" style="position:static;padding:0;background:none">開啟簡報，橫向使用效果最好 →</span></span></a>
+            </div>
+            <noscript><p><a href="/pbi-design/slides/">Open the slides</a></p></noscript>
+            <div class="deck-bar">
+                <button type="button" class="btn btn-primary" id="deckFull"><span data-lang="en">Full screen</span><span data-lang="zh">全螢幕</span></button>
+                <a class="btn btn-secondary" href="/pbi-design/slides/" id="deckTab"><span data-lang="en">Open in its own page</span><span data-lang="zh">用單獨頁面開啟</span></a>
+                <a class="btn btn-secondary" href="/pbi-design/slides/index.html" download="pbi-design-sharing.html"><span data-lang="en">Download HTML</span><span data-lang="zh">下載 HTML</span></a>
+                <span class="deck-hint"><span data-lang="en">Click the slide once, then use ← → or Space.</span><span data-lang="zh">先點一下簡報，再用 ← → 或空白鍵換頁。</span></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section">
+        <div class="pbi-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 02 / <span data-lang="en">Follow along</span><span data-lang="zh">跟着做</span></div>
+                    <h2 class="section-title"><span data-lang="en">The manual.</span><span data-lang="zh">操作手冊</span></h2>
+                </div>
+            </header>
+            <div class="pbi-grid">
+                <div class="pbi-card">
+                    <h3><span data-lang="en">Build the dashboard step by step</span><span data-lang="zh">一步步做出這份 dashboard</span></h3>
+                    <p>
+                        <span data-lang="en">Two tabs: Modeling (CSV import, Power Query, TMDL, checking the numbers, Sales Overview) and Dashboard (W0 to W10, one step at a time). Chinese, English or both on one page.</span>
+                        <span data-lang="zh">分兩個分頁：建模（匯入 CSV、Power Query、TMDL、核對數字、Sales Overview）和 Dashboard（W0 至 W10，一次一個步驟）。中文、English、雙語在同一頁切換。</span>
+                    </p>
+                    <div class="row">
+                        <a class="btn btn-primary" href="/pbi-design/guide/" data-guide><span data-lang="en">Open the manual →</span><span data-lang="zh">開啟操作手冊 →</span></a>
+                        <a class="btn btn-secondary" href="/pbi-design/guide/?lang=zh">中文</a>
+                        <a class="btn btn-secondary" href="/pbi-design/guide/?lang=en">English</a>
+                        <a class="btn btn-secondary" href="/pbi-design/guide/?lang=both"><span data-lang="en">Both</span><span data-lang="zh">雙語</span></a>
+                    </div>
+                </div>
+                <div class="pbi-card">
+                    <h3><span data-lang="en">Materials</span><span data-lang="zh">素材</span></h3>
+                    <p>
+                        <span data-lang="en">The last slides collect 50 cases, visuals and how-tos you can filter by type and topic. The sample data is Microsoft AdventureWorks (MIT).</span>
+                        <span data-lang="zh">簡報最後有 50 項案例、Visual 和教學資源，可按類型和主題篩選。範例數據是 Microsoft AdventureWorks（MIT）。</span>
+                    </p>
+                    <div class="row">
+                        <a class="btn btn-secondary" href="https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works" rel="noopener noreferrer">AdventureWorks →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about-section">
+        <div class="pbi-wrap">
+            <header class="section-head">
+                <div class="section-head__lead">
+                    <div class="section-kicker">§ 03 / <span data-lang="en">Outline</span><span data-lang="zh">大綱</span></div>
+                    <h2 class="section-title"><span data-lang="en">Six parts.</span><span data-lang="zh">六個部分</span></h2>
+                </div>
+            </header>
+            <ol class="pbi-parts">
+                <li><b>01</b><span data-lang="en">Real reports</span><span data-lang="zh">真實作品</span><em><span data-lang="en">Where the eye lands, a consistent interface, the main chart for the main question.</span><span data-lang="zh">第一眼落在哪裡、一致的介面、把主圖留給主要問題。</span></em></li>
+                <li><b>02</b><span data-lang="en">Colour</span><span data-lang="zh">顏色</span><em><span data-lang="en">One job per colour: limit the palette, 60 · 30 · 10, contrast, brand roles.</span><span data-lang="zh">每種顏色只做一件事：限制數量、60 · 30 · 10、對比度、品牌色角色。</span></em></li>
+                <li><b>03</b><span data-lang="en">Layout</span><span data-lang="zh">Layout</span><em><span data-lang="en">Reading order, alignment, and fixed positions for navigation and filters.</span><span data-lang="zh">閱讀順序、對齊線，以及導覽和篩選的固定位置。</span></em></li>
+                <li><b>04</b><span data-lang="en">Visuals</span><span data-lang="zh">選圖與 visual</span><em><span data-lang="en">Choose from the question; one page per visual, with its CSV and steps.</span><span data-lang="zh">由問題選圖；每個圖一頁，附 CSV 和步驟。</span></em></li>
+                <li><b>05</b><span data-lang="en">Data to dashboard</span><span data-lang="zh">由數據到 dashboard</span><em><span data-lang="en">69 CSVs to a finished report, with AI and TMDL helping along the way.</span><span data-lang="zh">由 69 個 CSV 到完成的報表，AI 和 TMDL 在中途幫手。</span></em></li>
+                <li><b>06</b><span data-lang="en">Recap</span><span data-lang="zh">回顧</span><em><span data-lang="en">The same report in four colourways, and what to change first.</span><span data-lang="zh">同一份報表換四種配色，以及先改哪裡。</span></em></li>
+            </ol>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-about">
+                <div class="footer-brand">Yuu</div>
+                <p class="footer-tagline">
+                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
+                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Pages</span><span data-lang="zh">頁面</span></h4>
+                <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
+                <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
+                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
+            </div>
+            <div class="footer-col">
+                <h4><span data-lang="en">Elsewhere</span><span data-lang="zh">其他</span></h4>
+                <a href="mailto:contact@ytsang.com"><span data-lang="en">Email →</span><span data-lang="zh">電郵 →</span></a>
+                <a href="https://github.com/yutsang" rel="noopener noreferrer">GitHub →</a>
+            </div>
+            <div class="footer-col footer-colophon">
+                <h4><span data-lang="en">Colophon</span><span data-lang="zh">版本</span></h4>
+                <p>
+                    <span data-lang="en">Set in Source Serif 4<br>&amp; IBM Plex Mono.<br>Hand-built in HK.</span>
+                    <span data-lang="zh">採用 Source Serif 4<br>與 IBM Plex Mono。<br>於香港手工打造。</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Yuu</span>
+            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
+            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
+        </div>
+    </footer>
+
+    <script src="/js/site-config.js"></script>
+    <script src="/js/site-ui.js?v=2"></script>
+    <script>
+    (function () {
+        var frame = document.getElementById('deckFrame');
+        var cur = function () { return document.documentElement.lang === 'zh' ? 'zh' : 'en'; };
+        var small = window.matchMedia('(max-width: 760px)');
+        function load() { if (!frame.getAttribute('src') && !small.matches) frame.src = '/pbi-design/slides/?lang=' + cur(); }
+        load();
+        (small.addEventListener ? small.addEventListener('change', load) : small.addListener(load));
+        function toDeck() {
+            try { var d = frame.contentWindow && frame.contentWindow.__deck; if (d && d.setLang) d.setLang(cur()); } catch (e) {}
+        }
+        function links() {
+            var l = cur();
+            document.getElementById('deckTab').href = '/pbi-design/slides/?lang=' + l;
+            document.getElementById('deckPoster').href = '/pbi-design/slides/?lang=' + l;
+            document.querySelector('[data-guide]').href = '/pbi-design/guide/?lang=' + l;
+        }
+        links();
+        document.addEventListener('langchange', function () { toDeck(); links(); });
+        frame.addEventListener('load', toDeck);
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'site-lang' && (e.newValue === 'en' || e.newValue === 'zh') && e.newValue !== cur() && window.SiteI18n) { window.SiteI18n.applyLang(e.newValue); links(); }
+        });
+        document.getElementById('deckFull').addEventListener('click', function () {
+            var f = frame.requestFullscreen || frame.webkitRequestFullscreen;
+            if (f) { try { f.call(frame); return; } catch (e) {} }
+            window.open('/pbi-design/slides/?lang=' + cur(), '_blank', 'noopener');
+        });
+    })();
+    </script>
+</body>
+</html>
