@@ -1,14 +1,13 @@
 ---
 layout: insight
-title: "Prompt Engineering Best Practices"
-title_zh: "提示工程的最佳實踐"
+title: "Prompt Structure and Task Design"
+title_zh: "提示結構與任務設計"
 date: 2026-04-05
 tags: [Tutorial, AI]
 permalink: /insights/prompt-engineering-guide/
-thumbnail: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=90&auto=format&fit=crop
-hero_image: https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=2000&q=90&auto=format&fit=crop
-excerpt: "A practical, opinionated guide to prompt engineering in 2026 — what still matters, what the reasoning models changed, and the patterns that consistently ship in production."
-excerpt_zh: "一份有觀點的 2026 年提示工程實戰指南——什麼依然重要、推理模型改變了什麼，以及在生產環境真正行得通的模式。"
+thumbnail: terminal
+excerpt: "A guide to prompt structure, examples, and task breakdown, with notes on how newer reasoning models affect those choices."
+excerpt_zh: "介紹提示的結構、示例和任務拆分，並整理推理模型普及後需要重新考慮的做法。"
 ---
 
 <div data-lang="en" markdown="1">

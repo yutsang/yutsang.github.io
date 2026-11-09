@@ -1,14 +1,13 @@
 ---
 layout: insight
-title: "Web Scraping in 2026: How Playwright Changed Everything"
-title_zh: "2026 年的網頁爬蟲：Playwright 如何改變了一切"
+title: "When to Use Playwright for Web Data"
+title_zh: "哪些情況適合用 Playwright 擷取網頁數據"
 date: 2026-04-10
 tags: [Tutorial, Engineering]
 permalink: /insights/playwright-scraping/
-thumbnail: https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1600&q=90&auto=format&fit=crop
-hero_image: https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=2000&q=90&auto=format&fit=crop
-excerpt: "A deep, practical look at modern web scraping — why requests + BeautifulSoup stopped being enough, how Playwright turned browser automation into the default, and what it means for data collection, research, and AI agents."
-excerpt_zh: "深入務實地聊聊現代網頁爬蟲——為什麼 requests + BeautifulSoup 已經不夠用、Playwright 如何把瀏覽器自動化變成預設選項，以及這對資料蒐集、研究與 AI agent 的意義。"
+thumbnail: terminal
+excerpt: "A comparison of ordinary HTTP requests and browser automation, with examples of when Playwright helps and when it adds unnecessary cost."
+excerpt_zh: "比較一般 HTTP requests 與瀏覽器自動化，說明 Playwright 適用的情況，以及何時只會增加成本。"
 ---
 
 <div data-lang="en" markdown="1">

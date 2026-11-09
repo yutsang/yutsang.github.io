@@ -1,14 +1,13 @@
 ---
 layout: insight
 title: "MarkItDown, MinerU, PaddleOCR, or Docling? Choosing a Document-Parsing Stack in 2026"
-title_zh: "MarkItDown、MinerU、PaddleOCR 定係 Docling？2026 年文件解析工具點揀"
+title_zh: "MarkItDown、MinerU、PaddleOCR 還是 Docling？如何選擇文件解析工具"
 date: 2026-07-06
 tags: [AI, Tutorial, Engineering]
 permalink: /insights/ocr-tools-comparison/
-thumbnail: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=90&auto=format&fit=crop
-hero_image: https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=2000&q=90&auto=format&fit=crop
-excerpt: "Four popular open-source tools all promise to turn documents into clean Markdown — but they're not even all playing the same game. A practical comparison of Microsoft's MarkItDown, Baidu's PaddleOCR, OpenDataLab's MinerU, and IBM's Docling: what each actually does, where each breaks, and how to pick."
-excerpt_zh: "四個熱門開源工具都話可以將文件變成乾淨嘅 Markdown——但佢哋根本唔係同一種物種。實測比較微軟 MarkItDown、百度 PaddleOCR、OpenDataLab MinerU，同埋 IBM Docling：各自真正做緊咩、喺邊度會出事、應該點揀。"
+thumbnail: database
+excerpt: "A comparison of MarkItDown, PaddleOCR, MinerU, and Docling, focusing on their output, failure cases, and the workloads each tool suits."
+excerpt_zh: "比較 MarkItDown、PaddleOCR、MinerU 和 Docling 的輸出結果、常見失誤，以及各自適合處理的工作。"
 ---
 
 <div data-lang="en" markdown="1">
@@ -298,7 +297,7 @@ print(result.document.export_to_markdown())
 | 出品方 | 微軟 | 百度 | OpenDataLab（上海 AI Lab） | IBM Research |
 | 真 OCR（掃描件） | ✗（需外掛 Azure DI） | ✓ 核心能力 | ✓（經 PaddleOCR／VLM） | ✓（自家 VLM：Granite-Docling-258M） |
 | 輸入格式 | Office、PDF、HTML、圖片、音訊、EPUB… | 圖片、PDF | PDF、圖片 | 四者最闊：PDF、Office、HTML、EPUB、email、音訊、影片、XBRL |
-| 表格 | Office 佳；PDF 差 | ✓ PP-StructureV3 | ✓ Markdown 內嵌 HTML，準確度最強 | ✓ 偵測到，難案例結構冇咁穩 |
+| 表格 | Office 佳；PDF 差 | ✓ PP-StructureV3 | ✓ Markdown 內嵌 HTML，準確度最強 | ✓ 偵測到，較難案例的結構穩定度較低 |
 | 公式 → LaTeX | ✗ | ✓（公式模組） | ✓ 四者最強 | ✓ |
 | 複雜版面閱讀順序 | PDF 偏弱 | ✓ | ✓ 最強 | ✓ 好，但未及 MinerU |
 | 中文／CJK | 只能透傳 | 優異（含繁體、手寫） | 很好（繼承 PaddleOCR） | 未有 CJK 專項優化 |

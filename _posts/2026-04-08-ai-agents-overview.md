@@ -1,14 +1,13 @@
 ---
 layout: insight
-title: "AI Agents: An Overview of the Current Landscape"
-title_zh: "AI Agent：目前生態的全景"
+title: "Common AI Agent Patterns"
+title_zh: "AI Agent 常見設計模式"
 date: 2026-04-08
 tags: [News, AI]
 permalink: /insights/ai-agents-overview/
-thumbnail: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=90&auto=format&fit=crop
-hero_image: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=2000&q=90&auto=format&fit=crop
-excerpt: "A grounded look at AI agents in 2026 — what they actually are, the frameworks that matter, the architectures that work in production, and where the hype still outpaces reality."
-excerpt_zh: "一份踏實看待 2026 年 AI agent 的整理：它們到底是什麼、哪些框架真的重要、哪些架構在生產環境能跑、哪些部分炒作仍超過現實。"
+thumbnail: sparkles
+excerpt: "Defines AI agents, summarizes common framework and workflow patterns, and discusses where these systems can fail in production."
+excerpt_zh: "介紹 AI agent 的定義、常見框架和工作流程，並整理系統在實際部署時可能遇到的問題。"
 ---
 
 <div data-lang="en" markdown="1">

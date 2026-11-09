@@ -34,10 +34,8 @@
             </button>
             <div class="nav-links" id="primary-nav">
                 <a href="/index.html"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
-                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
                 <a href="/projects/" class="active"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
-                <a href="/recommendations/"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
-                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
                 <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
                 <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
             </div>
@@ -103,7 +101,7 @@
             <!-- Traffic — HK Public Transport Explorer (internal: yuutraffic) -->
             <a class="project-card" data-category="web" href="/projects/traffic/" style="text-decoration:none;color:inherit">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="media-placeholder" aria-hidden="true"><span class="tag">Transit · Open Data</span></div>
                     <div class="project-overlay">
                         <span class="view-project"><span data-lang="en">Open</span><span data-lang="zh">開啟</span></span>
                     </div>
@@ -121,8 +119,8 @@
                         <span class="tag">HK Open Data</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2026 · weekly refresh</span><span data-lang="zh">2026 · 每週更新</span></span>
-                        <span class="project-type"><span data-lang="en">Live demo</span><span data-lang="zh">即時示範</span></span>
+                        <span class="project-date"><span data-lang="en">Public data</span><span data-lang="zh">公開數據</span></span>
+                        <span class="project-type"><span data-lang="en">Live application</span><span data-lang="zh">即時應用</span></span>
                     </div>
                 </div>
             </a>
@@ -130,16 +128,16 @@
             <!-- ETA prediction project -->
             <a class="project-card" data-category="data" href="/projects/eta-prediction/" style="text-decoration:none;color:inherit">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="media-placeholder" aria-hidden="true"><span class="tag">XGBoost · delay ratio</span></div>
                     <div class="project-overlay">
                         <span class="view-project"><span data-lang="en">Read the write-up</span><span data-lang="zh">查看詳情</span></span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
+                    <h3><span data-lang="en">Delivery Delay Modeling</span><span data-lang="zh">配送延誤建模</span></h3>
                     <p>
-                        <span data-lang="en">A delivery-delay modeling project: an XGBoost model that predicts delivery <em>delay ratio</em> (actual vs planned time) instead of raw duration, trained on 65,330 real HK delivery segments. Key finding: vehicle type and origin depot beat distance as predictors. Ships with a Streamlit analytics dashboard.</span>
-                        <span data-lang="zh">配送延誤建模專案：以 XGBoost 預測配送的 <em>delay ratio</em>（實際 vs 計劃時間）而非原始時長，用 65,330 條真實香港配送紀錄訓練。核心發現：車型與出發倉庫比距離更有預測力。附 Streamlit 分析 dashboard。</span>
+                        <span data-lang="en">An XGBoost example that models relative delivery delay instead of raw duration. The write-up explains the target, preparation steps, and limits; source data and operational details are omitted.</span>
+                        <span data-lang="zh">以 XGBoost 建立相對配送延誤模型的示例。頁面說明預測目標、數據準備和限制，不公開原始數據及營運細節。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">XGBoost</span>
@@ -148,8 +146,8 @@
                         <span class="tag">Logistics</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">Jun 2023</span><span data-lang="zh">2023 年 6 月</span></span>
-                        <span class="project-type"><span data-lang="en">Research project · Open source</span><span data-lang="zh">研究專案 · 開源</span></span>
+                        <span class="project-date"><span data-lang="en">Research example</span><span data-lang="zh">研究示例</span></span>
+                        <span class="project-type"><span data-lang="en">Method and code</span><span data-lang="zh">方法與程式</span></span>
                     </div>
                 </div>
             </a>
@@ -175,7 +173,7 @@
                         <span class="tag">Knowledge Base</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2026 · active</span><span data-lang="zh">2026 · 持續更新</span></span>
+                        <span class="project-date"><span data-lang="en">Knowledge base</span><span data-lang="zh">知識庫</span></span>
                         <span class="project-type"><span data-lang="en">Open source</span><span data-lang="zh">開源</span></span>
                     </div>
                 </div>
@@ -184,7 +182,7 @@
             <!-- Antimicrobial Resistance Research -->
             <a class="project-card" data-category="research" href="/projects/amr-genome/" style="text-decoration:none;color:inherit">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="media-placeholder" aria-hidden="true"><span class="tag">Genomics · BERT</span></div>
                     <div class="project-overlay">
                         <span class="view-project"><span data-lang="en">Read the write-up</span><span data-lang="zh">查看詳情</span></span>
                     </div>
@@ -202,7 +200,7 @@
                         <span class="tag">Research</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">May 2024 - Present</span><span data-lang="zh">2024 年 5 月至今</span></span>
+                        <span class="project-date"><span data-lang="en">Research project</span><span data-lang="zh">研究專案</span></span>
                         <span class="project-type"><span data-lang="en">Research Project · Open source</span><span data-lang="zh">研究專案 · 開源</span></span>
                     </div>
                 </div>
@@ -211,13 +209,13 @@
             <!-- Case Competition -->
             <div class="project-card" data-category="competition">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="media-placeholder" aria-hidden="true"><span class="tag">Logistics · Case Study</span></div>
                 </div>
                 <div class="project-content">
-                    <h3><span data-lang="en">Hong Kong Logistics Association Case Contest</span><span data-lang="zh">香港物流協會案例比賽</span></h3>
+                    <h3><span data-lang="en">Logistics Case Competition</span><span data-lang="zh">物流案例比賽</span></h3>
                     <p>
-                        <span data-lang="en">Led a team to 2nd Runner-Up and the Best Cost-Effective Solution award — designed the logistics solution, built the cost model, and presented to a panel of industry professionals.</span>
-                        <span data-lang="zh">帶領團隊奪得季軍及「最佳成本效益方案」獎——負責設計物流方案、建立成本模型，並向業界專業評審發表。</span>
+                        <span data-lang="en">A team case study involving logistics planning, cost analysis, and a presentation of the proposed approach.</span>
+                        <span data-lang="zh">團隊案例分析，內容包括物流規劃、成本分析，以及方案匯報。</span>
                     </p>
                     <div class="project-tags">
                         <span class="tag">Case Study</span>
@@ -226,7 +224,7 @@
                         <span class="tag">Leadership</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">Jun 2022</span><span data-lang="zh">2022 年 6 月</span></span>
+                        <span class="project-date"><span data-lang="en">Case study</span><span data-lang="zh">案例示例</span></span>
                         <span class="project-type"><span data-lang="en">Competition</span><span data-lang="zh">比賽</span></span>
                     </div>
                 </div>
@@ -253,7 +251,7 @@
                         <span class="tag">i18n</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2022 - Present</span><span data-lang="zh">2022 年至今</span></span>
+                        <span class="project-date"><span data-lang="en">Static site</span><span data-lang="zh">靜態網站</span></span>
                         <span class="project-type"><span data-lang="en">Personal Project · Open source</span><span data-lang="zh">個人專案 · 開源</span></span>
                     </div>
                 </div>
@@ -262,7 +260,7 @@
             <!-- HKEX Market Data (combined: CBBC / Stock Connect / Short-Selling) -->
             <a class="project-card" data-category="dataviz" href="/projects/hkex-data/" style="text-decoration:none;color:inherit">
                 <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                    <div class="media-placeholder" aria-hidden="true"><span class="tag">HKEX · Public Data</span></div>
                     <div class="project-overlay">
                         <span class="view-project"><span data-lang="en">Open the dashboards</span><span data-lang="zh">開啟 dashboard</span></span>
                     </div>
@@ -280,57 +278,14 @@
                         <span class="tag">Finance</span>
                     </div>
                     <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">2026 · daily refresh</span><span data-lang="zh">2026 · 每日更新</span></span>
+                        <span class="project-date"><span data-lang="en">Public market data</span><span data-lang="zh">公開市場數據</span></span>
                         <span class="project-type"><span data-lang="en">Live data</span><span data-lang="zh">即時數據</span></span>
                     </div>
                 </div>
             </a>
 
-            <!-- Electric Fence Dashboard -->
-            <div class="project-card" data-category="dataviz" id="electric-fence" onclick="toggleDashboard('electric-fence')" style="cursor:pointer;">
-                <div class="project-image">
-                    <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="Electric Fence Dashboard" loading="lazy">
-                    <div class="project-overlay">
-                        <span class="view-project"><span data-lang="en">View Dashboard</span><span data-lang="zh">開啟 dashboard</span></span>
-                    </div>
-                </div>
-                <div class="project-content">
-                    <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
-                    <p>
-                        <span data-lang="en">Comprehensive analysis of electric fence performance metrics, including efficiency rates, maintenance schedules, and operational insights — embedded live from Tableau Public.</span>
-                        <span data-lang="zh">針對電子圍欄績效指標的完整分析，涵蓋效率、維護排程與營運洞察——直接嵌入 Tableau Public 即時 dashboard。</span>
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Tableau</span>
-                        <span class="tag">Performance Analysis</span>
-                        <span class="tag">Electric Fence</span>
-                    </div>
-                    <div class="project-meta">
-                        <span class="project-date"><span data-lang="en">Sep 2023</span><span data-lang="zh">2023 年 9 月</span></span>
-                        <span class="project-type"><span data-lang="en">Interactive Dashboard</span><span data-lang="zh">互動式 dashboard</span></span>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- Embedded Tableau Dashboard -->
-        <div id="electric-fence-dashboard" class="embedded-dashboard" style="display: none;">
-            <div class="dashboard-header">
-                <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
-                <button class="close-dashboard" onclick="toggleDashboard('electric-fence')">×</button>
-            </div>
-            <div class="dashboard-embed">
-                <iframe
-                    title="Electric Fence Tableau dashboard"
-                    src="https://public.tableau.com/views/Electricfence/Dashboard?:embed=y&:display_count=no&:showVizHome=no&:toolbar=no"
-                    width="100%"
-                    scrolling="no"
-                    style="border:0;display:block;overflow:hidden;"
-                    loading="lazy"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
     </div>
 
     <footer class="site-footer">
@@ -338,8 +293,8 @@
             <div class="footer-about">
                 <div class="footer-brand">Yuu</div>
                 <p class="footer-tagline">
-                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
-                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                    <span data-lang="en">Projects and notes on data analysis, software, and decision modeling.</span>
+                    <span data-lang="zh">數據分析、軟件和決策建模的專案與筆記。</span>
                 </p>
             </div>
             <div class="footer-col">
@@ -366,31 +321,12 @@
         </div>
         <div class="footer-bottom">
             <span>© 2026 Yuu</span>
-            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
-            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
         </div>
     </footer>
 
     <script src="/js/site-config.js"></script>
     <script src="/js/site-ui.js?v=2"></script>
     <script>
-        function toggleDashboard(dashboardType) {
-            var el = document.getElementById(dashboardType + "-dashboard");
-            if (!el) return;
-            var visible = el.style.display !== "none" && el.style.display !== "";
-            if (visible) {
-                el.style.display = "none";
-            } else {
-                el.style.display = "block";
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }
-
-        // Deep link: /projects/#electric-fence opens the embedded dashboard
-        if (window.location.hash === "#electric-fence") {
-            toggleDashboard("electric-fence");
-        }
-
         document.querySelectorAll(".category-btn").forEach(function (btn) {
             btn.addEventListener("click", function () {
                 document.querySelectorAll(".category-btn").forEach(function (b) {

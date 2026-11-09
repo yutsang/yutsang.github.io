@@ -320,11 +320,11 @@
             .apps-title {
                 font-size: 2rem;
             }
-            
+
             .apps-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .nav-links {
                 display: none;
             }
@@ -338,9 +338,9 @@
             <div class="nav-brand">Yuu</div>
             <div class="nav-links">
                 <a href="/index.html">Home</a>
+                <a href="/projects/">Projects</a>
                 <a href="/insights/">Insights</a>
                 <a href="/data-viz/">Data Viz</a>
-                <a href="/projects/">Projects</a>
                 <a href="/contact/">Me</a>
             </div>
         </div>
@@ -491,39 +491,39 @@
             const messageInput = document.getElementById('messageInput');
             const sendButton = document.getElementById('sendMessage');
             const chatMessages = document.getElementById('chatMessages');
-            
+
             function addMessage(text, isSent = false) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${isSent ? 'sent' : 'received'}`;
-                
+
                 const messageText = document.createElement('span');
                 messageText.className = 'message-text';
                 messageText.textContent = text;
-                
+
                 const messageTime = document.createElement('span');
                 messageTime.className = 'message-time';
                 messageTime.textContent = 'Just now';
-                
+
                 messageDiv.appendChild(messageText);
                 messageDiv.appendChild(messageTime);
                 chatMessages.appendChild(messageDiv);
-                
+
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-            
+
             function sendMessage() {
                 const text = messageInput.value.trim();
                 if (text) {
                     addMessage(text, true);
                     messageInput.value = '';
-                    
+
                     // Simulate response
                     setTimeout(() => {
                         addMessage('Thanks for your message! This is a demo chat interface.');
                     }, 1000);
                 }
             }
-            
+
             if (sendButton) {
                 sendButton.addEventListener('click', sendMessage);
             }
@@ -623,4 +623,4 @@
         }
     </style>
 </body>
-</html> 
+</html>

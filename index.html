@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-    <title data-title-en="Yuu — Finance, data science & operations research" data-title-zh="Yuu — 金融、數據科學與運籌學">Yuu — Finance, data science & operations research</title>
-    <meta name="description" content="Notes and projects on data science, finance, and operations research.">
+    <title data-title-en="Yuu — Projects and data notes" data-title-zh="Yuu — 數據專案與筆記">Yuu — Projects and data notes</title>
+    <meta name="description" content="Projects, working examples, and notes on data analysis, software, and decision modeling.">
     <link rel="canonical" href="https://ytsang.com/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ytsang.com/">
     <meta property="og:site_name" content="Yuu">
-    <meta property="og:title" content="Yuu — Finance, data science & operations research">
-    <meta property="og:description" content="Notes and projects on data science, finance, and operations research.">
+    <meta property="og:title" content="Yuu — Projects and data notes">
+    <meta property="og:description" content="Projects, working examples, and notes on data analysis, software, and decision modeling.">
     <meta property="og:image" content="https://ytsang.com/images/cat-pixel.svg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Yuu — Finance, data science & operations research">
-    <meta name="twitter:description" content="Notes and projects on data science, finance, and operations research.">
+    <meta name="twitter:title" content="Yuu — Projects and data notes">
+    <meta name="twitter:description" content="Projects, working examples, and notes on data analysis, software, and decision modeling.">
     <meta name="twitter:image" content="https://ytsang.com/images/cat-pixel.svg">
     <link rel="alternate" type="application/rss+xml" title="Yuu" href="https://ytsang.com/feed.xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,10 +34,8 @@
             </button>
             <div class="nav-links" id="primary-nav">
                 <a href="/index.html#home" class="active"><span data-lang="en">Home</span><span data-lang="zh">首頁</span></a>
-                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
                 <a href="/projects/"><span data-lang="en">Projects</span><span data-lang="zh">專案</span></a>
-                <a href="/recommendations/"><span data-lang="en">Recommendations</span><span data-lang="zh">推薦</span></a>
-                <a href="/photos/"><span data-lang="en">Photos</span><span data-lang="zh">相片</span></a>
+                <a href="/insights/"><span data-lang="en">Insights</span><span data-lang="zh">觀察</span></a>
                 <a href="/contact/"><span data-lang="en">About</span><span data-lang="zh">關於</span></a>
                 <button type="button" class="lang-toggle" aria-label="Switch language"><span data-lang="en">中文</span><span data-lang="zh">EN</span></button>
             </div>
@@ -47,23 +45,22 @@
     <section id="home" class="hero hero-home">
         <div class="hero-content">
             <div class="hero-text">
-                <div class="hero-kicker"><span data-lang="en">Personal site · Est. 2022</span><span data-lang="zh">個人網站 · 2022 創立</span></div>
+                <div class="hero-kicker"><span data-lang="en">Selected work &amp; notes</span><span data-lang="zh">作品與筆記</span></div>
                 <h1 class="hero-title">
-                    <span data-lang="en">Notes, tools, and <em>experiments</em>.</span>
-                    <span data-lang="zh">筆記、工具與<em>實驗</em>。</span>
+                    <span data-lang="en">Projects and notes on <em>data</em>.</span>
+                    <span data-lang="zh">數據專案與<em>實作筆記</em>。</span>
                 </h1>
                 <p class="hero-subtitle hero-subtitle-lead" id="site-hero-role">
-                    <span data-lang="en">Data science · Finance · Operations research.</span>
-                    <span data-lang="zh">數據科學 · 金融 · 運籌學。</span>
+                    <span data-lang="en">Analysis · Software · Decision modelling.</span>
+                    <span data-lang="zh">數據分析 · 軟件 · 決策建模。</span>
                 </p>
                 <p class="hero-description" id="site-hero-bio">
-                    <span data-lang="en">I explore data science, finance, and operations research through open tools and reproducible experiments.</span>
-                    <span data-lang="zh">透過開放工具和可重現的實驗，探索數據科學、金融與運籌學。</span>
+                    <span data-lang="en">Selected projects, working examples, and notes on how I approached them. Where source data is private, I describe the method without publishing operational details.</span>
+                    <span data-lang="zh">這裡整理專案、實作範例和方法筆記。若原始數據涉及私隱或業務資料，頁面只介紹方法，不公開營運細節。</span>
                 </p>
                 <div class="hero-buttons">
-                    <a href="/contact/" class="btn btn-primary"><span data-lang="en">Get in touch</span><span data-lang="zh">聯絡我</span></a>
-                    <a href="#projects" class="btn btn-secondary"><span data-lang="en">View projects</span><span data-lang="zh">瀏覽專案</span></a>
-                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">Read insights</span><span data-lang="zh">閱讀觀察</span></a>
+                    <a href="#projects" class="btn btn-primary"><span data-lang="en">Browse projects</span><span data-lang="zh">瀏覽專案</span></a>
+                    <a href="/insights/" class="btn btn-secondary"><span data-lang="en">Read notes</span><span data-lang="zh">閱讀文章</span></a>
                 </div>
             </div>
             <div class="hero-image">
@@ -96,7 +93,7 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">HK Open Data</span></div>
                     </div>
                     <div class="project-content">
                         <h3><span data-lang="en">HK Transport Explorer</span><span data-lang="zh">香港交通探索</span></h3>
@@ -114,30 +111,30 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://public.tableau.com/static/images/El/Electricfence/Dashboard/1.png" alt="" loading="lazy">
+                        <img src="https://opengraph.githubassets.com/1/yutsang/rrag" alt="" loading="lazy">
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">Electric Fence Analysis Dashboard</span><span data-lang="zh">電子圍欄分析 dashboard</span></h3>
+                        <h3><span data-lang="en">Research Notes Graph</span><span data-lang="zh">研究筆記關聯圖</span></h3>
                         <p>
-                            <span data-lang="en">Interactive Tableau dashboard analyzing electric fence performance metrics — efficiency, maintenance schedules, and operational insight.</span>
-                            <span data-lang="zh">互動式 Tableau dashboard，分析電子圍欄績效指標——效率、維護排程與營運洞察。</span>
+                            <span data-lang="en">A small knowledge-base project that connects notes, sources, and questions. The public page describes the structure and example workflow.</span>
+                            <span data-lang="zh">整理筆記、來源與問題之間關係的小型知識庫專案。公開頁面介紹其結構和示範流程。</span>
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Tableau</span>
-                            <span class="tag">Data Analytics</span>
+                            <span class="tag">Knowledge Graph</span>
+                            <span class="tag">Open Source</span>
                         </div>
-                        <a href="/projects/#electric-fence" class="project-link"><span data-lang="en">Open dashboard →</span><span data-lang="zh">開啟 dashboard →</span></a>
+                        <a href="/projects/rrag/" class="project-link"><span data-lang="en">View project →</span><span data-lang="zh">查看專案 →</span></a>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">XGBoost · delay ratio</span></div>
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">HK Last-Mile ETA Prediction</span><span data-lang="zh">香港最後一里 ETA 預測</span></h3>
+                        <h3><span data-lang="en">Delivery Delay Modeling</span><span data-lang="zh">配送延誤建模</span></h3>
                         <p>
-                            <span data-lang="en">An XGBoost model predicting delivery delay ratios for a logistics fleet, trained on 65,330 real HK delivery segments, with a Streamlit dashboard.</span>
-                            <span data-lang="zh">以 XGBoost 預測 物流車隊配送的 delay ratio，用 65,330 條真實香港配送紀錄訓練，附 Streamlit dashboard。</span>
+                            <span data-lang="en">An XGBoost example for estimating relative delivery delays. The project page focuses on the method and its limits; source data is not published.</span>
+                            <span data-lang="zh">以 XGBoost 估算相對配送延誤的示範專案。頁面集中介紹方法及其限制，不公開原始數據。</span>
                         </p>
                         <div class="project-tags">
                             <span class="tag">XGBoost</span>
@@ -168,13 +165,13 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">Document parsing</span></div>
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">MarkItDown, MinerU, PaddleOCR, or Docling? Choosing a Document-Parsing Stack</span><span data-lang="zh">MarkItDown、MinerU、PaddleOCR 定係 Docling？文件解析工具點揀</span></h3>
+                        <h3><span data-lang="en">Choosing a Document-Parsing Tool</span><span data-lang="zh">如何選擇文件解析工具</span></h3>
                         <p>
-                            <span data-lang="en">Four tools that all promise clean Markdown from documents — but they're not even playing the same game. What each does, where each breaks, and how to pick.</span>
-                            <span data-lang="zh">四個工具都話可以將文件變成乾淨嘅 Markdown——但佢哋根本唔係同一種物種。各自做緊咩、喺邊度會出事、應該點揀。</span>
+                            <span data-lang="en">A comparison of four document-parsing tools, with notes on output quality, failure cases, and how to choose for a specific workload.</span>
+                            <span data-lang="zh">比較四種文件解析工具，整理輸出品質、常見失誤，以及如何按工作需要選擇。</span>
                         </p>
                         <div class="project-tags">
                             <span class="tag">AI</span>
@@ -186,13 +183,13 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">Browser automation</span></div>
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">Web Scraping in 2026: How Playwright Changed Everything</span><span data-lang="zh">2026 年的網頁爬蟲：Playwright 如何改變了一切</span></h3>
+                        <h3><span data-lang="en">When to Use Playwright for Web Data</span><span data-lang="zh">哪些情況適合用 Playwright 擷取網頁數據</span></h3>
                         <p>
-                            <span data-lang="en">A deep, practical look at modern web scraping — why requests + BS4 stopped being enough, and how Playwright rewrote the playbook.</span>
-                            <span data-lang="zh">深入務實地談談現代網頁爬蟲——為什麼 requests + BS4 已經不夠用，以及 Playwright 如何重寫整套玩法。</span>
+                            <span data-lang="en">A comparison of static-page requests and browser automation, including the cases where Playwright adds value and where it adds unnecessary cost.</span>
+                            <span data-lang="zh">比較一般 HTTP requests 與瀏覽器自動化，說明 Playwright 適用的情況，以及何時只會增加成本。</span>
                         </p>
                         <div class="project-tags">
                             <span class="tag">Tutorial</span>
@@ -203,13 +200,13 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">Agent patterns</span></div>
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">AI Agents: An Overview of the Current Landscape</span><span data-lang="zh">AI Agent：目前生態的全景</span></h3>
+                        <h3><span data-lang="en">Common AI Agent Patterns</span><span data-lang="zh">常見 AI Agent 設計模式</span></h3>
                         <p>
-                            <span data-lang="en">A look at autonomous AI agent frameworks and how they're being applied to real-world tasks.</span>
-                            <span data-lang="zh">快速掌握自主 AI agent 框架，以及它們如何被應用到真實工作流程。</span>
+                            <span data-lang="en">A guide to common agent patterns, their trade-offs, and when a simpler tool loop is enough.</span>
+                            <span data-lang="zh">整理常見 agent 設計模式、各自取捨，以及何時簡單的工具流程已經足夠。</span>
                         </p>
                         <div class="project-tags">
                             <span class="tag">AI</span>
@@ -221,13 +218,13 @@
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=90&auto=format&fit=crop" alt="" loading="lazy">
+                        <div class="media-placeholder" aria-hidden="true"><span class="tag">Prompt design</span></div>
                     </div>
                     <div class="project-content">
-                        <h3><span data-lang="en">Prompt Engineering Best Practices</span><span data-lang="zh">提示工程的最佳實踐</span></h3>
+                        <h3><span data-lang="en">Prompt Structure and Task Design</span><span data-lang="zh">提示結構與任務設計</span></h3>
                         <p>
                             <span data-lang="en">Key techniques for getting better outputs from LLMs — chain-of-thought, few-shot, and more.</span>
-                            <span data-lang="zh">讓語言模型產生更好結果的關鍵技巧——思維鏈、少樣本示例等。</span>
+                            <span data-lang="zh">整理改善模型輸出的提示技巧，包括示例設計與逐步處理任務。</span>
                         </p>
                         <div class="project-tags">
                             <span class="tag">AI</span>
@@ -263,8 +260,8 @@
             <div class="footer-about">
                 <div class="footer-brand">Yuu</div>
                 <p class="footer-tagline">
-                    <span data-lang="en">Finance and data science, with a strong interest in operations research — analytics, modeling, and decision-focused insight.</span>
-                    <span data-lang="zh">金融與數據科學，並對運籌學有濃厚興趣——分析、建模，以及以決策為導向的洞察。</span>
+                    <span data-lang="en">Projects and notes on data analysis, software, and decision modeling.</span>
+                    <span data-lang="zh">數據分析、軟件和決策建模的專案與筆記。</span>
                 </p>
             </div>
             <div class="footer-col">
@@ -291,8 +288,6 @@
         </div>
         <div class="footer-bottom">
             <span>© 2026 Yuu</span>
-            <span>v2026.07 · <span data-lang="en">updated weekly</span><span data-lang="zh">每週更新</span></span>
-            <span><span data-lang="en">Views are my own.</span><span data-lang="zh">觀點僅屬個人。</span></span>
         </div>
     </footer>
 
